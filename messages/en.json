@@ -1,0 +1,266 @@
+{
+  "meta": {
+    "title": "San Paolo Hideout — Your Private Roman Sanctuary",
+    "description": "San Paolo Hideout: boutique vacation rental in Rome near Basilica San Paolo and Metro B. Private garden, 2 bedrooms, elegant design. Book directly for the best price.",
+    "ogTitle": "San Paolo Hideout — Rome | Boutique Vacation Rental with Private Garden",
+    "ogDescription": "Your private Roman sanctuary near Metro B. 2 bedrooms, private garden, elegant design. Book directly on WhatsApp."
+  },
+  "nav": {
+    "home": "Home",
+    "rooms": "Rooms",
+    "location": "Location",
+    "reviews": "Reviews",
+    "faq": "FAQ",
+    "bookNow": "Book Now"
+  },
+  "hero": {
+    "location": "Rome, Italy",
+    "rating": "4.97 • 127 guests",
+    "title": "San Paolo Hideout",
+    "subtitle": "Your private Roman sanctuary near Metro B and Basilica San Paolo.",
+    "ctaWhatsApp": "Best Price on WhatsApp",
+    "ctaAvailability": "Check Availability",
+    "facts": "2 bedrooms • 4 guests • private garden • Metro 3 min"
+  },
+  "amenities": {
+    "title": "Why Guests Love It",
+    "subtitle": "Everything you need for a perfect Roman stay",
+    "garden": {
+      "title": "Private Garden",
+      "desc": "A green oasis in the heart of Rome"
+    },
+    "checkin": {
+      "title": "Self Check-in",
+      "desc": "Autonomous arrival 24/7"
+    },
+    "wifi": {
+      "title": "Fast Wi-Fi",
+      "desc": "High-speed fiber optic"
+    },
+    "metro": {
+      "title": "Metro B",
+      "desc": "3 minutes walk away"
+    },
+    "family": {
+      "title": "Family Ready",
+      "desc": "Space and comfort for everyone"
+    },
+    "business": {
+      "title": "Business Ready",
+      "desc": "Ideal for work trips"
+    },
+    "ac": {
+      "title": "Air Conditioning",
+      "desc": "AC in every room"
+    },
+    "university": {
+      "title": "Near Roma Tre",
+      "desc": "University in 10 minutes"
+    }
+  },
+  "rooms": {
+    "title": "Explore the Rooms",
+    "subtitle": "A photographic journey through Roman elegance and comfort",
+    "nextRoom": "Next Room",
+    "previousRoom": "Previous Room",
+    "viewGallery": "View Gallery",
+    "closeGallery": "Close",
+    "salotto": {
+      "title": "Living Room",
+      "desc": "A welcoming living room where contemporary design meets Roman warmth. Soft sofas, natural light, and a view of the private garden create the perfect atmosphere to relax after a day among the monuments."
+    },
+    "zonaPranzo": {
+      "title": "Dining Area",
+      "desc": "The elegant dining area with wooden table and designer chairs. Perfect for morning breakfasts and intimate dinners, with warm lighting and curated details that make every meal a special experience."
+    },
+    "camera1": {
+      "title": "Bedroom 1",
+      "desc": "The master bedroom with king-size bed, Egyptian cotton linen, and warm terracotta walls. The perfect retreat for unforgettable Roman nights, with soft lighting and absolute comfort."
+    },
+    "camera2": {
+      "title": "Bedroom 2",
+      "desc": "The second bedroom with twin beds, desk, and bookshelf. Ideal for children, friends, or work colleagues, with the same attention to detail and comfort as the master bedroom."
+    },
+    "bagno": {
+      "title": "Bathroom",
+      "desc": "Marble bathroom with walk-in rain shower and designer fixtures. Bright surfaces, terracotta accents, and soft towels transform every moment into a wellness experience."
+    },
+    "esterni": {
+      "title": "Exterior",
+      "desc": "The private garden with olive tree, Mediterranean plants, and terrace with seating. Evening lights and jasmine scent create a magical atmosphere for outdoor Roman nights."
+    },
+    "dettagli": {
+      "title": "Details",
+      "desc": "The little details that make the difference: artisan ceramics, local olive oil, fresh flowers, and touches of Roman hospitality that make your stay truly special."
+    }
+  },
+  "location": {
+    "title": "Perfect Location",
+    "subtitle": "In the heart of authentic Rome, connected to everything",
+    "basilica": {
+      "title": "Basilica San Paolo",
+      "desc": "5 min walk — One of Rome's four papal basilicas",
+      "time": "5 min"
+    },
+    "colosseo": {
+      "title": "Colosseum",
+      "desc": "15 min by Metro — The symbol of Rome",
+      "time": "15 min"
+    },
+    "eur": {
+      "title": "EUR",
+      "desc": "10 min by Metro — Business district and rationalist architecture",
+      "time": "10 min"
+    },
+    "romaTre": {
+      "title": "Roma Tre University",
+      "desc": "10 min walk — Ideal for visiting professors and students",
+      "time": "10 min"
+    },
+    "ostiense": {
+      "title": "Ostiense",
+      "desc": "8 min walk — Trendy neighborhood with restaurants and nightlife",
+      "time": "8 min"
+    },
+    "fiumicino": {
+      "title": "Fiumicino Airport",
+      "desc": "35 min — Direct regional train connection",
+      "time": "35 min"
+    }
+  },
+  "reviews": {
+    "title": "What Our Guests Say",
+    "subtitle": "Authentic stories from travelers who chose San Paolo Hideout",
+    "overallRating": "4.97",
+    "totalReviews": "127 reviews",
+    "categories": {
+      "location": "Location",
+      "cleanliness": "Cleanliness",
+      "garden": "Quiet Garden",
+      "metro": "Metro Convenience",
+      "communication": "Communication",
+      "family": "Family Comfort"
+    },
+    "review1": {
+      "name": "Sophie & Marc",
+      "location": "Paris, France",
+      "text": "A perfect retreat in Rome. The garden is an oasis of peace after intense days among monuments. The proximity to the Metro allowed us to explore everything without stress. We will definitely return.",
+      "rating": "5.0",
+      "date": "October 2024"
+    },
+    "review2": {
+      "name": "Thomas K.",
+      "location": "Berlin, Germany",
+      "text": "Excellent location for work at EUR and evening life in Ostiense. The self check-in was perfect for my late arrival. Fast Wi-Fi and quiet space for remote work. Highly recommended.",
+      "rating": "5.0",
+      "date": "September 2024"
+    },
+    "review3": {
+      "name": "Rossi Family",
+      "location": "Milan, Italy",
+      "text": "With two children, having a private garden in Rome is priceless. The apartment is spacious, spotlessly clean, and with everything needed. The kids loved playing in the garden. Metro at 3 minutes is fantastic.",
+      "rating": "5.0",
+      "date": "August 2024"
+    },
+    "review4": {
+      "name": "Emma L.",
+      "location": "London, UK",
+      "text": "I stayed for a month as a visiting professor at Roma Tre. The location was perfect and the host always available. The garden was my favorite place to read in the evening. A wonderful experience.",
+      "rating": "5.0",
+      "date": "July 2024"
+    },
+    "review5": {
+      "name": "Yuki & Kenji",
+      "location": "Tokyo, Japan",
+      "text": "Roman holidays made perfect! The apartment is beautiful, clean and very well equipped. The private garden is like a dream. Metro connection made everything accessible. Our best stay in Europe.",
+      "rating": "5.0",
+      "date": "June 2024"
+    },
+    "review6": {
+      "name": "Ana María V.",
+      "location": "Madrid, Spain",
+      "text": "The private garden is absolutely magical. The house is even more beautiful than in the photos. Communication with the host was impeccable. Definitely the best accommodation we've had in Rome.",
+      "rating": "4.9",
+      "date": "May 2024"
+    }
+  },
+  "booking": {
+    "title": "Book Directly",
+    "subtitle": "Best price guaranteed, no commissions",
+    "bestPrice": {
+      "title": "Best Price Guaranteed",
+      "desc": "Book directly and save up to 15% compared to platforms"
+    },
+    "whatsapp": {
+      "title": "Direct WhatsApp",
+      "desc": "Immediate host response to confirm your stay"
+    },
+    "airbnb": {
+      "title": "Also on Airbnb",
+      "desc": "If you prefer, you can book through the platform you know"
+    },
+    "fastReply": {
+      "title": "Fast Reply",
+      "desc": "Host responds within 1 hour, often within minutes"
+    },
+    "secure": {
+      "title": "Secure Stay",
+      "desc": "Secure payment and quality guarantee for your vacation"
+    },
+    "ctaWhatsApp": "Book on WhatsApp",
+    "ctaAirbnb": "View on Airbnb"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know before your stay",
+    "q1": {
+      "question": "How does check-in work?",
+      "answer": "We offer 24/7 self check-in with digital code. You'll receive detailed instructions via WhatsApp the day before arrival. For arrivals after 10 PM, autonomous check-in is always available."
+    },
+    "q2": {
+      "question": "How far is the Metro station?",
+      "answer": "Basilica San Paolo Metro B station is just a 3-minute walk away. From there you can reach the Colosseum in 15 minutes, Termini in 20 minutes, and EUR in 10 minutes."
+    },
+    "q3": {
+      "question": "Is parking available?",
+      "answer": "Yes, there are paid parking lots nearby. Free parking available on side streets. We can also arrange private parking with advance notice."
+    },
+    "q4": {
+      "question": "How do I get from the airport?",
+      "answer": "From Fiumicino Airport, take the regional train to Roma Ostiense (35 min), then 2 Metro B stops to Basilica San Paolo. Alternatively, taxi for approximately €45."
+    },
+    "q5": {
+      "question": "Is it suitable for families with children?",
+      "answer": "Absolutely! The private garden is perfect for children, we have a highchair and travel cot available on request. The house is spacious and safe for little ones."
+    },
+    "q6": {
+      "question": "Can I work from here?",
+      "answer": "Of course! Fast fiber Wi-Fi, desk in the second bedroom, quiet environment. Ideal for remote work, visiting professors, or business trips to EUR."
+    },
+    "q7": {
+      "question": "What is the cancellation policy?",
+      "answer": "Free cancellation up to 5 days before arrival. For long stays, customized conditions. Contact us directly for more details."
+    }
+  },
+  "footer": {
+    "address": "Via delle Sette Chiese, Rome, Italy",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "map": "Map",
+    "followUs": "Follow Us",
+    "language": "Language",
+    "legal": "Terms & Privacy",
+    "cookies": "Cookie Policy",
+    "copyright": "© 2025 San Paolo Hideout. All rights reserved.",
+    "tagline": "Your private Roman sanctuary"
+  },
+  "mobileCta": {
+    "whatsapp": "Book on WhatsApp",
+    "availability": "Availability"
+  },
+  "languageSwitcher": {
+    "it": "Italiano",
+    "en": "English",
+    "de": "Deutsch"
+  }
+}

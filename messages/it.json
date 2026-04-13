@@ -1,0 +1,266 @@
+{
+  "meta": {
+    "title": "San Paolo Hideout — La tua dimora romana privata",
+    "description": "San Paolo Hideout: casa vacanze boutique a Roma vicino alla Basilica San Paolo e Metro B. Giardino privato, 2 camere, design elegante. Prenota direttamente al miglior prezzo.",
+    "ogTitle": "San Paolo Hideout — Roma | Casa Vacanze Boutique con Giardino Privato",
+    "ogDescription": "La tua dimora romana privata vicino Metro B. 2 camere, giardino privato, design elegante. Prenota direttamente su WhatsApp."
+  },
+  "nav": {
+    "home": "Home",
+    "rooms": "Camere",
+    "location": "Posizione",
+    "reviews": "Recensioni",
+    "faq": "FAQ",
+    "bookNow": "Prenota Ora"
+  },
+  "hero": {
+    "location": "Roma, Italia",
+    "rating": "4.97 • 127 ospiti",
+    "title": "San Paolo Hideout",
+    "subtitle": "La tua dimora romana privata vicino alla Metro B e alla Basilica San Paolo.",
+    "ctaWhatsApp": "Miglior Prezzo su WhatsApp",
+    "ctaAvailability": "Verifica Disponibilità",
+    "facts": "2 camere • 4 ospiti • giardino privato • Metro 3 min"
+  },
+  "amenities": {
+    "title": "Perché i nostri ospiti lo amano",
+    "subtitle": "Tutto ciò che serve per un soggiorno perfetto a Roma",
+    "garden": {
+      "title": "Giardino Privato",
+      "desc": "Un'oasi verde nel cuore di Roma"
+    },
+    "checkin": {
+      "title": "Self Check-in",
+      "desc": "Arrivo autonomo 24/7"
+    },
+    "wifi": {
+      "title": "Wi-Fi Veloce",
+      "desc": "Fibra ottica ad alta velocità"
+    },
+    "metro": {
+      "title": "Metro B",
+      "desc": "A 3 minuti a piedi"
+    },
+    "family": {
+      "title": "Pronto per Famiglie",
+      "desc": "Spazio e comfort per tutti"
+    },
+    "business": {
+      "title": "Business Ready",
+      "desc": "Ideale per viaggi di lavoro"
+    },
+    "ac": {
+      "title": "Climatizzazione",
+      "desc": "Aria condizionata in ogni stanza"
+    },
+    "university": {
+      "title": "Vicino Roma Tre",
+      "desc": "Università a 10 minuti"
+    }
+  },
+  "rooms": {
+    "title": "Scopri le Stanze",
+    "subtitle": "Un viaggio fotografico tra eleganza e comfort romano",
+    "nextRoom": "Stanza Successiva",
+    "previousRoom": "Stanza Precedente",
+    "viewGallery": "Vedi Galleria",
+    "closeGallery": "Chiudi",
+    "salotto": {
+      "title": "Salotto",
+      "desc": "Un salotto accogliente dove il design contemporaneo incontra il calore romano. Divani morbidi, luce naturale e vista sul giardino privato creano l'atmosfera perfetta per rilassarsi dopo una giornata tra i monumenti."
+    },
+    "zonaPranzo": {
+      "title": "Zona Pranzo",
+      "desc": "La zona pranzo elegante con tavolo in legno e sedie di design. Perfetta per colazioni al mattino e cene intime, con luce calda e dettagli curati che rendono ogni pasto un'esperienza speciale."
+    },
+    "camera1": {
+      "title": "Camera da Letto 1",
+      "desc": "La camera padronale con letto king-size, biancheria in cotone egiziano e pareti in terracotta caldo. Il rifugio perfetto per notti romane indimenticabili, con luce soffusa e comfort assoluto."
+    },
+    "camera2": {
+      "title": "Camera da Letto 2",
+      "desc": "La seconda camera con letti gemelli, scrivania e libreria. Ideale per figli, amici o colleghi di lavoro, con la stessa attenzione al dettaglio e al comfort della camera padronale."
+    },
+    "bagno": {
+      "title": "Bagno",
+      "desc": "Bagno in marmo con doccia a pioggia walk-in e finiture di design. Superfici luminose, accenti terracotta e asciugamani morbidi trasformano ogni momento in un'esperienza di benessere."
+    },
+    "esterni": {
+      "title": "Esterni",
+      "desc": "Il giardino privato con ulivo, piante mediterranee e terrazza con sedute. Luci serali e profumo di gelsomino creano un'atmosfera magica per serate romane all'aperto."
+    },
+    "dettagli": {
+      "title": "Dettagli",
+      "desc": "I piccoli dettagli che fanno la differenza: ceramiche artigianali, olio d'oliva locale, fiori freschi e tocchi di ospitalità romana che rendono il soggiorno veramente speciale."
+    }
+  },
+  "location": {
+    "title": "Posizione Perfetta",
+    "subtitle": "Nel cuore della Roma autentica, connesso a tutto",
+    "basilica": {
+      "title": "Basilica San Paolo",
+      "desc": "5 minuti a piedi — Una delle quattro basiliche papali di Roma",
+      "time": "5 min"
+    },
+    "colosseo": {
+      "title": "Colosseo",
+      "desc": "15 minuti in Metro — Il simbolo di Roma",
+      "time": "15 min"
+    },
+    "eur": {
+      "title": "EUR",
+      "desc": "10 minuti in Metro — Distretto business e architettura razionalista",
+      "time": "10 min"
+    },
+    "romaTre": {
+      "title": "Università Roma Tre",
+      "desc": "10 minuti a piedi — Ideale per visiting professors e studenti",
+      "time": "10 min"
+    },
+    "ostiense": {
+      "title": "Ostiense",
+      "desc": "8 minuti a piedi — Quartiere trendy con ristoranti e vita notturna",
+      "time": "8 min"
+    },
+    "fiumicino": {
+      "title": "Aeroporto Fiumicino",
+      "desc": "35 minuti — Diretto con il treno regionale",
+      "time": "35 min"
+    }
+  },
+  "reviews": {
+    "title": "Cosa Dicono i Nostri Ospiti",
+    "subtitle": "Storie autentiche da viaggiatori che hanno scelto San Paolo Hideout",
+    "overallRating": "4.97",
+    "totalReviews": "127 recensioni",
+    "categories": {
+      "location": "Posizione",
+      "cleanliness": "Pulizia",
+      "garden": "Giardino Silenzioso",
+      "metro": "Comodità Metro",
+      "communication": "Comunicazione",
+      "family": "Comfort Famiglia"
+    },
+    "review1": {
+      "name": "Sophie & Marc",
+      "location": "Parigi, Francia",
+      "text": "Un rifugio perfetto a Roma. Il giardino è un'oasi di pace dopo giornate intense tra monumenti. La vicinanza alla Metro ci ha permesso di esplorare tutto senza stress. Torneremo sicuramente.",
+      "rating": "5.0",
+      "date": "Ottobre 2024"
+    },
+    "review2": {
+      "name": "Thomas K.",
+      "location": "Berlino, Germania",
+      "text": "Posizione eccellente per lavoro all'EUR e vita serale a Ostiense. Il self check-in è stato perfetto per il mio arrivo tardivo. Wi-Fi veloce e spazio tranquillo per smart working. Consigliatissimo.",
+      "rating": "5.0",
+      "date": "Settembre 2024"
+    },
+    "review3": {
+      "name": "Famiglia Rossi",
+      "location": "Milano, Italia",
+      "text": "Con due bambini, avere un giardino privato a Roma è impagabile. L'appartamento è spazioso, pulitissimo e con tutto il necessario. I bambini adoravano giocare in giardino. La Metro a 3 minuti è fantastica.",
+      "rating": "5.0",
+      "date": "Agosto 2024"
+    },
+    "review4": {
+      "name": "Emma L.",
+      "location": "Londra, UK",
+      "text": "Ho soggiornato per un mese come visiting professor a Roma Tre. La posizione era perfetta e l'host sempre disponibile. Il giardino era il mio luogo preferito per leggere la sera. Un'esperienza meravigliosa.",
+      "rating": "5.0",
+      "date": "Luglio 2024"
+    },
+    "review5": {
+      "name": "Yuki & Kenji",
+      "location": "Tokyo, Giappone",
+      "text": "Roman holidays made perfect! The apartment is beautiful, clean and very well equipped. The private garden is like a dream. Metro connection made everything accessible. Our best stay in Europe.",
+      "rating": "5.0",
+      "date": "Giugno 2024"
+    },
+    "review6": {
+      "name": "Ana María V.",
+      "location": "Madrid, Spagna",
+      "text": "El jardín privado es absolutamente mágico. La casa es aún más bonita que en las fotos. La comunicación con el host fue impecable. Sin duda el mejor alojamiento que hemos tenido en Roma.",
+      "rating": "4.9",
+      "date": "Maggio 2024"
+    }
+  },
+  "booking": {
+    "title": "Prenota Direttamente",
+    "subtitle": "Il miglior prezzo garantito, senza commissioni",
+    "bestPrice": {
+      "title": "Miglior Prezzo Garantito",
+      "desc": "Prenotando direttamente risparmi fino al 15% rispetto alle piattaforme"
+    },
+    "whatsapp": {
+      "title": "WhatsApp Diretto",
+      "desc": "Risposta immediata dall'host per confermare il tuo soggiorno"
+    },
+    "airbnb": {
+      "title": "Anche su Airbnb",
+      "desc": "Se preferisci, puoi prenotare tramite la piattaforma che conosci"
+    },
+    "fastReply": {
+      "title": "Risposta Rapida",
+      "desc": "L'host risponde entro 1 ora, spesso in pochi minuti"
+    },
+    "secure": {
+      "title": "Soggiorno Sicuro",
+      "desc": "Pagamento sicuro e garanzia di qualità per la tua vacanza"
+    },
+    "ctaWhatsApp": "Prenota su WhatsApp",
+    "ctaAirbnb": "Vedi su Airbnb"
+  },
+  "faq": {
+    "title": "Domande Frequenti",
+    "subtitle": "Tutto quello che devi sapere prima del tuo soggiorno",
+    "q1": {
+      "question": "Come funziona il check-in?",
+      "answer": "Offriamo self check-in 24/7 con codice digitale. Riceverai le istruzioni dettagliate via WhatsApp il giorno prima dell'arrivo. Per arrivi dopo le 22:00, il check-in autonomo è sempre disponibile."
+    },
+    "q2": {
+      "question": "Quanto dista la fermata della Metro?",
+      "answer": "La fermata Basilica San Paolo della Metro B è a soli 3 minuti a piedi. Da lì puoi raggiungere il Colosseo in 15 minuti, Termini in 20 minuti e l'EUR in 10 minuti."
+    },
+    "q3": {
+      "question": "C'è il parcheggio?",
+      "answer": "Sì, ci sono parcheggi a pagamento nelle vicinanze. Parcheggio libero disponibile nelle strade laterali. Possiamo anche organizzare un parcheggio privato con preavviso."
+    },
+    "q4": {
+      "question": "Come arrivo dall'aeroporto?",
+      "answer": "Dall'aeroporto di Fiumicino, prendi il treno regionale per Roma Ostiense (35 min), poi 2 fermate di Metro B fino a Basilica San Paolo. In alternativa, taxi per circa 45€."
+    },
+    "q5": {
+      "question": "È adatto per famiglie con bambini?",
+      "answer": "Assolutamente sì! Il giardino privato è perfetto per i bambini, abbiamo seggiolone e lettino da viaggio disponibili su richiesta. La casa è spaziosa e sicura per i più piccoli."
+    },
+    "q6": {
+      "question": "Posso lavorare da qui?",
+      "answer": "Certamente! Wi-Fi fibra veloce, scrivania nella seconda camera, ambiente tranquillo. Ideale per smart working, visiting professor o viaggi d'affari all'EUR."
+    },
+    "q7": {
+      "question": "Qual è la politica di cancellazione?",
+      "answer": "Cancellazione gratuita fino a 5 giorni prima dell'arrivo. Per soggiorni lunghi, condizioni personalizzate. Contattaci direttamente per maggiori dettagli."
+    }
+  },
+  "footer": {
+    "address": "Via delle Sette Chiese, Roma, Italia",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "map": "Mappa",
+    "followUs": "Seguici",
+    "language": "Lingua",
+    "legal": "Termini e Privacy",
+    "cookies": "Cookie Policy",
+    "copyright": "© 2025 San Paolo Hideout. Tutti i diritti riservati.",
+    "tagline": "La tua dimora romana privata"
+  },
+  "mobileCta": {
+    "whatsapp": "Prenota su WhatsApp",
+    "availability": "Disponibilità"
+  },
+  "languageSwitcher": {
+    "it": "Italiano",
+    "en": "English",
+    "de": "Deutsch"
+  }
+}
