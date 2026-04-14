@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "San Paolo Hideout — La tua dimora romana privata",
-    "description": "San Paolo Hideout: casa vacanze boutique a Roma vicino alla Basilica San Paolo e Metro B. Giardino privato, 2 camere, design elegante. Prenota direttamente al miglior prezzo.",
+    "description": "San Paolo Hideout: casa vacanze boutique a Roma vicino alla Basilica San Paolo e Metro B. Casa indipendente con giardino privato, 2 camere, cucina attrezzata. Prenota direttamente al miglior prezzo.",
     "ogTitle": "San Paolo Hideout — Roma | Casa Vacanze Boutique con Giardino Privato",
-    "ogDescription": "La tua dimora romana privata vicino Metro B. 2 camere, giardino privato, design elegante. Prenota direttamente su WhatsApp."
+    "ogDescription": "La tua dimora romana privata vicino Metro B. Casa indipendente, 2 camere, giardino privato. Prenota direttamente su WhatsApp."
   },
   "nav": {
     "home": "Home",
@@ -17,10 +17,10 @@
     "location": "Roma, Italia",
     "rating": "4.97 • 127 ospiti",
     "title": "San Paolo Hideout",
-    "subtitle": "La tua dimora romana privata vicino alla Metro B e alla Basilica San Paolo.",
+    "subtitle": "La tua dimora romana privata. Casa indipendente con giardino privato, a 9 minuti dalla Basilica San Paolo e Metro B.",
     "ctaWhatsApp": "Miglior Prezzo su WhatsApp",
     "ctaAvailability": "Verifica Disponibilità",
-    "facts": "2 camere • 4 ospiti • giardino privato • Metro 3 min"
+    "facts": "1 letto matrimoniale • 1 letto piccolo • 4 ospiti • giardino privato • casa indipendente"
   },
   "amenities": {
     "title": "Perché i nostri ospiti lo amano",
@@ -49,49 +49,53 @@
       "title": "Business Ready",
       "desc": "Ideale per viaggi di lavoro"
     },
-    "ac": {
-      "title": "Climatizzazione",
-      "desc": "Aria condizionata in ogni stanza"
+    "kitchen": {
+      "title": "Cucina Attrezzata",
+      "desc": "Fornelli, forno, lavastoviglie e macchina del caffè"
     },
     "university": {
       "title": "Vicino Roma Tre",
-      "desc": "Università a 10 minuti"
+      "desc": "Università a 300 metri"
     }
   },
   "rooms": {
-    "title": "Scopri le Stanze",
-    "subtitle": "Un viaggio fotografico tra eleganza e comfort romano",
+    "title": "Scopri gli Spazi",
+    "subtitle": "Una casa indipendente pensata per il tuo comfort romano",
     "nextRoom": "Stanza Successiva",
     "previousRoom": "Stanza Precedente",
     "viewGallery": "Vedi Galleria",
     "closeGallery": "Chiudi",
     "salotto": {
       "title": "Salotto",
-      "desc": "Un salotto accogliente dove il design contemporaneo incontra il calore romano. Divani morbidi, luce naturale e vista sul giardino privato creano l'atmosfera perfetta per rilassarsi dopo una giornata tra i monumenti."
+      "desc": "Luminoso soggiorno con Smart TV, comodo divano e mini libreria editoriale dedicata a Roma. La luce naturale e la vista diretta sul giardino creano un'atmosfera accogliente e rilassante, perfetta per rigenerarsi dopo una giornata tra i monumenti."
     },
-    "zonaPranzo": {
-      "title": "Zona Pranzo",
-      "desc": "La zona pranzo elegante con tavolo in legno e sedie di design. Perfetta per colazioni al mattino e cene intime, con luce calda e dettagli curati che rendono ogni pasto un'esperienza speciale."
+    "cucina": {
+      "title": "Cucina / Zona Pranzo",
+      "desc": "Cucina completamente attrezzata con fornelli a gas, forno elettrico, microonde, moka e macchina del caffè automatica. Lavastoviglie e zona pranzo per colazioni serene e cene intime, con tutto il necessario per sentirsi a casa."
     },
     "camera1": {
-      "title": "Camera da Letto 1",
-      "desc": "La camera padronale con letto king-size, biancheria in cotone egiziano e pareti in terracotta caldo. Il rifugio perfetto per notti romane indimenticabili, con luce soffusa e comfort assoluto."
+      "title": "Camera Matrimoniale",
+      "desc": "Camera matrimoniale principale pensata per un riposo silenzioso e confortevole. Il letto matrimoniale con biancheria di qualità e l'atmosfera curata nei dettagli rendono questa stanza il rifugio perfetto dopo una giornata romana."
     },
     "camera2": {
-      "title": "Camera da Letto 2",
-      "desc": "La seconda camera con letti gemelli, scrivania e libreria. Ideale per figli, amici o colleghi di lavoro, con la stessa attenzione al dettaglio e al comfort della camera padronale."
+      "title": "Seconda Camera",
+      "desc": "Seconda camera con letto piccolo (alla francese), ideale per ospiti, familiari o bambini. Accogliente e funzionale, con la stessa attenzione al comfort e alla qualità della camera padronale."
     },
     "bagno": {
       "title": "Bagno",
-      "desc": "Bagno in marmo con doccia a pioggia walk-in e finiture di design. Superfici luminose, accenti terracotta e asciugamani morbidi trasformano ogni momento in un'esperienza di benessere."
+      "desc": "Bagno moderno con doccia, asciugacapelli e lavatrice. Finiture curate e spazio ben organizzato per un comfort pratico e quotidiano, pensato per soggiorni di qualsiasi durata."
     },
-    "esterni": {
-      "title": "Esterni",
-      "desc": "Il giardino privato con ulivo, piante mediterranee e terrazza con sedute. Luci serali e profumo di gelsomino creano un'atmosfera magica per serate romane all'aperto."
+    "giardino": {
+      "title": "Giardino Privato",
+      "desc": "Giardino privato ideale per colazione all'aperto, relax serale e momenti di quiete nel cuore di Roma. La vegetazione rigogliosa e l'atmosfera intima lo rendono perfetto per un aperitivo al tramonto o una lettura pomeridiana."
     },
     "dettagli": {
       "title": "Dettagli",
-      "desc": "I piccoli dettagli che fanno la differenza: ceramiche artigianali, olio d'oliva locale, fiori freschi e tocchi di ospitalità romana che rendono il soggiorno veramente speciale."
+      "desc": "I piccoli dettagli che rendono unico il soggiorno: stampa incorniciata di Roma, mini libreria editoriale, e tocchi di design italiano che trasformano ogni angolo in un'esperienza visiva."
+    },
+    "esterno": {
+      "title": "Esterno",
+      "desc": "Facciata elegante della casa con ingresso indipendente, scalinata e vasi di piante. Un accogliente benvenuto nel vostro rifugio romano privato."
     }
   },
   "location": {
@@ -99,23 +103,23 @@
     "subtitle": "Nel cuore della Roma autentica, connesso a tutto",
     "basilica": {
       "title": "Basilica San Paolo",
-      "desc": "5 minuti a piedi — Una delle quattro basiliche papali di Roma",
-      "time": "5 min"
+      "desc": "9 minuti a piedi — Una delle quattro basiliche papali di Roma",
+      "time": "9 min"
     },
     "colosseo": {
       "title": "Colosseo",
-      "desc": "15 minuti in Metro — Il simbolo di Roma",
-      "time": "15 min"
+      "desc": "4 fermate Metro B — Il simbolo di Roma",
+      "time": "4 fermate"
     },
     "eur": {
       "title": "EUR",
-      "desc": "10 minuti in Metro — Distretto business e architettura razionalista",
-      "time": "10 min"
+      "desc": "7 minuti in Metro — Distretto business e architettura razionalista",
+      "time": "7 min"
     },
     "romaTre": {
       "title": "Università Roma Tre",
-      "desc": "10 minuti a piedi — Ideale per visiting professors e studenti",
-      "time": "10 min"
+      "desc": "300 metri a piedi — Ideale per visiting professor e studenti",
+      "time": "300m"
     },
     "ostiense": {
       "title": "Ostiense",
@@ -124,8 +128,8 @@
     },
     "fiumicino": {
       "title": "Aeroporto Fiumicino",
-      "desc": "35 minuti — Diretto con il treno regionale",
-      "time": "35 min"
+      "desc": "20-25 minuti — Diretto con il treno regionale",
+      "time": "20-25 min"
     }
   },
   "reviews": {
@@ -158,14 +162,14 @@
     "review3": {
       "name": "Famiglia Rossi",
       "location": "Milano, Italia",
-      "text": "Con due bambini, avere un giardino privato a Roma è impagabile. L'appartamento è spazioso, pulitissimo e con tutto il necessario. I bambini adoravano giocare in giardino. La Metro a 3 minuti è fantastica.",
+      "text": "Con due bambini, avere un giardino privato a Roma è impagabile. La casa indipendente è spaziosa, pulitissima e con tutto il necessario. I bambini adoravano giocare in giardino. La Metro a 3 minuti è fantastica.",
       "rating": "5.0",
       "date": "Agosto 2024"
     },
     "review4": {
       "name": "Emma L.",
       "location": "Londra, UK",
-      "text": "Ho soggiornato per un mese come visiting professor a Roma Tre. La posizione era perfetta e l'host sempre disponibile. Il giardino era il mio luogo preferito per leggere la sera. Un'esperienza meravigliosa.",
+      "text": "Ho soggiornato per un mese come visiting professor a Roma Tre. La posizione era perfetta — a soli 300 metri dal campus! L'host sempre disponibile. Il giardino era il mio luogo preferito per leggere la sera.",
       "rating": "5.0",
       "date": "Luglio 2024"
     },
@@ -208,7 +212,22 @@
       "desc": "Pagamento sicuro e garanzia di qualità per la tua vacanza"
     },
     "ctaWhatsApp": "Prenota su WhatsApp",
-    "ctaAirbnb": "Vedi su Airbnb"
+    "ctaAirbnb": "Vedi su Airbnb",
+    "sectionLabel": "Prenota Ora",
+    "newTitle": "Prenota il tuo soggiorno",
+    "newSubtitle": "Scegli la piattaforma che preferisci o contattaci direttamente per la migliore tariffa disponibile.",
+    "ctaBooking": "Prenota su Booking.com",
+    "ctaVrbo": "Prenota su VRBO",
+    "ctaWhatsAppShort": "WhatsApp",
+    "bestRateBadge": "Miglior prezzo",
+    "trustInstant": "Conferma immediata",
+    "trustSecure": "Prenotazione sicura",
+    "trustTrusted": "Piattaforme affidabili",
+    "trustRates": "Migliori tariffe dirette",
+    "booking": {
+      "title": "Anche su Booking.com",
+      "desc": "Prenota con la piattaforma alberghiera più conosciuta al mondo"
+    }
   },
   "faq": {
     "title": "Domande Frequenti",
@@ -219,7 +238,7 @@
     },
     "q2": {
       "question": "Quanto dista la fermata della Metro?",
-      "answer": "La fermata Basilica San Paolo della Metro B è a soli 3 minuti a piedi. Da lì puoi raggiungere il Colosseo in 15 minuti, Termini in 20 minuti e l'EUR in 10 minuti."
+      "answer": "La fermata Basilica San Paolo della Metro B è a soli 3 minuti a piedi. Da lì puoi raggiungere il Colosseo in 4 fermate, Termini in 6 fermate e l'EUR in 7 minuti."
     },
     "q3": {
       "question": "C'è il parcheggio?",
@@ -227,19 +246,19 @@
     },
     "q4": {
       "question": "Come arrivo dall'aeroporto?",
-      "answer": "Dall'aeroporto di Fiumicino, prendi il treno regionale per Roma Ostiense (35 min), poi 2 fermate di Metro B fino a Basilica San Paolo. In alternativa, taxi per circa 45€."
+      "answer": "Dall'aeroporto di Fiumicino, prendi il treno regionale per Roma Ostiense (20-25 min), poi 2 fermate di Metro B fino a Basilica San Paolo. In alternativa, taxi per circa 45€."
     },
     "q5": {
       "question": "È adatto per famiglie con bambini?",
-      "answer": "Assolutamente sì! Il giardino privato è perfetto per i bambini, abbiamo seggiolone e lettino da viaggio disponibili su richiesta. La casa è spaziosa e sicura per i più piccoli."
+      "answer": "Assolutamente sì! La casa indipendente con giardino privato è perfetta per i bambini. Abbiamo seggiolone e lettino da viaggio disponibili su richiesta. La casa è spaziosa e sicura per i più piccoli."
     },
     "q6": {
       "question": "Posso lavorare da qui?",
-      "answer": "Certamente! Wi-Fi fibra veloce, scrivania nella seconda camera, ambiente tranquillo. Ideale per smart working, visiting professor o viaggi d'affari all'EUR."
+      "answer": "Certamente! Wi-Fi fibra veloce, ambiente tranquillo e casa indipendente. Ideale per smart working, visiting professor o viaggi d'affari all'EUR."
     },
     "q7": {
-      "question": "Qual è la politica di cancellazione?",
-      "answer": "Cancellazione gratuita fino a 5 giorni prima dell'arrivo. Per soggiorni lunghi, condizioni personalizzate. Contattaci direttamente per maggiori dettagli."
+      "question": "Qual è la struttura della casa?",
+      "answer": "San Paolo Hideout è una casa indipendente con: salotto con Smart TV e divano, cucina completamente attrezzata con zona pranzo, camera matrimoniale, seconda camera con letto piccolo, bagno con doccia e lavatrice, e giardino privato. Perfetta per 4 ospiti."
     }
   },
   "footer": {
@@ -256,7 +275,10 @@
   },
   "mobileCta": {
     "whatsapp": "Prenota su WhatsApp",
-    "availability": "Disponibilità"
+    "availability": "Disponibilità",
+    "bestRate": "Miglior prezzo",
+    "close": "Chiudi",
+    "trust": "Conferma istantanea • Prenotazione sicura • Tariffe migliori"
   },
   "languageSwitcher": {
     "it": "Italiano",

@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "San Paolo Hideout — Your Private Roman Sanctuary",
-    "description": "San Paolo Hideout: boutique vacation rental in Rome near Basilica San Paolo and Metro B. Private garden, 2 bedrooms, elegant design. Book directly for the best price.",
+    "description": "San Paolo Hideout: boutique detached house in Rome near Basilica San Paolo and Metro B. Private garden, 2 bedrooms, fully equipped kitchen. Book directly for the best price.",
     "ogTitle": "San Paolo Hideout — Rome | Boutique Vacation Rental with Private Garden",
-    "ogDescription": "Your private Roman sanctuary near Metro B. 2 bedrooms, private garden, elegant design. Book directly on WhatsApp."
+    "ogDescription": "Your private Roman sanctuary near Metro B. Detached house, 2 bedrooms, private garden. Book directly on WhatsApp."
   },
   "nav": {
     "home": "Home",
@@ -17,10 +17,10 @@
     "location": "Rome, Italy",
     "rating": "4.97 • 127 guests",
     "title": "San Paolo Hideout",
-    "subtitle": "Your private Roman sanctuary near Metro B and Basilica San Paolo.",
+    "subtitle": "Your private Roman sanctuary. A detached house with private garden, 9 minutes from Basilica San Paolo and Metro B.",
     "ctaWhatsApp": "Best Price on WhatsApp",
     "ctaAvailability": "Check Availability",
-    "facts": "2 bedrooms • 4 guests • private garden • Metro 3 min"
+    "facts": "1 double bed • 1 small double • 4 guests • private garden • detached house"
   },
   "amenities": {
     "title": "Why Guests Love It",
@@ -49,49 +49,53 @@
       "title": "Business Ready",
       "desc": "Ideal for work trips"
     },
-    "ac": {
-      "title": "Air Conditioning",
-      "desc": "AC in every room"
+    "kitchen": {
+      "title": "Fully Equipped Kitchen",
+      "desc": "Stove, oven, dishwasher & coffee machine"
     },
     "university": {
       "title": "Near Roma Tre",
-      "desc": "University in 10 minutes"
+      "desc": "University at 300 meters"
     }
   },
   "rooms": {
-    "title": "Explore the Rooms",
-    "subtitle": "A photographic journey through Roman elegance and comfort",
+    "title": "Explore the Spaces",
+    "subtitle": "A detached house designed for your Roman comfort",
     "nextRoom": "Next Room",
     "previousRoom": "Previous Room",
     "viewGallery": "View Gallery",
     "closeGallery": "Close",
     "salotto": {
       "title": "Living Room",
-      "desc": "A welcoming living room where contemporary design meets Roman warmth. Soft sofas, natural light, and a view of the private garden create the perfect atmosphere to relax after a day among the monuments."
+      "desc": "A bright living room with Smart TV, comfortable sofa, and a mini Roman bookshelf. Natural light and direct garden views create a warm, relaxing atmosphere — the perfect retreat after a day exploring the monuments."
     },
-    "zonaPranzo": {
-      "title": "Dining Area",
-      "desc": "The elegant dining area with wooden table and designer chairs. Perfect for morning breakfasts and intimate dinners, with warm lighting and curated details that make every meal a special experience."
+    "cucina": {
+      "title": "Kitchen / Dining Area",
+      "desc": "Fully equipped kitchen with gas stove, electric oven, microwave, moka pot, and automatic coffee machine. Dishwasher and dining area for peaceful breakfasts and intimate dinners — everything you need to feel at home."
     },
     "camera1": {
-      "title": "Bedroom 1",
-      "desc": "The master bedroom with king-size bed, Egyptian cotton linen, and warm terracotta walls. The perfect retreat for unforgettable Roman nights, with soft lighting and absolute comfort."
+      "title": "Master Bedroom",
+      "desc": "The master bedroom is designed for peaceful, comfortable rest. A premium double bed with quality linens and carefully curated details make this room the perfect retreat after a day in Rome."
     },
     "camera2": {
-      "title": "Bedroom 2",
-      "desc": "The second bedroom with twin beds, desk, and bookshelf. Ideal for children, friends, or work colleagues, with the same attention to detail and comfort as the master bedroom."
+      "title": "Second Bedroom",
+      "desc": "A cozy second bedroom with a small double bed (French size), ideal for guests, family members, or children. Welcoming and functional, with the same attention to comfort and quality as the master bedroom."
     },
     "bagno": {
       "title": "Bathroom",
-      "desc": "Marble bathroom with walk-in rain shower and designer fixtures. Bright surfaces, terracotta accents, and soft towels transform every moment into a wellness experience."
+      "desc": "Modern bathroom with shower, hairdryer, and washing machine. Well-organized space with curated finishes for everyday practical comfort, designed for stays of any length."
     },
-    "esterni": {
-      "title": "Exterior",
-      "desc": "The private garden with olive tree, Mediterranean plants, and terrace with seating. Evening lights and jasmine scent create a magical atmosphere for outdoor Roman nights."
+    "giardino": {
+      "title": "Private Garden",
+      "desc": "Private garden ideal for outdoor breakfast, evening relaxation and quiet moments in the heart of Rome. The lush vegetation and intimate atmosphere make it perfect for a sunset aperitivo or an afternoon read."
     },
     "dettagli": {
       "title": "Details",
-      "desc": "The little details that make the difference: artisan ceramics, local olive oil, fresh flowers, and touches of Roman hospitality that make your stay truly special."
+      "desc": "The small details that make your stay unique: a framed Rome print, a mini editorial bookshelf, and Italian design touches that transform every corner into a visual experience."
+    },
+    "esterno": {
+      "title": "Exterior",
+      "desc": "Elegant house facade with private entrance, staircase and potted plants. A warm welcome to your private Roman hideaway."
     }
   },
   "location": {
@@ -99,23 +103,23 @@
     "subtitle": "In the heart of authentic Rome, connected to everything",
     "basilica": {
       "title": "Basilica San Paolo",
-      "desc": "5 min walk — One of Rome's four papal basilicas",
-      "time": "5 min"
+      "desc": "9 min walk — One of Rome's four papal basilicas",
+      "time": "9 min"
     },
     "colosseo": {
       "title": "Colosseum",
-      "desc": "15 min by Metro — The symbol of Rome",
-      "time": "15 min"
+      "desc": "4 Metro B stops — The symbol of Rome",
+      "time": "4 stops"
     },
     "eur": {
       "title": "EUR",
-      "desc": "10 min by Metro — Business district and rationalist architecture",
-      "time": "10 min"
+      "desc": "7 min by Metro — Business district and rationalist architecture",
+      "time": "7 min"
     },
     "romaTre": {
       "title": "Roma Tre University",
-      "desc": "10 min walk — Ideal for visiting professors and students",
-      "time": "10 min"
+      "desc": "300 meters walk — Ideal for visiting professors and students",
+      "time": "300m"
     },
     "ostiense": {
       "title": "Ostiense",
@@ -124,8 +128,8 @@
     },
     "fiumicino": {
       "title": "Fiumicino Airport",
-      "desc": "35 min — Direct regional train connection",
-      "time": "35 min"
+      "desc": "20-25 min — Direct regional train connection",
+      "time": "20-25 min"
     }
   },
   "reviews": {
@@ -158,21 +162,21 @@
     "review3": {
       "name": "Rossi Family",
       "location": "Milan, Italy",
-      "text": "With two children, having a private garden in Rome is priceless. The apartment is spacious, spotlessly clean, and with everything needed. The kids loved playing in the garden. Metro at 3 minutes is fantastic.",
+      "text": "With two children, having a private garden in Rome is priceless. The detached house is spacious, spotlessly clean, and with everything needed. The kids loved playing in the garden. Metro at 3 minutes is fantastic.",
       "rating": "5.0",
       "date": "August 2024"
     },
     "review4": {
       "name": "Emma L.",
       "location": "London, UK",
-      "text": "I stayed for a month as a visiting professor at Roma Tre. The location was perfect and the host always available. The garden was my favorite place to read in the evening. A wonderful experience.",
+      "text": "I stayed for a month as a visiting professor at Roma Tre. The location was perfect — only 300 meters from campus! The host was always available. The garden was my favorite place to read in the evening.",
       "rating": "5.0",
       "date": "July 2024"
     },
     "review5": {
       "name": "Yuki & Kenji",
       "location": "Tokyo, Japan",
-      "text": "Roman holidays made perfect! The apartment is beautiful, clean and very well equipped. The private garden is like a dream. Metro connection made everything accessible. Our best stay in Europe.",
+      "text": "Roman holidays made perfect! The detached house is beautiful, clean and very well equipped. The private garden is like a dream. Metro connection made everything accessible. Our best stay in Europe.",
       "rating": "5.0",
       "date": "June 2024"
     },
@@ -208,7 +212,22 @@
       "desc": "Secure payment and quality guarantee for your vacation"
     },
     "ctaWhatsApp": "Book on WhatsApp",
-    "ctaAirbnb": "View on Airbnb"
+    "ctaAirbnb": "View on Airbnb",
+    "sectionLabel": "Book Now",
+    "newTitle": "Reserve Your Stay",
+    "newSubtitle": "Choose your preferred booking platform or contact us directly for the best available rate.",
+    "ctaBooking": "Reserve on Booking.com",
+    "ctaVrbo": "Stay via VRBO",
+    "ctaWhatsAppShort": "WhatsApp",
+    "bestRateBadge": "Best rate",
+    "trustInstant": "Instant confirmation",
+    "trustSecure": "Secure booking",
+    "trustTrusted": "Trusted platforms",
+    "trustRates": "Best direct rates",
+    "booking": {
+      "title": "Also on Booking.com",
+      "desc": "Book through the world's most trusted hotel platform"
+    }
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -219,7 +238,7 @@
     },
     "q2": {
       "question": "How far is the Metro station?",
-      "answer": "Basilica San Paolo Metro B station is just a 3-minute walk away. From there you can reach the Colosseum in 15 minutes, Termini in 20 minutes, and EUR in 10 minutes."
+      "answer": "Basilica San Paolo Metro B station is just a 3-minute walk away. From there you can reach the Colosseum in 4 stops, Termini in 6 stops, and EUR in 7 minutes."
     },
     "q3": {
       "question": "Is parking available?",
@@ -227,19 +246,19 @@
     },
     "q4": {
       "question": "How do I get from the airport?",
-      "answer": "From Fiumicino Airport, take the regional train to Roma Ostiense (35 min), then 2 Metro B stops to Basilica San Paolo. Alternatively, taxi for approximately €45."
+      "answer": "From Fiumicino Airport, take the regional train to Roma Ostiense (20-25 min), then 2 Metro B stops to Basilica San Paolo. Alternatively, taxi for approximately €45."
     },
     "q5": {
       "question": "Is it suitable for families with children?",
-      "answer": "Absolutely! The private garden is perfect for children, we have a highchair and travel cot available on request. The house is spacious and safe for little ones."
+      "answer": "Absolutely! The detached house with private garden is perfect for children. We have a highchair and travel cot available on request. The house is spacious and safe for little ones."
     },
     "q6": {
       "question": "Can I work from here?",
-      "answer": "Of course! Fast fiber Wi-Fi, desk in the second bedroom, quiet environment. Ideal for remote work, visiting professors, or business trips to EUR."
+      "answer": "Of course! Fast fiber Wi-Fi, quiet environment, and a detached house. Ideal for remote work, visiting professors, or business trips to EUR."
     },
     "q7": {
-      "question": "What is the cancellation policy?",
-      "answer": "Free cancellation up to 5 days before arrival. For long stays, customized conditions. Contact us directly for more details."
+      "question": "What is the house layout?",
+      "answer": "San Paolo Hideout is a detached house with: living room with Smart TV and sofa, fully equipped kitchen with dining area, master bedroom with double bed, second bedroom with small double bed, bathroom with shower and washing machine, and private garden. Perfect for 4 guests."
     }
   },
   "footer": {
@@ -256,7 +275,10 @@
   },
   "mobileCta": {
     "whatsapp": "Book on WhatsApp",
-    "availability": "Availability"
+    "availability": "Availability",
+    "bestRate": "Best rate",
+    "close": "Close",
+    "trust": "Instant confirmation • Secure booking • Best rates"
   },
   "languageSwitcher": {
     "it": "Italiano",

@@ -9,7 +9,7 @@ import {
   TrainFront,
   Baby,
   Briefcase,
-  AirVent,
+  ChefHat,
   GraduationCap,
 } from "lucide-react";
 
@@ -18,9 +18,9 @@ const amenityKeys = [
   { key: "checkin", icon: KeyRound },
   { key: "wifi", icon: Wifi },
   { key: "metro", icon: TrainFront },
+  { key: "kitchen", icon: ChefHat },
   { key: "family", icon: Baby },
   { key: "business", icon: Briefcase },
-  { key: "ac", icon: AirVent },
   { key: "university", icon: GraduationCap },
 ] as const;
 
@@ -39,7 +39,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.5, ease: [0.25, 0.4, 0.25, 1] },
+    transition: { duration: 0.5, ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number] },
   },
 };
 
@@ -81,13 +81,13 @@ export default function Amenities() {
             <motion.div
               key={key}
               variants={itemVariants}
-              className="group relative bg-white rounded-2xl p-6 md:p-8 text-center shadow-sm border border-roman-sand/40 hover:shadow-xl hover:shadow-roman-shadow hover:border-roman-terracotta/15 transition-all duration-400 premium-card-hover"
+              className="group relative bg-white p-6 md:p-8 text-center border-2 border-roman-sand hover:shadow-[5px_5px_0_#3B82F6] hover:border-roman-terracotta transition-all duration-300 premium-card-hover"
             >
               {/* Subtle gradient bg on hover */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-roman-terracotta/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+              <div className="absolute inset-0 bg-gradient-to-b from-roman-terracotta/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
 
               <div className="relative">
-                <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-roman-cream/80 mb-5 group-hover:bg-roman-terracotta/10 transition-all duration-400 group-hover:scale-105">
+                <div className="inline-flex items-center justify-center w-14 h-14 md:w-16 md:h-16 border-2 border-roman-terracotta/20 bg-roman-cream/80 mb-5 group-hover:bg-roman-terracotta/10 group-hover:border-roman-terracotta/40 transition-all duration-300">
                   <Icon className="w-6 h-6 md:w-7 md:h-7 text-roman-terracotta" />
                 </div>
                 <h3 className="font-display text-base md:text-lg font-semibold text-roman-espresso mb-2">

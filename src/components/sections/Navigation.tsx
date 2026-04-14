@@ -51,7 +51,7 @@ export default function Navigation() {
         transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           scrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-[0_1px_20px_rgba(61,43,31,0.06)] border-b border-roman-sand/30"
+             ? "bg-white/95 backdrop-blur-xl shadow-[0_2px_0_#3B82F6] border-b-2 border-roman-terracotta"
             : "bg-transparent"
         }`}
       >

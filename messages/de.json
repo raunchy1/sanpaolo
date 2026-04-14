@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "San Paolo Hideout — Ihr privates römisches Zufluchtsort",
-    "description": "San Paolo Hideout: Boutique-Ferienunterkunft in Rom nahe Basilika San Paolo und Metro B. Privater Garten, 2 Schlafzimmer, elegantes Design. Direkt buchen zum besten Preis.",
+    "description": "San Paolo Hideout: Boutique-Freistehendes Haus in Rom nahe Basilika San Paolo und Metro B. Privater Garten, 2 Schlafzimmer, voll ausgestattete Küche. Direkt buchen zum besten Preis.",
     "ogTitle": "San Paolo Hideout — Rom | Boutique-Ferienwohnung mit Privatem Garten",
-    "ogDescription": "Ihr privates römisches Zufluchtsort nahe Metro B. 2 Schlafzimmer, privater Garten, elegantes Design. Direkt auf WhatsApp buchen."
+    "ogDescription": "Ihr privates römisches Zufluchtsort nahe Metro B. Freistehendes Haus, 2 Schlafzimmer, privater Garten. Direkt auf WhatsApp buchen."
   },
   "nav": {
     "home": "Startseite",
@@ -17,10 +17,10 @@
     "location": "Rom, Italien",
     "rating": "4.97 • 127 Gäste",
     "title": "San Paolo Hideout",
-    "subtitle": "Ihr privates römisches Zufluchtsort nahe der Metro B und der Basilika San Paolo.",
+    "subtitle": "Ihr privates römisches Zufluchtsort. Ein freistehendes Haus mit privatem Garten, 9 Minuten von der Basilika San Paolo und Metro B.",
     "ctaWhatsApp": "Bester Preis auf WhatsApp",
     "ctaAvailability": "Verfügbarkeit Prüfen",
-    "facts": "2 Schlafzimmer • 4 Gäste • privater Garten • Metro 3 Min"
+    "facts": "1 Doppelbett • 1 kleines Doppelbett • 4 Gäste • privater Garten • freistehendes Haus"
   },
   "amenities": {
     "title": "Warum Gäste es lieben",
@@ -49,49 +49,53 @@
       "title": "Business Ready",
       "desc": "Ideal für Geschäftsreisen"
     },
-    "ac": {
-      "title": "Klimaanlage",
-      "desc": "Klimaanlage in jedem Zimmer"
+    "kitchen": {
+      "title": "Voll Ausgestattete Küche",
+      "desc": "Herd, Ofen, Spülmaschine & Kaffeemaschine"
     },
     "university": {
       "title": "Nahe Roma Tre",
-      "desc": "Universität in 10 Minuten"
+      "desc": "Universität in 300 Metern"
     }
   },
   "rooms": {
-    "title": "Entdecken Sie die Zimmer",
-    "subtitle": "Eine fotografische Reise durch römische Eleganz und Komfort",
+    "title": "Entdecken Sie die Räume",
+    "subtitle": "Ein freistehendes Haus für Ihren römischen Komfort",
     "nextRoom": "Nächstes Zimmer",
     "previousRoom": "Vorheriges Zimmer",
     "viewGallery": "Galerie Ansehen",
     "closeGallery": "Schließen",
     "salotto": {
       "title": "Wohnzimmer",
-      "desc": "Ein einladendes Wohnzimmer, in dem zeitgenössisches Design auf römische Wärme trifft. Weiche Sofas, natürliches Licht und der Blick auf den privaten Garten schaffen die perfekte Atmosphäre zum Entspannen nach einem Tag zwischen den Monumenten."
+      "desc": "Ein hellen Wohnzimmer mit Smart TV, bequemen Sofa und Mini-Rom-Bücherregal. Natürliches Licht und direkter Blick auf den Garten schaffen eine warme, entspannende Atmosphäre — der perfekte Rückzugsort nach einem Tag zwischen den Monumenten."
     },
-    "zonaPranzo": {
-      "title": "Essbereich",
-      "desc": "Der elegante Essbereich mit Holztisch und Designerstühlen. Perfekt für Morgenfrühstücke und intime Abendessen, mit warmem Licht und kuratierten Details, die jede Mahlzeit zu einem besonderen Erlebnis machen."
+    "cucina": {
+      "title": "Küche / Essbereich",
+      "desc": "Voll ausgestattete Küche mit Gasherd, Elektroofen, Mikrowelle, Mokka und automatischer Kaffeemaschine. Geschirrspüler und Essbereich für friedliche Frühstücks und intime Abendessen — alles, was Sie brauchen, um sich wie zu Hause zu fühlen."
     },
     "camera1": {
-      "title": "Schlafzimmer 1",
-      "desc": "Das Hauptschlafzimmer mit Kingsize-Bett, ägyptischer Baumwollwäsche und warmen Terrakotta-Wänden. Der perfekte Rückzugsort für unvergessliche römische Nächte, mit gedimmtem Licht und absolutem Komfort."
+      "title": "Hauptschlafzimmer",
+      "desc": "Das Hauptschlafzimmer ist für eine ruhige, komfortable Nachtruhe gestaltet. Ein Premium-Doppelbett mit hochwertiger Bettwäsche und sorgfältig kuratierte Details machen dieses Zimmer zum perfekten Rückzugsort nach einem Tag in Rom."
     },
     "camera2": {
-      "title": "Schlafzimmer 2",
-      "desc": "Das zweite Schlafzimmer mit Einzelbetten, Schreibtisch und Bücherschrank. Ideal für Kinder, Freunde oder Arbeitskollegen, mit der gleichen Liebe zum Detail und Komfort wie das Hauptschlafzimmer."
+      "title": "Zweites Schlafzimmer",
+      "desc": "Ein gemütliches zweites Schlafzimmer mit einem kleinen Doppelbett (Französisches Bett), ideal für Gäste, Familienmitglieder oder Kinder. Einladend und funktional, mit der gleichen Liebe zum Komfort und Qualität wie das Hauptschlafzimmer."
     },
     "bagno": {
       "title": "Badezimmer",
-      "desc": "Marmorbad mit begehbarer Regendusche und Designer-Armaturen. Helle Oberflächen, Terrakotta-Akzente und weiche Handtücher verwandeln jeden Moment in ein Wellness-Erlebnis."
+      "desc": "Modernes Badezimmer mit Dusche, Föhn und Waschmaschine. Gut organisierter Raum mit kuratierten Details für praktischen Alltagsgkomfort, konzipiert für Aufenthalte jeder Länge."
     },
-    "esterni": {
-      "title": "Außenbereich",
-      "desc": "Der private Garten mit Olivenbaum, mediterranen Pflanzen und Terrasse mit Sitzgelegenheiten. Abendliche Beleuchtung und Jasmin-Duft schaffen eine magische Atmosphäre für römische Abende im Freien."
+    "giardino": {
+      "title": "Privater Garten",
+      "desc": "Privater Garten ideal für Frühstück im Freien, abendliche Entspannung und ruhige Momente im Herzen von Rom. Die üppige Vegetation und die intime Atmosphäre machen ihn perfekt für einen Aperitivo bei Sonnenuntergang oder eine Nachmittagslektüre."
     },
     "dettagli": {
       "title": "Details",
-      "desc": "Die kleinen Details, die den Unterschied machen: handwerkliche Keramik, lokales Olivenöl, frische Blumen und Touches römischer Gastfreundschaft, die Ihren Aufenthalt wirklich besonders machen."
+      "desc": "Die kleinen Details, die Ihren Aufenthalt einzigartig machen: ein gerahmter Rom-Druck, eine kleine editoriale Bibliothek und italienische Design-Akzente, die jede Ecke in ein visuelles Erlebnis verwandeln."
+    },
+    "esterno": {
+      "title": "Außenbereich",
+      "desc": "Elegante Hausfassade mit eigenem Eingang, Treppenaufgang und Topfpflanzen. Ein herzliches Willkommen in Ihrem privaten römischen Rückzugsort."
     }
   },
   "location": {
@@ -99,23 +103,23 @@
     "subtitle": "Im Herzen des authentischen Roms, mit allem verbunden",
     "basilica": {
       "title": "Basilika San Paolo",
-      "desc": "5 Min zu Fuß — Eine der vier Papstbasiliken Roms",
-      "time": "5 Min"
+      "desc": "9 Min zu Fuß — Eine der vier Papstbasiliken Roms",
+      "time": "9 Min"
     },
     "colosseo": {
       "title": "Kolosseum",
-      "desc": "15 Min mit der Metro — Das Symbol Roms",
-      "time": "15 Min"
+      "desc": "4 Metro-B-Haltestellen — Das Symbol Roms",
+      "time": "4 Haltest."
     },
     "eur": {
       "title": "EUR",
-      "desc": "10 Min mit der Metro — Geschäftsbezirk und rationalistische Architektur",
-      "time": "10 Min"
+      "desc": "7 Min mit der Metro — Geschäftsbezirk und rationalistische Architektur",
+      "time": "7 Min"
     },
     "romaTre": {
       "title": "Universität Roma Tre",
-      "desc": "10 Min zu Fuß — Ideal für Gastprofessoren und Studenten",
-      "time": "10 Min"
+      "desc": "300 Meter zu Fuß — Ideal für Gastprofessoren und Studenten",
+      "time": "300m"
     },
     "ostiense": {
       "title": "Ostiense",
@@ -124,8 +128,8 @@
     },
     "fiumicino": {
       "title": "Flughafen Fiumicino",
-      "desc": "35 Min — Direkte Regionalzugverbindung",
-      "time": "35 Min"
+      "desc": "20-25 Min — Direkte Regionalzugverbindung",
+      "time": "20-25 Min"
     }
   },
   "reviews": {
@@ -158,21 +162,21 @@
     "review3": {
       "name": "Familie Rossi",
       "location": "Mailand, Italien",
-      "text": "Mit zwei Kindern ist ein privater Garten in Rom unbezahlbar. Die Wohnung ist geräumig, blitzsauber und mit allem Notwendigen. Die Kinder liebten es, im Garten zu spielen. Metro in 3 Minuten ist fantastisch.",
+      "text": "Mit zwei Kindern ist ein privater Garten in Rom unbezahlbar. Das freistehende Haus ist geräumig, blitzsauber und mit allem Notwendigen. Die Kinder liebten es, im Garten zu spielen. Metro in 3 Minuten ist fantastisch.",
       "rating": "5.0",
       "date": "August 2024"
     },
     "review4": {
       "name": "Emma L.",
       "location": "London, UK",
-      "text": "Ich blieb einen Monat als Gastprofessorin an der Roma Tre. Die Lage war perfekt und der Host immer erreichbar. Der Garten war mein Lieblingsort zum abendlichen Lesen. Eine wunderbare Erfahrung.",
+      "text": "Ich blieb einen Monat als Gastprofessorin an der Roma Tre. Die Lage war perfekt — nur 300 Meter vom Campus! Der Host war immer erreichbar. Der Garten war mein Lieblingsort zum abendlichen Lesen.",
       "rating": "5.0",
       "date": "Juli 2024"
     },
     "review5": {
       "name": "Yuki & Kenji",
       "location": "Tokio, Japan",
-      "text": "Rom-Urlaub perfekt gemacht! Die Wohnung ist schön, sauber und sehr gut ausgestattet. Der private Garten ist wie ein Traum. Metro-Anbindung machte alles erreichbar. Unser bester Aufenthalt in Europa.",
+      "text": "Rom-Urlaub perfekt gemacht! Das freistehende Haus ist schön, sauber und sehr gut ausgestattet. Der private Garten ist wie ein Traum. Metro-Anbindung machte alles erreichbar. Unser bester Aufenthalt in Europa.",
       "rating": "5.0",
       "date": "Juni 2024"
     },
@@ -208,7 +212,22 @@
       "desc": "Sichere Zahlung und Qualitäts garant für Ihren Urlaub"
     },
     "ctaWhatsApp": "Auf WhatsApp Buchen",
-    "ctaAirbnb": "Auf Airbnb Ansehen"
+    "ctaAirbnb": "Auf Airbnb Ansehen",
+    "sectionLabel": "Jetzt Buchen",
+    "newTitle": "Reservieren Sie Ihren Aufenthalt",
+    "newSubtitle": "Wählen Sie Ihre bevorzugte Buchungsplattform oder kontaktieren Sie uns direkt für den besten verfügbaren Preis.",
+    "ctaBooking": "Auf Booking.com buchen",
+    "ctaVrbo": "Über VRBO buchen",
+    "ctaWhatsAppShort": "WhatsApp",
+    "bestRateBadge": "Bester Preis",
+    "trustInstant": "Sofortige Bestätigung",
+    "trustSecure": "Sichere Buchung",
+    "trustTrusted": "Vertrauenswürdige Plattformen",
+    "trustRates": "Beste Direktpreise",
+    "booking": {
+      "title": "Auch auf Booking.com",
+      "desc": "Buchen Sie über die bekannteste Hotelplattform der Welt"
+    }
   },
   "faq": {
     "title": "Häufig Gestellte Fragen",
@@ -219,7 +238,7 @@
     },
     "q2": {
       "question": "Wie weit ist die Metro-Station?",
-      "answer": "Die Station Basilica San Paolo der Metro B ist nur 3 Gehminuten entfernt. Von dort erreichen Sie das Kolosseum in 15 Minuten, Termini in 20 Minuten und EUR in 10 Minuten."
+      "answer": "Die Station Basilica San Paolo der Metro B ist nur 3 Gehminuten entfernt. Von dort erreichen Sie das Kolosseum in 4 Haltestellen, Termini in 6 Haltestellen und EUR in 7 Minuten."
     },
     "q3": {
       "question": "Gibt es Parkplätze?",
@@ -227,19 +246,19 @@
     },
     "q4": {
       "question": "Wie komme ich vom Flughafen?",
-      "answer": "Vom Flughafen Fiumicino nehmen Sie den Regionalzug nach Roma Ostiense (35 Min), dann 2 Metro-B-Haltestellen bis Basilica San Paolo. Alternativ Taxi für ca. 45€."
+      "answer": "Vom Flughafen Fiumicino nehmen Sie den Regionalzug nach Roma Ostiense (20-25 Min), dann 2 Metro-B-Haltestellen bis Basilica San Paolo. Alternativ Taxi für ca. 45€."
     },
     "q5": {
       "question": "Ist es für Familien mit Kindern geeignet?",
-      "answer": "Absolut! Der private Garten ist perfekt für Kinder, wir haben einen Hochstuhl und Reisebett auf Anfrage verfügbar. Das Haus ist geräumig und sicher für die Kleinen."
+      "answer": "Absolut! Das freistehende Haus mit privatem Garten ist perfekt für Kinder. Wir haben einen Hochstuhl und Reisebett auf Anfrage verfügbar. Das Haus ist geräumig und sicher für die Kleinen."
     },
     "q6": {
       "question": "Kann ich von hier aus arbeiten?",
-      "answer": "Natürlich! Schnelles Glasfaser-WLAN, Schreibtisch im zweiten Schlafzimmer, ruhige Umgebung. Ideal für Remote-Arbeit, Gastprofessoren oder Geschäftsreisen ins EUR."
+      "answer": "Natürlich! Schnelles Glasfaser-WLAN, ruhige Umgebung und ein freistehendes Haus. Ideal für Remote-Arbeit, Gastprofessoren oder Geschäftsreisen ins EUR."
     },
     "q7": {
-      "question": "Was ist die Stornierungsrichtlinie?",
-      "answer": "Kostenlose Stornierung bis 5 Tage vor Anreise. Für längere Aufenthalte angepasste Bedingungen. Kontaktieren Sie uns direkt für weitere Details."
+      "question": "Wie ist die Hausaufteilung?",
+      "answer": "San Paolo Hideout ist ein freistehendes Haus mit: Wohnzimmer mit Smart TV und Sofa, voll ausgestatteter Küche mit Essbereich, Hauptschlafzimmer mit Doppelbett, zweites Schlafzimmer mit kleinem Doppelbett, Badezimmer mit Dusche und Waschmaschine, und privatem Garten. Perfekt für 4 Gäste."
     }
   },
   "footer": {
@@ -256,7 +275,10 @@
   },
   "mobileCta": {
     "whatsapp": "Auf WhatsApp Buchen",
-    "availability": "Verfügbarkeit"
+    "availability": "Verfügbarkeit",
+    "bestRate": "Bester Preis",
+    "close": "Schließen",
+    "trust": "Sofortige Bestätigung • Sichere Buchung • Beste Preise"
   },
   "languageSwitcher": {
     "it": "Italiano",

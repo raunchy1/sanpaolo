@@ -35,7 +35,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.4, 0.25, 1] },
+    transition: { duration: 0.5, ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number] },
   },
 };
 
@@ -58,7 +58,7 @@ export default function Reviews() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number] }}
           className="text-center mb-6"
         >
           <span className="inline-block text-xs tracking-[0.2em] uppercase text-roman-terracotta font-semibold mb-3">
@@ -143,7 +143,7 @@ export default function Reviews() {
                   initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number] }}
                   className="bg-roman-warm-white rounded-2xl p-6 md:p-8 shadow-sm border border-roman-sand/40 hover:shadow-lg hover:shadow-roman-shadow hover:border-roman-terracotta/10 transition-all duration-400"
                 >
                   {/* Rating */}

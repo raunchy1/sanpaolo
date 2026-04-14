@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Playfair_Display } from "next/font/google";
+import { Macondo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const macondo = Macondo({
+  variable: "--font-macondo",
   subsets: ["latin"],
+  weight: "400",
+  display: "swap",
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US", "de_DE"],
     images: [
       {
-        url: "/images/hero.png",
+        url: "/images/hero-trevi.jpg",
         width: 1344,
         height: 768,
         alt: "San Paolo Hideout - Roma",
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
     title: "San Paolo Hideout — Roma",
     description:
       "La tua dimora romana privata vicino Metro B. Prenota direttamente.",
-    images: ["/images/hero.png"],
+    images: ["/images/hero-trevi.jpg"],
   },
 };
 
@@ -112,7 +113,7 @@ export default function RootLayout({
                 { "@type": "LocationFeatureSpecification", name: "Fast Wi-Fi", value: true },
                 { "@type": "LocationFeatureSpecification", name: "Air Conditioning", value: true },
               ],
-              image: "/images/hero.png",
+              image: "/images/hero-trevi.jpg",
               url: "https://sanpaolohideout.com",
               priceRange: "€€",
               checkinTime: "15:00",
@@ -124,12 +125,12 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/images/hero.png"
+          href="/images/hero-trevi.jpg"
           fetchPriority="high"
         />
       </head>
       <body
-        className={`${geistSans.variable} ${playfair.variable} antialiased bg-roman-warm-white text-foreground`}
+        className={`${macondo.variable} ${jetbrainsMono.variable} antialiased bg-roman-warm-white text-foreground`}
       >
         <I18nProvider>{children}</I18nProvider>
       </body>
