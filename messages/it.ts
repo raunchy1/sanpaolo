@@ -8,6 +8,7 @@ export default {
   "nav": {
     "home": "Home",
     "rooms": "Camere",
+    "amenities": "Servizi Inclusi",
     "location": "Posizione",
     "reviews": "Recensioni",
     "faq": "FAQ",
