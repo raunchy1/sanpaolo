@@ -10,6 +10,7 @@ import { Star, ExternalLink } from "lucide-react";
 ───────────────────────────────────────────── */
 const AIRBNB_LINK =
   "https://www.airbnb.com/rooms/1517964247980793952";
+const BOOKING_REVIEWS_LINK = "https://www.booking.com/hotel/it/san-paolo-hideout-roma.ro.html#tab-reviews";
 
 const allReviewKeys = [
   "review1", "review2", "review3",
@@ -256,18 +257,31 @@ export default function Reviews() {
                   </div>
                 </div>
 
-                {/* Airbnb trust pill */}
-                <a
-                  href={AIRBNB_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 bg-white hover:bg-[#FFF1EA] px-5 py-3 rounded-full font-label text-xs tracking-wider uppercase text-stitch-on-surface/60 hover:text-stitch-on-surface transition-all duration-300 self-start sm:self-center shrink-0"
-                  style={{ boxShadow: "0 2px 12px -4px rgba(41,23,13,0.08)" }}
-                >
-                  <AirbnbMark className="w-4 h-4 text-[#FF5A5F]" />
-                  <span>{t("reviews.readOnAirbnb")}</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-stitch-on-surface/30" />
-                </a>
+                {/* Platform review pills */}
+                <div className="flex flex-wrap items-center gap-3 self-start sm:self-center shrink-0">
+                  <a
+                    href={BOOKING_REVIEWS_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 bg-white hover:bg-[#FFF1EA] px-5 py-3 rounded-full font-label text-xs tracking-wider uppercase text-stitch-on-surface/60 hover:text-stitch-on-surface transition-all duration-300"
+                    style={{ boxShadow: "0 2px 12px -4px rgba(41,23,13,0.08)" }}
+                  >
+                    <span className="w-4 h-4 rounded-sm bg-[#003580] text-white text-[8px] font-bold flex items-center justify-center">B</span>
+                    <span>{t("reviews.readOnBooking")}</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-stitch-on-surface/30" />
+                  </a>
+                  <a
+                    href={AIRBNB_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 bg-white hover:bg-[#FFF1EA] px-5 py-3 rounded-full font-label text-xs tracking-wider uppercase text-stitch-on-surface/60 hover:text-stitch-on-surface transition-all duration-300"
+                    style={{ boxShadow: "0 2px 12px -4px rgba(41,23,13,0.08)" }}
+                  >
+                    <AirbnbMark className="w-4 h-4 text-[#FF5A5F]" />
+                    <span>{t("reviews.readOnAirbnb")}</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-stitch-on-surface/30" />
+                  </a>
+                </div>
               </div>
 
               {/* Category breakdown */}
@@ -387,8 +401,18 @@ export default function Reviews() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 text-center"
+          className="mt-12 text-center flex flex-wrap items-center justify-center gap-6"
         >
+          <a
+            href={BOOKING_REVIEWS_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 text-stitch-on-surface/50 hover:text-stitch-on-surface text-sm transition-colors duration-200"
+          >
+            <span className="w-4 h-4 rounded-sm bg-[#003580] text-white text-[8px] font-bold flex items-center justify-center">B</span>
+            {t("reviews.viewAllOnBooking")}
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
           <a
             href={AIRBNB_LINK}
             target="_blank"

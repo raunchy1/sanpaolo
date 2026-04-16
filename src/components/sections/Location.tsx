@@ -23,10 +23,10 @@ const mainItems = [
   { key: "forteostiense", icon: Shield },
   { key: "bambinogesu", icon: Hospital },
   { key: "basilica", icon: Church },
+  { key: "palazzosport", icon: Building2 },
   { key: "ostiense", icon: Train },
   { key: "romaTre", icon: GraduationCap },
   { key: "colosseoquad", icon: Landmark },
-  { key: "eur", icon: Building2 },
   { key: "fiumicino", icon: Plane },
 ] as const;
 
@@ -43,7 +43,7 @@ const expandedKeys = [
   "castelromano",
   "eataly",
   "macro",
-  "palazzosport",
+  "eur",
   "palazzocongressi",
   "lanuvola",
 ] as const;

@@ -256,7 +256,7 @@ export default function Footer() {
               {/* Address */}
               <li className="flex items-start gap-3">
                 <div className="w-7 h-7 rounded-lg bg-white/[0.05] flex items-center justify-center shrink-0 mt-0.5">
-                  <MapPin className="w-3.5 h-3.5 text-stitch-green" />
+                  <MapPin className="w-3.5 h-3.5 text-white/70" />
                 </div>
                 <div>
                   <p className="text-white/55 text-sm leading-snug">Via Silvio d'Amico 96</p>
@@ -267,9 +267,9 @@ export default function Footer() {
               {/* Metro note */}
               <li className="flex items-center gap-3">
                 <div className="w-7 h-7 rounded-lg bg-white/[0.05] flex items-center justify-center shrink-0">
-                  <Train className="w-3.5 h-3.5 text-stitch-green" />
+                  <Train className="w-3.5 h-3.5 text-white/70" />
                 </div>
-                <p className="text-stitch-green/80 text-xs font-medium">
+                <p className="text-white/80 text-xs font-medium">
                   {t("footer.metroNote")}
                 </p>
               </li>
@@ -280,8 +280,8 @@ export default function Footer() {
                   href={`tel:${PHONE_NUMBER}`}
                   className="flex items-center gap-3 text-white/45 hover:text-white transition-colors duration-200 group"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-white/[0.05] group-hover:bg-stitch-green/15 flex items-center justify-center shrink-0 transition-colors duration-200">
-                    <Phone className="w-3.5 h-3.5" />
+                  <div className="w-7 h-7 rounded-lg bg-white/[0.05] group-hover:bg-white/10 flex items-center justify-center shrink-0 transition-colors duration-200">
+                    <Phone className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
                   </div>
                   <span className="text-sm">{PHONE_NUMBER}</span>
                 </a>
@@ -293,10 +293,10 @@ export default function Footer() {
                   href={`https://wa.me/${WHATSAPP_NUMBER}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-white/45 hover:text-[#25D366] transition-colors duration-200 group"
+                  className="flex items-center gap-3 text-white/45 hover:text-white transition-colors duration-200 group"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-white/[0.05] group-hover:bg-[#25D366]/10 flex items-center justify-center shrink-0 transition-colors duration-200">
-                    <MessageCircle className="w-3.5 h-3.5" />
+                  <div className="w-7 h-7 rounded-lg bg-white/[0.05] group-hover:bg-white/10 flex items-center justify-center shrink-0 transition-colors duration-200">
+                    <MessageCircle className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
                   </div>
                   <span className="text-sm">WhatsApp</span>
                 </a>
@@ -305,13 +305,13 @@ export default function Footer() {
               {/* Email */}
               <li>
                 <a
-                  href="mailto:info@sanpaolohideout.it"
+                  href="mailto:sanpaolohideout@gmail.com"
                   className="flex items-center gap-3 text-white/45 hover:text-white transition-colors duration-200 group"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-white/[0.05] group-hover:bg-stitch-gold/10 flex items-center justify-center shrink-0 transition-colors duration-200">
-                    <Mail className="w-3.5 h-3.5" />
+                  <div className="w-7 h-7 rounded-lg bg-white/[0.05] group-hover:bg-white/10 flex items-center justify-center shrink-0 transition-colors duration-200">
+                    <Mail className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
                   </div>
-                  <span className="text-sm">info@sanpaolohideout.it</span>
+                  <span className="text-sm">sanpaolohideout@gmail.com</span>
                 </a>
               </li>
 
@@ -323,8 +323,8 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-white/45 hover:text-white transition-colors duration-200 group"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-white/[0.05] group-hover:bg-red-500/10 flex items-center justify-center shrink-0 transition-colors duration-200">
-                    <ExternalLink className="w-3.5 h-3.5" />
+                  <div className="w-7 h-7 rounded-lg bg-white/[0.05] group-hover:bg-white/10 flex items-center justify-center shrink-0 transition-colors duration-200">
+                    <ExternalLink className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
                   </div>
                   <span className="text-sm">{t("footer.getDirections")}</span>
                 </a>

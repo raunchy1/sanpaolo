@@ -77,7 +77,9 @@ export default {
       "parking": "Kostenloser Parkplatz",
       "cleaning": "Endreinigung inklusive",
       "support": "Schneller Support"
-    }
+    },
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen"
   },
   "rooms": {
     "title": "Entdecken Sie die Räume",
@@ -153,9 +155,9 @@ export default {
       "desc": "3,2 km — 8 Min mit dem Auto — Wahrzeichen des EUR und der rationalistischen Architektur",
       "time": "8 Min"
     },
-    "eur": {
-      "title": "EUR",
-      "desc": "3,9 km — 7/10 Min mit dem Auto — Geschäftsbezirk und rationalistische Architektur",
+    "palazzosport": {
+      "title": "Palalottomatica / Palazzo dello Sport – EUR",
+      "desc": "3,9 km — 7/10 Min mit dem Auto — Konzerte großer Künstler, Sportveranstaltungen (Basketball, Volleyball, Boxen), Kongresse und Shows",
       "time": "7/10 Min"
     },
     "fiumicino": {
@@ -224,10 +226,10 @@ export default {
         "distance": "3,8 km",
         "time": "12 Min"
       },
-      "palazzosport": {
-        "title": "Palazzo dello Sport",
-        "distance": "0,8 km",
-        "time": "2 Min"
+      "eur": {
+        "title": "EUR",
+        "distance": "3,9 km",
+        "time": "7/10 Min"
       },
       "palazzocongressi": {
         "title": "Palazzo dei Congressi",
@@ -250,6 +252,8 @@ export default {
     "verified": "Verifiziert",
     "readOnAirbnb": "Alle auf Airbnb lesen",
     "viewAllOnAirbnb": "Alle Bewertungen auf Airbnb ansehen",
+    "readOnBooking": "Alle auf Booking.com lesen",
+    "viewAllOnBooking": "Alle Bewertungen auf Booking.com ansehen",
     "overallScore": "9.9",
     "overallMax": "10",
     "overallLabel": "Ausgezeichnet",
@@ -447,7 +451,7 @@ export default {
     },
     "q4": {
       "question": "Wie komme ich vom Flughafen?",
-      "answer": "Vom Flughafen Fiumicino nehmen Sie den Regionalzug nach Roma Ostiense (20-25 Min), dann 2 Metro-B-Haltestellen bis Basilica San Paolo. Alternativ Taxi für ca. 45€."
+      "answer": "Vom Flughafen Fiumicino nehmen Sie den Regionalzug nach Roma Ostiense (20-25 Min), dann 2 Metro-B-Haltestellen bis Basilica San Paolo."
     },
     "q5": {
       "question": "Ist es für Familien mit Kindern geeignet?",

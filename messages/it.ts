@@ -34,15 +34,26 @@ export default {
       "smarttv": "Smart TV con streaming incluso",
       "ac": "Aria condizionata in ogni ambiente",
       "newbuild": "Casa di nuova costruzione 2025",
-      "count": "4 servizi"
+      "parking": "Parcheggio gratuito fronte struttura",
+      "count": "5 servizi"
     },
     "kitchen": {
       "label": "Cucina",
       "tagline": "Attrezzata per ogni esigenza",
+      "table": "Tavolo da pranzo",
+      "coffeeMachine": "Macchina da caffè",
+      "cleaningProducts": "Prodotti per le pulizie",
+      "toaster": "Tostapane",
+      "induction": "Piano cottura a induzione",
+      "oven": "Forno",
+      "utensils": "Utensili da cucina",
+      "kettle": "Bollitore elettrico",
+      "kitchen": "Cucina",
+      "washingMachine": "Lavatrice",
       "dishwasher": "Lavastoviglie",
-      "microwave": "Microonde",
-      "coffee": "Macchina del caffè automatica",
-      "full": "Cucina completamente attrezzata"
+      "microwave": "Forno a microonde",
+      "fridge": "Frigorifero",
+      "cookingCorner": "Angolo cottura"
     },
     "bathroom": {
       "label": "Bagno",
@@ -50,7 +61,8 @@ export default {
       "shower": "Doccia moderna",
       "bidet": "Bidet",
       "towels": "Asciugamani di qualità inclusi",
-      "products": "Set prodotti bagno premium"
+      "products": "Set prodotti bagno premium",
+      "hairdryer": "Asciugacapelli"
     },
     "family": {
       "label": "Famiglia",
@@ -77,7 +89,9 @@ export default {
       "parking": "Parcheggio gratis",
       "cleaning": "Pulizia finale inclusa",
       "support": "Supporto rapido"
-    }
+    },
+    "showMore": "Mostra altro",
+    "showLess": "Mostra meno"
   },
   "rooms": {
     "title": "Scopri gli Spazi",
@@ -153,9 +167,9 @@ export default {
       "desc": "3.2 km — 8 minuti in auto — Icona dell'EUR e dell'architettura razionalista",
       "time": "8 min"
     },
-    "eur": {
-      "title": "EUR",
-      "desc": "3.9 km — 7/10 minuti in auto — Distretto business e architettura razionalista",
+    "palazzosport": {
+      "title": "Palalottomatica / Palazzo dello Sport – EUR",
+      "desc": "3.9 km — 7/10 min auto — Ospita concerti di grandi artisti, eventi sportivi (basket, volley, boxe), congressi e spettacoli",
       "time": "7/10 min"
     },
     "fiumicino": {
@@ -224,10 +238,10 @@ export default {
         "distance": "3.8 km",
         "time": "12 min"
       },
-      "palazzosport": {
-        "title": "Palazzo dello Sport",
-        "distance": "0.8 km",
-        "time": "2 min"
+      "eur": {
+        "title": "EUR",
+        "distance": "3.9 km",
+        "time": "7/10 min"
       },
       "palazzocongressi": {
         "title": "Palazzo dei Congressi",
@@ -250,6 +264,8 @@ export default {
     "verified": "Verificata",
     "readOnAirbnb": "Leggi tutte su Airbnb",
     "viewAllOnAirbnb": "Visualizza tutte le recensioni su Airbnb",
+    "readOnBooking": "Leggi tutte su Booking",
+    "viewAllOnBooking": "Visualizza tutte le recensioni su Booking",
     "overallScore": "9.9",
     "overallMax": "10",
     "overallLabel": "Eccellente",
@@ -447,7 +463,7 @@ export default {
     },
     "q4": {
       "question": "Come arrivo dall'aeroporto?",
-      "answer": "Dall'aeroporto di Fiumicino, prendi il treno regionale per Roma Ostiense (20-25 min), poi 2 fermate di Metro B fino a Basilica San Paolo. In alternativa, taxi per circa 45€."
+      "answer": "Dall'aeroporto di Fiumicino, prendi il treno regionale per Roma Ostiense (20-25 min), poi 2 fermate di Metro B fino a Basilica San Paolo."
     },
     "q5": {
       "question": "È adatto per famiglie con bambini?",

@@ -77,7 +77,9 @@ export default {
       "parking": "Free parking",
       "cleaning": "Final cleaning included",
       "support": "Fast support"
-    }
+    },
+    "showMore": "Show more",
+    "showLess": "Show less"
   },
   "rooms": {
     "title": "Explore the Spaces",
@@ -153,9 +155,9 @@ export default {
       "desc": "3.2 km — 8 min by car — Icon of EUR and rationalist architecture",
       "time": "8 min"
     },
-    "eur": {
-      "title": "EUR",
-      "desc": "3.9 km — 7/10 min by car — Business district and rationalist architecture",
+    "palazzosport": {
+      "title": "Palalottomatica / Palazzo dello Sport – EUR",
+      "desc": "3.9 km — 7/10 min by car — Hosts concerts by major artists, sporting events (basketball, volleyball, boxing), congresses and shows",
       "time": "7/10 min"
     },
     "fiumicino": {
@@ -224,10 +226,10 @@ export default {
         "distance": "3.8 km",
         "time": "12 min"
       },
-      "palazzosport": {
-        "title": "Palazzo dello Sport",
-        "distance": "0.8 km",
-        "time": "2 min"
+      "eur": {
+        "title": "EUR",
+        "distance": "3.9 km",
+        "time": "7/10 min"
       },
       "palazzocongressi": {
         "title": "Palazzo dei Congressi",
@@ -250,6 +252,8 @@ export default {
     "verified": "Verified",
     "readOnAirbnb": "Read all on Airbnb",
     "viewAllOnAirbnb": "View all reviews on Airbnb",
+    "readOnBooking": "Read all on Booking.com",
+    "viewAllOnBooking": "View all reviews on Booking.com",
     "overallScore": "9.9",
     "overallMax": "10",
     "overallLabel": "Excellent",
@@ -447,7 +451,7 @@ export default {
     },
     "q4": {
       "question": "How do I get from the airport?",
-      "answer": "From Fiumicino Airport, take the regional train to Roma Ostiense (20-25 min), then 2 Metro B stops to Basilica San Paolo. Alternatively, taxi for approximately €45."
+      "answer": "From Fiumicino Airport, take the regional train to Roma Ostiense (20-25 min), then 2 Metro B stops to Basilica San Paolo."
     },
     "q5": {
       "question": "Is it suitable for families with children?",

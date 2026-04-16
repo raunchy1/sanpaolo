@@ -33,9 +33,13 @@ function ThinCheck() {
 /* ─────────────────────────────────────────────
    Data definitions
 ───────────────────────────────────────────── */
-const comfortItems = ["wifi", "smarttv", "ac", "newbuild"] as const;
-const kitchenItems = ["dishwasher", "microwave", "coffee", "full"] as const;
-const bathroomItems = ["shower", "bidet", "towels", "products"] as const;
+const comfortItems = ["wifi", "smarttv", "ac", "newbuild", "parking"] as const;
+const kitchenItems = [
+  "table", "coffeeMachine", "cleaningProducts", "toaster",
+  "induction", "oven", "utensils", "kettle",
+  "kitchen", "washingMachine", "dishwasher", "microwave", "fridge", "cookingCorner"
+] as const;
+const bathroomItems = ["shower", "bidet", "towels", "products", "hairdryer"] as const;
 const familyItems   = ["crib", "friendly", "checkin"] as const;
 const extraItems    = ["luggage", "parking", "support"] as const;
 
@@ -165,9 +169,13 @@ type SecondaryCardProps = {
   radius?: string;
   bg?: string;
   t: (k: string) => string;
+  expandable?: boolean;
 };
 
-function SecondaryCard({ catKey, items, icon: Icon, roman, delay = 0, radius = "20px", bg = "#fff", t }: SecondaryCardProps) {
+function SecondaryCard({ catKey, items, icon: Icon, roman, delay = 0, radius = "20px", bg = "#fff", t, expandable = false }: SecondaryCardProps) {
+  const [expanded, setExpanded] = useState(false);
+  const visibleItems = expandable && !expanded ? items.slice(0, 4) : items;
+
   return (
     <motion.div
       custom={delay}
@@ -199,10 +207,22 @@ function SecondaryCard({ catKey, items, icon: Icon, roman, delay = 0, radius = "
 
       {/* Items */}
       <ul className="space-y-2.5 text-stitch-on-surface/70">
-        {items.map((item) => (
+        {visibleItems.map((item) => (
           <ItemRow key={item} text={t(`amenities.${catKey}.${item}`)} />
         ))}
       </ul>
+
+      {expandable && items.length > 4 && (
+        <button
+          onClick={() => setExpanded((v) => !v)}
+          className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-stitch-green hover:text-stitch-green-light transition-colors"
+        >
+          {expanded ? t("amenities.showLess") : t("amenities.showMore")}
+          <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
+            <ChevronDown className="w-3.5 h-3.5" />
+          </motion.div>
+        </button>
+      )}
 
       {/* Hover accent */}
       <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-stitch-green/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
@@ -369,6 +389,7 @@ export default function Amenities() {
             delay={0.1}
             radius="20px 20px 8px 20px"
             t={t}
+            expandable
           />
 
           {/* Col 3 top: BAGNO */}

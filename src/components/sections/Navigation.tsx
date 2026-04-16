@@ -11,6 +11,7 @@ const WHATSAPP_NUMBER = "393299362759";
 const navItems = [
   { key: "home", href: "#home" },
   { key: "rooms", href: "#rooms" },
+  { key: "amenities", href: "#amenities" },
   { key: "location", href: "#location" },
   { key: "reviews", href: "#reviews" },
   { key: "faq", href: "#faq" },

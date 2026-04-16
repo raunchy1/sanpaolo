@@ -14,6 +14,23 @@ const fadeUp = {
   }),
 };
 
+const titleContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.7 },
+  },
+};
+
+const titleWord = {
+  hidden: { opacity: 0, y: 40, rotateX: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number] },
+  },
+};
+
 export default function Hero() {
   const { t } = useTranslation();
 
@@ -51,27 +68,20 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Rating Badge — Stitch glass style, NO hard border */}
-        <motion.div
-          custom={0.5}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className="inline-flex items-center gap-2.5 glass rounded-sm px-5 py-2.5 mb-8"
-        >
-          <Star className="w-4 h-4 text-stitch-gold fill-stitch-gold" />
-          <span className="text-stitch-on-surface text-sm font-bold tracking-wider font-body">{t("hero.rating")}</span>
-        </motion.div>
-
-        {/* Title — Newsreader-style editorial serif */}
+        {/* Title — Newsreader-style editorial serif, word-by-word reveal */}
         <motion.h1
-          custom={0.7}
           initial="hidden"
           animate="visible"
-          variants={fadeUp}
+          variants={titleContainer}
           className="font-display text-[3.2rem] sm:text-7xl md:text-8xl lg:text-[6.5rem] font-bold text-white mb-7 leading-[0.92] tracking-roman"
         >
-          {t("hero.title")}
+          {t("hero.title").split(" ").map((word, i) => (
+            <span key={i} className="inline-block overflow-hidden mr-[0.25em]">
+              <motion.span className="inline-block" variants={titleWord}>
+                {word}
+              </motion.span>
+            </span>
+          ))}
         </motion.h1>
 
         {/* Subtitle — Manrope body, warm tone */}
@@ -80,7 +90,8 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-12 leading-relaxed font-body font-light"
+          className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-12 leading-relaxed font-body font-light"
+          style={{ textShadow: "0 2px 12px rgba(0,0,0,0.35)" }}
         >
           {t("hero.subtitle")}
         </motion.p>
@@ -124,7 +135,8 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-white/60 text-sm tracking-wider font-body"
+          className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-white/80 text-sm tracking-wider font-body"
+          style={{ textShadow: "0 1px 8px rgba(0,0,0,0.35)" }}
         >
           {t("hero.facts").split(" • ").map((fact, i) => (
             <span key={i} className="flex items-center gap-2">

@@ -94,34 +94,7 @@ export default function BookingCTA() {
           </p>
         </motion.div>
 
-        {/* Features Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14"
-        >
-          {bookingFeatures.map(({ key, icon: Icon }) => (
-            <motion.div
-              key={key}
-              variants={itemVariants}
-              className="bg-white/[0.06] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-5 md:p-6 hover:bg-white/[0.1] hover:border-white/[0.15] transition-all duration-400 group"
-            >
-              <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-stitch-gold/15 mb-3.5 group-hover:bg-stitch-gold/25 transition-colors duration-400">
-                <Icon className="w-5 h-5 text-stitch-gold" />
-              </div>
-              <h3 className="font-label text-xs tracking-wider uppercase text-white/80 mb-1.5">
-                {t(`booking.${key}.title`)}
-              </h3>
-              <p className="font-body text-white/45 text-xs leading-relaxed">
-                {t(`booking.${key}.desc`)}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Reservation Hub */}
+        {/* Reservation Hub -- simplified, no feature grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
