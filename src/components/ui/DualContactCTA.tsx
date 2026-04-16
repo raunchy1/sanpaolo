@@ -5,7 +5,6 @@ import { Phone, MessageCircle } from "lucide-react";
 const PHONE_NUMBER = "+393299362759";
 const WHATSAPP_NUMBER = "393299362759";
 const PHONE_LINK = `tel:${PHONE_NUMBER}`;
-const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei informazioni su San Paolo Hideout per un soggiorno.")}`;
 
 interface DualContactCTAProps {
   callLabel?: string;
@@ -26,7 +25,7 @@ export default function DualContactCTA({
 }: DualContactCTAProps) {
   const waLink = whatsappText
     ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappText)}`
-    : WHATSAPP_LINK;
+    : `https://wa.me/${WHATSAPP_NUMBER}`;
 
   const sizes = {
     sm: "px-5 py-2.5 text-sm gap-2",

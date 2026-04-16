@@ -7,7 +7,6 @@ import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import Image from "next/image";
 
 const WHATSAPP_NUMBER = "393299362759";
-const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei informazioni su San Paolo Hideout.")}`;
 
 const navItems = [
   { key: "home", href: "#home" },
@@ -28,6 +27,8 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+
+  const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("common.whatsapp.inquiry"))}`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,8 +67,8 @@ export default function Navigation() {
                 width={200}
                 height={67}
                 priority
-                className={`h-12 md:h-14 w-auto object-contain transition-all duration-300 ${
-                  !scrolled ? "brightness-0 invert" : ""
+                className={`h-16 md:h-[72px] w-auto object-contain transition-all duration-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] ${
+                  !scrolled ? "brightness-[1.15] contrast-125" : ""
                 }`}
               />
             </a>

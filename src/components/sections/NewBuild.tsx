@@ -110,10 +110,10 @@ export default function NewBuild() {
             </div>
             <div>
               <p className="text-white font-display text-base font-semibold mb-1">
-                Certificata e conforme alle normative 2025
+                {t("newbuild.cert.title")}
               </p>
               <p className="text-white/50 text-sm leading-relaxed max-w-xl">
-                Casa realizzata con materiali di qualità, impianti nuovi e sistemi di efficienza energetica all'avanguardia. Un soggiorno moderno, sicuro e confortevole in ogni stagione.
+                {t("newbuild.cert.desc")}
               </p>
             </div>
           </motion.div>

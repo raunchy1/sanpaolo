@@ -10,30 +10,31 @@ import {
   GraduationCap,
   Train,
   Plane,
-  Trophy,
   ChevronDown,
-  MapPin,
+  Shield,
+  Hospital,
   Car,
 } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
 const mainItems = [
+  { key: "forteostiense", icon: Shield },
+  { key: "bambinogesu", icon: Hospital },
   { key: "basilica", icon: Church },
-  { key: "colosseo", icon: Landmark },
-  { key: "eur", icon: Building2 },
-  { key: "romaTre", icon: GraduationCap },
   { key: "ostiense", icon: Train },
+  { key: "romaTre", icon: GraduationCap },
+  { key: "colosseoquad", icon: Landmark },
+  { key: "eur", icon: Building2 },
   { key: "fiumicino", icon: Plane },
-  { key: "palazzosport", icon: Trophy },
 ] as const;
 
 const expandedKeys = [
-  "palazzocongressi",
-  "colosseoquad",
+  "metro",
+  "colosseo",
   "fao",
-  "lanuvola",
-  "bambinogesu",
   "sancamillo",
-  "forteostiense",
   "ciampino",
   "luneur",
   "cinecittaworld",
@@ -42,6 +43,9 @@ const expandedKeys = [
   "castelromano",
   "eataly",
   "macro",
+  "palazzosport",
+  "palazzocongressi",
+  "lanuvola",
 ] as const;
 
 const containerVariants = {
@@ -86,7 +90,7 @@ export default function Location() {
           className="text-center mb-16"
         >
           <span className="font-label text-[10px] tracking-[0.28em] text-stitch-olive uppercase block mb-5">
-            Neighborhood
+            {t("location.eyebrow")}
           </span>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-stitch-green leading-[1.1] mb-4">
             {t("location.title")}
@@ -209,17 +213,8 @@ export default function Location() {
           className="mt-14 overflow-hidden rounded-2xl"
           style={{ boxShadow: "0 8px 40px -12px rgba(41,23,13,0.10)" }}
         >
-          <div className="aspect-[16/7] bg-stitch-olive-light/20 relative">
-            <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=12.4550%2C41.8400%2C12.4900%2C41.8650&layer=mapnik&marker=41.8553%2C12.4734"
-              className="w-full h-full border-0"
-              loading="lazy"
-              title="San Paolo Hideout Location"
-            />
-            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-md flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-stitch-green" />
-              <span className="text-sm font-semibold text-stitch-on-surface">San Paolo Hideout</span>
-            </div>
+          <div className="aspect-[16/7] min-h-[320px] bg-stitch-olive-light/20 relative w-full">
+            <Map />
           </div>
         </motion.div>
       </div>

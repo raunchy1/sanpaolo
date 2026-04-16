@@ -1,4 +1,4 @@
-{
+export default {
   "meta": {
     "title": "San Paolo Hideout — Ihr privates römisches Zufluchtsort",
     "description": "San Paolo Hideout: Boutique-Freistehendes Haus in Rom nahe Basilika San Paolo und Metro B. Neubau 2025, gemeinsamer Grünbereich, 2 Schlafzimmer, 3 Gäste. Direkt buchen zum besten Preis.",
@@ -123,40 +123,40 @@
     "title": "Perfekte Lage",
     "subtitle": "Im Herzen des authentischen Roms, mit allem verbunden",
     "eyebrow": "Lage",
-    "metro": {
-      "title": "U-Bahn-Station San Paolo",
-      "desc": "Metro B — 9 Min zu Fuß, direkt zum Kolosseum und Termini",
-      "time": "9 Min"
+    "forteostiense": {
+      "title": "Forte Ostiense",
+      "desc": "1,0 km — 3 Min — Zentrum für öffentliche Prüfungen, Polizeiauswahl und institutionelle Besuche",
+      "time": "3 Min"
+    },
+    "bambinogesu": {
+      "title": "Krankenhaus Bambino Gesù",
+      "desc": "1,6 km — 5/7 Min — Das Kinderkrankenhaus Bambino Gesù (OPBG) ist das größte pädiatrische Poliklinik- und Forschungszentrum Europas.",
+      "time": "5/7 Min"
+    },
+    "basilica": {
+      "title": "Basilika San Paolo",
+      "desc": "700m — 9 Min Fußweg — Eine der wichtigsten päpstlichen Basiliken Roms",
+      "time": "9 Min Fußweg"
+    },
+    "ostiense": {
+      "title": "Bahnhof Ostiense",
+      "desc": "3,4 km — 10/12 Min mit dem Auto — Direkte Verbindung zu Fiumicino und Termini",
+      "time": "10/12 Min"
     },
     "romaTre": {
       "title": "Universität Roma Tre",
       "desc": "300 Meter zu Fuß — Ideal für Gastprofessoren und Studenten",
       "time": "300m"
     },
-    "palazzosport": {
-      "title": "Palazzo dello Sport",
-      "desc": "0,8 km — 2 Min mit dem Auto — Sportarena für Events und Konzerte",
-      "time": "2 Min"
+    "colosseoquad": {
+      "title": "Colosseo Quadrato",
+      "desc": "3,2 km — 8 Min mit dem Auto — Wahrzeichen des EUR und der rationalistischen Architektur",
+      "time": "8 Min"
     },
     "eur": {
       "title": "EUR",
       "desc": "3,9 km — 7/10 Min mit dem Auto — Geschäftsbezirk und rationalistische Architektur",
       "time": "7/10 Min"
-    },
-    "palazzocongressi": {
-      "title": "Palazzo dei Congressi",
-      "desc": "3,6 km — 5/7 Min mit dem Auto — Ikonisches Kongresszentrum",
-      "time": "5/7 Min"
-    },
-    "lanuvola": {
-      "title": "La Nuvola",
-      "desc": "3,3 km — 7/9 Min mit dem Auto — Neues Kongresszentrum Rom",
-      "time": "7/9 Min"
-    },
-    "ostiense": {
-      "title": "Bahnhof Ostiense",
-      "desc": "3,4 km — 10/12 Min mit dem Auto — Direkte Verbindung zu Fiumicino und Termini",
-      "time": "10/12 Min"
     },
     "fiumicino": {
       "title": "Flughafen Fiumicino",
@@ -164,9 +164,9 @@
       "time": "20/25 Min"
     },
     "expanded": {
-      "basilica": {
-        "title": "Basilika San Paolo",
-        "distance": "700m",
+      "metro": {
+        "title": "U-Bahn-Station San Paolo",
+        "distance": "650m",
         "time": "9 Min Fußweg"
       },
       "colosseo": {
@@ -174,30 +174,15 @@
         "distance": "",
         "time": "4 Metro-B-Haltestellen"
       },
-      "colosseoquad": {
-        "title": "Colosseo Quadrato",
-        "distance": "3,2 km",
-        "time": "8 Min"
-      },
       "fao": {
         "title": "FAO",
         "distance": "5,4 km",
         "time": "10/12 Min"
       },
-      "bambinogesu": {
-        "title": "Krankenhaus Bambino Gesù",
-        "distance": "1,6 km",
-        "time": "5/7 Min"
-      },
       "sancamillo": {
         "title": "Krankenhaus San Camillo",
         "distance": "4,1 km",
         "time": "13/15 Min"
-      },
-      "forteostiense": {
-        "title": "Forte Ostiense",
-        "distance": "1,0 km",
-        "time": "3 Min"
       },
       "ciampino": {
         "title": "Flughafen Ciampino",
@@ -238,6 +223,21 @@
         "title": "MACRO Testaccio",
         "distance": "3,8 km",
         "time": "12 Min"
+      },
+      "palazzosport": {
+        "title": "Palazzo dello Sport",
+        "distance": "0,8 km",
+        "time": "2 Min"
+      },
+      "palazzocongressi": {
+        "title": "Palazzo dei Congressi",
+        "distance": "3,6 km",
+        "time": "5/7 Min"
+      },
+      "lanuvola": {
+        "title": "La Nuvola",
+        "distance": "3,3 km",
+        "time": "7/9 Min"
       }
     },
     "showMore": "Mehr anzeigen",
@@ -255,12 +255,30 @@
     "overallLabel": "Ausgezeichnet",
     "totalReviews": "Verifizierte Bewertungen",
     "categories": {
-      "location": { "name": "Lage", "score": "10" },
-      "cleanliness": { "name": "Sauberkeit", "score": "10" },
-      "comfort": { "name": "Komfort", "score": "10" },
-      "communication": { "name": "Kommunikation", "score": "10" },
-      "value": { "name": "Preis-Leistung", "score": "10" },
-      "family": { "name": "Familien", "score": "10" }
+      "location": {
+        "name": "Lage",
+        "score": "10"
+      },
+      "cleanliness": {
+        "name": "Sauberkeit",
+        "score": "10"
+      },
+      "comfort": {
+        "name": "Komfort",
+        "score": "10"
+      },
+      "communication": {
+        "name": "Kommunikation",
+        "score": "10"
+      },
+      "value": {
+        "name": "Preis-Leistung",
+        "score": "10"
+      },
+      "family": {
+        "name": "Familien",
+        "score": "10"
+      }
     },
     "review1": {
       "name": "Martina",
@@ -316,9 +334,18 @@
     "title": "Flexibler Check-in und persönliche Begrüßung",
     "description": "Der Check-in ist im Zeitraum 15:00–20:00 verfügbar.\nFür besondere Bedürfnisse können Gäste uns schreiben und wir werden unser Bestes tun.\nWir begrüßen Sie persönlich — eine persönliche Begrüßung hat bei uns Priorität.",
     "features": {
-      "flexible": { "title": "Flexibler Check-in", "desc": "Zeitraum 15:00–20:00" },
-      "human": { "title": "Persönliche Begrüßung", "desc": "Wir begrüßen Sie lieber persönlich" },
-      "self": { "title": "Persönliche Begrüßung", "desc": "Wir begrüßen Sie persönlich bei Ihrer Ankunft" }
+      "flexible": {
+        "title": "Flexibler Check-in",
+        "desc": "Zeitraum 15:00–20:00"
+      },
+      "human": {
+        "title": "Persönliche Begrüßung",
+        "desc": "Wir begrüßen Sie lieber persönlich"
+      },
+      "self": {
+        "title": "Persönliche Begrüßung",
+        "desc": "Wir begrüßen Sie persönlich bei Ihrer Ankunft"
+      }
     }
   },
   "newbuild": {
@@ -330,23 +357,59 @@
       "desc": "Haus aus Qualitätsmaterialien mit neuen Anlagen und modernster Energieeffizienz gebaut. Ein moderner, sicherer und komfortabler Aufenthalt in jeder Jahreszeit."
     },
     "features": {
-      "systems": { "title": "Komplett neue Anlagen", "desc": "Modernste Elektro-, Sanitär- und Klimatechnik" },
-      "thermal": { "title": "Wärmedämmung", "desc": "Hochwertige Isolierung für ganzjährigen Komfort" },
-      "comfort": { "title": "Thermischer und akustischer Komfort", "desc": "Ruhige, gut klimatisierte Räume in jeder Jahreszeit" },
-      "energy": { "title": "Energieeffizienz", "desc": "Hohe Energieklasse für nachhaltigen Aufenthalt" },
-      "modern": { "title": "Moderne und funktionale Räume", "desc": "Zeitgenössisches Design für maximale Wohnbarkeit" },
-      "materials": { "title": "Neue Qualitätsmaterialien", "desc": "Veredelungen für Langlebigkeit und Ästhetik" },
-      "security": { "title": "Höhere Sicherheit", "desc": "Struktur nach neuesten Sicherheitsvorschriften" }
+      "systems": {
+        "title": "Komplett neue Anlagen",
+        "desc": "Modernste Elektro-, Sanitär- und Klimatechnik"
+      },
+      "thermal": {
+        "title": "Wärmedämmung",
+        "desc": "Hochwertige Isolierung für ganzjährigen Komfort"
+      },
+      "comfort": {
+        "title": "Thermischer und akustischer Komfort",
+        "desc": "Ruhige, gut klimatisierte Räume in jeder Jahreszeit"
+      },
+      "energy": {
+        "title": "Energieeffizienz",
+        "desc": "Hohe Energieklasse für nachhaltigen Aufenthalt"
+      },
+      "modern": {
+        "title": "Moderne und funktionale Räume",
+        "desc": "Zeitgenössisches Design für maximale Wohnbarkeit"
+      },
+      "materials": {
+        "title": "Neue Qualitätsmaterialien",
+        "desc": "Veredelungen für Langlebigkeit und Ästhetik"
+      },
+      "security": {
+        "title": "Höhere Sicherheit",
+        "desc": "Struktur nach neuesten Sicherheitsvorschriften"
+      }
     }
   },
   "booking": {
     "title": "Direkt Buchen",
     "subtitle": "Bester Preis garantiert, keine Provisionen",
-    "bestPrice": { "title": "Bester Preis Garantiert", "desc": "Direkt buchen und bis zu 15% gegenüber Plattformen sparen" },
-    "whatsapp": { "title": "Direkter WhatsApp", "desc": "Sofortige Host-Antwort zur Bestätigung Ihres Aufenthalts" },
-    "airbnb": { "title": "Auch auf Airbnb", "desc": "Wenn Sie möchten, können Sie über die bekannte Plattform buchen" },
-    "fastReply": { "title": "Schnelle Antwort", "desc": "Host antwortet innerhalb von 1 Stunde, oft innerhalb von Minuten" },
-    "secure": { "title": "Sicherer Aufenthalt", "desc": "Sichere Zahlung und Qualitäts garant für Ihren Urlaub" },
+    "bestPrice": {
+      "title": "Bester Preis Garantiert",
+      "desc": "Direkt buchen und bis zu 15% gegenüber Plattformen sparen"
+    },
+    "whatsapp": {
+      "title": "Direkter WhatsApp",
+      "desc": "Sofortige Host-Antwort zur Bestätigung Ihres Aufenthalts"
+    },
+    "airbnb": {
+      "title": "Auch auf Airbnb",
+      "desc": "Wenn Sie möchten, können Sie über die bekannte Plattform buchen"
+    },
+    "fastReply": {
+      "title": "Schnelle Antwort",
+      "desc": "Host antwortet innerhalb von 1 Stunde, oft innerhalb von Minuten"
+    },
+    "secure": {
+      "title": "Sicherer Aufenthalt",
+      "desc": "Sichere Zahlung und Qualitäts garant für Ihren Urlaub"
+    },
     "ctaCall": "Jetzt anrufen",
     "ctaWhatsApp": "Auf WhatsApp Buchen",
     "ctaAirbnb": "Auf Airbnb Ansehen",
@@ -362,7 +425,10 @@
     "trustSecure": "Sichere Buchung",
     "trustTrusted": "Vertrauenswürdige Plattformen",
     "trustRates": "Beste Direktpreise",
-    "booking": { "title": "Auch auf Booking.com", "desc": "Buchen Sie über die bekannteste Hotelplattform der Welt" }
+    "booking": {
+      "title": "Auch auf Booking.com",
+      "desc": "Buchen Sie über die bekannteste Hotelplattform der Welt"
+    }
   },
   "faq": {
     "title": "Häufig Gestellte Fragen",
@@ -494,4 +560,4 @@
       "inquiry": "Hallo! Ich benötige Informationen über San Paolo Hideout."
     }
   }
-}
+} as const;

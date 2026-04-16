@@ -5,7 +5,6 @@ import { useTranslation } from "@/lib/i18n";
 import { MessageCircle, Home } from "lucide-react";
 
 const WHATSAPP_NUMBER = "393299362759";
-const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei sapere di più su San Paolo Hideout.")}`;
 
 /**
  * Two-tier rich text renderer:
@@ -46,6 +45,8 @@ const pIntroClass =
 
 export default function LaCasa() {
   const { t } = useTranslation();
+
+  const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("common.whatsapp.info"))}`;
 
   const featureItems: string[] = t("laCasa.p6items")
     .split("|")
@@ -182,10 +183,10 @@ export default function LaCasa() {
                 </div>
                 <div>
                   <p className="font-label text-[9px] tracking-[0.2em] uppercase text-stitch-olive mb-0.5">
-                    Casa Indipendente
+                    {t("laCasa.floatingBadge.title")}
                   </p>
                   <p className="font-display text-sm font-semibold text-stitch-on-surface">
-                    Nuova Costruzione 2025
+                    {t("laCasa.floatingBadge.subtitle")}
                   </p>
                 </div>
               </div>

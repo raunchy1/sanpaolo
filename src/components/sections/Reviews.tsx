@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { useTranslation } from "@/lib/i18n";
+import { useTranslation, type Locale } from "@/lib/i18n";
 import { Star, ExternalLink } from "lucide-react";
 
 /* ─────────────────────────────────────────────
@@ -11,16 +11,45 @@ import { Star, ExternalLink } from "lucide-react";
 const AIRBNB_LINK =
   "https://www.airbnb.com/rooms/1517964247980793952";
 
-const reviewKeys = [
+const allReviewKeys = [
   "review1", "review2", "review3",
   "review4", "review5", "review6",
   "review7",
 ] as const;
 
+// Map each review to its primary language based on content
+const reviewLocales: Record<typeof allReviewKeys[number], Locale> = {
+  review1: "it",
+  review2: "en",
+  review3: "it",
+  review4: "it",
+  review5: "de",
+  review6: "it",
+  review7: "it",
+};
+
 const categoryKeys = [
   "location", "cleanliness", "comfort",
   "communication", "value", "family",
 ] as const;
+
+type ReviewKey = typeof allReviewKeys[number];
+
+function getOrderedReviews(locale: Locale): ReviewKey[] {
+  // Locale-first: show reviews matching current language first, then fallback it -> en -> de
+  const localeOrder: Record<Locale, Locale[]> = {
+    it: ["it", "en", "de"],
+    en: ["en", "it", "de"],
+    de: ["de", "it", "en"],
+  };
+  const order = localeOrder[locale];
+  const sorted = [...allReviewKeys].sort((a, b) => {
+    const rankA = order.indexOf(reviewLocales[a]);
+    const rankB = order.indexOf(reviewLocales[b]);
+    return rankA - rankB;
+  });
+  return sorted;
+}
 
 /* ─────────────────────────────────────────────
    Airbnb star icon (inline SVG)
@@ -118,7 +147,7 @@ function ReviewCard({
         </div>
         <span className="inline-flex items-center gap-1.5 text-[#FF5A5F] text-[10px] font-semibold tracking-wide">
           <AirbnbMark className="w-3 h-3" />
-          Verificata
+          {t("reviews.verified")}
         </span>
       </div>
 
@@ -128,7 +157,7 @@ function ReviewCard({
         style={{ fontSize: idx === 0 ? "5rem" : "3.5rem", lineHeight: 0.6, marginBottom: "-0.6rem" }}
         aria-hidden
       >
-        "
+        &ldquo;
       </div>
 
       {/* Review text */}
@@ -157,8 +186,9 @@ function ReviewCard({
    Main section
 ───────────────────────────────────────────── */
 export default function Reviews() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const carouselRef = useRef<HTMLDivElement>(null);
+  const reviewKeys = getOrderedReviews(locale);
 
   return (
     <section className="py-20 md:py-32 bg-stitch-ivory" id="reviews">
@@ -173,7 +203,7 @@ export default function Reviews() {
           className="mb-12"
         >
           <span className="font-label text-[10px] tracking-[0.28em] text-stitch-olive uppercase block mb-5">
-            Recensioni
+            {t("reviews.eyebrow")}
           </span>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-stitch-green leading-[1.1] mb-4">
             {t("reviews.title")}
@@ -235,7 +265,7 @@ export default function Reviews() {
                   style={{ boxShadow: "0 2px 12px -4px rgba(41,23,13,0.08)" }}
                 >
                   <AirbnbMark className="w-4 h-4 text-[#FF5A5F]" />
-                  <span>Leggi tutte su Airbnb</span>
+                  <span>{t("reviews.readOnAirbnb")}</span>
                   <ExternalLink className="w-3.5 h-3.5 text-stitch-on-surface/30" />
                 </a>
               </div>
@@ -308,7 +338,7 @@ export default function Reviews() {
                     </div>
                     <span className="inline-flex items-center gap-1 text-[#FF5A5F] text-[9px] font-semibold">
                       <AirbnbMark className="w-2.5 h-2.5" />
-                      Verificata
+                      {t("reviews.verified")}
                     </span>
                   </div>
 
@@ -317,7 +347,7 @@ export default function Reviews() {
                     style={{ fontSize: "3rem", lineHeight: 0.6 }}
                     aria-hidden
                   >
-                    "
+                    &ldquo;
                   </div>
 
                   <p className="text-stitch-on-surface/70 text-[13px] leading-[1.7] flex-1">
@@ -366,7 +396,7 @@ export default function Reviews() {
             className="inline-flex items-center gap-2.5 text-stitch-on-surface/50 hover:text-stitch-on-surface text-sm transition-colors duration-200"
           >
             <AirbnbMark className="w-4 h-4 text-[#FF5A5F]" />
-            Visualizza tutte le recensioni su Airbnb
+            {t("reviews.viewAllOnAirbnb")}
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </motion.div>

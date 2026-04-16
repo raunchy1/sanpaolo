@@ -1,4 +1,4 @@
-{
+export default {
   "meta": {
     "title": "San Paolo Hideout — La tua dimora romana privata",
     "description": "San Paolo Hideout: casa vacanze boutique a Roma vicino alla Basilica San Paolo e Metro B. Casa indipendente di nuova costruzione 2025, area esterna verde, 2 camere, 3 ospiti. Prenota direttamente al miglior prezzo.",
@@ -123,40 +123,40 @@
     "title": "Posizione Perfetta",
     "subtitle": "Nel cuore della Roma autentica, connesso a tutto",
     "eyebrow": "Posizione",
-    "metro": {
-      "title": "Fermata Metro San Paolo",
-      "desc": "Metro B — 9 minuti a piedi, diretta per Colosseo e Termini",
-      "time": "9 min"
+    "forteostiense": {
+      "title": "Forte Ostiense",
+      "desc": "1.0 km — 3 min — Centro per concorsi pubblici, selezioni forze dell'ordine e visite istituzionali",
+      "time": "3 min"
+    },
+    "bambinogesu": {
+      "title": "Ospedale Bambino Gesù",
+      "desc": "1.6 km — 5/7 min — L'Ospedale Pediatrico Bambino Gesù (OPBG) è il più grande policlinico e centro di ricerca pediatrico in Europa.",
+      "time": "5/7 min"
+    },
+    "basilica": {
+      "title": "Basilica San Paolo",
+      "desc": "700m — 9 min a piedi — Una delle basiliche papali più importanti di Roma",
+      "time": "9 min a piedi"
+    },
+    "ostiense": {
+      "title": "Stazione Ostiense",
+      "desc": "3.4 km — 10/12 minuti in auto — Collegamento diretto con Fiumicino e Termini",
+      "time": "10/12 min"
     },
     "romaTre": {
       "title": "Università Roma Tre",
       "desc": "300 metri a piedi — Ideale per visiting professor e studenti",
       "time": "300m"
     },
-    "palazzosport": {
-      "title": "Palazzo dello Sport",
-      "desc": "0.8 km — 2 minuti in auto — Palasport per eventi e concerti",
-      "time": "2 min"
+    "colosseoquad": {
+      "title": "Colosseo Quadrato",
+      "desc": "3.2 km — 8 minuti in auto — Icona dell'EUR e dell'architettura razionalista",
+      "time": "8 min"
     },
     "eur": {
       "title": "EUR",
       "desc": "3.9 km — 7/10 minuti in auto — Distretto business e architettura razionalista",
       "time": "7/10 min"
-    },
-    "palazzocongressi": {
-      "title": "Palazzo dei Congressi",
-      "desc": "3.6 km — 5/7 minuti in auto — Centro congressi iconico",
-      "time": "5/7 min"
-    },
-    "lanuvola": {
-      "title": "La Nuvola",
-      "desc": "3.3 km — 7/9 minuti in auto — Nuovo Centro Congressi di Roma",
-      "time": "7/9 min"
-    },
-    "ostiense": {
-      "title": "Stazione Ostiense",
-      "desc": "3.4 km — 10/12 minuti in auto — Collegamento diretto con Fiumicino e Termini",
-      "time": "10/12 min"
     },
     "fiumicino": {
       "title": "Aeroporto Fiumicino",
@@ -164,9 +164,9 @@
       "time": "20/25 min"
     },
     "expanded": {
-      "basilica": {
-        "title": "Basilica San Paolo",
-        "distance": "700m",
+      "metro": {
+        "title": "Fermata Metro San Paolo",
+        "distance": "650m",
         "time": "9 min a piedi"
       },
       "colosseo": {
@@ -174,30 +174,15 @@
         "distance": "",
         "time": "4 fermate Metro B"
       },
-      "colosseoquad": {
-        "title": "Colosseo Quadrato",
-        "distance": "3.2 km",
-        "time": "8 min"
-      },
       "fao": {
         "title": "FAO",
         "distance": "5.4 km",
         "time": "10/12 min"
       },
-      "bambinogesu": {
-        "title": "Ospedale Bambino Gesù",
-        "distance": "1.6 km",
-        "time": "5/7 min"
-      },
       "sancamillo": {
         "title": "Ospedale San Camillo",
         "distance": "4.1 km",
         "time": "13/15 min"
-      },
-      "forteostiense": {
-        "title": "Forte Ostiense",
-        "distance": "1.0 km",
-        "time": "3 min"
       },
       "ciampino": {
         "title": "Aeroporto Ciampino",
@@ -238,6 +223,21 @@
         "title": "MACRO Testaccio",
         "distance": "3.8 km",
         "time": "12 min"
+      },
+      "palazzosport": {
+        "title": "Palazzo dello Sport",
+        "distance": "0.8 km",
+        "time": "2 min"
+      },
+      "palazzocongressi": {
+        "title": "Palazzo dei Congressi",
+        "distance": "3.6 km",
+        "time": "5/7 min"
+      },
+      "lanuvola": {
+        "title": "La Nuvola",
+        "distance": "3.3 km",
+        "time": "7/9 min"
       }
     },
     "showMore": "Mostra altro",
@@ -255,12 +255,30 @@
     "overallLabel": "Eccellente",
     "totalReviews": "Recensioni verificate",
     "categories": {
-      "location": { "name": "Posizione", "score": "10" },
-      "cleanliness": { "name": "Pulizia", "score": "10" },
-      "comfort": { "name": "Comfort", "score": "10" },
-      "communication": { "name": "Comunicazione", "score": "10" },
-      "value": { "name": "Qualità prezzo", "score": "10" },
-      "family": { "name": "Famiglie", "score": "10" }
+      "location": {
+        "name": "Posizione",
+        "score": "10"
+      },
+      "cleanliness": {
+        "name": "Pulizia",
+        "score": "10"
+      },
+      "comfort": {
+        "name": "Comfort",
+        "score": "10"
+      },
+      "communication": {
+        "name": "Comunicazione",
+        "score": "10"
+      },
+      "value": {
+        "name": "Qualità prezzo",
+        "score": "10"
+      },
+      "family": {
+        "name": "Famiglie",
+        "score": "10"
+      }
     },
     "review1": {
       "name": "Martina",
@@ -316,9 +334,18 @@
     "title": "Check-in flessibile e accoglienza personalizzata",
     "description": "Il check-in è disponibile nella fascia 15:00–20:00.\nPer esigenze particolari gli ospiti possono scriverci e faremo il possibile per venirgli incontro.\nVi accogliamo di persona — l'accoglienza personalizzata è la nostra priorità.",
     "features": {
-      "flexible": { "title": "Check-in flessibile", "desc": "Fascia oraria 15:00–20:00" },
-      "human": { "title": "Accoglienza personalizzata", "desc": "Preferiamo accogliervi di persona" },
-      "self": { "title": "Accoglienza personale", "desc": "Vi accogliamo di persona per il benvenuto" }
+      "flexible": {
+        "title": "Check-in flessibile",
+        "desc": "Fascia oraria 15:00–20:00"
+      },
+      "human": {
+        "title": "Accoglienza personalizzata",
+        "desc": "Preferiamo accogliervi di persona"
+      },
+      "self": {
+        "title": "Accoglienza personale",
+        "desc": "Vi accogliamo di persona per il benvenuto"
+      }
     }
   },
   "newbuild": {
@@ -330,13 +357,34 @@
       "desc": "Casa realizzata con materiali di qualità, impianti nuovi e sistemi di efficienza energetica all'avanguardia. Un soggiorno moderno, sicuro e confortevole in ogni stagione."
     },
     "features": {
-      "systems": { "title": "Impianti completamente nuovi", "desc": "Impianto elettrico, idraulico e di climatizzazione di ultima generazione" },
-      "thermal": { "title": "Cappotto termico", "desc": "Isolamento termico di alta qualità per un comfort costante tutto l'anno" },
-      "comfort": { "title": "Comfort termico e acustico", "desc": "Ambienti silenziosi e ben climatizzati in ogni stagione" },
-      "energy": { "title": "Efficienza energetica", "desc": "Classe energetica elevata per un soggiorno sostenibile" },
-      "modern": { "title": "Spazi moderni e funzionali", "desc": "Design contemporaneo pensato per il massimo vivibilità" },
-      "materials": { "title": "Materiali nuovi e di qualità", "desc": "Finiture e materiali scelti per durata ed estetica" },
-      "security": { "title": "Maggiore sicurezza", "desc": "Struttura conforme alle più recenti normative di sicurezza" }
+      "systems": {
+        "title": "Impianti completamente nuovi",
+        "desc": "Impianto elettrico, idraulico e di climatizzazione di ultima generazione"
+      },
+      "thermal": {
+        "title": "Cappotto termico",
+        "desc": "Isolamento termico di alta qualità per un comfort costante tutto l'anno"
+      },
+      "comfort": {
+        "title": "Comfort termico e acustico",
+        "desc": "Ambienti silenziosi e ben climatizzati in ogni stagione"
+      },
+      "energy": {
+        "title": "Efficienza energetica",
+        "desc": "Classe energetica elevata per un soggiorno sostenibile"
+      },
+      "modern": {
+        "title": "Spazi moderni e funzionali",
+        "desc": "Design contemporaneo pensato per il massimo vivibilità"
+      },
+      "materials": {
+        "title": "Materiali nuovi e di qualità",
+        "desc": "Finiture e materiali scelti per durata ed estetica"
+      },
+      "security": {
+        "title": "Maggiore sicurezza",
+        "desc": "Struttura conforme alle più recenti normative di sicurezza"
+      }
     }
   },
   "booking": {
@@ -512,4 +560,4 @@
       "inquiry": "Ciao! Vorrei informazioni su San Paolo Hideout."
     }
   }
-}
+} as const;

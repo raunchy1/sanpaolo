@@ -20,20 +20,20 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sanpaolohideout.it"),
-  title: "San Paolo Hideout | Casa Vacanza Roma San Paolo",
+  title: "San Paolo Hideout | Boutique Vacation Rental Rome San Paolo",
   description:
-    "San Paolo Hideout: casa vacanze boutique a Roma vicino alla Basilica San Paolo e Metro B. Casa indipendente di nuova costruzione 2025, area esterna verde condivisa, 2 camere, 3 ospiti. Prenota direttamente al miglior prezzo.",
+    "San Paolo Hideout: boutique detached house in Rome near Basilica San Paolo and Metro B. Newly built 2025, shared green outdoor area, 2 bedrooms, 3 guests. Book directly for the best price.",
   keywords: [
     "San Paolo Hideout",
     "Rome vacation rental",
-    "Roma casa vacanze",
+    "Rome holiday home",
     "boutique stay Rome",
-    "area esterna verde Roma",
+    "green outdoor area Rome",
     "Metro B Rome",
     "Basilica San Paolo",
     "direct booking Rome",
-    "casa indipendente Roma",
-    "nuova costruzione Roma 2025",
+    "detached house Rome",
+    "new build Rome 2025",
     "Rom Ferienwohnung",
     "Via Silvio d'Amico Roma",
   ],
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
     shortcut: "/logo-green.png",
   },
   openGraph: {
-    title: "San Paolo Hideout — Roma | Casa Vacanze Boutique con Area Esterna Verde",
+    title: "San Paolo Hideout — Rome | Boutique Vacation Rental with Green Outdoor Area",
     description:
-      "La tua dimora romana privata vicino Metro B. Casa indipendente nuova 2025, 2 camere, area esterna verde condivisa. Prenota direttamente su WhatsApp.",
+      "Your private Roman sanctuary near Metro B. Newly built detached house 2025, 2 bedrooms, shared green outdoor area. Book directly on WhatsApp.",
     url: "https://sanpaolohideout.it",
     siteName: "San Paolo Hideout",
     type: "website",
@@ -67,9 +67,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "San Paolo Hideout — Roma",
+    title: "San Paolo Hideout — Rome",
     description:
-      "La tua dimora romana privata vicino Metro B. Casa nuova 2025, area verde. Prenota direttamente.",
+      "Your private Roman sanctuary near Metro B. Newly built house 2025, green outdoor area. Book directly.",
     images: ["/images/hero-trevi.jpg"],
   },
 };

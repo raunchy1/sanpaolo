@@ -22,6 +22,17 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
+function GoogleGIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+    </svg>
+  );
+}
+
 const PHONE_NUMBER = "+393299362759";
 const WHATSAPP_NUMBER = "393299362759";
 const MAPS_LINK = "https://maps.google.com/?q=Via+Silvio+D'Amico+96,+00145+Roma";
@@ -32,15 +43,6 @@ const LEGAL = {
   cin: "IT058091C2OS2A4EP2",
   cir: "058091-CAV-15649",
 };
-
-const serviceLinks = [
-  { labelKey: "rooms", href: "#rooms" },
-  { labelKey: "amenities", href: "#amenities" },
-  { label: "Offerte Speciali", href: "#offers" },
-  { labelKey: "faq", href: "#faq" },
-  { labelKey: "location", href: "#location" },
-  { label: "Prenota", href: "#booking" },
-] as const;
 
 const containerVariants = {
   hidden: {},
@@ -57,6 +59,17 @@ const itemVariants = {
 
 export default function Footer() {
   const { t, locale, setLocale } = useTranslation();
+
+  const serviceLinks = [
+    { labelKey: "rooms", href: "#rooms" },
+    { labelKey: "amenities", href: "#amenities" },
+    { labelKey: "offers", href: "#offers" },
+    { labelKey: "faq", href: "#faq" },
+    { labelKey: "location", href: "#location" },
+    { labelKey: "bookNow", href: "#booking" },
+  ] as const;
+
+  const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("common.whatsapp.inquiry"))}`;
 
   const languages: { code: Locale; label: string; flag: string }[] = [
     { code: "it", label: "IT", flag: "🇮🇹" },
@@ -92,8 +105,8 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="text-white/50 text-[9px] font-label uppercase tracking-wider leading-none mb-0.5">Booking.com</p>
-                  <p className="text-white text-xs font-semibold leading-tight">Eccellente</p>
-                  <p className="text-white/35 text-[9px] mt-0.5">19 recensioni</p>
+                  <p className="text-white text-xs font-semibold leading-tight">{t("reviews.overallLabel")}</p>
+                  <p className="text-white/35 text-[9px] mt-0.5">19 {t("reviews.totalReviews")}</p>
                 </div>
               </div>
 
@@ -107,7 +120,7 @@ export default function Footer() {
                 <div>
                   <p className="text-white/50 text-[9px] font-label uppercase tracking-wider leading-none mb-0.5">Airbnb</p>
                   <p className="text-white text-xs font-semibold leading-tight">★★★★★</p>
-                  <p className="text-white/35 text-[9px] mt-0.5">8 recensioni</p>
+                  <p className="text-white/35 text-[9px] mt-0.5">8 {t("reviews.totalReviews")}</p>
                 </div>
               </div>
 
@@ -116,12 +129,12 @@ export default function Footer() {
               {/* Google */}
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-white/[0.07] border border-white/[0.1] flex items-center justify-center shrink-0">
-                  <span className="text-white font-bold text-sm leading-none">5</span>
+                  <GoogleGIcon className="w-5 h-5" />
                 </div>
                 <div>
                   <p className="text-white/50 text-[9px] font-label uppercase tracking-wider leading-none mb-0.5">Google</p>
                   <p className="text-white text-xs font-semibold leading-tight">★★★★★</p>
-                  <p className="text-white/35 text-[9px] mt-0.5">19 recensioni</p>
+                  <p className="text-white/35 text-[9px] mt-0.5">19 {t("reviews.totalReviews")}</p>
                 </div>
               </div>
             </div>
@@ -166,7 +179,7 @@ export default function Footer() {
               <img
                 src="/logo-green.png"
                 alt="San Paolo Hideout"
-                className="w-10 h-10 rounded-xl object-contain brightness-0 invert"
+                className="w-14 h-14 rounded-xl object-contain brightness-0 invert"
               />
               <div>
                 <h3 className="font-display italic text-white text-xl leading-tight">
@@ -194,7 +207,7 @@ export default function Footer() {
                 <InstagramIcon className="w-4 h-4" />
               </a>
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei informazioni su San Paolo Hideout.")}`}
+                href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -204,7 +217,7 @@ export default function Footer() {
               </a>
               <a
                 href={`tel:${PHONE_NUMBER}`}
-                aria-label="Telefono"
+                aria-label={t("footer.phone")}
                 className="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-white/40 hover:text-white hover:bg-stitch-green/20 hover:border-stitch-green/30 transition-all duration-250"
               >
                 <Phone className="w-4 h-4" />
@@ -226,7 +239,7 @@ export default function Footer() {
                     className="text-white/45 hover:text-white text-sm transition-colors duration-200 inline-flex items-center gap-2 group"
                   >
                     <span className="w-0 group-hover:w-3 h-px bg-stitch-green transition-all duration-300 shrink-0" />
-                    {"labelKey" in link ? t(`nav.${link.labelKey}`) : link.label}
+                    {t(`nav.${link.labelKey}`)}
                   </a>
                 </li>
               ))}
@@ -331,7 +344,7 @@ export default function Footer() {
               <div className="bg-white/[0.04] rounded-xl p-4 border border-white/[0.06] space-y-2.5">
                 <div>
                   <p className="text-white/25 text-[10px] uppercase tracking-wider font-medium mb-0.5">
-                    Protocollo
+                    {t("footer.protocolLabel")}
                   </p>
                   <p className="text-white/60 text-xs font-mono leading-snug">
                     n. {LEGAL.prot}
@@ -340,7 +353,7 @@ export default function Footer() {
                 <div className="w-full h-px bg-white/[0.05]" />
                 <div>
                   <p className="text-white/25 text-[10px] uppercase tracking-wider font-medium mb-0.5">
-                    CIN (Codice Identificativo Nazionale)
+                    {t("footer.cinLabel")}
                   </p>
                   <p className="text-white/60 text-xs font-mono break-all">
                     {LEGAL.cin}
@@ -349,7 +362,7 @@ export default function Footer() {
                 <div className="w-full h-px bg-white/[0.05]" />
                 <div>
                   <p className="text-white/25 text-[10px] uppercase tracking-wider font-medium mb-0.5">
-                    CIR
+                    {t("footer.cirLabel")}
                   </p>
                   <p className="text-white/60 text-xs font-mono">
                     {LEGAL.cir}
@@ -387,7 +400,7 @@ export default function Footer() {
               {t("footer.copyright")}
             </p>
             <p className="text-white/20 text-xs text-center">
-              Casa Vacanze · CIN {LEGAL.cin}
+              {t("footer.holidayHome")} · CIN {LEGAL.cin}
             </p>
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-stitch-green animate-pulse" />

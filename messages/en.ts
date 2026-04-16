@@ -1,4 +1,4 @@
-{
+export default {
   "meta": {
     "title": "San Paolo Hideout — Your Private Roman Sanctuary",
     "description": "San Paolo Hideout: boutique detached house in Rome near Basilica San Paolo and Metro B. Newly built 2025, shared green outdoor area, 2 bedrooms, 3 guests. Book directly for the best price.",
@@ -123,40 +123,40 @@
     "title": "Perfect Location",
     "subtitle": "In the heart of authentic Rome, connected to everything",
     "eyebrow": "Location",
-    "metro": {
-      "title": "San Paolo Metro Station",
-      "desc": "Metro B — 9 min walk, direct to Colosseum and Termini",
-      "time": "9 min"
+    "forteostiense": {
+      "title": "Forte Ostiense",
+      "desc": "1.0 km — 3 min — Center for public exams, police selections and institutional visits",
+      "time": "3 min"
+    },
+    "bambinogesu": {
+      "title": "Bambino Gesù Hospital",
+      "desc": "1.6 km — 5/7 min — The Bambino Gesù Pediatric Hospital (OPBG) is the largest pediatric polyclinic and research center in Europe.",
+      "time": "5/7 min"
+    },
+    "basilica": {
+      "title": "Basilica San Paolo",
+      "desc": "700m — 9 min walk — One of the most important papal basilicas in Rome",
+      "time": "9 min walk"
+    },
+    "ostiense": {
+      "title": "Ostiense Station",
+      "desc": "3.4 km — 10/12 min by car — Direct connection to Fiumicino and Termini",
+      "time": "10/12 min"
     },
     "romaTre": {
       "title": "Roma Tre University",
       "desc": "300 meters walk — Ideal for visiting professors and students",
       "time": "300m"
     },
-    "palazzosport": {
-      "title": "Palazzo dello Sport",
-      "desc": "0.8 km — 2 min by car — Sports arena for events and concerts",
-      "time": "2 min"
+    "colosseoquad": {
+      "title": "Colosseo Quadrato",
+      "desc": "3.2 km — 8 min by car — Icon of EUR and rationalist architecture",
+      "time": "8 min"
     },
     "eur": {
       "title": "EUR",
       "desc": "3.9 km — 7/10 min by car — Business district and rationalist architecture",
       "time": "7/10 min"
-    },
-    "palazzocongressi": {
-      "title": "Palazzo dei Congressi",
-      "desc": "3.6 km — 5/7 min by car — Iconic congress centre",
-      "time": "5/7 min"
-    },
-    "lanuvola": {
-      "title": "La Nuvola",
-      "desc": "3.3 km — 7/9 min by car — New Rome Congress Centre",
-      "time": "7/9 min"
-    },
-    "ostiense": {
-      "title": "Ostiense Station",
-      "desc": "3.4 km — 10/12 min by car — Direct connection to Fiumicino and Termini",
-      "time": "10/12 min"
     },
     "fiumicino": {
       "title": "Fiumicino Airport",
@@ -164,9 +164,9 @@
       "time": "20/25 min"
     },
     "expanded": {
-      "basilica": {
-        "title": "Basilica San Paolo",
-        "distance": "700m",
+      "metro": {
+        "title": "San Paolo Metro Station",
+        "distance": "650m",
         "time": "9 min walk"
       },
       "colosseo": {
@@ -174,30 +174,15 @@
         "distance": "",
         "time": "4 Metro B stops"
       },
-      "colosseoquad": {
-        "title": "Colosseo Quadrato",
-        "distance": "3.2 km",
-        "time": "8 min"
-      },
       "fao": {
         "title": "FAO",
         "distance": "5.4 km",
         "time": "10/12 min"
       },
-      "bambinogesu": {
-        "title": "Bambino Gesù Hospital",
-        "distance": "1.6 km",
-        "time": "5/7 min"
-      },
       "sancamillo": {
         "title": "San Camillo Hospital",
         "distance": "4.1 km",
         "time": "13/15 min"
-      },
-      "forteostiense": {
-        "title": "Forte Ostiense",
-        "distance": "1.0 km",
-        "time": "3 min"
       },
       "ciampino": {
         "title": "Ciampino Airport",
@@ -238,6 +223,21 @@
         "title": "MACRO Testaccio",
         "distance": "3.8 km",
         "time": "12 min"
+      },
+      "palazzosport": {
+        "title": "Palazzo dello Sport",
+        "distance": "0.8 km",
+        "time": "2 min"
+      },
+      "palazzocongressi": {
+        "title": "Palazzo dei Congressi",
+        "distance": "3.6 km",
+        "time": "5/7 min"
+      },
+      "lanuvola": {
+        "title": "La Nuvola",
+        "distance": "3.3 km",
+        "time": "7/9 min"
       }
     },
     "showMore": "Show more",
@@ -255,12 +255,30 @@
     "overallLabel": "Excellent",
     "totalReviews": "Verified reviews",
     "categories": {
-      "location": { "name": "Location", "score": "10" },
-      "cleanliness": { "name": "Cleanliness", "score": "10" },
-      "comfort": { "name": "Comfort", "score": "10" },
-      "communication": { "name": "Communication", "score": "10" },
-      "value": { "name": "Value for money", "score": "10" },
-      "family": { "name": "Families", "score": "10" }
+      "location": {
+        "name": "Location",
+        "score": "10"
+      },
+      "cleanliness": {
+        "name": "Cleanliness",
+        "score": "10"
+      },
+      "comfort": {
+        "name": "Comfort",
+        "score": "10"
+      },
+      "communication": {
+        "name": "Communication",
+        "score": "10"
+      },
+      "value": {
+        "name": "Value for money",
+        "score": "10"
+      },
+      "family": {
+        "name": "Families",
+        "score": "10"
+      }
     },
     "review1": {
       "name": "Martina",
@@ -316,9 +334,18 @@
     "title": "Flexible check-in and personalized welcome",
     "description": "Check-in is available between 15:00–20:00.\nFor special needs, guests can write to us and we'll do our best to accommodate them.\nWe welcome you in person — a personalised welcome is our priority.",
     "features": {
-      "flexible": { "title": "Flexible check-in", "desc": "Available 15:00–20:00" },
-      "human": { "title": "Personalized welcome", "desc": "We prefer to greet you in person" },
-      "self": { "title": "Personal welcome", "desc": "We welcome you in person upon arrival" }
+      "flexible": {
+        "title": "Flexible check-in",
+        "desc": "Available 15:00–20:00"
+      },
+      "human": {
+        "title": "Personalized welcome",
+        "desc": "We prefer to greet you in person"
+      },
+      "self": {
+        "title": "Personal welcome",
+        "desc": "We welcome you in person upon arrival"
+      }
     }
   },
   "newbuild": {
@@ -330,23 +357,59 @@
       "desc": "House built with quality materials, new systems and state-of-the-art energy efficiency. A modern, safe and comfortable stay in every season."
     },
     "features": {
-      "systems": { "title": "Brand new systems", "desc": "State-of-the-art electrical, plumbing and climate systems" },
-      "thermal": { "title": "Thermal insulation", "desc": "High-quality insulation for year-round comfort" },
-      "comfort": { "title": "Thermal and acoustic comfort", "desc": "Quiet, well-conditioned spaces in every season" },
-      "energy": { "title": "Energy efficiency", "desc": "High energy class for a sustainable stay" },
-      "modern": { "title": "Modern and functional spaces", "desc": "Contemporary design for maximum livability" },
-      "materials": { "title": "New quality materials", "desc": "Finishes chosen for durability and aesthetics" },
-      "security": { "title": "Greater safety", "desc": "Structure compliant with the latest safety regulations" }
+      "systems": {
+        "title": "Brand new systems",
+        "desc": "State-of-the-art electrical, plumbing and climate systems"
+      },
+      "thermal": {
+        "title": "Thermal insulation",
+        "desc": "High-quality insulation for year-round comfort"
+      },
+      "comfort": {
+        "title": "Thermal and acoustic comfort",
+        "desc": "Quiet, well-conditioned spaces in every season"
+      },
+      "energy": {
+        "title": "Energy efficiency",
+        "desc": "High energy class for a sustainable stay"
+      },
+      "modern": {
+        "title": "Modern and functional spaces",
+        "desc": "Contemporary design for maximum livability"
+      },
+      "materials": {
+        "title": "New quality materials",
+        "desc": "Finishes chosen for durability and aesthetics"
+      },
+      "security": {
+        "title": "Greater safety",
+        "desc": "Structure compliant with the latest safety regulations"
+      }
     }
   },
   "booking": {
     "title": "Book Directly",
     "subtitle": "Best price guaranteed, no commissions",
-    "bestPrice": { "title": "Best Price Guaranteed", "desc": "Book directly and save up to 15% compared to platforms" },
-    "whatsapp": { "title": "Direct WhatsApp", "desc": "Immediate host response to confirm your stay" },
-    "airbnb": { "title": "Also on Airbnb", "desc": "If you prefer, you can book through the platform you know" },
-    "fastReply": { "title": "Fast Reply", "desc": "Host responds within 1 hour, often within minutes" },
-    "secure": { "title": "Secure Stay", "desc": "Secure payment and quality guarantee for your vacation" },
+    "bestPrice": {
+      "title": "Best Price Guaranteed",
+      "desc": "Book directly and save up to 15% compared to platforms"
+    },
+    "whatsapp": {
+      "title": "Direct WhatsApp",
+      "desc": "Immediate host response to confirm your stay"
+    },
+    "airbnb": {
+      "title": "Also on Airbnb",
+      "desc": "If you prefer, you can book through the platform you know"
+    },
+    "fastReply": {
+      "title": "Fast Reply",
+      "desc": "Host responds within 1 hour, often within minutes"
+    },
+    "secure": {
+      "title": "Secure Stay",
+      "desc": "Secure payment and quality guarantee for your vacation"
+    },
     "ctaCall": "Call now",
     "ctaWhatsApp": "Book on WhatsApp",
     "ctaAirbnb": "View on Airbnb",
@@ -362,7 +425,10 @@
     "trustSecure": "Secure booking",
     "trustTrusted": "Trusted platforms",
     "trustRates": "Best direct rates",
-    "booking": { "title": "Also on Booking.com", "desc": "Book through the world's most trusted hotel platform" }
+    "booking": {
+      "title": "Also on Booking.com",
+      "desc": "Book through the world's most trusted hotel platform"
+    }
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -494,4 +560,4 @@
       "inquiry": "Hi! I'd like information about San Paolo Hideout."
     }
   }
-}
+} as const;

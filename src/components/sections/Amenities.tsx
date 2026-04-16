@@ -140,7 +140,7 @@ function ComfortCard({ t }: { t: (k: string) => string }) {
           <Sparkles className="w-4 h-4 text-stitch-gold/70" />
         </div>
         <span className="text-white/30 text-xs font-medium tracking-wide">
-          4 amenità
+          {t("amenities.comfort.count")}
         </span>
       </div>
 
@@ -244,7 +244,7 @@ function PetStrip({ t }: { t: (k: string) => string }) {
       </div>
       <span className="shrink-0 inline-flex items-center gap-1.5 bg-stitch-green/10 text-stitch-green font-label text-[10px] tracking-wider uppercase px-4 py-2 rounded-lg">
         <Check className="w-3 h-3" />
-        Su richiesta
+        {t("amenities.pet.badge")}
       </span>
     </motion.div>
   );
@@ -320,6 +320,13 @@ function AccordionItem({
 ───────────────────────────────────────────── */
 export default function Amenities() {
   const { t } = useTranslation();
+
+  const trustItems = [
+    { icon: Wifi,       labelKey: "amenities.trust.wifi" },
+    { icon: Car,        labelKey: "amenities.trust.parking" },
+    { icon: Sparkles,   labelKey: "amenities.trust.cleaning" },
+    { icon: Headphones, labelKey: "amenities.trust.support" },
+  ] as const;
 
   return (
     <section className="py-20 md:py-32 bg-stitch-ivory overflow-hidden" id="amenities">
@@ -458,15 +465,10 @@ export default function Amenities() {
           variants={fadeUp}
           className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
         >
-          {[
-            { icon: Wifi,       label: "Wi-Fi fibra" },
-            { icon: Car,        label: "Parcheggio gratis" },
-            { icon: Sparkles,   label: "Pulizia finale inclusa" },
-            { icon: Headphones, label: "Supporto rapido" },
-          ].map(({ icon: Icon, label }) => (
-            <div key={label} className="flex items-center gap-2 text-stitch-on-surface/40 text-xs">
+          {trustItems.map(({ icon: Icon, labelKey }) => (
+            <div key={labelKey} className="flex items-center gap-2 text-stitch-on-surface/40 text-xs">
               <Icon className="w-3.5 h-3.5 text-stitch-green/60" />
-              <span>{label}</span>
+              <span>{t(labelKey)}</span>
             </div>
           ))}
         </motion.div>

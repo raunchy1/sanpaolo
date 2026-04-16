@@ -8,10 +8,11 @@ import { Phone, MessageCircle } from "lucide-react";
 const PHONE_NUMBER = "+393299362759";
 const WHATSAPP_NUMBER = "393299362759";
 const PHONE_LINK = `tel:${PHONE_NUMBER}`;
-const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei prenotare San Paolo Hideout.")}`;
 
 export default function MobileStickyCTA() {
   const { t } = useTranslation();
+  const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("common.whatsapp.booking"))}`;
+
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 

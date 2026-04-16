@@ -2,6 +2,10 @@
 
 import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 
+import itMessages from "../../messages/it";
+import enMessages from "../../messages/en";
+import deMessages from "../../messages/de";
+
 export type Locale = "it" | "en" | "de";
 
 type Messages = Record<string, unknown>;
@@ -15,10 +19,10 @@ interface I18nContextType {
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-const messageCache: Record<Locale, Messages> = {
-  it: {},
-  en: {},
-  de: {},
+const allMessages: Record<Locale, Messages> = {
+  it: itMessages as Messages,
+  en: enMessages as Messages,
+  de: deMessages as Messages,
 };
 
 function getNestedValue(obj: Record<string, unknown>, path: string): string {
@@ -36,7 +40,6 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string {
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("it");
-  const [messages, setMessages] = useState<Messages>({});
 
   useEffect(() => {
     const saved = typeof window !== "undefined" ? localStorage.getItem("locale") as Locale : null;
@@ -44,24 +47,6 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       setLocaleState(saved);
     }
   }, []);
-
-  const loadMessages = useCallback(async (loc: Locale) => {
-    if (Object.keys(messageCache[loc]).length > 0) {
-      setMessages(messageCache[loc]);
-      return;
-    }
-    try {
-      const mod = await import(`../../messages/${loc}.json`);
-      messageCache[loc] = mod.default || mod;
-      setMessages(messageCache[loc]);
-    } catch (e) {
-      console.error(`Failed to load messages for ${loc}:`, e);
-    }
-  }, []);
-
-  useEffect(() => {
-    loadMessages(locale);
-  }, [locale, loadMessages]);
 
   const setLocale = useCallback((loc: Locale) => {
     setLocaleState(loc);
@@ -71,9 +56,11 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  const messages = allMessages[locale];
+
   const t = useCallback(
     (key: string): string => {
-      return getNestedValue(messages as Record<string, unknown>, key);
+      return getNestedValue(messages, key);
     },
     [messages]
   );
