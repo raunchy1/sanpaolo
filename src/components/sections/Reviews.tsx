@@ -1,232 +1,378 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Star, ExternalLink } from "lucide-react";
+
+/* ─────────────────────────────────────────────
+   Constants
+───────────────────────────────────────────── */
+const AIRBNB_LINK =
+  "https://www.airbnb.com/rooms/1517964247980793952";
 
 const reviewKeys = [
-  "review1",
-  "review2",
-  "review3",
-  "review4",
-  "review5",
-  "review6",
+  "review1", "review2", "review3",
+  "review4", "review5", "review6",
+  "review7",
 ] as const;
 
 const categoryKeys = [
-  "location",
-  "cleanliness",
-  "garden",
-  "metro",
-  "communication",
-  "family",
+  "location", "cleanliness", "comfort",
+  "communication", "value", "family",
 ] as const;
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.08 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 25 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number] },
-  },
-};
-
-export default function Reviews() {
-  const { t } = useTranslation();
-  const [currentPage, setCurrentPage] = useState(0);
-  const reviewsPerPage = 3;
-  const totalPages = Math.ceil(reviewKeys.length / reviewsPerPage);
-
-  const currentReviews = reviewKeys.slice(
-    currentPage * reviewsPerPage,
-    (currentPage + 1) * reviewsPerPage
+/* ─────────────────────────────────────────────
+   Airbnb star icon (inline SVG)
+───────────────────────────────────────────── */
+function AirbnbMark({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C9.243 2 7 4.243 7 7c0 1.107.34 2.136.92 2.985-.58.85-.92 1.878-.92 2.985 0 1.38.47 2.65 1.257 3.665-.787 1.015-1.257 2.285-1.257 3.665C6.5 21.38 8.99 23 12 23s5.5-1.62 5.5-5.36c0-1.38-.47-2.65-1.257-3.665.787-1.015 1.257-2.285 1.257-3.665 0-1.107-.34-2.136-.92-2.985.58-.85.92-1.878.92-2.985 0-2.757-2.243-5-5-5zm0 14.27c-1.21 0-2.27-.63-2.89-1.58.62-.95 1.68-1.58 2.89-1.58s2.27.63 2.89 1.58c-.62.95-1.68 1.58-2.89 1.58zm0-5.27c-1.21 0-2.27-.63-2.89-1.58.62-.95 1.68-1.58 2.89-1.58s2.27.63 2.89 1.58c-.62.95-1.68 1.58-2.89 1.58zm0-5.27c-1.21 0-2.27-.63-2.89-1.58.62-.95 1.68-1.58 2.89-1.58s2.27.63 2.89 1.58c-.62.95-1.68 1.58-2.89 1.58z"/>
+    </svg>
   );
+}
+
+/* ─────────────────────────────────────────────
+   Score animated bar
+───────────────────────────────────────────── */
+function ScoreBar({ score }: { score: string }) {
+  const pct = (parseFloat(score) / 10) * 100;
+  return (
+    <div className="w-full h-1 bg-stitch-olive-light/40 rounded-full overflow-hidden mt-1.5">
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: `${pct}%` }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.25 }}
+        className="h-full rounded-full bg-stitch-green"
+      />
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Avatar initials
+───────────────────────────────────────────── */
+const avatarPalette = [
+  "bg-stitch-green text-white",
+  "bg-stitch-green-light text-white",
+  "bg-stitch-gold/80 text-stitch-on-surface",
+  "bg-[#3A8A63] text-white",
+  "bg-stitch-on-surface text-white",
+  "bg-[#C8A96B]/70 text-stitch-on-surface",
+];
+
+function Avatar({ name, idx }: { name: string; idx: number }) {
+  const initials = name
+    .split(/[\s&]+/)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? "")
+    .join("");
+  return (
+    <div
+      className={`w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm shrink-0 ${avatarPalette[idx % avatarPalette.length]}`}
+    >
+      {initials}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Single Review Card
+───────────────────────────────────────────── */
+function ReviewCard({
+  reviewKey,
+  idx,
+  t,
+}: {
+  reviewKey: string;
+  idx: number;
+  t: (k: string) => string;
+}) {
+  const name     = t(`reviews.${reviewKey}.name`);
+  const location = t(`reviews.${reviewKey}.location`);
+  const text     = t(`reviews.${reviewKey}.text`);
+  const date     = t(`reviews.${reviewKey}.date`);
+  const rating   = parseFloat(t(`reviews.${reviewKey}.rating`));
 
   return (
-    <section className="py-20 md:py-32 bg-white" id="reviews">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, delay: idx * 0.06, ease: [0.25, 0.4, 0.25, 1] }}
+      whileHover={{ y: -3, boxShadow: "0 10px 30px rgba(46,107,74,0.09)" }}
+      className="break-inside-avoid mb-5 bg-white rounded-[20px] p-6 md:p-7 group cursor-default flex flex-col gap-5 transition-all duration-300"
+      style={{ boxShadow: "0 4px 24px -8px rgba(41,23,13,0.07)" }}
+    >
+      {/* Top row: stars + Airbnb badge */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <Star
+              key={i}
+              className={`w-3.5 h-3.5 ${i < Math.round(rating) ? "text-stitch-gold fill-stitch-gold" : "text-stitch-olive-light"}`}
+            />
+          ))}
+        </div>
+        <span className="inline-flex items-center gap-1.5 text-[#FF5A5F] text-[10px] font-semibold tracking-wide">
+          <AirbnbMark className="w-3 h-3" />
+          Verificata
+        </span>
+      </div>
+
+      {/* Large opening quote — decorative, not a standard quote mark */}
+      <div
+        className="font-display text-stitch-olive-light/40 leading-none select-none"
+        style={{ fontSize: idx === 0 ? "5rem" : "3.5rem", lineHeight: 0.6, marginBottom: "-0.6rem" }}
+        aria-hidden
+      >
+        "
+      </div>
+
+      {/* Review text */}
+      <p className="text-stitch-on-surface/75 text-[14px] leading-[1.75] flex-1">
+        {text}
+      </p>
+
+      {/* Author row */}
+      <div className="flex items-center gap-3 pt-4 border-t border-stitch-olive-light/30">
+        <Avatar name={name} idx={idx} />
+        <div className="flex-1 min-w-0">
+          <p className="font-display font-semibold text-stitch-on-surface text-sm leading-snug truncate">
+            {name}
+          </p>
+          <p className="text-xs text-stitch-on-surface/40 mt-0.5 truncate">{location}</p>
+        </div>
+        <span className="shrink-0 text-[11px] text-stitch-on-surface/35 font-medium italic">
+          {date}
+        </span>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Main section
+───────────────────────────────────────────── */
+export default function Reviews() {
+  const { t } = useTranslation();
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <section className="py-20 md:py-32 bg-stitch-ivory" id="reviews">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+
+        {/* ── Section header ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number] }}
-          className="text-center mb-6"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+          className="mb-12"
         >
-          <span className="inline-block text-xs tracking-[0.2em] uppercase text-roman-terracotta font-semibold mb-3">
-            Testimonials
+          <span className="font-label text-[10px] tracking-[0.28em] text-stitch-olive uppercase block mb-5">
+            Recensioni
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-roman-espresso mb-4 tracking-roman">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-stitch-green leading-[1.1] mb-4">
             {t("reviews.title")}
           </h2>
-          <div className="section-divider mb-6" />
-          <p className="text-muted-foreground text-lg max-w-lg mx-auto leading-relaxed">
+          <p className="font-body text-stitch-on-surface/55 text-base italic max-w-md leading-relaxed">
             {t("reviews.subtitle")}
           </p>
         </motion.div>
 
-        {/* Overall Rating */}
+        {/* ── Trust strip + score ── */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.55 }}
+          className="mb-12"
         >
-          <div className="inline-flex items-center gap-4 bg-roman-warm-white rounded-2xl px-8 py-4 border border-roman-sand/40">
-            <span className="font-display text-4xl font-bold text-roman-espresso">
-              {t("reviews.overallRating")}
-            </span>
-            <div className="flex flex-col items-start gap-1">
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-4.5 h-4.5 text-roman-gold fill-roman-gold"
-                  />
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, #FFF1EA 0%, #EEF3EF 100%)",
+              boxShadow: "0 4px 32px -8px rgba(41,23,13,0.07)",
+            }}
+          >
+            <div className="p-6 md:p-8 lg:p-10">
+              {/* Overall + Airbnb link row */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
+                <div className="flex items-center gap-6 md:gap-10">
+                  {/* Big score */}
+                  <div className="text-center sm:text-left">
+                    <div className="font-display text-5xl md:text-6xl font-bold text-stitch-green leading-none">
+                      {t("reviews.overallScore")}
+                    </div>
+                    <div className="text-stitch-on-surface/35 text-xs font-medium mt-1">
+                      / {t("reviews.overallMax")}
+                    </div>
+                  </div>
+
+                  <div className="w-px h-16 bg-stitch-olive-light/50 hidden sm:block" />
+
+                  <div>
+                    <div className="font-display text-xl md:text-2xl font-semibold text-stitch-on-surface mb-1.5">
+                      {t("reviews.overallLabel")}
+                    </div>
+                    <div className="flex items-center gap-0.5 mb-1.5">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 text-stitch-gold fill-stitch-gold" />
+                      ))}
+                    </div>
+                    <div className="text-stitch-on-surface/50 text-xs font-medium">
+                      {t("reviews.totalReviews")}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Airbnb trust pill */}
+                <a
+                  href={AIRBNB_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 bg-white hover:bg-[#FFF1EA] px-5 py-3 rounded-full font-label text-xs tracking-wider uppercase text-stitch-on-surface/60 hover:text-stitch-on-surface transition-all duration-300 self-start sm:self-center shrink-0"
+                  style={{ boxShadow: "0 2px 12px -4px rgba(41,23,13,0.08)" }}
+                >
+                  <AirbnbMark className="w-4 h-4 text-[#FF5A5F]" />
+                  <span>Leggi tutte su Airbnb</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-stitch-on-surface/30" />
+                </a>
+              </div>
+
+              {/* Category breakdown */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+                {categoryKeys.map((key, i) => (
+                  <motion.div
+                    key={key}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.06 }}
+                    className="bg-white rounded-xl p-3.5 hover:bg-[#FFF1EA] transition-all duration-300 text-center"
+                    style={{ boxShadow: "0 1px 8px -2px rgba(41,23,13,0.05)" }}
+                  >
+                    <p className="text-[10px] text-stitch-on-surface/40 uppercase tracking-wider font-semibold mb-1">
+                      {t(`reviews.categories.${key}.name`)}
+                    </p>
+                    <p className="font-display text-lg font-bold text-stitch-green leading-none">
+                      {t(`reviews.categories.${key}.score`)}
+                    </p>
+                    <ScoreBar score={t(`reviews.categories.${key}.score`)} />
+                  </motion.div>
                 ))}
               </div>
-              <span className="text-xs text-muted-foreground">
-                {t("reviews.totalReviews")}
-              </span>
             </div>
           </div>
         </motion.div>
 
-        {/* Rating Categories */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-3 sm:grid-cols-6 gap-3 mb-14"
-        >
-          {categoryKeys.map((key) => (
-            <motion.div
-              key={key}
-              variants={itemVariants}
-              className="text-center p-3 md:p-4 rounded-2xl bg-roman-warm-white border border-roman-sand/30"
-            >
-              <p className="text-[11px] text-muted-foreground mb-1.5 uppercase tracking-wider">
-                {t(`reviews.categories.${key}`)}
-              </p>
-              <p className="font-display text-xl font-bold text-roman-espresso">
-                5.0
-              </p>
-            </motion.div>
+        {/* ── DESKTOP: CSS Columns masonry ── */}
+        <div className="hidden md:block columns-1 md:columns-2 lg:columns-3 gap-5">
+          {reviewKeys.map((key, idx) => (
+            <ReviewCard key={key} reviewKey={key} idx={idx} t={t} />
           ))}
-        </motion.div>
+        </div>
 
-        {/* Review Cards */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentPage}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"
+        {/* ── MOBILE: Horizontal snap carousel ── */}
+        <div className="md:hidden relative">
+          <div
+            ref={carouselRef}
+            className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4"
+            style={{
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
           >
-            {currentReviews.map((key) => {
-              const rating = parseFloat(t(`reviews.${key}.rating`));
-              return (
+            {reviewKeys.map((key, idx) => (
+              <div
+                key={key}
+                className="shrink-0 w-[82vw] max-w-[320px]"
+                style={{ scrollSnapAlign: "start" }}
+              >
+                {/* Mobile card — inline version (no break-inside) */}
                 <motion.div
-                  key={key}
-                  initial={{ opacity: 0, y: 25 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number] }}
-                  className="bg-roman-warm-white rounded-2xl p-6 md:p-8 shadow-sm border border-roman-sand/40 hover:shadow-lg hover:shadow-roman-shadow hover:border-roman-terracotta/10 transition-all duration-400"
+                  transition={{ duration: 0.45, delay: idx * 0.05 }}
+                  className="h-full bg-white rounded-[20px] p-5 flex flex-col gap-4"
+                  style={{ boxShadow: "0 4px 24px -8px rgba(41,23,13,0.07)" }}
                 >
-                  {/* Rating */}
-                  <div className="flex items-center gap-2 mb-5">
-                    <div className="flex items-center gap-0.5">
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-0.5">
                       {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-4 h-4 ${
-                            i < Math.round(rating)
-                              ? "text-roman-gold fill-roman-gold"
-                              : "text-roman-sand"
-                          }`}
-                        />
+                        <Star key={i} className="w-3 h-3 text-stitch-gold fill-stitch-gold" />
                       ))}
                     </div>
-                    <span className="text-sm font-bold text-roman-espresso">
-                      {t(`reviews.${key}.rating`)}
+                    <span className="inline-flex items-center gap-1 text-[#FF5A5F] text-[9px] font-semibold">
+                      <AirbnbMark className="w-2.5 h-2.5" />
+                      Verificata
                     </span>
                   </div>
 
-                  {/* Quote Icon */}
-                  <Quote className="w-8 h-8 text-roman-sand/50 mb-3 fill-roman-sand/20" />
+                  <div
+                    className="font-display text-stitch-olive-light/40 leading-none"
+                    style={{ fontSize: "3rem", lineHeight: 0.6 }}
+                    aria-hidden
+                  >
+                    "
+                  </div>
 
-                  {/* Review Text */}
-                  <p className="text-roman-espresso/80 leading-relaxed mb-6 text-[15px]">
-                    &ldquo;{t(`reviews.${key}.text`)}&rdquo;
+                  <p className="text-stitch-on-surface/70 text-[13px] leading-[1.7] flex-1">
+                    {t(`reviews.${key}.text`)}
                   </p>
 
-                  {/* Author */}
-                  <div className="flex items-center justify-between pt-5 border-t border-roman-sand/40">
-                    <div>
-                      <p className="font-display font-semibold text-roman-espresso text-sm">
+                  <div className="flex items-center gap-2.5 pt-3 border-t border-stitch-olive-light/30">
+                    <Avatar name={t(`reviews.${key}.name`)} idx={idx} />
+                    <div className="flex-1 min-w-0">
+                      <p className="font-display font-semibold text-stitch-on-surface text-xs truncate">
                         {t(`reviews.${key}.name`)}
                       </p>
-                      <p className="text-xs text-muted-foreground mt-0.5">
-                        {t(`reviews.${key}.location`)}
+                      <p className="text-[10px] text-stitch-on-surface/40 truncate">
+                        {t(`reviews.${key}.location`)} · {t(`reviews.${key}.date`)}
                       </p>
                     </div>
-                    <p className="text-xs text-muted-foreground font-medium">
-                      {t(`reviews.${key}.date`)}
-                    </p>
                   </div>
                 </motion.div>
-              );
-            })}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-5 mt-12">
-            <button
-              onClick={() => setCurrentPage((p) => Math.max(0, p - 1))}
-              disabled={currentPage === 0}
-              className="p-2.5 rounded-full hover:bg-roman-cream disabled:opacity-25 transition-colors touch-feedback"
-            >
-              <ChevronLeft className="w-5 h-5 text-roman-espresso" />
-            </button>
-            <div className="flex gap-2">
-              {[...Array(totalPages)].map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentPage(i)}
-                  className={`rounded-full transition-all duration-400 ${
-                    i === currentPage
-                      ? "bg-roman-terracotta w-9 h-2.5"
-                      : "w-2.5 h-2.5 bg-roman-sand hover:bg-roman-stone"
-                  }`}
-                />
-              ))}
-            </div>
-            <button
-              onClick={() =>
-                setCurrentPage((p) => Math.min(totalPages - 1, p + 1))
-              }
-              disabled={currentPage === totalPages - 1}
-              className="p-2.5 rounded-full hover:bg-roman-cream disabled:opacity-25 transition-colors touch-feedback"
-            >
-              <ChevronRight className="w-5 h-5 text-roman-espresso" />
-            </button>
+              </div>
+            ))}
           </div>
-        )}
+
+          {/* Scroll dots indicator */}
+          <div className="flex items-center justify-center gap-1.5 mt-4">
+            {reviewKeys.map((_, i) => (
+              <div
+                key={i}
+                className="w-1.5 h-1.5 rounded-full bg-stitch-olive-light"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── Bottom CTA ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 text-center"
+        >
+          <a
+            href={AIRBNB_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 text-stitch-on-surface/50 hover:text-stitch-on-surface text-sm transition-colors duration-200"
+          >
+            <AirbnbMark className="w-4 h-4 text-[#FF5A5F]" />
+            Visualizza tutte le recensioni su Airbnb
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

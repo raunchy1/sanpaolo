@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const faqKeys = ["q1", "q2", "q3", "q4", "q5", "q6", "q7"] as const;
 
@@ -28,22 +28,22 @@ function FAQItem({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`border-b border-roman-sand/40 last:border-0 transition-colors duration-300 ${
-        isOpen ? "bg-roman-warm-white/50" : ""
+      className={`transition-colors duration-300 rounded-xl px-2 ${
+        isOpen ? "bg-[#FFF1EA]" : ""
       }`}
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between py-5 md:py-6 px-1 text-left group"
+        className="w-full flex items-center justify-between py-5 md:py-6 px-2 text-left group"
       >
-        <span className="font-display text-base md:text-lg font-semibold text-roman-espresso pr-4 group-hover:text-roman-terracotta transition-colors duration-300">
+        <span className="font-display italic text-base md:text-lg text-stitch-on-surface pr-4 group-hover:text-stitch-green transition-colors duration-300">
           {question}
         </span>
         <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-          isOpen ? "bg-roman-terracotta/10 rotate-180" : "bg-roman-cream"
+          isOpen ? "bg-stitch-green/10 rotate-180" : "bg-[#FFF1EA]"
         }`}>
           <ChevronDown className={`w-4 h-4 transition-colors duration-300 ${
-            isOpen ? "text-roman-terracotta" : "text-roman-stone"
+            isOpen ? "text-stitch-green" : "text-stitch-on-surface/40"
           }`} />
         </div>
       </button>
@@ -71,7 +71,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<string | null>(null);
 
   return (
-    <section className="py-20 md:py-32 bg-roman-warm-white" id="faq">
+    <section className="py-20 md:py-32 bg-stitch-ivory-warm" id="faq">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -81,15 +81,13 @@ export default function FAQ() {
           transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
           className="text-center mb-14"
         >
-          <span className="inline-block text-xs tracking-[0.2em] uppercase text-roman-terracotta font-semibold mb-3">
-            <HelpCircle className="w-3.5 h-3.5 inline mr-1 -mt-0.5" />
+          <span className="font-label text-[10px] tracking-[0.28em] text-stitch-olive uppercase block mb-5">
             Info
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-roman-espresso mb-4 tracking-roman">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-stitch-green mb-4 leading-[1.1]">
             {t("faq.title")}
           </h2>
-          <div className="section-divider mb-6" />
-          <p className="text-muted-foreground text-lg max-w-lg mx-auto leading-relaxed">
+          <p className="font-body text-stitch-on-surface/60 text-base max-w-md mx-auto leading-relaxed">
             {t("faq.subtitle")}
           </p>
         </motion.div>
@@ -100,7 +98,8 @@ export default function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="bg-white rounded-3xl shadow-sm border border-roman-sand/40 p-6 md:p-8"
+          className="bg-white rounded-3xl p-6 md:p-8"
+          style={{ boxShadow: "0 4px 32px -8px rgba(41,23,13,0.06)" }}
         >
           {faqKeys.map((key, index) => (
             <FAQItem

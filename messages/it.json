@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "San Paolo Hideout — La tua dimora romana privata",
-    "description": "San Paolo Hideout: casa vacanze boutique a Roma vicino alla Basilica San Paolo e Metro B. Casa indipendente con giardino privato, 2 camere, cucina attrezzata. Prenota direttamente al miglior prezzo.",
-    "ogTitle": "San Paolo Hideout — Roma | Casa Vacanze Boutique con Giardino Privato",
-    "ogDescription": "La tua dimora romana privata vicino Metro B. Casa indipendente, 2 camere, giardino privato. Prenota direttamente su WhatsApp."
+    "description": "San Paolo Hideout: casa vacanze boutique a Roma vicino alla Basilica San Paolo e Metro B. Casa indipendente di nuova costruzione 2025, area esterna verde, 2 camere, 3 ospiti. Prenota direttamente al miglior prezzo.",
+    "ogTitle": "San Paolo Hideout — Roma | Casa Vacanze Boutique con Area Esterna Verde",
+    "ogDescription": "La tua dimora romana privata vicino Metro B. Casa indipendente nuova 2025, 2 camere, area esterna verde. Prenota direttamente su WhatsApp."
   },
   "nav": {
     "home": "Home",
@@ -14,64 +14,77 @@
     "bookNow": "Prenota Ora"
   },
   "hero": {
-    "location": "Roma, Italia",
-    "rating": "4.97 • 127 ospiti",
+    "location": "Via Silvio D'Amico 96, 00145 Roma",
+    "rating": "9.9 Eccellente • 127 recensioni",
     "title": "San Paolo Hideout",
-    "subtitle": "La tua dimora romana privata. Casa indipendente con giardino privato, a 9 minuti dalla Basilica San Paolo e Metro B.",
-    "ctaWhatsApp": "Miglior Prezzo su WhatsApp",
+    "subtitle": "La tua dimora romana privata. Casa indipendente di nuova costruzione, con area esterna verde condivisa, a 9 minuti dalla Basilica San Paolo e Metro B.",
+    "ctaCall": "Chiama ora",
+    "ctaWhatsApp": "Scrivici su WhatsApp",
     "ctaAvailability": "Verifica Disponibilità",
-    "facts": "1 letto matrimoniale • 1 letto piccolo • 4 ospiti • giardino privato • casa indipendente"
+    "facts": "1 letto matrimoniale • 1 letto una piazza e mezza • 3 ospiti • area esterna verde • casa indipendente nuova 2025"
   },
   "amenities": {
-    "title": "Perché i nostri ospiti lo amano",
-    "subtitle": "Tutto ciò che serve per un soggiorno perfetto a Roma",
-    "garden": {
-      "title": "Giardino Privato",
-      "desc": "Un'oasi verde nel cuore di Roma"
-    },
-    "checkin": {
-      "title": "Self Check-in",
-      "desc": "Arrivo autonomo 24/7"
-    },
-    "wifi": {
-      "title": "Wi-Fi Veloce",
-      "desc": "Fibra ottica ad alta velocità"
-    },
-    "metro": {
-      "title": "Metro B",
-      "desc": "A 3 minuti a piedi"
-    },
-    "family": {
-      "title": "Pronto per Famiglie",
-      "desc": "Spazio e comfort per tutti"
-    },
-    "business": {
-      "title": "Business Ready",
-      "desc": "Ideale per viaggi di lavoro"
+    "title": "Ogni dettaglio, pensato per te",
+    "subtitle": "Una casa nuova, arredata con cura — ogni comfort al suo posto",
+    "eyebrow": "Servizi Inclusi",
+    "comfort": {
+      "label": "Comfort",
+      "tagline": "Un ambiente moderno e accogliente",
+      "wifi": "Wi-Fi fibra ad alta velocità",
+      "smarttv": "Smart TV con streaming incluso",
+      "ac": "Aria condizionata in ogni ambiente",
+      "newbuild": "Casa di nuova costruzione 2025"
     },
     "kitchen": {
-      "title": "Cucina Attrezzata",
-      "desc": "Fornelli, forno, lavastoviglie e macchina del caffè"
+      "label": "Cucina",
+      "tagline": "Attrezzata per ogni esigenza",
+      "dishwasher": "Lavastoviglie",
+      "microwave": "Microonde",
+      "coffee": "Macchina del caffè automatica",
+      "full": "Cucina completamente attrezzata"
     },
-    "university": {
-      "title": "Vicino Roma Tre",
-      "desc": "Università a 300 metri"
+    "bathroom": {
+      "label": "Bagno",
+      "tagline": "Moderno, pulito, ben curato",
+      "shower": "Doccia moderna",
+      "bidet": "Bidet",
+      "towels": "Asciugamani di qualità inclusi",
+      "products": "Set prodotti bagno premium"
+    },
+    "family": {
+      "label": "Famiglia",
+      "tagline": "Pensato anche per i più piccoli",
+      "crib": "Culla disponibile su richiesta",
+      "friendly": "100% family friendly",
+      "checkin": "Check-in flessibile 15:00–20:00"
+    },
+    "pet": {
+      "label": "Pet Friendly",
+      "tagline": "Animali benvenuti su richiesta",
+      "desc": "Accettiamo piccoli animali domestici previo accordo con l'host. Scriveteci prima della prenotazione."
+    },
+    "extra": {
+      "label": "Servizi Extra",
+      "tagline": "I dettagli che fanno la differenza",
+      "luggage": "Deposito bagagli flessibile",
+      "parking": "Parcheggio gratuito fronte struttura",
+      "support": "Supporto ospiti rapido e personalizzato"
     }
   },
   "rooms": {
     "title": "Scopri gli Spazi",
-    "subtitle": "Una casa indipendente pensata per il tuo comfort romano",
+    "subtitle": "Una casa indipendente di nuova costruzione pensata per il tuo comfort",
     "nextRoom": "Stanza Successiva",
     "previousRoom": "Stanza Precedente",
     "viewGallery": "Vedi Galleria",
     "closeGallery": "Chiudi",
     "salotto": {
       "title": "Salotto",
-      "desc": "Luminoso soggiorno con Smart TV, comodo divano e mini libreria editoriale dedicata a Roma. La luce naturale e la vista diretta sul giardino creano un'atmosfera accogliente e rilassante, perfetta per rigenerarsi dopo una giornata tra i monumenti."
+      "desc": "Luminoso soggiorno con Smart TV, comodo divano e mini libreria editoriale dedicata a Roma. La luce naturale e la vista sull'area esterna verde creano un'atmosfera accogliente e rilassante, perfetta per rigenerarsi dopo una giornata tra i monumenti."
     },
     "cucina": {
       "title": "Cucina / Zona Pranzo",
-      "desc": "Cucina completamente attrezzata con fornelli a gas, forno elettrico, microonde, moka e macchina del caffè automatica. Lavastoviglie e zona pranzo per colazioni serene e cene intime, con tutto il necessario per sentirsi a casa."
+      "desc": "Cucina completamente attrezzata con fornelli a gas, forno elettrico, microonde, moka e macchina del caffè automatica. Zona pranzo per colazioni serene e cene intime, con tutto il necessario per sentirsi a casa."
     },
     "camera1": {
       "title": "Camera Matrimoniale",
@@ -79,15 +92,15 @@
     },
     "camera2": {
       "title": "Seconda Camera",
-      "desc": "Seconda camera con letto piccolo (alla francese), ideale per ospiti, familiari o bambini. Accogliente e funzionale, con la stessa attenzione al comfort e alla qualità della camera padronale."
+      "desc": "Seconda camera con letto da una piazza e mezza, ideale per un ospite aggiuntivo o bambini. Accogliente e funzionale, con la stessa attenzione al comfort e alla qualità della camera padronale."
     },
     "bagno": {
       "title": "Bagno",
       "desc": "Bagno moderno con doccia, asciugacapelli e lavatrice. Finiture curate e spazio ben organizzato per un comfort pratico e quotidiano, pensato per soggiorni di qualsiasi durata."
     },
     "giardino": {
-      "title": "Giardino Privato",
-      "desc": "Giardino privato ideale per colazione all'aperto, relax serale e momenti di quiete nel cuore di Roma. La vegetazione rigogliosa e l'atmosfera intima lo rendono perfetto per un aperitivo al tramonto o una lettura pomeridiana."
+      "title": "Area Esterna Verde",
+      "desc": "Un piacevole spazio esterno verde e tranquillo, condiviso con l'abitazione principale, perfetto per rilassarsi dopo una giornata a Roma. Ideale per una pausa all'aria aperta o un momento di lettura."
     },
     "dettagli": {
       "title": "Dettagli",
@@ -122,70 +135,187 @@
       "time": "300m"
     },
     "ostiense": {
-      "title": "Ostiense",
-      "desc": "8 minuti a piedi — Quartiere trendy con ristoranti e vita notturna",
+      "title": "Stazione Ostiense",
+      "desc": "8 minuti a piedi — Collegamento diretto con Fiumicino eTermini",
       "time": "8 min"
     },
     "fiumicino": {
       "title": "Aeroporto Fiumicino",
       "desc": "20-25 minuti — Diretto con il treno regionale",
       "time": "20-25 min"
-    }
+    },
+    "palazzosport": {
+      "title": "Palazzo dello Sport",
+      "desc": "2 minuti in auto — Palasport per eventi e concerti",
+      "distance": "0.8 km",
+      "time": "2 min"
+    },
+    "expanded": {
+      "palazzocongressi": {
+        "title": "Palazzo dei Congressi",
+        "distance": "1.2 km",
+        "time": "3 min"
+      },
+      "colosseoquad": {
+        "title": "Colosseo Quadrato",
+        "distance": "1.5 km",
+        "time": "4 min"
+      },
+      "fao": {
+        "title": "FAO",
+        "distance": "2.8 km",
+        "time": "7 min"
+      },
+      "lanuvola": {
+        "title": "La Nuvola (Nuovo Centro Congressi)",
+        "distance": "1.8 km",
+        "time": "5 min"
+      },
+      "bambinogesu": {
+        "title": "Ospedale Bambino Gesù",
+        "distance": "3.5 km",
+        "time": "10 min"
+      },
+      "sancamillo": {
+        "title": "Ospedale San Camillo",
+        "distance": "2.2 km",
+        "time": "6 min"
+      },
+      "forteostiense": {
+        "title": "Forte Ostiense",
+        "distance": "1.0 km",
+        "time": "3 min"
+      },
+      "ciampino": {
+        "title": "Aeroporto Ciampino",
+        "distance": "12 km",
+        "time": "20 min"
+      },
+      "luneur": {
+        "title": "LunEur",
+        "distance": "2.0 km",
+        "time": "5 min"
+      },
+      "cinecittaworld": {
+        "title": "Cinecittà World",
+        "distance": "15 km",
+        "time": "25 min"
+      },
+      "euroma2": {
+        "title": "Euroma2",
+        "distance": "2.5 km",
+        "time": "6 min"
+      },
+      "maximo": {
+        "title": "Centro Commerciale Maximo",
+        "distance": "1.3 km",
+        "time": "3 min"
+      },
+      "castelromano": {
+        "title": "Outlet Castel Romano",
+        "distance": "12 km",
+        "time": "20 min"
+      },
+      "eataly": {
+        "title": "Eataly Roma Ostiense",
+        "distance": "1.8 km",
+        "time": "5 min"
+      },
+      "macro": {
+        "title": "MACRO Testaccio",
+        "distance": "2.0 km",
+        "time": "6 min"
+      }
+    },
+    "showMore": "Mostra altro",
+    "showLess": "Mostra meno"
   },
   "reviews": {
     "title": "Cosa Dicono i Nostri Ospiti",
     "subtitle": "Storie autentiche da viaggiatori che hanno scelto San Paolo Hideout",
-    "overallRating": "4.97",
+    "overallScore": "9.9",
+    "overallMax": "10",
+    "overallLabel": "Eccellente",
     "totalReviews": "127 recensioni",
     "categories": {
-      "location": "Posizione",
-      "cleanliness": "Pulizia",
-      "garden": "Giardino Silenzioso",
-      "metro": "Comodità Metro",
-      "communication": "Comunicazione",
-      "family": "Comfort Famiglia"
+      "location": { "name": "Posizione", "score": "10" },
+      "cleanliness": { "name": "Pulizia", "score": "10" },
+      "comfort": { "name": "Comfort", "score": "10" },
+      "communication": { "name": "Comunicazione", "score": "10" },
+      "value": { "name": "Qualità prezzo", "score": "10" },
+      "family": { "name": "Famiglie", "score": "10" }
     },
     "review1": {
-      "name": "Sophie & Marc",
-      "location": "Parigi, Francia",
-      "text": "Un rifugio perfetto a Roma. Il giardino è un'oasi di pace dopo giornate intense tra monumenti. La vicinanza alla Metro ci ha permesso di esplorare tutto senza stress. Torneremo sicuramente.",
+      "name": "Martina",
+      "location": "Italia",
+      "text": "Abbiamo passato una notte e siamo rimasti molto soddisfatti. La casa è nuova, all'interno di una zona molto silenziosa ma vicina dell'università Roma Tre e alla metro. Non essendo di zona, bisogna fare un po' di attenzione per il percorso d'accesso, ma Nicola è stato molto disponibile e ci ha aiutato. Per il resto tutto benissimo, l'host è gentile e molto disponibile, ci ha dato la possibilità di lasciare i bagagli molto prima del checkin.",
+      "rating": "5.0",
+      "date": "Aprile 2026"
+    },
+    "review2": {
+      "name": "Jose",
+      "location": "Ospite Airbnb",
+      "text": "We had a wonderful stay here and felt comfortable from the moment we arrived. The beds were very comfortable, the sofa was amazing, and having Netflix on the TV was a great bonus after long days exploring the city. The location is excellent — so many things to do around the area, and nothing feels too far away. The private parking was a huge advantage and extremely convenient, especially in Rome where parking is nearly impossible to find. Nicola is an outstanding host — very professional, kind, and attentive. He truly went above and beyond for us.",
       "rating": "5.0",
       "date": "Ottobre 2024"
     },
-    "review2": {
-      "name": "Thomas K.",
-      "location": "Berlino, Germania",
-      "text": "Posizione eccellente per lavoro all'EUR e vita serale a Ostiense. Il self check-in è stato perfetto per il mio arrivo tardivo. Wi-Fi veloce e spazio tranquillo per smart working. Consigliatissimo.",
+    "review3": {
+      "name": "Riccardo",
+      "location": "Italia",
+      "text": "Ottimo alloggio! Un grazie speciale a Nicola per la sua grande gentilezza, attenzione e disponibilità. Grande cura in tutti i dettagli della casa, super confortevole e immersa in un bellissimo verde. Roma è una meta frequente per me e mia figlia, sportivi e appassionati d'arte. Mille grazie per lo splendido soggiorno — arrivederci a presto!",
+      "rating": "5.0",
+      "date": "Ottobre 2024"
+    },
+    "review4": {
+      "name": "Diana",
+      "location": "Italia",
+      "text": "Era il nostro 2° giorno a Roma. Per fortuna avevamo un parcheggio privato — fuori era impossibile parcheggiare. Buona posizione, anche a piedi è facile raggiungere tanti posti. Di sicuro torneremo a Roma e torneremo a prendere questo appartamento. Grazie",
+      "rating": "5.0",
+      "date": "Novembre 2024"
+    },
+    "review5": {
+      "name": "Ili",
+      "location": "Germania",
+      "text": "Wir haben einen wunderbaren Aufenthalt in dem sehr netten und gut ausgestatteten Ferienhaus. Der Gastgeber hat uns sehr viel geholfen und wir kommen bestimmt bald wieder. Vielen Dank für alles, Nicola!",
+      "rating": "5.0",
+      "date": "Febbraio 2026"
+    },
+    "review6": {
+      "name": "Umberto",
+      "location": "Italia",
+      "text": "Ottimo e accurato: davvero gentile, la struttura è impeccabile e si sta molto bene.",
       "rating": "5.0",
       "date": "Settembre 2024"
     },
-    "review3": {
-      "name": "Famiglia Rossi",
-      "location": "Milano, Italia",
-      "text": "Con due bambini, avere un giardino privato a Roma è impagabile. La casa indipendente è spaziosa, pulitissima e con tutto il necessario. I bambini adoravano giocare in giardino. La Metro a 3 minuti è fantastica.",
+    "review7": {
+      "name": "Giacomo",
+      "location": "Italia",
+      "text": "Ottimo alloggio.",
       "rating": "5.0",
-      "date": "Agosto 2024"
-    },
-    "review4": {
-      "name": "Emma L.",
-      "location": "Londra, UK",
-      "text": "Ho soggiornato per un mese come visiting professor a Roma Tre. La posizione era perfetta — a soli 300 metri dal campus! L'host sempre disponibile. Il giardino era il mio luogo preferito per leggere la sera.",
-      "rating": "5.0",
-      "date": "Luglio 2024"
-    },
-    "review5": {
-      "name": "Yuki & Kenji",
-      "location": "Tokyo, Giappone",
-      "text": "Roman holidays made perfect! The apartment is beautiful, clean and very well equipped. The private garden is like a dream. Metro connection made everything accessible. Our best stay in Europe.",
-      "rating": "5.0",
-      "date": "Giugno 2024"
-    },
-    "review6": {
-      "name": "Ana María V.",
-      "location": "Madrid, Spagna",
-      "text": "El jardín privado es absolutamente mágico. La casa es aún más bonita que en las fotos. La comunicación con el host fue impecable. Sin duda el mejor alojamiento que hemos tenido en Roma.",
-      "rating": "4.9",
-      "date": "Maggio 2024"
+      "date": "2024"
+    }
+  },
+  "checkin": {
+    "title": "Check-in flessibile e accoglienza personalizzata",
+    "description": "Il check-in è disponibile nella fascia 15:00–20:00.\nPer esigenze particolari gli ospiti possono scriverci e faremo il possibile per venirgli incontro.\nIl self check-in è disponibile, ma preferiamo accogliere personalmente gli ospiti quando possibile.",
+    "features": {
+      "flexible": { "title": "Check-in flessibile", "desc": "Fascia oraria 15:00–20:00" },
+      "human": { "title": "Accoglienza personalizzata", "desc": "Preferiamo accogliervi di persona" },
+      "self": { "title": "Self check-in disponibile", "desc": "Per chi preferisce autonomia" }
+    }
+  },
+  "newbuild": {
+    "badge": "Nuova Costruzione 2025",
+    "title": "Casa indipendente di nuova costruzione — completata nel 2025",
+    "subtitle": "Modernità, comfort e efficienza in ogni dettaglio",
+    "features": {
+      "systems": { "title": "Impianti completamente nuovi", "desc": "Impianto elettrico, idraulico e di climatizzazione di ultima generazione" },
+      "thermal": { "title": "Cappotto termico", "desc": "Isolamento termico di alta qualità per un comfort costante tutto l'anno" },
+      "comfort": { "title": "Comfort termico e acustico", "desc": "Ambienti silenziosi e ben climatizzati in ogni stagione" },
+      "energy": { "title": "Efficienza energetica", "desc": "Classe energetica elevata per un soggiorno sostenibile" },
+      "modern": { "title": "Spazi moderni e funzionali", "desc": "Design contemporaneo pensato per il massimo vivibilità" },
+      "materials": { "title": "Materiali nuovi e di qualità", "desc": "Finiture e materiali scelti per durata ed estetica" },
+      "security": { "title": "Maggiore sicurezza", "desc": "Struttura conforme alle più recenti normative di sicurezza" }
     }
   },
   "booking": {
@@ -211,13 +341,13 @@
       "title": "Soggiorno Sicuro",
       "desc": "Pagamento sicuro e garanzia di qualità per la tua vacanza"
     },
+    "ctaCall": "Chiama ora",
     "ctaWhatsApp": "Prenota su WhatsApp",
     "ctaAirbnb": "Vedi su Airbnb",
     "sectionLabel": "Prenota Ora",
     "newTitle": "Prenota il tuo soggiorno",
     "newSubtitle": "Scegli la piattaforma che preferisci o contattaci direttamente per la migliore tariffa disponibile.",
     "ctaBooking": "Prenota su Booking.com",
-    "ctaVrbo": "Prenota su VRBO",
     "ctaWhatsAppShort": "WhatsApp",
     "bestRateBadge": "Miglior prezzo",
     "trustInstant": "Conferma immediata",
@@ -234,15 +364,15 @@
     "subtitle": "Tutto quello che devi sapere prima del tuo soggiorno",
     "q1": {
       "question": "Come funziona il check-in?",
-      "answer": "Offriamo self check-in 24/7 con codice digitale. Riceverai le istruzioni dettagliate via WhatsApp il giorno prima dell'arrivo. Per arrivi dopo le 22:00, il check-in autonomo è sempre disponibile."
+      "answer": "Il check-in è disponibile nella fascia 15:00–20:00. Per esigenze particolari gli ospiti possono scriverci e faremo il possibile per venirgli incontro. Il self check-in è disponibile, ma preferiamo accogliere personalmente gli ospiti quando possibile."
     },
     "q2": {
       "question": "Quanto dista la fermata della Metro?",
-      "answer": "La fermata Basilica San Paolo della Metro B è a soli 3 minuti a piedi. Da lì puoi raggiungere il Colosseo in 4 fermate, Termini in 6 fermate e l'EUR in 7 minuti."
+      "answer": "La fermata Basilica San Paolo della Metro B è a 9 minuti a piedi. Da lì puoi raggiungere il Colosseo in 4 fermate, Termini in 6 fermate e l'EUR in 7 minuti."
     },
     "q3": {
       "question": "C'è il parcheggio?",
-      "answer": "Sì, ci sono parcheggi a pagamento nelle vicinanze. Parcheggio libero disponibile nelle strade laterali. Possiamo anche organizzare un parcheggio privato con preavviso."
+      "answer": "Il parcheggio gratuito si trova proprio di fronte alla struttura. Non è un posto assegnato o prenotabile, ma la disponibilità è generalmente molto alta. L'accesso avviene da una strada privata utilizzata esclusivamente dai residenti, rendendo l'area tranquilla e sicura. Il parcheggio è gratuito, all'aperto e senza limiti di orario."
     },
     "q4": {
       "question": "Come arrivo dall'aeroporto?",
@@ -250,7 +380,7 @@
     },
     "q5": {
       "question": "È adatto per famiglie con bambini?",
-      "answer": "Assolutamente sì! La casa indipendente con giardino privato è perfetta per i bambini. Abbiamo seggiolone e lettino da viaggio disponibili su richiesta. La casa è spaziosa e sicura per i più piccoli."
+      "answer": "Assolutamente sì! La casa indipendente con area esterna verde è perfetta per i bambini. Abbiamo culla disponibile su richiesta. La casa è spaziosa e sicura per i più piccoli."
     },
     "q6": {
       "question": "Posso lavorare da qui?",
@@ -258,22 +388,31 @@
     },
     "q7": {
       "question": "Qual è la struttura della casa?",
-      "answer": "San Paolo Hideout è una casa indipendente con: salotto con Smart TV e divano, cucina completamente attrezzata con zona pranzo, camera matrimoniale, seconda camera con letto piccolo, bagno con doccia e lavatrice, e giardino privato. Perfetta per 4 ospiti."
+      "answer": "San Paolo Hideout è una casa indipendente di nuova costruzione (2025) con: salotto con Smart TV e divano, cucina completamente attrezzata con zona pranzo, camera matrimoniale, seconda camera con letto da una piazza e mezza, bagno con doccia, e area esterna verde condivisa. Perfetta per 3 ospiti."
     }
   },
   "footer": {
-    "address": "Via delle Sette Chiese, Roma, Italia",
+    "address": "Via Silvio D'Amico 96, 00145 Roma",
+    "phone": "Chiama ora",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "map": "Mappa",
+    "map": "Come raggiungerci",
     "followUs": "Seguici",
     "language": "Lingua",
-    "legal": "Termini e Privacy",
+    "legal": "Privacy Policy",
     "cookies": "Cookie Policy",
     "copyright": "© 2025 San Paolo Hideout. Tutti i diritti riservati.",
-    "tagline": "La tua dimora romana privata"
+    "tagline": "La tua dimora romana privata",
+    "description": "Una moderna casa vacanza nel cuore di Roma, pensata per offrire comfort, tranquillità e un soggiorno premium vicino a San Paolo.",
+    "servicesTitle": "Esplora",
+    "contactsTitle": "Contatti",
+    "legalTitle": "Licenze & Legale",
+    "metroNote": "A 9 minuti dalla Metro Basilica San Paolo",
+    "getDirections": "Apri in Google Maps",
+    "awardLabel": "Booking.com Traveller Review Award 2026"
   },
   "mobileCta": {
+    "call": "Chiama",
     "whatsapp": "Prenota su WhatsApp",
     "availability": "Disponibilità",
     "bestRate": "Miglior prezzo",
@@ -284,5 +423,41 @@
     "it": "Italiano",
     "en": "English",
     "de": "Deutsch"
+  },
+  "guestFavorites": {
+    "title": "Gli ospiti apprezzano soprattutto",
+    "subtitle": "I dettagli che rendono il soggiorno memorabile",
+    "position": "Posizione",
+    "cleanliness": "Pulizia",
+    "garden": "Area Esterna Verde",
+    "metro": "Metro a 9 min",
+    "communication": "Comunicazione",
+    "family": "Comfort Famiglia"
+  },
+  "offers": {
+    "badge": "Offerte Esclusive",
+    "title": "Offerte Speciali",
+    "subtitle": "Prenota direttamente e ottieni vantaggi esclusivi",
+    "cta": "Prenota Ora",
+    "stay3": {
+      "title": "Sconto soggiorni lunghi",
+      "description": "Ricevi uno sconto speciale per soggiorni di 3 notti o più. Ideale per un weekend lungo nella Città Eterna.",
+      "waText": "Ciao! Sono interessato allo sconto per soggiorni lunghi."
+    },
+    "weekend": {
+      "title": "Offerta weekend Roma",
+      "description": "Tariffa speciale per il weekend con check-in flessibile e consigli personalizzati su Roma.",
+      "waText": "Ciao! Sono interessato all'offerta weekend Roma."
+    },
+    "direct": {
+      "title": "Promo prenotazione diretta",
+      "description": "Miglior prezzo garantito + welcome gift esclusivo prenotando direttamente su WhatsApp.",
+      "waText": "Ciao! Sono interessato alla promo prenotazione diretta."
+    },
+    "early": {
+      "title": "Early booking deal",
+      "description": "Prenota con almeno 30 giorni di anticipo e ottieni una tariffa vantaggiosa. Pianifica in anticipo il tuo viaggio a Roma.",
+      "waText": "Ciao! Sono interessato all'offerta early booking."
+    }
   }
 }

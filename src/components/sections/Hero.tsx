@@ -2,10 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
-import { MapPin, Star, MessageCircle, Calendar } from "lucide-react";
-
-const WHATSAPP_NUMBER = "393401234567";
-const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei informazioni su San Paolo Hideout per un soggiorno.")}`;
+import { MapPin, Star, Calendar } from "lucide-react";
+import DualContactCTA from "@/components/ui/DualContactCTA";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -21,33 +19,23 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" id="home">
-      {/* Background Image */}
+      {/* Background Image — Stitch editorial photography-first */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero-trevi.jpg"
-          alt="Roma al tramonto - San Paolo Hideout"
+          src="/images/hero-sanpaolo.png"
+          alt="Basilica di San Paolo fuori le Mura, Roma - San Paolo Hideout"
           className="w-full h-full object-cover scale-105"
           fetchPriority="high"
         />
-        {/* Retro high-contrast overlay - blue/purple tones */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(17,24,39,0.7)] via-[rgba(59,130,246,0.3)] to-[rgba(17,24,39,0.85)]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(139,92,246,0.2)] via-transparent to-[rgba(59,130,246,0.15)]" />
-        {/* Retro vignette */}
+        {/* Stitch warm gradient overlay — NO blue/purple */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(7,35,22,0.55)] via-[rgba(7,35,22,0.35)] to-[rgba(7,35,22,0.75)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(89,99,50,0.15)] via-transparent to-[rgba(200,169,107,0.1)]" />
         <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at center, transparent 30%, rgba(17,24,39,0.5) 100%)"
-        }} />
-        {/* Retro scanlines */}
-        <div className="absolute inset-0 opacity-[0.04]" style={{
-          backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(59,130,246,0.15) 2px, rgba(59,130,246,0.15) 4px)",
-        }} />
-        {/* Halftone dots */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: "radial-gradient(circle, #3B82F6 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
+          background: "radial-gradient(ellipse at 60% 40%, transparent 20%, rgba(7,35,22,0.4) 100%)"
         }} />
       </div>
 
-      {/* Content */}
+      {/* Content — Stitch editorial serif typography */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 text-center pt-24 pb-28">
         {/* Location Label */}
         <motion.div
@@ -55,27 +43,27 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="flex items-center justify-center gap-2 mb-5"
+          className="flex items-center justify-center gap-2 mb-6"
         >
-          <MapPin className="w-3.5 h-3.5 text-roman-gold-light" />
-          <span className="text-roman-gold-light text-xs tracking-[0.3em] uppercase font-bold" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
-            {t("hero.location")}
+          <MapPin className="w-3.5 h-3.5 text-stitch-gold" />
+          <span className="text-white/85 text-xs tracking-[0.2em] uppercase font-semibold font-body">
+            Via Silvio D'Amico 96, 00145 Roma
           </span>
         </motion.div>
 
-        {/* Rating Badge - Retro style */}
+        {/* Rating Badge — Stitch glass style, NO hard border */}
         <motion.div
           custom={0.5}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="inline-flex items-center gap-2.5 border-2 border-roman-terracotta px-5 py-2.5 mb-8"
+          className="inline-flex items-center gap-2.5 glass rounded-sm px-5 py-2.5 mb-8"
         >
-          <Star className="w-4 h-4 text-roman-gold-light fill-roman-gold-light" />
-          <span className="text-white/95 text-sm font-bold tracking-wider" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>{t("hero.rating")}</span>
+          <Star className="w-4 h-4 text-stitch-gold fill-stitch-gold" />
+          <span className="text-stitch-on-surface text-sm font-bold tracking-wider font-body">{t("hero.rating")}</span>
         </motion.div>
 
-        {/* Title - Retro display font */}
+        {/* Title — Newsreader-style editorial serif */}
         <motion.h1
           custom={0.7}
           initial="hidden"
@@ -86,63 +74,68 @@ export default function Hero() {
           {t("hero.title")}
         </motion.h1>
 
-        {/* Subtitle */}
+        {/* Subtitle — Manrope body, warm tone */}
         <motion.p
           custom={0.9}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-12 leading-relaxed"
-          style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontWeight: 300 }}
+          className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-12 leading-relaxed font-body font-light"
         >
           {t("hero.subtitle")}
         </motion.p>
 
-        {/* CTAs - Retro sharp buttons */}
+        {/* Dual CTA */}
         <motion.div
           custom={1.1}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+          className="mb-8"
+        >
+          <DualContactCTA
+            callLabel={t("hero.ctaCall")}
+            whatsappLabel={t("hero.ctaWhatsApp")}
+            size="lg"
+            variant="dark"
+          />
+        </motion.div>
+
+        {/* Secondary CTA — Ghost style, no border */}
+        <motion.div
+          custom={1.2}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mb-12"
         >
           <a
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="whatsapp-pulse group inline-flex items-center gap-3 bg-roman-whatsapp hover:bg-[#20BD5A] text-white px-9 py-4 text-lg font-bold transition-all duration-300 shadow-[4px_4px_0_rgba(0,0,0,0.3)] hover:shadow-[6px_6px_0_rgba(0,0,0,0.4)] hover:translate-x-[-2px] hover:translate-y-[-2px] active:shadow-[2px_2px_0_rgba(0,0,0,0.3)] active:translate-x-0 active:translate-y-0 touch-feedback"
-          >
-            <MessageCircle className="w-5 h-5 transition-transform group-hover:scale-110" />
-            {t("hero.ctaWhatsApp")}
-          </a>
-          <a
             href="#booking"
-            className="group inline-flex items-center gap-3 border-2 border-white/60 hover:border-white text-white px-9 py-4 text-lg font-medium transition-all duration-300 hover:bg-white/10"
+            className="group inline-flex items-center gap-3 bg-white/10 hover:bg-white/20 text-white px-9 py-4 text-lg font-medium transition-all duration-400 rounded-sm font-body backdrop-blur-sm"
           >
             <Calendar className="w-5 h-5" />
             {t("hero.ctaAvailability")}
           </a>
         </motion.div>
 
-        {/* Trust Facts */}
+        {/* Trust Facts — Stitch warm dots */}
         <motion.div
           custom={1.3}
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-white/60 text-sm tracking-wider"
-          style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}
+          className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-white/60 text-sm tracking-wider font-body"
         >
           {t("hero.facts").split(" • ").map((fact, i) => (
             <span key={i} className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-roman-terracotta" />
+              <span className="w-1.5 h-1.5 bg-stitch-gold rounded-full" />
               {fact}
             </span>
           ))}
         </motion.div>
       </div>
 
-      {/* Scroll indicator - Retro style */}
+      {/* Scroll indicator — Stitch minimalist */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -152,7 +145,7 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-          className="w-7 h-11 border-2 border-white/40 flex items-start justify-center pt-2.5"
+          className="w-7 h-11 ghost-border rounded-sm flex items-start justify-center pt-2.5"
         >
           <motion.div
             animate={{ opacity: [0.3, 1, 0.3] }}
@@ -162,8 +155,8 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-roman-warm-white to-transparent z-[5]" />
+      {/* Bottom gradient fade into Stitch ivory */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-stitch-ivory to-transparent z-[5]" />
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation, Locale } from "@/lib/i18n";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 const WHATSAPP_NUMBER = "393401234567";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei informazioni su San Paolo Hideout.")}`;
@@ -51,30 +52,34 @@ export default function Navigation() {
         transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           scrolled
-             ? "bg-white/95 backdrop-blur-xl shadow-[0_2px_0_#3B82F6] border-b-2 border-roman-terracotta"
+             ? "glass shadow-ambient"
             : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <a
-              href="#home"
-              className={`font-display text-xl md:text-2xl font-bold transition-colors duration-300 tracking-roman ${
-                scrolled ? "text-roman-espresso" : "text-white"
-              }`}
-            >
-              San Paolo Hideout
+            <a href="#home" className="flex items-center py-3">
+              <Image
+                src="/logo-green.png"
+                alt="San Paolo Hideout"
+                width={200}
+                height={67}
+                priority
+                className={`h-12 md:h-14 w-auto object-contain transition-all duration-300 ${
+                  !scrolled ? "brightness-0 invert" : ""
+                }`}
+              />
             </a>
 
             {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-7">
+            <div className="hidden md:flex items-center gap-8">
               {navItems.map(({ key, href }) => (
                 <a
                   key={key}
                   href={href}
-                  className={`text-[13px] font-medium tracking-wide uppercase transition-colors duration-300 hover:text-roman-terracotta ${
-                    scrolled ? "text-roman-espresso/60" : "text-white/70"
+                  className={`font-display italic text-lg transition-colors duration-300 hover:text-stitch-bronze ${
+                    scrolled ? "text-stitch-on-surface/70" : "text-white/75"
                   }`}
                 >
                   {t(`nav.${key}`)}
@@ -85,8 +90,8 @@ export default function Navigation() {
               <div className="relative">
                 <button
                   onClick={() => setLangOpen(!langOpen)}
-                  className={`flex items-center gap-1.5 text-[13px] font-medium tracking-wide transition-colors duration-300 hover:text-roman-terracotta ${
-                    scrolled ? "text-roman-espresso/60" : "text-white/70"
+                  className={`flex items-center gap-1.5 text-[13px] font-medium tracking-wide transition-colors duration-300 hover:text-stitch-green font-body ${
+                    scrolled ? "text-stitch-on-surface-muted" : "text-white/70"
                   }`}
                 >
                   <Globe className="w-3.5 h-3.5" />
@@ -100,7 +105,7 @@ export default function Navigation() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -8, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 top-full mt-3 bg-white rounded-2xl shadow-xl border border-roman-sand/40 overflow-hidden min-w-[150px]"
+                      className="absolute right-0 top-full mt-3 bg-white rounded-editorial shadow-ambient overflow-hidden min-w-[150px]"
                     >
                       {languages.map((lang) => (
                         <button
@@ -109,10 +114,10 @@ export default function Navigation() {
                             setLocale(lang.code);
                             setLangOpen(false);
                           }}
-                          className={`w-full flex items-center gap-2.5 px-5 py-3 text-sm text-left transition-colors ${
+                          className={`w-full flex items-center gap-2.5 px-5 py-3 text-sm text-left transition-colors font-body ${
                             locale === lang.code
-                              ? "bg-roman-cream/80 text-roman-terracotta font-semibold"
-                              : "text-roman-espresso hover:bg-roman-warm-white"
+                              ? "bg-stitch-ivory-warm text-stitch-green font-semibold"
+                              : "text-stitch-on-surface hover:bg-stitch-surface"
                           }`}
                         >
                           <span className="text-base">{lang.flag}</span>
@@ -129,7 +134,7 @@ export default function Navigation() {
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-roman-whatsapp hover:bg-[#20BD5A] text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 hover:shadow-md hover:shadow-green-900/10"
+                className="inline-flex items-center gap-2 bg-stitch-green hover:bg-stitch-green-light text-white px-7 py-2.5 rounded-lg font-label text-xs tracking-widest uppercase transition-all duration-300 hover:scale-[1.02]"
               >
                 {t("nav.bookNow")}
               </a>
@@ -137,35 +142,29 @@ export default function Navigation() {
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-2 md:hidden">
-              {/* Mobile Language */}
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className={`p-2.5 rounded-xl transition-colors ${
+                className={`p-2.5 rounded-editorial transition-colors ${
                   scrolled
-                    ? "text-roman-espresso hover:bg-roman-cream"
+                    ? "text-stitch-on-surface hover:bg-stitch-surface"
                     : "text-white hover:bg-white/10"
                 }`}
               >
                 <Globe className="w-5 h-5" />
               </button>
 
-              {/* Mobile Menu Toggle */}
               <button
                 onClick={() => {
                   setMenuOpen(!menuOpen);
                   document.body.style.overflow = !menuOpen ? "hidden" : "";
                 }}
-                className={`p-2.5 rounded-xl transition-colors ${
+                className={`p-2.5 rounded-editorial transition-colors ${
                   scrolled
-                    ? "text-roman-espresso hover:bg-roman-cream"
+                    ? "text-stitch-on-surface hover:bg-stitch-surface"
                     : "text-white hover:bg-white/10"
                 }`}
               >
-                {menuOpen ? (
-                  <X className="w-5 h-5" />
-                ) : (
-                  <Menu className="w-5 h-5" />
-                )}
+                {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
@@ -180,7 +179,7 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 right-4 z-50 bg-white rounded-2xl shadow-xl border border-roman-sand/40 overflow-hidden min-w-[150px] md:hidden"
+            className="fixed top-16 right-4 z-50 bg-white rounded-editorial shadow-ambient overflow-hidden min-w-[150px] md:hidden"
           >
             {languages.map((lang) => (
               <button
@@ -189,10 +188,10 @@ export default function Navigation() {
                   setLocale(lang.code);
                   setLangOpen(false);
                 }}
-                className={`w-full flex items-center gap-2.5 px-5 py-3.5 text-sm text-left transition-colors ${
+                className={`w-full flex items-center gap-2.5 px-5 py-3.5 text-sm text-left transition-colors font-body ${
                   locale === lang.code
-                    ? "bg-roman-cream/80 text-roman-terracotta font-semibold"
-                    : "text-roman-espresso hover:bg-roman-warm-white"
+                    ? "bg-stitch-ivory-warm text-stitch-green font-semibold"
+                    : "text-stitch-on-surface hover:bg-stitch-surface"
                 }`}
               >
                 <span className="text-base">{lang.flag}</span>
@@ -203,11 +202,10 @@ export default function Navigation() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Menu - Bottom Sheet Style */}
+      {/* Mobile Menu - Bottom Sheet */}
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -217,22 +215,19 @@ export default function Navigation() {
               onClick={handleNavClick}
             />
 
-            {/* Bottom Sheet */}
             <motion.div
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed bottom-0 left-0 right-0 z-30 bg-white rounded-t-3xl shadow-2xl md:hidden safe-area-bottom"
+              className="fixed bottom-0 left-0 right-0 z-30 bg-white rounded-t-[2rem] shadow-ambient-lg md:hidden safe-area-bottom"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Handle bar */}
               <div className="flex justify-center pt-3 pb-2">
-                <div className="w-10 h-1 rounded-full bg-roman-sand" />
+                <div className="w-10 h-1 rounded-full bg-stitch-surface-dim" />
               </div>
 
               <div className="px-6 pb-8 pt-2">
-                {/* Nav Items */}
                 <nav className="flex flex-col gap-1 mb-6">
                   {navItems.map(({ key, href }, i) => (
                     <motion.a
@@ -242,15 +237,14 @@ export default function Navigation() {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      className="px-4 py-3.5 rounded-xl text-roman-espresso font-medium text-lg hover:bg-roman-cream transition-colors flex items-center justify-between group"
+                      className="px-4 py-3.5 rounded-editorial text-stitch-on-surface font-display italic text-xl hover:bg-stitch-surface transition-colors flex items-center justify-between group"
                     >
                       {t(`nav.${key}`)}
-                      <span className="text-roman-sand group-hover:text-roman-terracotta transition-colors text-sm">→</span>
+                      <span className="text-stitch-on-surface-muted group-hover:text-stitch-green transition-colors text-sm">→</span>
                     </motion.a>
                   ))}
                 </nav>
 
-                {/* Language Row */}
                 <div className="flex gap-2 mb-6">
                   {languages.map((lang) => (
                     <button
@@ -259,10 +253,10 @@ export default function Navigation() {
                         setLocale(lang.code);
                         setLangOpen(false);
                       }}
-                      className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                      className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-editorial text-sm font-medium transition-all font-body ${
                         locale === lang.code
-                          ? "bg-roman-terracotta text-white shadow-md"
-                          : "bg-roman-cream text-roman-espresso hover:bg-roman-sand"
+                          ? "bg-stitch-green text-stitch-ivory shadow-glow-green"
+                          : "bg-stitch-surface text-stitch-on-surface hover:bg-stitch-ivory-warm"
                       }`}
                     >
                       <span>{lang.flag}</span>
@@ -271,13 +265,12 @@ export default function Navigation() {
                   ))}
                 </div>
 
-                {/* WhatsApp CTA */}
                 <a
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleNavClick}
-                  className="flex items-center justify-center gap-2.5 bg-roman-whatsapp hover:bg-[#20BD5A] text-white w-full py-4 rounded-2xl font-semibold text-base transition-all duration-300 shadow-lg touch-feedback"
+                  className="flex items-center justify-center gap-2.5 bg-stitch-green hover:bg-stitch-green-light text-white w-full py-4 rounded-lg font-label text-xs tracking-widest uppercase transition-all duration-300 shadow-ambient"
                 >
                   {t("nav.bookNow")}
                 </a>

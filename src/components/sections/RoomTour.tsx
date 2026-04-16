@@ -206,14 +206,13 @@ export default function RoomTour() {
           transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
           className="text-center mb-14"
         >
-          <span className="inline-block text-xs tracking-[0.2em] uppercase text-roman-terracotta font-semibold mb-3">
+          <span className="font-label text-[10px] tracking-[0.28em] text-stitch-olive uppercase block mb-5">
             Photo Tour
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-roman-espresso mb-4 tracking-roman">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-stitch-green leading-[1.1] mb-4">
             {t("rooms.title")}
           </h2>
-          <div className="section-divider mb-6" />
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="font-body text-stitch-on-surface/55 text-base max-w-xl mx-auto leading-relaxed">
             {t("rooms.subtitle")}
           </p>
         </motion.div>
@@ -226,8 +225,8 @@ export default function RoomTour() {
               onClick={() => goToRoom(i)}
               className={`shrink-0 px-5 py-2.5 text-sm font-medium transition-all duration-300 whitespace-nowrap border-2 ${
                 i === currentRoom
-                  ? "bg-roman-terracotta text-white border-roman-terracotta shadow-[3px_3px_0_rgba(0,0,0,0.2)]"
-                  : "bg-roman-cream text-roman-espresso/70 border-roman-sand hover:bg-roman-sand hover:text-roman-espresso hover:border-roman-terracotta/30"
+                  ? "bg-stitch-green text-white border-stitch-green shadow-[3px_3px_0_rgba(0,0,0,0.2)]"
+                  : "bg-stitch-ivory-warm text-stitch-on-surface/70 border-stitch-surface-dim hover:bg-stitch-surface-dim hover:text-stitch-on-surface hover:border-stitch-green/30"
               }`}
             >
               {t(`rooms.${r.key}.title`)}
@@ -254,7 +253,8 @@ export default function RoomTour() {
             >
               {/* Main Room Hero Image */}
               <div
-                className="relative group overflow-hidden border-2 border-roman-sand shadow-[6px_6px_0_#3B82F6] mb-4 img-zoom-hover cursor-pointer"
+                className="relative group overflow-hidden mb-4 img-zoom-hover cursor-pointer rounded-xl"
+                style={{ boxShadow: "0 8px 40px -12px rgba(41,23,13,0.14)" }}
                 onClick={() => openLightboxForRoom(currentRoom, 0)}
               >
                 <div className="aspect-[16/10] md:aspect-[16/9] relative">
@@ -266,7 +266,7 @@ export default function RoomTour() {
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-all duration-500 flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-100 scale-75 bg-white/95 rounded-full p-4 shadow-lg">
-                      <ZoomIn className="w-6 h-6 text-roman-espresso" />
+                      <ZoomIn className="w-6 h-6 text-stitch-on-surface" />
                     </div>
                   </div>
                 </div>
@@ -284,11 +284,8 @@ export default function RoomTour() {
                     <button
                       key={img}
                       onClick={() => openLightboxForRoom(currentRoom, idx)}
-                      className={`relative shrink-0 overflow-hidden border-2 transition-all duration-300 cursor-pointer group/thumb ${
-                        idx === 0
-                          ? "border-roman-terracotta shadow-md"
-                          : "border-roman-sand hover:border-roman-terracotta/50 hover:shadow-sm"
-                      }`}
+                      className="relative shrink-0 overflow-hidden transition-all duration-300 cursor-pointer group/thumb rounded-lg"
+                      style={{ boxShadow: idx === 0 ? "0 0 0 2px #072316" : "0 2px 8px -2px rgba(41,23,13,0.10)" }}
                     >
                       <div className="w-24 h-16 sm:w-32 sm:h-20 md:w-40 md:h-24 relative">
                         <img
@@ -325,7 +322,8 @@ export default function RoomTour() {
         <div className="flex items-center justify-center gap-5 mb-14">
           <button
             onClick={prevRoom}
-            className="flex items-center gap-2 px-6 py-3 border-2 border-roman-sand bg-roman-cream hover:bg-roman-sand text-roman-espresso font-medium transition-all duration-300 hover:shadow-[3px_3px_0_#3B82F6] hover:border-roman-terracotta touch-feedback"
+            className="flex items-center gap-2 px-6 py-3 rounded-lg bg-stitch-ivory-warm hover:bg-stitch-surface-dim text-stitch-on-surface font-label text-xs tracking-widest uppercase transition-all duration-300 hover:scale-[1.02]"
+            style={{ boxShadow: "0 2px 12px -4px rgba(41,23,13,0.06)" }}
           >
             <ChevronLeft className="w-4 h-4" />
             <span className="hidden sm:inline text-sm">{t("rooms.previousRoom")}</span>
@@ -338,8 +336,8 @@ export default function RoomTour() {
                 onClick={() => goToRoom(i)}
                 className={`rounded-full transition-all duration-400 ${
                   i === currentRoom
-                    ? "w-8 h-2.5 bg-roman-terracotta"
-                    : "w-2.5 h-2.5 bg-roman-sand hover:bg-roman-stone"
+                    ? "w-8 h-2.5 bg-stitch-green"
+                    : "w-2.5 h-2.5 bg-stitch-surface-dim hover:bg-stitch-on-surface-muted"
                 }`}
               />
             ))}
@@ -347,7 +345,7 @@ export default function RoomTour() {
 
           <button
             onClick={nextRoom}
-            className="flex items-center gap-2 px-6 py-3 rounded-full bg-roman-cream hover:bg-roman-sand text-roman-espresso font-medium transition-all duration-300 hover:shadow-md touch-feedback"
+            className="flex items-center gap-2 px-6 py-3 rounded-full bg-stitch-ivory-warm hover:bg-stitch-surface-dim text-stitch-on-surface font-medium transition-all duration-300 hover:shadow-md touch-feedback"
           >
             <span className="hidden sm:inline text-sm">{t("rooms.nextRoom")}</span>
             <ChevronRight className="w-4 h-4" />
@@ -362,7 +360,7 @@ export default function RoomTour() {
           transition={{ duration: 0.6 }}
           className="mb-6"
         >
-          <h3 className="font-display text-2xl font-bold text-roman-espresso mb-6 text-center">
+          <h3 className="font-display italic text-2xl font-light text-stitch-green mb-6 text-center">
             {t("rooms.viewGallery")}
           </h3>
         </motion.div>
@@ -377,9 +375,10 @@ export default function RoomTour() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (i % 8) * 0.06, ease: [0.25, 0.4, 0.25, 1] }}
-                className={`relative group cursor-pointer overflow-hidden border-2 border-roman-sand shadow-md hover:shadow-[4px_4px_0_#3B82F6] transition-all duration-300 ${
+                className={`relative group cursor-pointer overflow-hidden rounded-xl transition-all duration-300 ${
                   isTall ? "row-span-2" : ""
                 }`}
+                style={{ boxShadow: "0 4px 20px -6px rgba(41,23,13,0.10)" }}
                 onClick={() => openLightboxAt(i)}
               >
                 <div className={`relative ${isTall ? "aspect-[3/4]" : "aspect-square"}`}>
@@ -397,7 +396,7 @@ export default function RoomTour() {
                   </div>
                   {/* Active room indicator */}
                   {item.roomIndex === currentRoom && (
-                    <div className="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-roman-terracotta shadow-lg" />
+                    <div className="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-stitch-green shadow-lg" />
                   )}
                 </div>
               </motion.div>
