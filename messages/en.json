@@ -275,6 +275,8 @@
     "ctaBooking": "Reserve on Booking.com",
     "ctaWhatsAppShort": "WhatsApp",
     "bestRateBadge": "Best rate",
+    "bestPriceLabel": "Best price guaranteed",
+    "orPlatforms": "or book on",
     "trustInstant": "Instant confirmation",
     "trustSecure": "Secure booking",
     "trustTrusted": "Trusted platforms",
@@ -338,6 +340,7 @@
     "whatsapp": "Book on WhatsApp",
     "availability": "Availability",
     "bestRate": "Best rate",
+    "bestPrice": "Best price guaranteed",
     "close": "Close",
     "trust": "Instant confirmation • Secure booking • Best rates"
   },
@@ -381,5 +384,13 @@
       "description": "Book at least 30 days in advance and get a special rate. Plan your Rome trip ahead.",
       "waText": "Hi! I'm interested in the early booking deal."
     }
+  },
+  "laCasa": {
+    "eyebrow": "The Property",
+    "title": "The House",
+    "intro": "An independent holiday home, newly built in 2025, set in a quiet residential neighbourhood of Rome. Designed for guests seeking authentic comfort, complete privacy and privileged access to the city.",
+    "body1": "TODO: Insert migrated WordPress long-form property description here — spaces, furnishings, private garden, atmosphere and full stay experience.",
+    "body2": "Steps from the Basilica di San Paolo fuori le Mura and Metro B, San Paolo Hideout welcomes up to 3 guests with the care and personality of a boutique guest house. Flexible check-in, fast communication, and that rare feeling of being at home — even away from home.",
+    "ctaLabel": "Learn more on WhatsApp"
   }
 }

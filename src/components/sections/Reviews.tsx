@@ -218,13 +218,10 @@ export default function Reviews() {
                     <div className="font-display text-xl md:text-2xl font-semibold text-stitch-on-surface mb-1.5">
                       {t("reviews.overallLabel")}
                     </div>
-                    <div className="flex items-center gap-0.5 mb-1.5">
+                    <div className="flex items-center gap-0.5">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-3.5 h-3.5 text-stitch-gold fill-stitch-gold" />
                       ))}
-                    </div>
-                    <div className="text-stitch-on-surface/50 text-xs font-medium">
-                      {t("reviews.totalReviews")}
                     </div>
                   </div>
                 </div>

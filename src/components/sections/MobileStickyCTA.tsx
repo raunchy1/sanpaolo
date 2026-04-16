@@ -78,8 +78,10 @@ export default function MobileStickyCTA() {
 
           {/* Trust line */}
           <div className="px-4 pb-2 -mt-0.5">
-            <p className="text-[11px] text-stitch-on-surface/50 text-center tracking-wide">
-              {t("mobileCta.trust")}
+            <p className="text-[11px] text-stitch-green font-semibold text-center tracking-wide flex items-center justify-center gap-1.5">
+              <span className="w-1 h-1 rounded-full bg-stitch-green inline-block" />
+              {t("mobileCta.bestPrice")}
+              <span className="w-1 h-1 rounded-full bg-stitch-green inline-block" />
             </p>
           </div>
         </motion.div>

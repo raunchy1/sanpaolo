@@ -130,8 +130,16 @@ export default function BookingCTA() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="max-w-3xl mx-auto"
         >
+          {/* Trust badge — Miglior prezzo garantito */}
+          <div className="inline-flex items-center gap-2 bg-stitch-gold/15 border border-stitch-gold/25 rounded-full px-5 py-2 mb-7">
+            <Check className="w-3.5 h-3.5 text-stitch-gold" />
+            <span className="font-label text-[10px] tracking-[0.22em] uppercase text-stitch-gold">
+              {t("booking.bestPriceLabel")}
+            </span>
+          </div>
+
           {/* Dual CTA: Chiama + WhatsApp */}
-          <div className="mb-8">
+          <div className="mb-5">
             <DualContactCTA
               callLabel={t("booking.ctaCall")}
               whatsappLabel={t("booking.ctaWhatsApp")}
@@ -139,6 +147,15 @@ export default function BookingCTA() {
               variant="dark"
               whatsappText="Ciao! Vorrei prenotare San Paolo Hideout."
             />
+          </div>
+
+          {/* Divider with label */}
+          <div className="flex items-center gap-4 mb-5">
+            <div className="flex-1 h-px bg-white/[0.08]" />
+            <span className="font-label text-[9px] tracking-[0.22em] uppercase text-white/25">
+              {t("booking.orPlatforms")}
+            </span>
+            <div className="flex-1 h-px bg-white/[0.08]" />
           </div>
 
           {/* OTA Platform Buttons */}
@@ -149,7 +166,7 @@ export default function BookingCTA() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("booking.ctaAirbnb")}
-              className="group inline-flex items-center justify-center gap-3 bg-[#FF5A5F] hover:bg-[#E0484D] text-white px-6 py-4 rounded-full font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-feedback shadow-lg shadow-rose-900/20 hover:shadow-rose-900/30"
+              className="group inline-flex items-center justify-center gap-3 bg-[#FF5A5F] hover:bg-[#E0484D] text-white px-6 py-4 rounded-lg font-label text-[11px] tracking-widest uppercase transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-rose-900/20"
             >
               <AirbnbIcon className="w-5 h-5" />
               {t("booking.ctaAirbnb")}
@@ -161,7 +178,7 @@ export default function BookingCTA() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("booking.ctaBooking")}
-              className="group inline-flex items-center justify-center gap-3 bg-[#003B95] hover:bg-[#002F77] text-white px-6 py-4 rounded-full font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] touch-feedback shadow-lg shadow-blue-900/20 hover:shadow-blue-900/30 border border-white/10"
+              className="group inline-flex items-center justify-center gap-3 bg-[#003B95] hover:bg-[#002F77] text-white px-6 py-4 rounded-lg font-label text-[11px] tracking-widest uppercase transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-blue-900/20"
             >
               <BookingIcon className="w-5 h-5" />
               {t("booking.ctaBooking")}
@@ -169,15 +186,10 @@ export default function BookingCTA() {
           </div>
 
           {/* Trust Microcopy */}
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/50 text-sm">
-            {[
-              "trustInstant",
-              "trustSecure",
-              "trustTrusted",
-              "trustRates",
-            ].map((key) => (
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-white/40 text-xs">
+            {["trustInstant", "trustSecure", "trustTrusted"].map((key) => (
               <span key={key} className="inline-flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-stitch-gold" />
+                <Check className="w-3 h-3 text-stitch-gold/60" />
                 {t(`booking.${key}`)}
               </span>
             ))}

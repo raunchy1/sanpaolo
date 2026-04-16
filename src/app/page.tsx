@@ -3,8 +3,9 @@
 import { useTranslation } from "@/lib/i18n";
 import Navigation from "@/components/sections/Navigation";
 import Hero from "@/components/sections/Hero";
-import GuestFavorites from "@/components/sections/GuestFavorites";
 import CheckIn from "@/components/sections/CheckIn";
+import GuestFavorites from "@/components/sections/GuestFavorites";
+import LaCasa from "@/components/sections/LaCasa";
 import Amenities from "@/components/sections/Amenities";
 import RoomTour from "@/components/sections/RoomTour";
 import NewBuild from "@/components/sections/NewBuild";
@@ -41,8 +42,9 @@ export default function Home() {
       <Navigation />
       <main className="flex-1">
         <Hero />
-        <GuestFavorites />
         <CheckIn />
+        <GuestFavorites />
+        <LaCasa />
         <Amenities />
         <RoomTour />
         <NewBuild />

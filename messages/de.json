@@ -246,6 +246,8 @@
     "ctaBooking": "Auf Booking.com buchen",
     "ctaWhatsAppShort": "WhatsApp",
     "bestRateBadge": "Bester Preis",
+    "bestPriceLabel": "Bestpreis garantiert",
+    "orPlatforms": "oder buchen auf",
     "trustInstant": "Sofortige Bestätigung",
     "trustSecure": "Sichere Buchung",
     "trustTrusted": "Vertrauenswürdige Plattformen",
@@ -309,6 +311,7 @@
     "whatsapp": "Auf WhatsApp Buchen",
     "availability": "Verfügbarkeit",
     "bestRate": "Bester Preis",
+    "bestPrice": "Bestpreis garantiert",
     "close": "Schließen",
     "trust": "Sofortige Bestätigung • Sichere Buchung • Beste Preise"
   },
@@ -352,5 +355,13 @@
       "description": "Buchen Sie mindestens 30 Tage im Voraus und erhalten Sie einen Sondertarif. Planen Sie Ihre Rom-Reise frühzeitig.",
       "waText": "Hallo! Ich interessiere mich für das Frühbucher-Angebot."
     }
+  },
+  "laCasa": {
+    "eyebrow": "Die Unterkunft",
+    "title": "Das Haus",
+    "intro": "Ein unabhängiges Ferienhaus, neu gebaut im Jahr 2025, in einer ruhigen Wohngegend Roms. Gestaltet für Gäste, die authentischen Komfort, vollständige Privatsphäre und privilegierten Zugang zur Stadt suchen.",
+    "body1": "TODO: Hier die migrierte ausführliche WordPress-Beschreibung einfügen — Räume, Einrichtung, Privatgarten, Atmosphäre und das gesamte Aufenthaltserlebnis.",
+    "body2": "Nur wenige Schritte von der Basilika San Paolo fuori le Mura und der Metro B entfernt, empfängt San Paolo Hideout bis zu 3 Gäste mit der Fürsorge einer Boutique-Unterkunft. Flexibler Check-in, schnelle Kommunikation und das seltene Gefühl, zu Hause zu sein — auch weit von zu Hause.",
+    "ctaLabel": "Mehr erfahren auf WhatsApp"
   }
 }

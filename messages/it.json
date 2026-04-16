@@ -350,6 +350,8 @@
     "ctaBooking": "Prenota su Booking.com",
     "ctaWhatsAppShort": "WhatsApp",
     "bestRateBadge": "Miglior prezzo",
+    "bestPriceLabel": "Miglior prezzo garantito",
+    "orPlatforms": "oppure prenota su",
     "trustInstant": "Conferma immediata",
     "trustSecure": "Prenotazione sicura",
     "trustTrusted": "Piattaforme affidabili",
@@ -416,6 +418,7 @@
     "whatsapp": "Prenota su WhatsApp",
     "availability": "Disponibilità",
     "bestRate": "Miglior prezzo",
+    "bestPrice": "Miglior prezzo garantito",
     "close": "Chiudi",
     "trust": "Conferma istantanea • Prenotazione sicura • Tariffe migliori"
   },
@@ -459,5 +462,13 @@
       "description": "Prenota con almeno 30 giorni di anticipo e ottieni una tariffa vantaggiosa. Pianifica in anticipo il tuo viaggio a Roma.",
       "waText": "Ciao! Sono interessato all'offerta early booking."
     }
+  },
+  "laCasa": {
+    "eyebrow": "La Proprietà",
+    "title": "La Casa",
+    "intro": "Un'abitazione indipendente di nuova costruzione, completata nel 2025, immersa in una tranquilla zona residenziale di Roma. Pensata per chi cerca comfort autentico, privacy totale e un accesso privilegiato alla città.",
+    "body1": "TODO: Inserire qui la descrizione estesa della proprietà recuperata dai contenuti WordPress — spazi, arredi, giardino privato, atmosfera e dettagli dell'esperienza di soggiorno.",
+    "body2": "A pochi passi dalla Basilica di San Paolo fuori le Mura e dalla Metro B, San Paolo Hideout accoglie fino a 3 ospiti con la cura e la personalità di una guest house boutique. Check-in flessibile, comunicazione rapida, e quella sensazione rara di sentirsi a casa — anche lontano da casa.",
+    "ctaLabel": "Scopri di più su WhatsApp"
   }
 }
