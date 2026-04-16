@@ -6,7 +6,7 @@ import { useTranslation, Locale } from "@/lib/i18n";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import Image from "next/image";
 
-const WHATSAPP_NUMBER = "393401234567";
+const WHATSAPP_NUMBER = "393299362759";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei informazioni su San Paolo Hideout.")}`;
 
 const navItems = [

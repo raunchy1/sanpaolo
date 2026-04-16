@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
 import { MessageCircle, Home } from "lucide-react";
 
-const WHATSAPP_NUMBER = "393401234567";
+const WHATSAPP_NUMBER = "393299362759";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei sapere di più su San Paolo Hideout.")}`;
 
 /**

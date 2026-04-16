@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
 import { Calendar, Sun, Gift, Clock } from "lucide-react";
 
-const WHATSAPP_NUMBER = "393401234567";
+const WHATSAPP_NUMBER = "393299362759";
 
 const offers = [
   {

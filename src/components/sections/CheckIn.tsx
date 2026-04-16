@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
-import { Clock, UserCheck, Key } from "lucide-react";
+import { Clock, UserCheck, Heart } from "lucide-react";
 
 const features = [
   { key: "flexible", icon: Clock },
   { key: "human", icon: UserCheck },
-  { key: "self", icon: Key },
+  { key: "self", icon: Heart },
 ] as const;
 
 const containerVariants = {

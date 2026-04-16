@@ -15,13 +15,13 @@
   },
   "hero": {
     "location": "Via Silvio D'Amico 96, 00145 Roma",
-    "rating": "9.9 Eccellente • 127 recensioni",
+    "rating": "9.9 Eccellente • Booking Award 2026",
     "title": "San Paolo Hideout",
     "subtitle": "La tua dimora romana privata. Casa indipendente di nuova costruzione, con area esterna verde condivisa, a 9 minuti dalla Basilica San Paolo e Metro B.",
     "ctaCall": "Chiama ora",
     "ctaWhatsApp": "Scrivici su WhatsApp",
     "ctaAvailability": "Verifica Disponibilità",
-    "facts": "1 letto matrimoniale • 1 letto una piazza e mezza • 3 ospiti • area esterna verde • casa indipendente nuova 2025"
+    "facts": "2 camere da letto • 1 letto matrimoniale • 1 letto una piazza e mezza • 3 ospiti • area esterna verde • casa indipendente nuova 2025"
   },
   "amenities": {
     "title": "Ogni dettaglio, pensato per te",
@@ -236,7 +236,7 @@
     "overallScore": "9.9",
     "overallMax": "10",
     "overallLabel": "Eccellente",
-    "totalReviews": "127 recensioni",
+    "totalReviews": "Recensioni verificate",
     "categories": {
       "location": { "name": "Posizione", "score": "10" },
       "cleanliness": { "name": "Pulizia", "score": "10" },
@@ -297,11 +297,11 @@
   },
   "checkin": {
     "title": "Check-in flessibile e accoglienza personalizzata",
-    "description": "Il check-in è disponibile nella fascia 15:00–20:00.\nPer esigenze particolari gli ospiti possono scriverci e faremo il possibile per venirgli incontro.\nIl self check-in è disponibile, ma preferiamo accogliere personalmente gli ospiti quando possibile.",
+    "description": "Il check-in è disponibile nella fascia 15:00–20:00.\nPer esigenze particolari gli ospiti possono scriverci e faremo il possibile per venirgli incontro.\nVi accogliamo di persona — l'accoglienza personalizzata è la nostra priorità.",
     "features": {
       "flexible": { "title": "Check-in flessibile", "desc": "Fascia oraria 15:00–20:00" },
       "human": { "title": "Accoglienza personalizzata", "desc": "Preferiamo accogliervi di persona" },
-      "self": { "title": "Self check-in disponibile", "desc": "Per chi preferisce autonomia" }
+      "self": { "title": "Accoglienza personale", "desc": "Vi accogliamo di persona per il benvenuto" }
     }
   },
   "newbuild": {
@@ -346,7 +346,7 @@
     "ctaAirbnb": "Vedi su Airbnb",
     "sectionLabel": "Prenota Ora",
     "newTitle": "Prenota il tuo soggiorno",
-    "newSubtitle": "Scegli la piattaforma che preferisci o contattaci direttamente per la migliore tariffa disponibile.",
+    "newSubtitle": "Puoi fare una prenotazione diretta o, se preferisci, puoi prenotare tramite la piattaforma che preferisci. Anche su Booking e Airbnb.",
     "ctaBooking": "Prenota su Booking.com",
     "ctaWhatsAppShort": "WhatsApp",
     "bestRateBadge": "Miglior prezzo",
@@ -366,7 +366,7 @@
     "subtitle": "Tutto quello che devi sapere prima del tuo soggiorno",
     "q1": {
       "question": "Come funziona il check-in?",
-      "answer": "Il check-in è disponibile nella fascia 15:00–20:00. Per esigenze particolari gli ospiti possono scriverci e faremo il possibile per venirgli incontro. Il self check-in è disponibile, ma preferiamo accogliere personalmente gli ospiti quando possibile."
+      "answer": "Il check-in è disponibile nella fascia 15:00–20:00. Per esigenze particolari gli ospiti possono scriverci e faremo il possibile per venirgli incontro. Vi accogliamo di persona — l'accoglienza personalizzata è la nostra priorità."
     },
     "q2": {
       "question": "Quanto dista la fermata della Metro?",

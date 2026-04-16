@@ -9,7 +9,6 @@ import {
   Globe,
   MessageCircle,
   ExternalLink,
-  Award,
   Train,
 } from "lucide-react";
 
@@ -23,14 +22,14 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-const PHONE_NUMBER = "+393401234567";
-const WHATSAPP_NUMBER = "393401234567";
+const PHONE_NUMBER = "+393299362759";
+const WHATSAPP_NUMBER = "393299362759";
 const MAPS_LINK = "https://maps.google.com/?q=Via+Silvio+D'Amico+96,+00145+Roma";
 const INSTAGRAM_LINK = "https://www.instagram.com/casavacanze_sanpaolohideout/";
 
 const LEGAL = {
   prot: "QA/2025/66178 del 11/07/2025",
-  cin: "IT058091C20S2A4EP2",
+  cin: "IT058091C2OS2A4EP2",
   cir: "058091-CAV-15649",
 };
 
@@ -84,19 +83,46 @@ export default function Footer() {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            {/* Award badge */}
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#003580] flex items-center justify-center shrink-0 shadow-lg shadow-blue-900/30">
-                <span className="text-white font-bold text-lg leading-none">9.9</span>
+            {/* Platform review badges */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+              {/* Booking.com */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#003580] flex items-center justify-center shrink-0 shadow-lg shadow-blue-900/30">
+                  <span className="text-white font-bold text-sm leading-none">9.9</span>
+                </div>
+                <div>
+                  <p className="text-white/50 text-[9px] font-label uppercase tracking-wider leading-none mb-0.5">Booking.com</p>
+                  <p className="text-white text-xs font-semibold leading-tight">Eccellente</p>
+                  <p className="text-white/35 text-[9px] mt-0.5">19 recensioni</p>
+                </div>
               </div>
-              <div>
-                <p className="text-white font-semibold text-sm leading-snug">
-                  {t("footer.awardLabel")}
-                </p>
-                <p className="text-white/45 text-xs mt-0.5 flex items-center gap-1.5">
-                  <Award className="w-3 h-3" />
-                  127 recensioni verificate • Eccellente
-                </p>
+
+              <div className="hidden sm:block w-px h-7 bg-white/[0.08]" />
+
+              {/* Airbnb */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#FF5A5F] flex items-center justify-center shrink-0 shadow-lg shadow-rose-900/20">
+                  <span className="text-white font-bold text-sm leading-none">5</span>
+                </div>
+                <div>
+                  <p className="text-white/50 text-[9px] font-label uppercase tracking-wider leading-none mb-0.5">Airbnb</p>
+                  <p className="text-white text-xs font-semibold leading-tight">★★★★★</p>
+                  <p className="text-white/35 text-[9px] mt-0.5">8 recensioni</p>
+                </div>
+              </div>
+
+              <div className="hidden sm:block w-px h-7 bg-white/[0.08]" />
+
+              {/* Google */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.07] border border-white/[0.1] flex items-center justify-center shrink-0">
+                  <span className="text-white font-bold text-sm leading-none">5</span>
+                </div>
+                <div>
+                  <p className="text-white/50 text-[9px] font-label uppercase tracking-wider leading-none mb-0.5">Google</p>
+                  <p className="text-white text-xs font-semibold leading-tight">★★★★★</p>
+                  <p className="text-white/35 text-[9px] mt-0.5">19 recensioni</p>
+                </div>
               </div>
             </div>
 
@@ -140,7 +166,7 @@ export default function Footer() {
               <img
                 src="/logo-green.png"
                 alt="San Paolo Hideout"
-                className="w-10 h-10 rounded-xl object-contain"
+                className="w-10 h-10 rounded-xl object-contain brightness-0 invert"
               />
               <div>
                 <h3 className="font-display italic text-white text-xl leading-tight">

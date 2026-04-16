@@ -15,13 +15,13 @@
   },
   "hero": {
     "location": "Via Silvio D'Amico 96, 00145 Roma",
-    "rating": "9.9 Ausgezeichnet • 127 Bewertungen",
+    "rating": "9.9 Ausgezeichnet • Booking Award 2026",
     "title": "San Paolo Hideout",
     "subtitle": "Ihr privates römisches Zufluchtsort. Ein Neubau-Freistehendes Haus mit gemeinsamen Grünbereich, 9 Minuten von der Basilika San Paolo und Metro B.",
     "ctaCall": "Jetzt anrufen",
     "ctaWhatsApp": "Auf WhatsApp schreiben",
     "ctaAvailability": "Verfügbarkeit Prüfen",
-    "facts": "1 Doppelbett • 1 anderthalb Bett • 3 Gäste • Grünbereich • Neubau-Freistehendes Haus 2025"
+    "facts": "2 Schlafzimmer • 1 Doppelbett • 1 anderthalb Bett • 3 Gäste • Grünbereich • Neubau-Freistehendes Haus 2025"
   },
   "amenities": {
     "title": "Jedes Detail, für Sie gedacht",
@@ -147,7 +147,7 @@
     "overallScore": "9.9",
     "overallMax": "10",
     "overallLabel": "Ausgezeichnet",
-    "totalReviews": "127 Bewertungen",
+    "totalReviews": "Verifizierte Bewertungen",
     "categories": {
       "location": { "name": "Lage", "score": "10" },
       "cleanliness": { "name": "Sauberkeit", "score": "10" },
@@ -208,11 +208,11 @@
   },
   "checkin": {
     "title": "Flexibler Check-in und persönliche Begrüßung",
-    "description": "Der Check-in ist im Zeitraum 15:00–20:00 verfügbar.\nFür besondere Bedürfnisse können Gäste uns schreiben und wir werden unser Bestes tun.\nSelf Check-in ist verfügbar, aber wir begrüßen Gäste lieber persönlich, wenn möglich.",
+    "description": "Der Check-in ist im Zeitraum 15:00–20:00 verfügbar.\nFür besondere Bedürfnisse können Gäste uns schreiben und wir werden unser Bestes tun.\nWir begrüßen Sie persönlich — eine persönliche Begrüßung hat bei uns Priorität.",
     "features": {
       "flexible": { "title": "Flexibler Check-in", "desc": "Zeitraum 15:00–20:00" },
       "human": { "title": "Persönliche Begrüßung", "desc": "Wir begrüßen Sie lieber persönlich" },
-      "self": { "title": "Self Check-in verfügbar", "desc": "Für alle, die Autonomie bevorzugen" }
+      "self": { "title": "Persönliche Begrüßung", "desc": "Wir begrüßen Sie persönlich bei Ihrer Ankunft" }
     }
   },
   "newbuild": {
@@ -242,7 +242,7 @@
     "ctaAirbnb": "Auf Airbnb Ansehen",
     "sectionLabel": "Jetzt Buchen",
     "newTitle": "Reservieren Sie Ihren Aufenthalt",
-    "newSubtitle": "Wählen Sie Ihre bevorzugte Buchungsplattform oder kontaktieren Sie uns direkt für den besten verfügbaren Preis.",
+    "newSubtitle": "Sie können direkt bei uns buchen oder, wenn Sie möchten, über die Plattform Ihrer Wahl. Auch auf Booking und Airbnb verfügbar.",
     "ctaBooking": "Auf Booking.com buchen",
     "ctaWhatsAppShort": "WhatsApp",
     "bestRateBadge": "Bester Preis",
@@ -259,7 +259,7 @@
     "subtitle": "Alles, was Sie vor Ihrem Aufenthalt wissen müssen",
     "q1": {
       "question": "Wie funktioniert der Check-in?",
-      "answer": "Der Check-in ist im Zeitraum 15:00–20:00 verfügbar. Für besondere Bedürfnisse können Gäste uns schreiben und wir werden unser Bestes tun. Self Check-in ist verfügbar, aber wir begrüßen Gäste lieber persönlich, wenn möglich."
+      "answer": "Der Check-in ist im Zeitraum 15:00–20:00 verfügbar. Für besondere Bedürfnisse können Gäste uns schreiben und wir werden unser Bestes tun. Wir begrüßen Sie persönlich — eine persönliche Begrüßung hat bei uns Priorität."
     },
     "q2": {
       "question": "Wie weit ist die Metro-Station?",

@@ -15,13 +15,13 @@
   },
   "hero": {
     "location": "Via Silvio D'Amico 96, 00145 Roma",
-    "rating": "9.9 Excellent • 127 reviews",
+    "rating": "9.9 Excellent • Booking Award 2026",
     "title": "San Paolo Hideout",
     "subtitle": "Your private Roman sanctuary. A newly built detached house with shared green outdoor area, 9 minutes from Basilica San Paolo and Metro B.",
     "ctaCall": "Call now",
     "ctaWhatsApp": "Message us on WhatsApp",
     "ctaAvailability": "Check Availability",
-    "facts": "1 double bed • 1 one-and-a-half bed • 3 guests • green outdoor area • newly built detached house 2025"
+    "facts": "2 bedrooms • 1 double bed • 1 one-and-a-half bed • 3 guests • green outdoor area • newly built detached house 2025"
   },
   "amenities": {
     "title": "Every detail, designed for you",
@@ -176,7 +176,7 @@
     "overallScore": "9.9",
     "overallMax": "10",
     "overallLabel": "Excellent",
-    "totalReviews": "127 reviews",
+    "totalReviews": "Verified reviews",
     "categories": {
       "location": { "name": "Location", "score": "10" },
       "cleanliness": { "name": "Cleanliness", "score": "10" },
@@ -237,11 +237,11 @@
   },
   "checkin": {
     "title": "Flexible check-in and personalized welcome",
-    "description": "Check-in is available between 15:00–20:00.\nFor special needs, guests can write to us and we'll do our best to accommodate them.\nSelf check-in is available, but we prefer to welcome guests personally whenever possible.",
+    "description": "Check-in is available between 15:00–20:00.\nFor special needs, guests can write to us and we'll do our best to accommodate them.\nWe welcome you in person — a personalised welcome is our priority.",
     "features": {
       "flexible": { "title": "Flexible check-in", "desc": "Available 15:00–20:00" },
       "human": { "title": "Personalized welcome", "desc": "We prefer to greet you in person" },
-      "self": { "title": "Self check-in available", "desc": "For those who prefer autonomy" }
+      "self": { "title": "Personal welcome", "desc": "We welcome you in person upon arrival" }
     }
   },
   "newbuild": {
@@ -271,7 +271,7 @@
     "ctaAirbnb": "View on Airbnb",
     "sectionLabel": "Book Now",
     "newTitle": "Reserve Your Stay",
-    "newSubtitle": "Choose your preferred booking platform or contact us directly for the best available rate.",
+    "newSubtitle": "You can book directly with us or, if you prefer, through the platform of your choice. Also available on Booking and Airbnb.",
     "ctaBooking": "Reserve on Booking.com",
     "ctaWhatsAppShort": "WhatsApp",
     "bestRateBadge": "Best rate",
@@ -288,7 +288,7 @@
     "subtitle": "Everything you need to know before your stay",
     "q1": {
       "question": "How does check-in work?",
-      "answer": "Check-in is available between 15:00–20:00. For special needs, guests can write to us and we'll do our best to accommodate them. Self check-in is available, but we prefer to welcome guests personally whenever possible."
+      "answer": "Check-in is available between 15:00–20:00. For special needs, guests can write to us and we'll do our best to accommodate them. We welcome you in person — a personalised welcome is our priority."
     },
     "q2": {
       "question": "How far is the Metro station?",

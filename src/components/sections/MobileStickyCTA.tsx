@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
 import { Phone, MessageCircle } from "lucide-react";
 
-const PHONE_NUMBER = "+393401234567";
-const WHATSAPP_NUMBER = "393401234567";
+const PHONE_NUMBER = "+393299362759";
+const WHATSAPP_NUMBER = "393299362759";
 const PHONE_LINK = `tel:${PHONE_NUMBER}`;
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei prenotare San Paolo Hideout.")}`;
 

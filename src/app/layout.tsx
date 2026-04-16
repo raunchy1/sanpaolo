@@ -112,7 +112,7 @@ export default function RootLayout({
               aggregateRating: {
                 "@type": "AggregateRating",
                 ratingValue: "9.9",
-                reviewCount: "127",
+                reviewCount: "46",
                 bestRating: "10",
               },
               numberOfRooms: "2",
@@ -123,8 +123,7 @@ export default function RootLayout({
               amenityFeature: [
                 { "@type": "LocationFeatureSpecification", name: "Shared Green Outdoor Area", value: true },
                 { "@type": "LocationFeatureSpecification", name: "Free Parking", value: true },
-                { "@type": "LocationFeatureSpecification", name: "Self Check-in", value: true },
-                { "@type": "LocationFeatureSpecification", name: "Fast Wi-Fi", value: true },
+{ "@type": "LocationFeatureSpecification", name: "Fast Wi-Fi", value: true },
                 { "@type": "LocationFeatureSpecification", name: "Air Conditioning", value: true },
                 { "@type": "LocationFeatureSpecification", name: "Smart TV", value: true },
                 { "@type": "LocationFeatureSpecification", name: "Newly Built 2025", value: true },

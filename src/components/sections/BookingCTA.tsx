@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import DualContactCTA from "@/components/ui/DualContactCTA";
 
-const WHATSAPP_NUMBER = "393401234567";
+const WHATSAPP_NUMBER = "393299362759";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei prenotare San Paolo Hideout.")}`;
 const AIRBNB_LINK = "https://www.airbnb.com.ro/rooms/1517964247980793952?unique_share_id=d7fecbe5-b751-40f5-a115-83c02ad481fa&viralityEntryPoint=1&s=76&source_impression_id=p3_1776174940_P3vjFjX5W4f5k4KO";
 const BOOKING_LINK = "https://booking.com/hotel/it/san-paolo-hideout-roma.ro.html";
