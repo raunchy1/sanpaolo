@@ -69,10 +69,6 @@ export default function LaCasa() {
             transition={{ duration: 0.75, ease: [0.25, 0.4, 0.25, 1] }}
             className="max-w-[70ch]"
           >
-            <span className="font-label text-[10px] tracking-[0.28em] text-stitch-olive uppercase block mb-5">
-              {t("laCasa.eyebrow")}
-            </span>
-
             <h2 className="font-display text-5xl sm:text-6xl md:text-7xl font-light text-stitch-green leading-[1.05] mb-7">
               {t("laCasa.title")}
             </h2>
