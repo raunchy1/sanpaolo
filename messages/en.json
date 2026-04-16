@@ -388,9 +388,14 @@
   "laCasa": {
     "eyebrow": "The Property",
     "title": "The House",
-    "intro": "An independent holiday home, newly built in 2025, set in a quiet residential neighbourhood of Rome. Designed for guests seeking authentic comfort, complete privacy and privileged access to the city.",
-    "body1": "TODO: Insert migrated WordPress long-form property description here — spaces, furnishings, private garden, atmosphere and full stay experience.",
-    "body2": "Steps from the Basilica di San Paolo fuori le Mura and Metro B, San Paolo Hideout welcomes up to 3 guests with the care and personality of a boutique guest house. Flexible check-in, fast communication, and that rare feeling of being at home — even away from home.",
+    "p1": "San Paolo Hideout is an **independent and exclusive holiday home**, of **brand new construction (2025)**, designed to offer an authentic ~~refuge of peace and tranquility in the heart of Rome~~.",
+    "p2": "Located just steps from **San Paolo Metro station**, the property enjoys a **privileged position**, ~~surrounded by greenery~~, a true **rarity in the capital**, giving guests the feeling of an ~~oasis outside of time~~, while remaining perfectly connected to the main attractions of the eternal city.",
+    "p3": "The accommodation, designed for **up to three guests in total comfort**, features a **spacious double bedroom**, a **single bedroom** and a **welcoming living room**, enriched by a **Smart TV** and a curated **selection of books about Rome**.",
+    "p4": "The **fully equipped kitchen**, with **state-of-the-art appliances**, includes a **dishwasher**, **coffee machine** and a **welcome gift of coffee, tea and essential condiments**.",
+    "p5": "The **modern bathroom** features a comfortable **walk-in shower** and a **washing machine**, ensuring full independence even for longer stays.",
+    "p6intro": "Every detail of San Paolo Hideout is designed for the **comfort and privacy of our guests**:",
+    "p6items": "**air conditioning throughout**|**high-speed Wi-Fi**|**private entrance**|**free reserved parking**|**full bed linen**|on request, **baby cot**, making it perfect for families too",
+    "p7": "A perfect blend of **modern design**, **home warmth** and **strategic location**, San Paolo Hideout is the ideal choice for those who want to ~~discover historic Rome without giving up the tranquility of an exclusive green corner~~.",
     "ctaLabel": "Learn more on WhatsApp"
   }
 }

@@ -466,9 +466,14 @@
   "laCasa": {
     "eyebrow": "La Proprietà",
     "title": "La Casa",
-    "intro": "Un'abitazione indipendente di nuova costruzione, completata nel 2025, immersa in una tranquilla zona residenziale di Roma. Pensata per chi cerca comfort autentico, privacy totale e un accesso privilegiato alla città.",
-    "body1": "TODO: Inserire qui la descrizione estesa della proprietà recuperata dai contenuti WordPress — spazi, arredi, giardino privato, atmosfera e dettagli dell'esperienza di soggiorno.",
-    "body2": "A pochi passi dalla Basilica di San Paolo fuori le Mura e dalla Metro B, San Paolo Hideout accoglie fino a 3 ospiti con la cura e la personalità di una guest house boutique. Check-in flessibile, comunicazione rapida, e quella sensazione rara di sentirsi a casa — anche lontano da casa.",
+    "p1": "San Paolo Hideout è una **casa vacanza indipendente ed esclusiva**, di **nuovissima costruzione (2025)**, pensata per offrire un autentico ~~rifugio di pace e tranquillità nel cuore di Roma~~.",
+    "p2": "Situata a pochi passi dalla **Metro San Paolo**, la struttura gode di una **posizione privilegiata**, ~~immersa nel verde~~, una vera **rarità nella capitale**, regalando agli ospiti una sensazione di ~~oasi fuori dal tempo~~, pur restando perfettamente collegata alle principali attrazioni della città eterna.",
+    "p3": "L'abitazione, progettata per ospitare **fino a tre persone in totale comfort**, dispone di una **ampia camera matrimoniale**, una **camera singola da una piazza e mezzo** e un **salone accogliente**, arricchito da **Smart TV** e da una curata **selezione di libri dedicati a Roma**.",
+    "p4": "La **cucina completamente attrezzata**, dotata di **elettrodomestici di ultima generazione**, include **lavastoviglie**, **macchina per il caffè** e un **omaggio di benvenuto con caffè, tè e condimenti essenziali**.",
+    "p5": "Il **bagno moderno** offre un comodo **box doccia** e una **lavatrice**, garantendo massima autonomia anche per soggiorni più lunghi.",
+    "p6intro": "Ogni dettaglio del San Paolo Hideout è pensato per il **benessere e la privacy degli ospiti**:",
+    "p6items": "**climatizzazione in tutti gli ambienti**|**Wi-Fi ad alta velocità**|**ingresso indipendente**|**parcheggio gratuito riservato**|**biancheria completa**|su richiesta, **culla per bambini**, rendendola perfetta anche per famiglie",
+    "p7": "Sintesi perfetta tra **design moderno**, **calore domestico** e **posizione strategica**, il San Paolo Hideout è la scelta ideale per chi desidera ~~scoprire la Roma storica senza rinunciare alla quietezza di un esclusivo angolo verde~~.",
     "ctaLabel": "Scopri di più su WhatsApp"
   }
 }

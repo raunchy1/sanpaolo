@@ -2,31 +2,71 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
-import { MessageCircle, Home, Users, MapPin } from "lucide-react";
+import { MessageCircle, Home } from "lucide-react";
 
 const WHATSAPP_NUMBER = "393401234567";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao! Vorrei sapere di più su San Paolo Hideout.")}`;
 
-const chips = [
-  { icon: Home, label: "Nuova costruzione 2025" },
-  { icon: Users, label: "Fino a 3 ospiti" },
-  { icon: MapPin, label: "Metro B · 9 min" },
-] as const;
+/**
+ * Two-tier rich text renderer:
+ *  **text** → bold, dark (structural keywords — rooms, amenities, features)
+ *  ~~text~~ → bold, deep forest green (emotional / nature keywords — peace, green, oasis)
+ */
+function B({ text }: { text: string }) {
+  const parts = text.split(/(\*\*.*?\*\*|~~.*?~~)/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (part.startsWith("~~") && part.endsWith("~~")) {
+          // Emotional / nature keywords — deep forest green
+          return (
+            <strong key={i} className="font-semibold" style={{ color: "#072316" }}>
+              {part.slice(2, -2)}
+            </strong>
+          );
+        }
+        if (part.startsWith("**") && part.endsWith("**")) {
+          // Structural bold — refined dark semibold
+          return (
+            <strong key={i} className="font-semibold text-stitch-on-surface/90">
+              {part.slice(2, -2)}
+            </strong>
+          );
+        }
+        return part;
+      })}
+    </>
+  );
+}
+
+const pClass =
+  "font-body text-stitch-on-surface/60 text-[15px] md:text-[15.5px] leading-[1.85] mb-5";
+const pIntroClass =
+  "font-body text-stitch-on-surface/78 text-[16px] md:text-[17px] leading-[1.85] mb-5";
 
 export default function LaCasa() {
   const { t } = useTranslation();
 
+  const featureItems: string[] = t("laCasa.p6items")
+    .split("|")
+    .map((s: string) => s.trim())
+    .filter(Boolean);
+
   return (
-    <section className="py-20 md:py-32 bg-stitch-ivory overflow-hidden" id="la-casa">
+    <section
+      className="py-20 md:py-32 bg-stitch-ivory overflow-hidden"
+      id="la-casa"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
 
           {/* ── Left: Editorial Text ── */}
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{ duration: 0.75, ease: [0.25, 0.4, 0.25, 1] }}
+            className="max-w-[70ch]"
           >
             <span className="font-label text-[10px] tracking-[0.28em] text-stitch-olive uppercase block mb-5">
               {t("laCasa.eyebrow")}
@@ -38,30 +78,58 @@ export default function LaCasa() {
 
             <div className="w-12 h-px bg-stitch-green/25 mb-8" />
 
-            <p className="font-body text-stitch-on-surface/75 text-base md:text-lg leading-relaxed mb-5">
-              {t("laCasa.intro")}
+            {/* P1 — Identity (intro weight) */}
+            <p className={pIntroClass}>
+              <B text={t("laCasa.p1")} />
             </p>
 
-            <p className="font-body text-stitch-on-surface/60 text-base leading-relaxed mb-5">
-              {t("laCasa.body1")}
+            {/* P2 — Location & nature feeling */}
+            <p className={pClass}>
+              <B text={t("laCasa.p2")} />
             </p>
 
-            <p className="font-body text-stitch-on-surface/60 text-base leading-relaxed mb-10">
-              {t("laCasa.body2")}
+            {/* P3 — Rooms */}
+            <p className={pClass}>
+              <B text={t("laCasa.p3")} />
             </p>
 
-            {/* Info chips */}
-            <div className="flex flex-wrap gap-3 mb-10">
-              {chips.map(({ icon: Icon, label }) => (
-                <div
-                  key={label}
-                  className="inline-flex items-center gap-2 bg-[#EEF3EF] text-stitch-green px-4 py-2 rounded-lg"
-                >
-                  <Icon className="w-3.5 h-3.5 shrink-0" />
-                  <span className="font-label text-[10px] tracking-[0.18em] uppercase">{label}</span>
-                </div>
-              ))}
+            {/* P4 — Kitchen */}
+            <p className={pClass}>
+              <B text={t("laCasa.p4")} />
+            </p>
+
+            {/* P5 — Bathroom */}
+            <p className={pClass}>
+              <B text={t("laCasa.p5")} />
+            </p>
+
+            {/* P6 — Privacy & features */}
+            <div className="mb-5">
+              <p className={pClass + " mb-3"}>
+                <B text={t("laCasa.p6intro")} />
+              </p>
+              <ul className="space-y-2 pl-1">
+                {featureItems.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span
+                      className="w-1.5 h-1.5 rounded-full shrink-0 mt-[0.65em]"
+                      style={{ background: "rgba(7,35,22,0.35)" }}
+                    />
+                    <span className="font-body text-[15px] md:text-[15.5px] leading-[1.85] text-stitch-on-surface/60">
+                      <B text={item} />
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
+
+            {/* P7 — Closing editorial statement with left accent line */}
+            <p
+              className="font-body text-stitch-on-surface/65 text-[15px] md:text-[15.5px] leading-[1.85] mb-10 pl-5"
+              style={{ borderLeft: "2px solid rgba(7,35,22,0.18)" }}
+            >
+              <B text={t("laCasa.p7")} />
+            </p>
 
             <a
               href={WHATSAPP_LINK}
@@ -75,13 +143,13 @@ export default function LaCasa() {
             </a>
           </motion.div>
 
-          {/* ── Right: Lifestyle Image ── */}
+          {/* ── Right: Exterior Photo (sticky on desktop) ── */}
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1], delay: 0.12 }}
-            className="relative"
+            transition={{ duration: 0.75, ease: [0.25, 0.4, 0.25, 1], delay: 0.15 }}
+            className="relative lg:sticky lg:top-28"
           >
             <div
               className="relative rounded-2xl overflow-hidden"
@@ -91,12 +159,12 @@ export default function LaCasa() {
               }}
             >
               <img
-                src="/images/rooms/real/salotto-1.jpg"
-                alt="San Paolo Hideout — Soggiorno"
+                src="/images/rooms/real/esterno-1.jpg"
+                alt="San Paolo Hideout — Esterno verde e accesso privato"
                 className="w-full h-full object-cover"
               />
-              {/* Subtle warm gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-stitch-green/15 via-transparent to-transparent" />
+              {/* Warm-green overlay for oasis mood */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,35,22,0.18)] via-transparent to-transparent" />
             </div>
 
             {/* Floating badge */}
@@ -104,7 +172,7 @@ export default function LaCasa() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
               className="absolute -bottom-5 -left-4 sm:-left-6 bg-white rounded-2xl px-4 py-3.5"
               style={{ boxShadow: "0 8px 32px -8px rgba(7,35,22,0.14)" }}
             >
