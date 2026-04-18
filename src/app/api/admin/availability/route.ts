@@ -1,63 +1,58 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { z } from "zod";
+import { readContent, writeContent } from "@/lib/supabase";
+import { v4 as uuidv4 } from "uuid";
 
-const schema = z.object({
-  date: z.string().datetime(),
-  reason: z.string().optional(),
-});
+interface AvailabilityBlock {
+  id: string;
+  date: string;
+  reason?: string;
+}
 
-function normalizeDate(date: Date) {
-  const d = new Date(date);
-  d.setUTCHours(0, 0, 0, 0);
-  return d;
+function normalizeDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()))
+    .toISOString()
+    .split("T")[0];
 }
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const body = await req.json();
-    const { date, reason } = schema.parse(body);
+    const { date, reason } = await req.json();
+    const normalized = normalizeDate(date);
 
-    const block = await db.availabilityBlock.create({
-      data: { date: normalizeDate(new Date(date)), reason },
-    });
+    const blocks = await readContent<AvailabilityBlock[]>("availability", []);
+    if (blocks.some((b) => b.date === normalized)) {
+      return NextResponse.json({ success: true, message: "already blocked" });
+    }
 
-    return NextResponse.json({ success: true, block }, { status: 201 });
-  } catch (error) {
-    return NextResponse.json(
-      { success: false, error: "Invalid data" },
-      { status: 400 }
-    );
+    const newBlock: AvailabilityBlock = { id: uuidv4(), date: normalized, reason };
+    await writeContent("availability", [...blocks, newBlock]);
+    return NextResponse.json({ success: true, block: newBlock }, { status: 201 });
+  } catch {
+    return NextResponse.json({ success: false, error: "Invalid data" }, { status: 400 });
   }
 }
 
 export async function DELETE(req: Request) {
   const session = await getServerSession(authOptions);
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
     const { searchParams } = new URL(req.url);
     const dateStr = searchParams.get("date");
     if (!dateStr) throw new Error("Missing date");
 
-    const date = normalizeDate(new Date(dateStr));
-
-    await db.availabilityBlock.deleteMany({ where: { date } });
-
+    const normalized = normalizeDate(dateStr);
+    const blocks = await readContent<AvailabilityBlock[]>("availability", []);
+    const updated = blocks.filter((b) => b.date !== normalized);
+    await writeContent("availability", updated);
     return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json(
-      { success: false, error: "Invalid data" },
-      { status: 400 }
-    );
+  } catch {
+    return NextResponse.json({ success: false, error: "Invalid data" }, { status: 400 });
   }
 }

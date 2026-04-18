@@ -1,13 +1,10 @@
 import { NextResponse } from "next/server";
-import { readFileSync } from "fs";
-import { join } from "path";
+import { readContent } from "@/lib/supabase";
 
 export async function GET() {
   try {
-    const filePath = join(process.cwd(), "data", "site-overrides.json");
-    const raw = readFileSync(filePath, "utf-8");
-    const data = JSON.parse(raw);
-    return NextResponse.json(data, {
+    const overrides = await readContent("overrides", { it: {}, en: {}, de: {} });
+    return NextResponse.json(overrides, {
       headers: { "Cache-Control": "no-store" },
     });
   } catch {

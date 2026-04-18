@@ -1,47 +1,52 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { z } from "zod";
+import { readContent, writeContent } from "@/lib/supabase";
+
+type BookingStatus = "PENDING" | "CONFIRMED" | "CANCELLED";
+
+interface Booking {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  checkIn: string;
+  checkOut: string;
+  guests: number;
+  status: BookingStatus;
+  notes?: string;
+  createdAt: string;
+}
 
 export async function GET() {
   const session = await getServerSession(authOptions);
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const bookings = await db.booking.findMany({
-    orderBy: { createdAt: "desc" },
-  });
-
-  return NextResponse.json(bookings);
+  const bookings = await readContent<Booking[]>("bookings", []);
+  return NextResponse.json(
+    [...bookings].sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
+  );
 }
-
-const patchSchema = z.object({
-  id: z.string(),
-  status: z.enum(["PENDING", "CONFIRMED", "CANCELLED"]),
-});
 
 export async function PATCH(req: Request) {
   const session = await getServerSession(authOptions);
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const body = await req.json();
-    const { id, status } = patchSchema.parse(body);
+    const { id, status } = await req.json();
+    if (!id || !["PENDING", "CONFIRMED", "CANCELLED"].includes(status)) {
+      throw new Error("Invalid data");
+    }
 
-    const booking = await db.booking.update({
-      where: { id },
-      data: { status },
-    });
+    const bookings = await readContent<Booking[]>("bookings", []);
+    const updated = bookings.map((b) => (b.id === id ? { ...b, status } : b));
+    await writeContent("bookings", updated);
 
+    const booking = updated.find((b) => b.id === id);
     return NextResponse.json({ success: true, booking });
-  } catch (error) {
-    return NextResponse.json(
-      { success: false, error: "Invalid data" },
-      { status: 400 }
-    );
+  } catch {
+    return NextResponse.json({ success: false, error: "Invalid data" }, { status: 400 });
   }
 }

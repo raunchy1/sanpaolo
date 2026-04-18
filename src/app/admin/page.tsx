@@ -1,41 +1,60 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import { db } from "@/lib/db";
+import { readContent } from "@/lib/supabase";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { BookOpen, CalendarDays, FileText, Clock } from "lucide-react";
 
+type BookingStatus = "PENDING" | "CONFIRMED" | "CANCELLED";
+
+interface Booking {
+  id: string;
+  name: string;
+  checkIn: string;
+  checkOut: string;
+  guests: number;
+  status: BookingStatus;
+  createdAt: string;
+}
+
+interface AvailabilityBlock {
+  id: string;
+  date: string;
+}
+
 async function getStats() {
   try {
-    const [pending, confirmed, blocks] = await Promise.all([
-      db.booking.count({ where: { status: "PENDING" } }),
-      db.booking.count({ where: { status: "CONFIRMED" } }),
-      db.availabilityBlock.count(),
+    const [bookings, blocks] = await Promise.all([
+      readContent<Booking[]>("bookings", []),
+      readContent<AvailabilityBlock[]>("availability", []),
     ]);
-    const recent = await db.booking.findMany({
-      orderBy: { createdAt: "desc" },
-      take: 5,
-    });
-    return { pending, confirmed, blocks, recent };
+    return {
+      pending: bookings.filter((b) => b.status === "PENDING").length,
+      confirmed: bookings.filter((b) => b.status === "CONFIRMED").length,
+      blocks: blocks.length,
+      recent: bookings
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .slice(0, 5),
+    };
   } catch {
     return { pending: 0, confirmed: 0, blocks: 0, recent: [] };
   }
 }
 
-function statusBadge(status: string) {
-  const map: Record<string, string> = {
+function statusBadge(status: BookingStatus) {
+  const map: Record<BookingStatus, string> = {
     PENDING: "bg-amber-100 text-amber-800",
     CONFIRMED: "bg-green-100 text-green-800",
     CANCELLED: "bg-red-100 text-red-700",
   };
-  const label: Record<string, string> = {
+  const label: Record<BookingStatus, string> = {
     PENDING: "In attesa",
     CONFIRMED: "Confermata",
     CANCELLED: "Annullata",
   };
   return (
-    <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${map[status] || "bg-gray-100 text-gray-600"}`}>
-      {label[status] || status}
+    <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${map[status]}`}>
+      {label[status]}
     </span>
   );
 }
@@ -72,19 +91,17 @@ export default async function AdminDashboard() {
 
   return (
     <div className="p-8">
-      {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Benvenuto</h1>
         <p className="text-gray-500 text-sm mt-1">Ecco un riepilogo della situazione attuale.</p>
       </div>
 
-      {/* Stats cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         {cards.map((card) => (
           <Link
             key={card.label}
             href={card.href}
-            className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-md transition-shadow group"
+            className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-md transition-shadow"
           >
             <div className={`inline-flex p-2.5 rounded-xl ${card.color} mb-3`}>
               <card.icon className="w-5 h-5" />
@@ -95,7 +112,6 @@ export default async function AdminDashboard() {
         ))}
       </div>
 
-      {/* Recent bookings */}
       <div className="bg-white rounded-2xl border border-gray-100 p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-semibold text-gray-900">Ultime prenotazioni</h2>
@@ -108,14 +124,7 @@ export default async function AdminDashboard() {
           <p className="text-gray-400 text-sm py-6 text-center">Nessuna prenotazione ancora.</p>
         ) : (
           <div className="divide-y divide-gray-50">
-            {stats.recent.map((b: {
-              id: string;
-              name: string;
-              checkIn: Date;
-              checkOut: Date;
-              guests: number;
-              status: string;
-            }) => (
+            {stats.recent.map((b) => (
               <div key={b.id} className="py-3 flex items-center justify-between gap-4">
                 <div className="min-w-0">
                   <div className="font-medium text-gray-900 text-sm truncate">{b.name}</div>
@@ -132,7 +141,6 @@ export default async function AdminDashboard() {
         )}
       </div>
 
-      {/* Quick actions */}
       <div className="mt-4 grid grid-cols-2 gap-4">
         <Link
           href="/admin/calendario"

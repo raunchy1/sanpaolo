@@ -1,16 +1,30 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { readContent } from "@/lib/supabase";
+
+interface AvailabilityBlock {
+  id: string;
+  date: string;
+  reason?: string;
+}
+
+interface Booking {
+  id: string;
+  checkIn: string;
+  checkOut: string;
+  status: string;
+}
 
 export async function GET() {
   try {
-    const blocks = await db.availabilityBlock.findMany();
-    const confirmedBookings = await db.booking.findMany({
-      where: { status: "CONFIRMED" },
-      select: { checkIn: true, checkOut: true },
-    });
+    const [blocks, bookings] = await Promise.all([
+      readContent<AvailabilityBlock[]>("availability", []),
+      readContent<Booking[]>("bookings", []),
+    ]);
+    const confirmedBookings = bookings
+      .filter((b) => b.status === "CONFIRMED")
+      .map((b) => ({ checkIn: b.checkIn, checkOut: b.checkOut }));
     return NextResponse.json({ blocks, confirmedBookings });
-  } catch (error) {
-    // Graceful fallback for environments without a database file
+  } catch {
     return NextResponse.json({ blocks: [], confirmedBookings: [] });
   }
 }
