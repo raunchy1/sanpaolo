@@ -25,8 +25,9 @@ export async function readContent<T>(id: string, fallback: T): Promise<T> {
 // Helper — write (upsert) a JSON blob to site_content
 export async function writeContent<T>(id: string, value: T): Promise<void> {
   const supabase = getSupabaseAdmin();
-  await supabase.from("site_content").upsert(
+  const { error } = await supabase.from("site_content").upsert(
     { id, data: value, updated_at: new Date().toISOString() },
     { onConflict: "id" }
   );
+  if (error) throw new Error(error.message);
 }

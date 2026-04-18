@@ -45,7 +45,8 @@ export async function POST(req: Request) {
     };
     await writeContent("overrides", updated);
     return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: "Failed to save" }, { status: 500 });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Unknown error";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

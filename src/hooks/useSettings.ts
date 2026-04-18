@@ -36,18 +36,14 @@ const DEFAULTS: SiteSettings = {
   protocollo: "QA/2025/66178 del 11/07/2025",
 };
 
-let cachedSettings: SiteSettings | null = null;
-
 export function useSettings(): SiteSettings {
-  const [settings, setSettings] = useState<SiteSettings>(cachedSettings ?? DEFAULTS);
+  const [settings, setSettings] = useState<SiteSettings>(DEFAULTS);
 
   useEffect(() => {
-    if (cachedSettings) return;
     fetch("/api/settings")
       .then((r) => r.json())
       .then((data: SiteSettings) => {
-        cachedSettings = { ...DEFAULTS, ...data };
-        setSettings(cachedSettings);
+        setSettings({ ...DEFAULTS, ...data });
       })
       .catch(() => {});
   }, []);

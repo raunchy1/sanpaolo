@@ -50,8 +50,9 @@ export async function POST(req: Request) {
     };
     await writeContent("reviews", [...reviews, newReview]);
     return NextResponse.json({ success: true, review: newReview }, { status: 201 });
-  } catch {
-    return NextResponse.json({ error: "Failed to save" }, { status: 500 });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Unknown error";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
 
@@ -65,8 +66,9 @@ export async function PATCH(req: Request) {
     const updated = reviews.map((r) => (r.id === id ? { ...r, ...updates } : r));
     await writeContent("reviews", updated);
     return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: "Failed to update" }, { status: 500 });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Unknown error";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
 
@@ -82,7 +84,8 @@ export async function DELETE(req: Request) {
     const reviews = await readContent<Review[]>("reviews", []);
     await writeContent("reviews", reviews.filter((r) => r.id !== id));
     return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: "Failed to delete" }, { status: 500 });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Unknown error";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

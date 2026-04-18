@@ -1,57 +1,39 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useTranslation, type Locale } from "@/lib/i18n";
+import { useTranslation } from "@/lib/i18n";
+import { useSettings } from "@/hooks/useSettings";
 import { Star, ExternalLink } from "lucide-react";
 
 /* ─────────────────────────────────────────────
-   Constants
+   Types
 ───────────────────────────────────────────── */
-import { useSettings } from "@/hooks/useSettings";
+interface Review {
+  id: string;
+  name: string;
+  location: string;
+  text: string;
+  rating: number;
+  date: string;
+  platform?: "airbnb" | "booking" | "google";
+}
 
-const allReviewKeys = [
+/* ─────────────────────────────────────────────
+   Hardcoded fallback keys (used when Supabase is empty)
+───────────────────────────────────────────── */
+const FALLBACK_KEYS = [
   "review1", "review2", "review3",
-  "review4", "review5", "review6",
-  "review7",
+  "review4", "review5", "review6", "review7",
 ] as const;
-
-// Map each review to its primary language based on content
-const reviewLocales: Record<typeof allReviewKeys[number], Locale> = {
-  review1: "it",
-  review2: "en",
-  review3: "it",
-  review4: "it",
-  review5: "de",
-  review6: "it",
-  review7: "it",
-};
 
 const categoryKeys = [
   "location", "cleanliness", "comfort",
   "communication", "value", "family",
 ] as const;
 
-type ReviewKey = typeof allReviewKeys[number];
-
-function getOrderedReviews(locale: Locale): ReviewKey[] {
-  // Locale-first: show reviews matching current language first, then fallback it -> en -> de
-  const localeOrder: Record<Locale, Locale[]> = {
-    it: ["it", "en", "de"],
-    en: ["en", "it", "de"],
-    de: ["de", "it", "en"],
-  };
-  const order = localeOrder[locale];
-  const sorted = [...allReviewKeys].sort((a, b) => {
-    const rankA = order.indexOf(reviewLocales[a]);
-    const rankB = order.indexOf(reviewLocales[b]);
-    return rankA - rankB;
-  });
-  return sorted;
-}
-
 /* ─────────────────────────────────────────────
-   Airbnb star icon (inline SVG)
+   Airbnb mark icon
 ───────────────────────────────────────────── */
 function AirbnbMark({ className }: { className?: string }) {
   return (
@@ -107,23 +89,9 @@ function Avatar({ name, idx }: { name: string; idx: number }) {
 }
 
 /* ─────────────────────────────────────────────
-   Single Review Card
+   Review Card (API-driven)
 ───────────────────────────────────────────── */
-function ReviewCard({
-  reviewKey,
-  idx,
-  t,
-}: {
-  reviewKey: string;
-  idx: number;
-  t: (k: string) => string;
-}) {
-  const name     = t(`reviews.${reviewKey}.name`);
-  const location = t(`reviews.${reviewKey}.location`);
-  const text     = t(`reviews.${reviewKey}.text`);
-  const date     = t(`reviews.${reviewKey}.date`);
-  const rating   = parseFloat(t(`reviews.${reviewKey}.rating`));
-
+function ReviewCard({ review, idx }: { review: Review; idx: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -134,23 +102,23 @@ function ReviewCard({
       className="break-inside-avoid mb-5 bg-white rounded-[20px] p-6 md:p-7 group cursor-default flex flex-col gap-5 transition-all duration-300"
       style={{ boxShadow: "0 4px 24px -8px rgba(41,23,13,0.07)" }}
     >
-      {/* Top row: stars + Airbnb badge */}
+      {/* Stars + badge */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-0.5">
           {[...Array(5)].map((_, i) => (
             <Star
               key={i}
-              className={`w-3.5 h-3.5 ${i < Math.round(rating) ? "text-stitch-gold fill-stitch-gold" : "text-stitch-olive-light"}`}
+              className={`w-3.5 h-3.5 ${i < Math.round(review.rating) ? "text-stitch-gold fill-stitch-gold" : "text-stitch-olive-light"}`}
             />
           ))}
         </div>
         <span className="inline-flex items-center gap-1.5 text-[#FF5A5F] text-[10px] font-semibold tracking-wide">
           <AirbnbMark className="w-3 h-3" />
-          {t("reviews.verified")}
+          Verificata
         </span>
       </div>
 
-      {/* Large opening quote — decorative, not a standard quote mark */}
+      {/* Opening quote */}
       <div
         className="font-display text-stitch-olive-light/40 leading-none select-none"
         style={{ fontSize: idx === 0 ? "5rem" : "3.5rem", lineHeight: 0.6, marginBottom: "-0.6rem" }}
@@ -159,22 +127,22 @@ function ReviewCard({
         &ldquo;
       </div>
 
-      {/* Review text */}
+      {/* Text */}
       <p className="text-stitch-on-surface/75 text-[14px] leading-[1.75] flex-1">
-        {text}
+        {review.text}
       </p>
 
-      {/* Author row */}
+      {/* Author */}
       <div className="flex items-center gap-3 pt-4 border-t border-stitch-olive-light/30">
-        <Avatar name={name} idx={idx} />
+        <Avatar name={review.name} idx={idx} />
         <div className="flex-1 min-w-0">
           <p className="font-display font-semibold text-stitch-on-surface text-sm leading-snug truncate">
-            {name}
+            {review.name}
           </p>
-          <p className="text-xs text-stitch-on-surface/40 mt-0.5 truncate">{location}</p>
+          <p className="text-xs text-stitch-on-surface/40 mt-0.5 truncate">{review.location}</p>
         </div>
         <span className="shrink-0 text-[11px] text-stitch-on-surface/35 font-medium italic">
-          {date}
+          {review.date}
         </span>
       </div>
     </motion.div>
@@ -182,13 +150,47 @@ function ReviewCard({
 }
 
 /* ─────────────────────────────────────────────
+   Fallback card (reads from translations)
+───────────────────────────────────────────── */
+function FallbackCard({ reviewKey, idx, t }: { reviewKey: string; idx: number; t: (k: string) => string }) {
+  const name     = t(`reviews.${reviewKey}.name`);
+  const location = t(`reviews.${reviewKey}.location`);
+  const text     = t(`reviews.${reviewKey}.text`);
+  const date     = t(`reviews.${reviewKey}.date`);
+  const rating   = parseFloat(t(`reviews.${reviewKey}.rating`));
+
+  return (
+    <ReviewCard
+      review={{ id: reviewKey, name, location, text, rating, date }}
+      idx={idx}
+    />
+  );
+}
+
+/* ─────────────────────────────────────────────
    Main section
 ───────────────────────────────────────────── */
 export default function Reviews() {
-  const { t, locale } = useTranslation();
+  const { t } = useTranslation();
   const { airbnbReviewsLink, bookingReviewsLink } = useSettings();
   const carouselRef = useRef<HTMLDivElement>(null);
-  const reviewKeys = getOrderedReviews(locale);
+
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/reviews")
+      .then((r) => r.json())
+      .then((data: Review[]) => {
+        setReviews(Array.isArray(data) ? data : []);
+        setLoaded(true);
+      })
+      .catch(() => setLoaded(true));
+  }, []);
+
+  // If Supabase has reviews, use them; otherwise fallback to translations
+  const useSupabase = loaded && reviews.length > 0;
+  const displayCount = useSupabase ? reviews.length : FALLBACK_KEYS.length;
 
   return (
     <section className="py-20 md:py-32 bg-stitch-ivory" id="reviews">
@@ -229,10 +231,9 @@ export default function Reviews() {
             }}
           >
             <div className="p-6 md:p-8 lg:p-10">
-              {/* Overall + Airbnb link row */}
+              {/* Overall + platform links */}
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
                 <div className="flex items-center gap-6 md:gap-10">
-                  {/* Big score */}
                   <div className="text-center sm:text-left">
                     <div className="font-display text-5xl md:text-6xl font-bold text-stitch-green leading-none">
                       {t("reviews.overallScore")}
@@ -256,7 +257,7 @@ export default function Reviews() {
                   </div>
                 </div>
 
-                {/* Platform review pills */}
+                {/* Platform pills */}
                 <div className="flex flex-wrap items-center gap-3 self-start sm:self-center shrink-0">
                   <a
                     href={bookingReviewsLink}
@@ -311,9 +312,13 @@ export default function Reviews() {
 
         {/* ── DESKTOP: CSS Columns masonry ── */}
         <div className="hidden md:block columns-1 md:columns-2 lg:columns-3 gap-5">
-          {reviewKeys.map((key, idx) => (
-            <ReviewCard key={key} reviewKey={key} idx={idx} t={t} />
-          ))}
+          {useSupabase
+            ? reviews.map((review, idx) => (
+                <ReviewCard key={review.id} review={review} idx={idx} />
+              ))
+            : FALLBACK_KEYS.map((key, idx) => (
+                <FallbackCard key={key} reviewKey={key} idx={idx} t={t} />
+              ))}
         </div>
 
         {/* ── MOBILE: Horizontal snap carousel ── */}
@@ -328,13 +333,19 @@ export default function Reviews() {
               msOverflowStyle: "none",
             }}
           >
-            {reviewKeys.map((key, idx) => (
+            {(useSupabase ? reviews : FALLBACK_KEYS.map((key) => ({
+              id: key,
+              name: t(`reviews.${key}.name`),
+              location: t(`reviews.${key}.location`),
+              text: t(`reviews.${key}.text`),
+              date: t(`reviews.${key}.date`),
+              rating: parseFloat(t(`reviews.${key}.rating`)),
+            }))).map((review: Review, idx: number) => (
               <div
-                key={key}
+                key={review.id}
                 className="shrink-0 w-[82vw] max-w-[320px]"
                 style={{ scrollSnapAlign: "start" }}
               >
-                {/* Mobile card — inline version (no break-inside) */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -364,17 +375,17 @@ export default function Reviews() {
                   </div>
 
                   <p className="text-stitch-on-surface/70 text-[13px] leading-[1.7] flex-1">
-                    {t(`reviews.${key}.text`)}
+                    {review.text}
                   </p>
 
                   <div className="flex items-center gap-2.5 pt-3 border-t border-stitch-olive-light/30">
-                    <Avatar name={t(`reviews.${key}.name`)} idx={idx} />
+                    <Avatar name={review.name} idx={idx} />
                     <div className="flex-1 min-w-0">
                       <p className="font-display font-semibold text-stitch-on-surface text-xs truncate">
-                        {t(`reviews.${key}.name`)}
+                        {review.name}
                       </p>
                       <p className="text-[10px] text-stitch-on-surface/40 truncate">
-                        {t(`reviews.${key}.location`)} · {t(`reviews.${key}.date`)}
+                        {review.location} · {review.date}
                       </p>
                     </div>
                   </div>
@@ -383,13 +394,10 @@ export default function Reviews() {
             ))}
           </div>
 
-          {/* Scroll dots indicator */}
+          {/* Scroll dots */}
           <div className="flex items-center justify-center gap-1.5 mt-4">
-            {reviewKeys.map((_, i) => (
-              <div
-                key={i}
-                className="w-1.5 h-1.5 rounded-full bg-stitch-olive-light"
-              />
+            {Array.from({ length: displayCount }).map((_, i) => (
+              <div key={i} className="w-1.5 h-1.5 rounded-full bg-stitch-olive-light" />
             ))}
           </div>
         </div>
