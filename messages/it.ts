@@ -460,7 +460,7 @@ export default {
     },
     "q3": {
       "question": "C'è il parcheggio?",
-      "answer": "Il parcheggio gratuito si trova proprio di fronte alla struttura. Non è un posto assegnato o prenotabile, ma la disponibilità è generalmente molto alta. L'accesso avviene da una strada privata utilizzata esclusivamente dai residenti, rendendo l'area tranquilla e sicura. Il parcheggio è gratuito, all'aperto e senza limiti di orario."
+      "answer": "Il parcheggio gratuito si trova proprio di fronte alla struttura. Non è un posto assegnato o prenotabile, ma la disponibilità è garantita. L'accesso avviene da una strada privata utilizzata esclusivamente dai residenti, rendendo l'area tranquilla e sicura. Il parcheggio è gratuito, all'aperto e senza limiti di orario."
     },
     "q4": {
       "question": "Come arrivo dall'aeroporto?",

@@ -19,11 +19,29 @@ interface I18nContextType {
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-const allMessages: Record<Locale, Messages> = {
+const baseMessages: Record<Locale, Messages> = {
   it: itMessages as Messages,
   en: enMessages as Messages,
   de: deMessages as Messages,
 };
+
+function deepMerge(target: Messages, source: Messages): Messages {
+  const result: Messages = { ...target };
+  for (const key in source) {
+    if (
+      source[key] &&
+      typeof source[key] === "object" &&
+      !Array.isArray(source[key]) &&
+      target[key] &&
+      typeof target[key] === "object"
+    ) {
+      result[key] = deepMerge(target[key] as Messages, source[key] as Messages);
+    } else if (source[key] !== undefined && source[key] !== "") {
+      result[key] = source[key];
+    }
+  }
+  return result;
+}
 
 function getNestedValue(obj: Record<string, unknown>, path: string): string {
   const keys = path.split(".");
@@ -40,12 +58,24 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string {
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("it");
+  const [overrides, setOverrides] = useState<Record<Locale, Messages>>({ it: {}, en: {}, de: {} });
 
   useEffect(() => {
     const saved = typeof window !== "undefined" ? localStorage.getItem("locale") as Locale : null;
     if (saved && ["it", "en", "de"].includes(saved)) {
       setLocaleState(saved);
     }
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/content")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data && typeof data === "object") {
+          setOverrides(data as Record<Locale, Messages>);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const setLocale = useCallback((loc: Locale) => {
@@ -56,7 +86,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const messages = allMessages[locale];
+  const messages = deepMerge(baseMessages[locale], overrides[locale] || {});
 
   const t = useCallback(
     (key: string): string => {
