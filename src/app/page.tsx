@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useTranslation } from "@/lib/i18n";
 import Navigation from "@/components/sections/Navigation";
 import Hero from "@/components/sections/Hero";
@@ -17,8 +18,48 @@ import FAQ from "@/components/sections/FAQ";
 import Footer from "@/components/sections/Footer";
 import MobileStickyCTA from "@/components/sections/MobileStickyCTA";
 
+interface SectionConfig {
+  id: string;
+  visible: boolean;
+}
+
+const SECTION_COMPONENTS: Record<string, React.ComponentType> = {
+  hero:          Hero,
+  checkin:       CheckIn,
+  guestFavorites: GuestFavorites,
+  laCasa:        LaCasa,
+  amenities:     Amenities,
+  roomTour:      RoomTour,
+  newBuild:      NewBuild,
+  location:      Location,
+  reviews:       Reviews,
+  specialOffers: SpecialOffers,
+  bookingCTA:    BookingCTA,
+  faq:           FAQ,
+};
+
+const DEFAULT_ORDER = [
+  "hero", "checkin", "guestFavorites", "laCasa", "amenities",
+  "roomTour", "newBuild", "location", "reviews", "specialOffers",
+  "bookingCTA", "faq",
+];
+
 export default function Home() {
   const { messages } = useTranslation();
+  const [sectionConfig, setSectionConfig] = useState<SectionConfig[]>([]);
+  const [configLoaded, setConfigLoaded] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/sections")
+      .then((r) => r.json())
+      .then((data: SectionConfig[]) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setSectionConfig(data);
+        }
+        setConfigLoaded(true);
+      })
+      .catch(() => setConfigLoaded(true));
+  }, []);
 
   if (!messages || Object.keys(messages).length === 0) {
     return (
@@ -37,22 +78,20 @@ export default function Home() {
     );
   }
 
+  // Build ordered + filtered section list
+  const orderedSections: string[] = configLoaded && sectionConfig.length > 0
+    ? sectionConfig.filter((s) => s.visible).map((s) => s.id)
+    : DEFAULT_ORDER;
+
   return (
     <div className="min-h-screen flex flex-col bg-stitch-ivory">
       <Navigation />
       <main className="flex-1">
-        <Hero />
-        <CheckIn />
-        <GuestFavorites />
-        <LaCasa />
-        <Amenities />
-        <RoomTour />
-        <NewBuild />
-        <Location />
-        <Reviews />
-        <SpecialOffers />
-        <BookingCTA />
-        <FAQ />
+        {orderedSections.map((id) => {
+          const Component = SECTION_COMPONENTS[id];
+          if (!Component) return null;
+          return <Component key={id} />;
+        })}
       </main>
       <Footer />
       <MobileStickyCTA />
