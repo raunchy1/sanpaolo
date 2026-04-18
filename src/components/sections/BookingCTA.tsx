@@ -10,10 +10,7 @@ import {
   Check,
 } from "lucide-react";
 import DualContactCTA from "@/components/ui/DualContactCTA";
-
-const WHATSAPP_NUMBER = "393299362759";
-const AIRBNB_LINK = "https://www.airbnb.com.ro/rooms/1517964247980793952?unique_share_id=d7fecbe5-b751-40f5-a115-83c02ad481fa&viralityEntryPoint=1&s=76&source_impression_id=p3_1776174940_P3vjFjX5W4f5k4KO";
-const BOOKING_LINK = "https://booking.com/hotel/it/san-paolo-hideout-roma.ro.html";
+import { useSettings } from "@/hooks/useSettings";
 
 const bookingFeatures = [
   { key: "bestPrice", icon: Shield },
@@ -56,6 +53,7 @@ function BookingIcon({ className }: { className?: string }) {
 
 export default function BookingCTA() {
   const { t } = useTranslation();
+  const { airbnbLink, bookingLink } = useSettings();
 
   return (
     <section
@@ -134,7 +132,7 @@ export default function BookingCTA() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
             {/* Airbnb */}
             <a
-              href={AIRBNB_LINK}
+              href={airbnbLink}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("booking.ctaAirbnb")}
@@ -146,7 +144,7 @@ export default function BookingCTA() {
 
             {/* Booking.com */}
             <a
-              href={BOOKING_LINK}
+              href={bookingLink}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("booking.ctaBooking")}

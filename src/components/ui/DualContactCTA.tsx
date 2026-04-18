@@ -1,10 +1,7 @@
 "use client";
 
 import { Phone, MessageCircle } from "lucide-react";
-
-const PHONE_NUMBER = "+393299362759";
-const WHATSAPP_NUMBER = "393299362759";
-const PHONE_LINK = `tel:${PHONE_NUMBER}`;
+import { useSettings } from "@/hooks/useSettings";
 
 interface DualContactCTAProps {
   callLabel?: string;
@@ -23,9 +20,11 @@ export default function DualContactCTA({
   className = "",
   whatsappText,
 }: DualContactCTAProps) {
+  const { phone, whatsapp } = useSettings();
+
   const waLink = whatsappText
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappText)}`
-    : `https://wa.me/${WHATSAPP_NUMBER}`;
+    ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(whatsappText)}`
+    : `https://wa.me/${whatsapp}`;
 
   const sizes = {
     sm: "px-5 py-2.5 text-sm gap-2",
@@ -52,7 +51,7 @@ export default function DualContactCTA({
   return (
     <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${className}`}>
       <a
-        href={PHONE_LINK}
+        href={`tel:${phone}`}
         className={`inline-flex items-center justify-center rounded-lg font-label tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] min-w-[180px] ${sizes[size]} ${callStyles}`}
       >
         <Phone className={iconSizes[size]} />

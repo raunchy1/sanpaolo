@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
 import { Calendar, Sun, Gift, Clock } from "lucide-react";
-
-const WHATSAPP_NUMBER = "393299362759";
+import { useSettings } from "@/hooks/useSettings";
 
 const offers = [
   {
@@ -31,6 +30,7 @@ const offers = [
 
 export default function SpecialOffers() {
   const { t } = useTranslation();
+  const { whatsapp } = useSettings();
 
   return (
     <section className="section-luxury bg-stitch-ivory">
@@ -89,7 +89,7 @@ export default function SpecialOffers() {
                 </p>
 
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t(`offers.${offer.key}.waText`))}`}
+                  href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(t(`offers.${offer.key}.waText`))}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white text-stitch-green px-6 py-2.5 rounded-lg font-label text-[11px] tracking-widest uppercase transition-all duration-300 hover:bg-stitch-ivory hover:scale-[1.02]"

@@ -4,14 +4,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
 import { Phone, MessageCircle } from "lucide-react";
-
-const PHONE_NUMBER = "+393299362759";
-const WHATSAPP_NUMBER = "393299362759";
-const PHONE_LINK = `tel:${PHONE_NUMBER}`;
+import { useSettings } from "@/hooks/useSettings";
 
 export default function MobileStickyCTA() {
   const { t } = useTranslation();
-  const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("common.whatsapp.booking"))}`;
+  const { phone, whatsapp } = useSettings();
+  const PHONE_LINK = `tel:${phone}`;
+  const WHATSAPP_LINK = `https://wa.me/${whatsapp}?text=${encodeURIComponent(t("common.whatsapp.booking"))}`;
 
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);

@@ -8,6 +8,8 @@ import {
   CalendarDays,
   BookOpen,
   FileText,
+  Settings,
+  Star,
   LogOut,
   Home,
 } from "lucide-react";
@@ -17,6 +19,8 @@ const navItems = [
   { href: "/admin/prenotazioni", label: "Prenotazioni", icon: BookOpen },
   { href: "/admin/calendario", label: "Calendario", icon: CalendarDays },
   { href: "/admin/contenuti", label: "Contenuti", icon: FileText },
+  { href: "/admin/impostazioni", label: "Impostazioni", icon: Settings },
+  { href: "/admin/recensioni", label: "Recensioni", icon: Star },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

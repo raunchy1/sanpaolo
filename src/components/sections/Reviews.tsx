@@ -8,9 +8,7 @@ import { Star, ExternalLink } from "lucide-react";
 /* ─────────────────────────────────────────────
    Constants
 ───────────────────────────────────────────── */
-const AIRBNB_LINK =
-  "https://www.airbnb.com/rooms/1517964247980793952";
-const BOOKING_REVIEWS_LINK = "https://www.booking.com/hotel/it/san-paolo-hideout-roma.ro.html#tab-reviews";
+import { useSettings } from "@/hooks/useSettings";
 
 const allReviewKeys = [
   "review1", "review2", "review3",
@@ -188,6 +186,7 @@ function ReviewCard({
 ───────────────────────────────────────────── */
 export default function Reviews() {
   const { t, locale } = useTranslation();
+  const { airbnbReviewsLink, bookingReviewsLink } = useSettings();
   const carouselRef = useRef<HTMLDivElement>(null);
   const reviewKeys = getOrderedReviews(locale);
 
@@ -260,7 +259,7 @@ export default function Reviews() {
                 {/* Platform review pills */}
                 <div className="flex flex-wrap items-center gap-3 self-start sm:self-center shrink-0">
                   <a
-                    href={BOOKING_REVIEWS_LINK}
+                    href={bookingReviewsLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2.5 bg-white hover:bg-[#FFF1EA] px-5 py-3 rounded-full font-label text-xs tracking-wider uppercase text-stitch-on-surface/60 hover:text-stitch-on-surface transition-all duration-300"
@@ -271,7 +270,7 @@ export default function Reviews() {
                     <ExternalLink className="w-3.5 h-3.5 text-stitch-on-surface/30" />
                   </a>
                   <a
-                    href={AIRBNB_LINK}
+                    href={airbnbReviewsLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2.5 bg-white hover:bg-[#FFF1EA] px-5 py-3 rounded-full font-label text-xs tracking-wider uppercase text-stitch-on-surface/60 hover:text-stitch-on-surface transition-all duration-300"
@@ -404,7 +403,7 @@ export default function Reviews() {
           className="mt-12 text-center flex flex-wrap items-center justify-center gap-6"
         >
           <a
-            href={BOOKING_REVIEWS_LINK}
+            href={bookingReviewsLink}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 text-stitch-on-surface/50 hover:text-stitch-on-surface text-sm transition-colors duration-200"
@@ -414,7 +413,7 @@ export default function Reviews() {
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
           <a
-            href={AIRBNB_LINK}
+            href={airbnbReviewsLink}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 text-stitch-on-surface/50 hover:text-stitch-on-surface text-sm transition-colors duration-200"

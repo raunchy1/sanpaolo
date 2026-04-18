@@ -33,16 +33,7 @@ function GoogleGIcon({ className }: { className?: string }) {
   );
 }
 
-const PHONE_NUMBER = "+393299362759";
-const WHATSAPP_NUMBER = "393299362759";
-const MAPS_LINK = "https://maps.google.com/?q=Via+Silvio+D'Amico+96,+00145+Roma";
-const INSTAGRAM_LINK = "https://www.instagram.com/casavacanze_sanpaolohideout/";
-
-const LEGAL = {
-  prot: "QA/2025/66178 del 11/07/2025",
-  cin: "IT058091C2OS2A4EP2",
-  cir: "058091-CAV-15649",
-};
+import { useSettings } from "@/hooks/useSettings";
 
 const containerVariants = {
   hidden: {},
@@ -59,6 +50,7 @@ const itemVariants = {
 
 export default function Footer() {
   const { t, locale, setLocale } = useTranslation();
+  const { phone, whatsapp, mapsLink, instagramLink, cin, cir, protocollo } = useSettings();
 
   const serviceLinks = [
     { labelKey: "rooms", href: "#rooms" },
@@ -69,7 +61,7 @@ export default function Footer() {
     { labelKey: "bookNow", href: "#booking" },
   ] as const;
 
-  const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("common.whatsapp.inquiry"))}`;
+  const WHATSAPP_LINK = `https://wa.me/${whatsapp}?text=${encodeURIComponent(t("common.whatsapp.inquiry"))}`;
 
   const languages: { code: Locale; label: string; flag: string }[] = [
     { code: "it", label: "IT", flag: "🇮🇹" },
@@ -198,7 +190,7 @@ export default function Footer() {
             {/* Social icons */}
             <div className="flex items-center gap-3">
               <a
-                href={INSTAGRAM_LINK}
+                href={instagramLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -216,7 +208,7 @@ export default function Footer() {
                 <MessageCircle className="w-4 h-4" />
               </a>
               <a
-                href={`tel:${PHONE_NUMBER}`}
+                href={`tel:${phone}`}
                 aria-label={t("footer.phone")}
                 className="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-white/40 hover:text-white hover:bg-stitch-green/20 hover:border-stitch-green/30 transition-all duration-250"
               >
@@ -277,20 +269,20 @@ export default function Footer() {
               {/* Phone */}
               <li>
                 <a
-                  href={`tel:${PHONE_NUMBER}`}
+                  href={`tel:${phone}`}
                   className="flex items-center gap-3 text-white/45 hover:text-white transition-colors duration-200 group"
                 >
                   <div className="w-7 h-7 rounded-lg bg-white/[0.05] group-hover:bg-white/10 flex items-center justify-center shrink-0 transition-colors duration-200">
                     <Phone className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
                   </div>
-                  <span className="text-sm">{PHONE_NUMBER}</span>
+                  <span className="text-sm">{phone}</span>
                 </a>
               </li>
 
               {/* WhatsApp */}
               <li>
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  href={`https://wa.me/${whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-white/45 hover:text-white transition-colors duration-200 group"
@@ -318,7 +310,7 @@ export default function Footer() {
               {/* Maps */}
               <li>
                 <a
-                  href={MAPS_LINK}
+                  href={mapsLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-white/45 hover:text-white transition-colors duration-200 group"
@@ -347,7 +339,7 @@ export default function Footer() {
                     {t("footer.protocolLabel")}
                   </p>
                   <p className="text-white/60 text-xs font-mono leading-snug">
-                    n. {LEGAL.prot}
+                    n. {protocollo}
                   </p>
                 </div>
                 <div className="w-full h-px bg-white/[0.05]" />
@@ -356,7 +348,7 @@ export default function Footer() {
                     {t("footer.cinLabel")}
                   </p>
                   <p className="text-white/60 text-xs font-mono break-all">
-                    {LEGAL.cin}
+                    {cin}
                   </p>
                 </div>
                 <div className="w-full h-px bg-white/[0.05]" />
@@ -365,7 +357,7 @@ export default function Footer() {
                     {t("footer.cirLabel")}
                   </p>
                   <p className="text-white/60 text-xs font-mono">
-                    {LEGAL.cir}
+                    {cir}
                   </p>
                 </div>
               </div>
@@ -400,7 +392,7 @@ export default function Footer() {
               {t("footer.copyright")}
             </p>
             <p className="text-white/20 text-xs text-center">
-              {t("footer.holidayHome")} · CIN {LEGAL.cin}
+              {t("footer.holidayHome")} · CIN {cin}
             </p>
             <div className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-stitch-green animate-pulse" />

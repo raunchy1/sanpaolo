@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation, Locale } from "@/lib/i18n";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import Image from "next/image";
-
-const WHATSAPP_NUMBER = "393299362759";
+import { useSettings } from "@/hooks/useSettings";
 
 const navItems = [
   { key: "home", href: "#home" },
@@ -25,11 +24,12 @@ const languages: { code: Locale; flag: string }[] = [
 
 export default function Navigation() {
   const { t, locale, setLocale } = useTranslation();
+  const { whatsapp } = useSettings();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
 
-  const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t("common.whatsapp.inquiry"))}`;
+  const WHATSAPP_LINK = `https://wa.me/${whatsapp}?text=${encodeURIComponent(t("common.whatsapp.inquiry"))}`;
 
   useEffect(() => {
     const handleScroll = () => {
