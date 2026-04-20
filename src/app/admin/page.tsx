@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { readContent } from "@/lib/supabase";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { BookOpen, CalendarDays, FileText, Clock } from "lucide-react";
+import { BookOpen, CalendarDays, FileText, Clock, Star, Images } from "lucide-react";
 
 type BookingStatus = "PENDING" | "CONFIRMED" | "CANCELLED";
 
@@ -17,27 +17,34 @@ interface Booking {
   createdAt: string;
 }
 
-interface AvailabilityBlock {
-  id: string;
-  date: string;
-}
+interface AvailabilityBlock { id: string; date: string; }
+interface Review { id: string; hidden?: boolean; }
+interface GalleryRoom { images: { visible: boolean }[]; }
+interface GalleryConfig { rooms: GalleryRoom[]; }
 
 async function getStats() {
   try {
-    const [bookings, blocks] = await Promise.all([
+    const [bookings, blocks, reviews, gallery] = await Promise.all([
       readContent<Booking[]>("bookings", []),
       readContent<AvailabilityBlock[]>("availability", []),
+      readContent<Review[]>("reviews", []),
+      readContent<GalleryConfig>("gallery_config", { rooms: [] }),
     ]);
+    const visiblePhotos = gallery.rooms?.reduce(
+      (sum: number, r: GalleryRoom) => sum + (r.images?.filter((i) => i.visible).length ?? 0), 0
+    ) ?? 0;
     return {
       pending: bookings.filter((b) => b.status === "PENDING").length,
       confirmed: bookings.filter((b) => b.status === "CONFIRMED").length,
       blocks: blocks.length,
+      reviews: reviews.filter((r) => !r.hidden).length,
+      photos: visiblePhotos,
       recent: bookings
         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
         .slice(0, 5),
     };
   } catch {
-    return { pending: 0, confirmed: 0, blocks: 0, recent: [] };
+    return { pending: 0, confirmed: 0, blocks: 0, reviews: 0, photos: 0, recent: [] };
   }
 }
 
@@ -66,27 +73,11 @@ export default async function AdminDashboard() {
   const stats = await getStats();
 
   const cards = [
-    {
-      label: "Prenotazioni in attesa",
-      value: stats.pending,
-      icon: Clock,
-      href: "/admin/prenotazioni",
-      color: "text-amber-600 bg-amber-50",
-    },
-    {
-      label: "Prenotazioni confermate",
-      value: stats.confirmed,
-      icon: BookOpen,
-      href: "/admin/prenotazioni",
-      color: "text-green-700 bg-green-50",
-    },
-    {
-      label: "Date bloccate",
-      value: stats.blocks,
-      icon: CalendarDays,
-      href: "/admin/calendario",
-      color: "text-blue-700 bg-blue-50",
-    },
+    { label: "In attesa",       value: stats.pending,   icon: Clock,        href: "/admin/prenotazioni", color: "text-amber-600 bg-amber-50" },
+    { label: "Confermate",      value: stats.confirmed, icon: BookOpen,     href: "/admin/prenotazioni", color: "text-green-700 bg-green-50" },
+    { label: "Date bloccate",   value: stats.blocks,    icon: CalendarDays, href: "/admin/calendario",   color: "text-blue-700 bg-blue-50" },
+    { label: "Recensioni live", value: stats.reviews,   icon: Star,         href: "/admin/recensioni",   color: "text-purple-700 bg-purple-50" },
+    { label: "Foto visibili",   value: stats.photos,    icon: Images,       href: "/admin/galleria",     color: "text-rose-700 bg-rose-50" },
   ];
 
   return (
@@ -96,7 +87,7 @@ export default async function AdminDashboard() {
         <p className="text-gray-500 text-sm mt-1">Ecco un riepilogo della situazione attuale.</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
         {cards.map((card) => (
           <Link
             key={card.label}
@@ -141,32 +132,27 @@ export default async function AdminDashboard() {
         )}
       </div>
 
-      <div className="mt-4 grid grid-cols-2 gap-4">
-        <Link
-          href="/admin/calendario"
-          className="bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-md transition-shadow flex items-center gap-4"
-        >
-          <div className="p-2.5 rounded-xl bg-[#072316]/8 text-[#072316]">
-            <CalendarDays className="w-5 h-5" />
-          </div>
-          <div>
-            <div className="font-medium text-gray-900 text-sm">Gestisci disponibilità</div>
-            <div className="text-xs text-gray-400">Blocca o sblocca date</div>
-          </div>
-        </Link>
-
-        <Link
-          href="/admin/contenuti"
-          className="bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-md transition-shadow flex items-center gap-4"
-        >
-          <div className="p-2.5 rounded-xl bg-[#072316]/8 text-[#072316]">
-            <FileText className="w-5 h-5" />
-          </div>
-          <div>
-            <div className="font-medium text-gray-900 text-sm">Modifica contenuti</div>
-            <div className="text-xs text-gray-400">Testi, FAQ, offerte</div>
-          </div>
-        </Link>
+      <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { href: "/admin/calendario",   icon: CalendarDays, title: "Disponibilità",   sub: "Blocca o sblocca date" },
+          { href: "/admin/contenuti",    icon: FileText,     title: "Contenuti",        sub: "Testi, FAQ, offerte" },
+          { href: "/admin/recensioni",   icon: Star,         title: "Recensioni",       sub: "Gestisci recensioni" },
+          { href: "/admin/impostazioni", icon: Images,       title: "Impostazioni",     sub: "Contatti, SEO, link" },
+        ].map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="bg-white rounded-2xl border border-gray-100 p-5 hover:shadow-md transition-shadow flex items-center gap-4"
+          >
+            <div className="p-2.5 rounded-xl bg-[#072316]/8 text-[#072316] shrink-0">
+              <item.icon className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="font-medium text-gray-900 text-sm truncate">{item.title}</div>
+              <div className="text-xs text-gray-400 truncate">{item.sub}</div>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

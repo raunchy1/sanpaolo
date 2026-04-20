@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import {
   CheckCircle, XCircle, Clock, RefreshCw, User, Calendar, Users,
-  Plus, Pencil, Trash2, X, Phone, Mail, FileText, Save,
+  Plus, Pencil, Trash2, X, Phone, Mail, FileText, Save, Download,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -201,6 +201,25 @@ export default function PrenotazioniPage() {
     }
   }
 
+  function exportCSV() {
+    const rows = [
+      ["Nome", "Email", "Telefono", "Check-in", "Check-out", "Ospiti", "Stato", "Note", "Creata il"],
+      ...bookings.map((b) => [
+        b.name, b.email, b.phone || "", b.checkIn.slice(0, 10), b.checkOut.slice(0, 10),
+        String(b.guests), b.status, b.notes || "", b.createdAt.slice(0, 10),
+      ]),
+    ];
+    const csv = rows.map((r) => r.map((c) => `"${c.replace(/"/g, '""')}"`).join(",")).join("\n");
+    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `prenotazioni-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast.success("File CSV scaricato");
+  }
+
   const filtered = filter === "ALL" ? bookings : bookings.filter((b) => b.status === filter);
   const counts = {
     ALL: bookings.length,
@@ -224,6 +243,15 @@ export default function PrenotazioniPage() {
           >
             <RefreshCw className="w-4 h-4" />
           </button>
+          {bookings.length > 0 && (
+            <button
+              onClick={exportCSV}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              Esporta CSV
+            </button>
+          )}
           <button
             onClick={openAdd}
             className="flex items-center gap-2 px-4 py-2 bg-[#072316] text-white rounded-xl text-sm font-medium hover:bg-[#0F3D28] transition-colors"

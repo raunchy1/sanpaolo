@@ -14,6 +14,7 @@ import {
   LogOut,
   Home,
   Images,
+  Palette,
 } from "lucide-react";
 
 const navItems = [
@@ -25,6 +26,7 @@ const navItems = [
   { href: "/admin/galleria", label: "Galleria foto", icon: Images },
   { href: "/admin/recensioni", label: "Recensioni", icon: Star },
   { href: "/admin/impostazioni", label: "Impostazioni", icon: Settings },
+  { href: "/admin/design", label: "Design", icon: Palette },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

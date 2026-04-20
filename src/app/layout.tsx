@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Newsreader, Manrope } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
+import { readContent } from "@/lib/supabase";
+import type { SiteSettings } from "@/app/api/settings/route";
 
 const newsreader = Newsreader({
   variable: "--font-newsreader",
@@ -18,70 +20,90 @@ const manrope = Manrope({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://sanpaolohideout.it"),
-  title: "San Paolo Hideout | Boutique Vacation Rental Rome San Paolo",
-  description:
-    "San Paolo Hideout: boutique detached house in Rome near Basilica San Paolo and Metro B. Newly built 2025, shared green outdoor area, 2 bedrooms, 3 guests. Book directly for the best price.",
-  keywords: [
-    "San Paolo Hideout",
-    "Rome vacation rental",
-    "Rome holiday home",
-    "boutique stay Rome",
-    "green outdoor area Rome",
-    "Metro B Rome",
-    "Basilica San Paolo",
-    "direct booking Rome",
-    "detached house Rome",
-    "new build Rome 2025",
-    "Rom Ferienwohnung",
-    "Via Silvio d'Amico Roma",
-  ],
-  authors: [{ name: "San Paolo Hideout" }],
-  icons: {
-    icon: [
-      { url: "/logo-green.png", sizes: "32x32", type: "image/png" },
-      { url: "/logo-green.png", sizes: "16x16", type: "image/png" },
-      { url: "/logo-green.png", sizes: "any" },
-    ],
-    apple: { url: "/logo-green.png", sizes: "180x180", type: "image/png" },
-    shortcut: "/logo-green.png",
-  },
-  openGraph: {
-    title: "San Paolo Hideout — Rome | Boutique Vacation Rental with Green Outdoor Area",
-    description:
-      "Your private Roman sanctuary near Metro B. Newly built detached house 2025, 2 bedrooms, shared green outdoor area. Book directly on WhatsApp.",
-    url: "https://sanpaolohideout.it",
-    siteName: "San Paolo Hideout",
-    type: "website",
-    locale: "it_IT",
-    alternateLocale: ["en_US", "de_DE"],
-    images: [
-      {
-        url: "/images/hero-trevi.jpg",
-        width: 1344,
-        height: 768,
-        alt: "San Paolo Hideout - Roma",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "San Paolo Hideout — Rome",
-    description:
-      "Your private Roman sanctuary near Metro B. Newly built house 2025, green outdoor area. Book directly.",
-    images: ["/images/hero-trevi.jpg"],
-  },
-};
+const STATIC_TITLE = "San Paolo Hideout | Boutique Vacation Rental Rome San Paolo";
+const STATIC_DESC = "San Paolo Hideout: boutique detached house in Rome near Basilica San Paolo and Metro B. Newly built 2025, shared green outdoor area, 2 bedrooms, 3 guests. Book directly for the best price.";
+const STATIC_OG_TITLE = "San Paolo Hideout — Rome | Boutique Vacation Rental with Green Outdoor Area";
+const STATIC_OG_DESC = "Your private Roman sanctuary near Metro B. Newly built detached house 2025, 2 bedrooms, shared green outdoor area. Book directly on WhatsApp.";
+const STATIC_OG_IMAGE = "/images/hero-trevi.jpg";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export async function generateMetadata(): Promise<Metadata> {
+  let settings: Partial<SiteSettings> = {};
+  try {
+    settings = await readContent<SiteSettings>("settings", {} as SiteSettings);
+  } catch { /* fallback to static */ }
+
+  const title = settings.seoTitle || STATIC_TITLE;
+  const description = settings.seoDescription || STATIC_DESC;
+  const ogTitle = settings.ogTitle || STATIC_OG_TITLE;
+  const ogDesc = settings.ogDescription || STATIC_OG_DESC;
+  const ogImage = settings.ogImage || STATIC_OG_IMAGE;
+
+  return {
+    metadataBase: new URL("https://sanpaolohideout.it"),
+    title,
+    description,
+    keywords: [
+      "San Paolo Hideout", "Rome vacation rental", "Rome holiday home",
+      "boutique stay Rome", "green outdoor area Rome", "Metro B Rome",
+      "Basilica San Paolo", "direct booking Rome", "detached house Rome",
+      "new build Rome 2025", "Rom Ferienwohnung", "Via Silvio d'Amico Roma",
+    ],
+    authors: [{ name: "San Paolo Hideout" }],
+    icons: {
+      icon: [
+        { url: "/logo-green.png", sizes: "32x32", type: "image/png" },
+        { url: "/logo-green.png", sizes: "16x16", type: "image/png" },
+        { url: "/logo-green.png", sizes: "any" },
+      ],
+      apple: { url: "/logo-green.png", sizes: "180x180", type: "image/png" },
+      shortcut: "/logo-green.png",
+    },
+    openGraph: {
+      title: ogTitle,
+      description: ogDesc,
+      url: "https://sanpaolohideout.it",
+      siteName: "San Paolo Hideout",
+      type: "website",
+      locale: "it_IT",
+      alternateLocale: ["en_US", "de_DE"],
+      images: [{ url: ogImage, width: 1344, height: 768, alt: "San Paolo Hideout - Roma" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ogTitle,
+      description: ogDesc,
+      images: [ogImage],
+    },
+  };
+}
+
+interface DesignConfig {
+  primaryColor?: string;
+  primaryHover?: string;
+  accentColor?: string;
+  borderRadius?: string;
+}
+
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  let design: DesignConfig = {};
+  try {
+    design = await readContent<DesignConfig>("design_config", {});
+  } catch { /* no design overrides */ }
+
+  // Build CSS variable overrides only for fields explicitly set
+  const cssVars = [
+    design.primaryColor && `--color-admin-primary: ${design.primaryColor};`,
+    design.primaryHover && `--color-admin-primary-hover: ${design.primaryHover};`,
+    design.accentColor  && `--color-admin-accent: ${design.accentColor};`,
+    design.borderRadius && `--admin-border-radius: ${design.borderRadius};`,
+  ].filter(Boolean).join(" ");
+
   return (
     <html lang="it" suppressHydrationWarning>
       <head>
+        {cssVars && (
+          <style dangerouslySetInnerHTML={{ __html: `:root { ${cssVars} }` }} />
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -99,31 +121,15 @@ export default function RootLayout({
                 addressRegion: "Lazio",
                 addressCountry: "IT",
               },
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: 41.8553,
-                longitude: 12.4734,
-              },
-              starRating: {
-                "@type": "Rating",
-                ratingValue: "9.9",
-                bestRating: "10",
-              },
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "9.9",
-                reviewCount: "46",
-                bestRating: "10",
-              },
+              geo: { "@type": "GeoCoordinates", latitude: 41.8553, longitude: 12.4734 },
+              starRating: { "@type": "Rating", ratingValue: "9.9", bestRating: "10" },
+              aggregateRating: { "@type": "AggregateRating", ratingValue: "9.9", reviewCount: "46", bestRating: "10" },
               numberOfRooms: "2",
-              occupancy: {
-                "@type": "QuantitativeValue",
-                maxValue: 3,
-              },
+              occupancy: { "@type": "QuantitativeValue", maxValue: 3 },
               amenityFeature: [
                 { "@type": "LocationFeatureSpecification", name: "Shared Green Outdoor Area", value: true },
                 { "@type": "LocationFeatureSpecification", name: "Free Parking", value: true },
-{ "@type": "LocationFeatureSpecification", name: "Fast Wi-Fi", value: true },
+                { "@type": "LocationFeatureSpecification", name: "Fast Wi-Fi", value: true },
                 { "@type": "LocationFeatureSpecification", name: "Air Conditioning", value: true },
                 { "@type": "LocationFeatureSpecification", name: "Smart TV", value: true },
                 { "@type": "LocationFeatureSpecification", name: "Newly Built 2025", value: true },
@@ -136,7 +142,6 @@ export default function RootLayout({
             }),
           }}
         />
-        {/* Review structured data — real Airbnb guest reviews */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -144,83 +149,18 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "ItemList",
               itemListElement: [
-                {
-                  "@type": "Review",
-                  position: 1,
-                  author: { "@type": "Person", name: "Martina" },
-                  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-                  reviewBody: "Abbiamo passato una notte e siamo rimasti molto soddisfatti. La casa è nuova, all'interno di una zona molto silenziosa ma vicina dell'università Roma Tre e alla metro. Nicola è stato molto disponibile e ci ha aiutato. L'host è gentile e molto disponibile, ci ha dato la possibilità di lasciare i bagagli molto prima del checkin.",
-                  datePublished: "2026-04",
-                  itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" },
-                },
-                {
-                  "@type": "Review",
-                  position: 2,
-                  author: { "@type": "Person", name: "Jose" },
-                  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-                  reviewBody: "We had a wonderful stay here and felt comfortable from the moment we arrived. The beds were very comfortable, the sofa was amazing, and having Netflix on the TV was a great bonus. The private parking was a huge advantage. Nicola is an outstanding host — very professional, kind, and attentive.",
-                  datePublished: "2024-10",
-                  itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" },
-                },
-                {
-                  "@type": "Review",
-                  position: 3,
-                  author: { "@type": "Person", name: "Riccardo" },
-                  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-                  reviewBody: "Ottimo alloggio! Un grazie speciale a Nicola per la sua grande gentilezza, attenzione e disponibilità. Grande cura in tutti i dettagli della casa, super confortevole e immersa in un bellissimo verde.",
-                  datePublished: "2024-10",
-                  itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" },
-                },
-                {
-                  "@type": "Review",
-                  position: 4,
-                  author: { "@type": "Person", name: "Diana" },
-                  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-                  reviewBody: "Era il nostro 2° giorno a Roma. Per fortuna avevamo un parcheggio privato — fuori era impossibile parcheggiare. Buona posizione, anche a piedi è facile raggiungere tanti posti. Di sicuro torneremo.",
-                  datePublished: "2024-11",
-                  itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" },
-                },
-                {
-                  "@type": "Review",
-                  position: 5,
-                  author: { "@type": "Person", name: "Ili" },
-                  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-                  reviewBody: "Wir haben einen wunderbaren Aufenthalt in dem sehr netten und gut ausgestatteten Ferienhaus. Der Gastgeber hat uns sehr viel geholfen und wir kommen bestimmt bald wieder. Vielen Dank für alles, Nicola!",
-                  datePublished: "2026-02",
-                  itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" },
-                },
-                {
-                  "@type": "Review",
-                  position: 6,
-                  author: { "@type": "Person", name: "Umberto" },
-                  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-                  reviewBody: "Ottimo e accurato: davvero gentile, la struttura è impeccabile e si sta molto bene.",
-                  datePublished: "2024-09",
-                  itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" },
-                },
-                {
-                  "@type": "Review",
-                  position: 7,
-                  author: { "@type": "Person", name: "Giacomo" },
-                  reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
-                  reviewBody: "Ottimo alloggio.",
-                  datePublished: "2024-01",
-                  itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" },
-                },
+                { "@type": "Review", position: 1, author: { "@type": "Person", name: "Martina" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "Abbiamo passato una notte e siamo rimasti molto soddisfatti. La casa è nuova, all'interno di una zona molto silenziosa ma vicina dell'università Roma Tre e alla metro.", datePublished: "2026-04", itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" } },
+                { "@type": "Review", position: 2, author: { "@type": "Person", name: "Jose" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "We had a wonderful stay here and felt comfortable from the moment we arrived. Nicola is an outstanding host — very professional, kind, and attentive.", datePublished: "2024-10", itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" } },
+                { "@type": "Review", position: 3, author: { "@type": "Person", name: "Riccardo" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "Ottimo alloggio! Un grazie speciale a Nicola per la sua grande gentilezza. Grande cura in tutti i dettagli della casa, super confortevole.", datePublished: "2024-10", itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" } },
+                { "@type": "Review", position: 4, author: { "@type": "Person", name: "Diana" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "Ottima posizione, parcheggio privato, buona comunicazione. Di sicuro torneremo.", datePublished: "2024-11", itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" } },
+                { "@type": "Review", position: 5, author: { "@type": "Person", name: "Ili" }, reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" }, reviewBody: "Wir haben einen wunderbaren Aufenthalt in dem sehr netten und gut ausgestatteten Ferienhaus. Vielen Dank für alles, Nicola!", datePublished: "2026-02", itemReviewed: { "@type": "LodgingBusiness", name: "San Paolo Hideout" } },
               ],
             }),
           }}
         />
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero-trevi.jpg"
-          fetchPriority="high"
-        />
+        <link rel="preload" as="image" href="/images/hero-trevi.jpg" fetchPriority="high" />
       </head>
-      <body
-        className={`${newsreader.variable} ${manrope.variable} antialiased bg-stitch-ivory text-stitch-on-surface font-body`}
-      >
+      <body className={`${newsreader.variable} ${manrope.variable} antialiased bg-stitch-ivory text-stitch-on-surface font-body`}>
         <I18nProvider>{children}</I18nProvider>
       </body>
     </html>

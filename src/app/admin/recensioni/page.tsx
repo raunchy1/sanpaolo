@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Eye, EyeOff, Star, RefreshCw, ChevronUp, ChevronDown } from "lucide-react";
+import { Plus, Trash2, Eye, EyeOff, Star, RefreshCw, ChevronUp, ChevronDown, Bookmark } from "lucide-react";
 import { toast } from "sonner";
 
 interface Review {
@@ -13,6 +13,7 @@ interface Review {
   date: string;
   platform: "airbnb" | "booking" | "google";
   hidden?: boolean;
+  featured?: boolean;
 }
 
 const EMPTY_FORM: Omit<Review, "id" | "hidden"> = {
@@ -109,6 +110,14 @@ export default function RecensioniPage() {
     );
     await saveAll(updated);
     toast.success(review.hidden ? "Recensione visibile" : "Recensione nascosta");
+  }
+
+  async function toggleFeatured(review: Review) {
+    const updated = reviews.map((r) =>
+      r.id === review.id ? { ...r, featured: !r.featured } : r
+    );
+    await saveAll(updated);
+    toast.success(review.featured ? "Rimossa dai preferiti" : "Aggiunta ai preferiti");
   }
 
   function move(idx: number, dir: -1 | 1) {
@@ -250,7 +259,7 @@ export default function RecensioniPage() {
         {reviews.map((review, idx) => (
           <div
             key={review.id}
-            className={`bg-white rounded-2xl border border-gray-100 p-5 flex gap-4 items-start transition-opacity ${review.hidden ? "opacity-50" : ""}`}
+            className={`bg-white rounded-2xl border p-5 flex gap-4 items-start transition-opacity ${review.hidden ? "opacity-50" : ""} ${review.featured ? "border-amber-200 bg-amber-50/30" : "border-gray-100"}`}
           >
             {/* Order arrows */}
             <div className="flex flex-col gap-0.5 shrink-0 mt-0.5">
@@ -272,10 +281,15 @@ export default function RecensioniPage() {
 
             {/* Content */}
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-1">
+              <div className="flex items-center gap-2 mb-1 flex-wrap">
                 <span className="font-semibold text-gray-900 text-sm">{review.name}</span>
                 {review.location && (
                   <span className="text-gray-400 text-xs">· {review.location}</span>
+                )}
+                {review.featured && (
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-100 text-amber-700">
+                    ★ In evidenza
+                  </span>
                 )}
                 <span className={`ml-auto px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wide ${platformColors[review.platform] ?? "bg-gray-100 text-gray-600"}`}>
                   {review.platform}
@@ -292,6 +306,14 @@ export default function RecensioniPage() {
 
             {/* Actions */}
             <div className="flex flex-col gap-1 shrink-0">
+              <button
+                onClick={() => toggleFeatured(review)}
+                disabled={saving}
+                title={review.featured ? "Rimuovi dai preferiti" : "Metti in evidenza"}
+                className={`p-2 rounded-xl transition-colors ${review.featured ? "text-amber-500 bg-amber-50 hover:bg-amber-100" : "hover:bg-gray-100 text-gray-300 hover:text-amber-400"}`}
+              >
+                <Bookmark className="w-4 h-4" />
+              </button>
               <button
                 onClick={() => toggleHidden(review)}
                 disabled={saving}

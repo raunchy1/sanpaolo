@@ -16,6 +16,12 @@ export interface SiteSettings {
   cin: string;
   cir: string;
   protocollo: string;
+  // SEO — optional, fallback to hardcoded defaults
+  seoTitle?: string;
+  seoDescription?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
 }
 
 export const DEFAULT_SETTINGS: SiteSettings = {

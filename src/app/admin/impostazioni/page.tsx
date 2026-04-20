@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Save, RefreshCw, Phone, Link, Shield, CheckCircle } from "lucide-react";
+import { Save, RefreshCw, Phone, Link, Shield, CheckCircle, Search } from "lucide-react";
 import { toast } from "sonner";
 
 interface Settings {
@@ -19,6 +19,11 @@ interface Settings {
   cin: string;
   cir: string;
   protocollo: string;
+  seoTitle: string;
+  seoDescription: string;
+  ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
 }
 
 const EMPTY: Settings = {
@@ -36,16 +41,21 @@ const EMPTY: Settings = {
   cin: "",
   cir: "",
   protocollo: "",
+  seoTitle: "",
+  seoDescription: "",
+  ogTitle: "",
+  ogDescription: "",
+  ogImage: "",
 };
 
-type SectionId = "contatti" | "piattaforme" | "legale";
+type SectionId = "contatti" | "piattaforme" | "legale" | "seo";
 
 interface FieldDef {
   key: keyof Settings;
   label: string;
   placeholder?: string;
   hint?: string;
-  type?: string;
+  type?: string; // "text" | "email" | "url" | "textarea"
 }
 
 const SECTIONS: { id: SectionId; label: string; icon: React.ElementType; fields: FieldDef[] }[] = [
@@ -82,6 +92,18 @@ const SECTIONS: { id: SectionId; label: string; icon: React.ElementType; fields:
       { key: "cin", label: "CIN (Codice Identificativo Nazionale)", placeholder: "IT058091C2OS2A4EP2" },
       { key: "cir", label: "CIR", placeholder: "058091-CAV-15649" },
       { key: "protocollo", label: "Protocollo", placeholder: "QA/2025/66178 del 11/07/2025" },
+    ],
+  },
+  {
+    id: "seo",
+    label: "SEO & Meta Tag",
+    icon: Search,
+    fields: [
+      { key: "seoTitle", label: "Titolo pagina (title tag)", placeholder: "San Paolo Hideout | Boutique Vacation Rental Rome", hint: "Lascia vuoto per usare il valore predefinito. Ideale: 50-60 caratteri." },
+      { key: "seoDescription", label: "Meta description", placeholder: "Boutique vacation rental in Rome near Metro B...", hint: "Lascia vuoto per usare il valore predefinito. Ideale: 150-160 caratteri.", type: "textarea" },
+      { key: "ogTitle", label: "OG Title (condivisione social)", placeholder: "San Paolo Hideout — Roma | Casa Vacanze Boutique" },
+      { key: "ogDescription", label: "OG Description (condivisione social)", placeholder: "Il tuo rifugio romano vicino alla Metro B...", type: "textarea" },
+      { key: "ogImage", label: "OG Image URL (immagine di anteprima social)", placeholder: "https://sanpaolohideout.it/images/hero-trevi.jpg", hint: "URL completo dell'immagine. Dimensioni consigliate: 1200×630px." },
     ],
   },
 ];
@@ -204,25 +226,41 @@ export default function ImpostazioniPage() {
 
               {/* Fields */}
               <div className="px-6 py-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {section.fields.map((field) => (
-                  <div key={field.key} className={field.key.includes("Link") ? "sm:col-span-2" : ""}>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      {field.label}
-                    </label>
-                    <input
-                      type={field.type || "text"}
-                      value={values[field.key]}
-                      onChange={(e) =>
-                        setValues((prev) => ({ ...prev, [field.key]: e.target.value }))
-                      }
-                      placeholder={field.placeholder}
-                      className="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all"
-                    />
-                    {field.hint && (
-                      <p className="mt-1 text-xs text-gray-400">{field.hint}</p>
-                    )}
-                  </div>
-                ))}
+                {section.fields.map((field) => {
+                  const isWide = field.key.includes("Link") || field.key.includes("Description") || field.key.includes("description") || field.key.includes("Image") || field.key.includes("Title") || field.key.includes("title");
+                  const isTextarea = field.type === "textarea";
+                  const val = values[field.key];
+                  return (
+                    <div key={field.key} className={isWide ? "sm:col-span-2" : ""}>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label className="block text-sm font-medium text-gray-700">{field.label}</label>
+                        {isTextarea && val && (
+                          <span className={`text-xs ${val.length > 160 ? "text-red-500" : "text-gray-400"}`}>
+                            {val.length} car.
+                          </span>
+                        )}
+                      </div>
+                      {isTextarea ? (
+                        <textarea
+                          value={val}
+                          onChange={(e) => setValues((prev) => ({ ...prev, [field.key]: e.target.value }))}
+                          placeholder={field.placeholder}
+                          rows={3}
+                          className="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all resize-none"
+                        />
+                      ) : (
+                        <input
+                          type={field.type || "text"}
+                          value={val}
+                          onChange={(e) => setValues((prev) => ({ ...prev, [field.key]: e.target.value }))}
+                          placeholder={field.placeholder}
+                          className="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all"
+                        />
+                      )}
+                      {field.hint && <p className="mt-1 text-xs text-gray-400">{field.hint}</p>}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           );
