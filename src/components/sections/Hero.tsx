@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
-import { MapPin, Star, Calendar } from "lucide-react";
+import { MapPin, Calendar } from "lucide-react";
 import DualContactCTA from "@/components/ui/DualContactCTA";
+import ReviewBar from "@/components/ui/ReviewBar";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -169,6 +170,9 @@ export default function Hero() {
             </span>
           ))}
         </motion.div>
+
+        {/* Review trust bar */}
+        <ReviewBar />
       </div>
 
       {/* Scroll indicator — Stitch minimalist */}
