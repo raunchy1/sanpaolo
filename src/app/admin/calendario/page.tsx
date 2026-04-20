@@ -203,16 +203,14 @@ export default function CalendarioPage() {
                           <div className="text-xs text-gray-500 truncate">{block.reason}</div>
                         )}
                       </div>
-                      {!isPast && (
-                        <button
-                          onClick={() => unblockDate(block.date)}
-                          disabled={saving}
-                          title="Sblocca data"
-                          className="flex-shrink-0 p-1.5 rounded-lg bg-white border border-gray-200 text-gray-500 hover:text-green-600 hover:border-green-300 transition-colors disabled:opacity-50"
-                        >
-                          <Unlock className="w-3.5 h-3.5" />
-                        </button>
-                      )}
+                      <button
+                        onClick={() => unblockDate(block.date)}
+                        disabled={saving}
+                        title="Sblocca data"
+                        className="flex-shrink-0 p-1.5 rounded-lg bg-white border border-gray-200 text-gray-500 hover:text-green-600 hover:border-green-300 transition-colors disabled:opacity-50"
+                      >
+                        <Unlock className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   );
                 })}

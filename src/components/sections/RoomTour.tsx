@@ -4,82 +4,31 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
-
-// ─── ALL 19 IMAGES — AI semantically classified per room ───
-// Source: visual recognition on converted-files
-// Validation: 1+3+3+1+6+3+2 = 19 ✓
-// Order: Esterno → Salotto → Cucina → Camera1 → Camera2 → Bagno → Dettagli
+import type { GalleryConfig } from "@/app/api/admin/gallery/route";
 
 interface RoomData {
   key: string;
-  images: string[];       // hero first, then support/detail shots
+  images: string[];
 }
 
-const rooms: RoomData[] = [
-  {
-    key: "esterno",
-    images: [
-      "/images/rooms/real/esterno-1.jpg",
-    ],
-  },
-  {
-    key: "salotto",
-    images: [
-      "/images/rooms/real/salotto-3.jpg",
-      "/images/rooms/real/salotto-1.jpg",
-      "/images/rooms/real/salotto-2.jpg",
-    ],
-  },
-  {
-    key: "cucina",
-    images: [
-      "/images/rooms/real/cucina-1.jpg",
-      "/images/rooms/real/cucina-2.jpg",
-      "/images/rooms/real/cucina-3.jpg",
-    ],
-  },
-  {
-    key: "camera1",
-    images: [
-      "/images/rooms/real/camera1-1.jpg",
-    ],
-  },
-  {
-    key: "camera2",
-    images: [
-      "/images/rooms/real/camera2-4.jpg",
-      "/images/rooms/real/camera2-1.jpg",
-      "/images/rooms/real/camera2-2.jpg",
-      "/images/rooms/real/camera2-3.jpg",
-      "/images/rooms/real/camera2-5.jpg",
-      "/images/rooms/real/camera2-6.jpg",
-    ],
-  },
-  {
-    key: "bagno",
-    images: [
-      "/images/rooms/real/bagno-1.jpg",
-      "/images/rooms/real/bagno-2.jpg",
-      "/images/rooms/real/bagno-3.jpg",
-    ],
-  },
-  {
-    key: "dettagli",
-    images: [
-      "/images/rooms/real/dettagli-1.jpg",
-      "/images/rooms/real/dettagli-2.jpg",
-    ],
-  },
+const STATIC_ROOMS: RoomData[] = [
+  { key: "esterno",  images: ["/images/rooms/real/esterno-1.jpg"] },
+  { key: "salotto",  images: ["/images/rooms/real/salotto-3.jpg", "/images/rooms/real/salotto-1.jpg", "/images/rooms/real/salotto-2.jpg"] },
+  { key: "cucina",   images: ["/images/rooms/real/cucina-1.jpg", "/images/rooms/real/cucina-2.jpg", "/images/rooms/real/cucina-3.jpg"] },
+  { key: "camera1",  images: ["/images/rooms/real/camera1-1.jpg"] },
+  { key: "camera2",  images: ["/images/rooms/real/camera2-4.jpg", "/images/rooms/real/camera2-1.jpg", "/images/rooms/real/camera2-2.jpg", "/images/rooms/real/camera2-3.jpg", "/images/rooms/real/camera2-5.jpg", "/images/rooms/real/camera2-6.jpg"] },
+  { key: "bagno",    images: ["/images/rooms/real/bagno-1.jpg", "/images/rooms/real/bagno-2.jpg", "/images/rooms/real/bagno-3.jpg"] },
+  { key: "dettagli", images: ["/images/rooms/real/dettagli-1.jpg", "/images/rooms/real/dettagli-2.jpg"] },
 ];
 
-// Flatten ALL images for lightbox navigation (19 total)
-const allImages: { src: string; roomKey: string; roomIndex: number }[] = rooms.flatMap((room, ri) =>
-  room.images.map((src) => ({ src, roomKey: room.key, roomIndex: ri }))
-);
-
-// Assert: all 19 images present
-if (typeof window !== "undefined" && allImages.length !== 19) {
-  console.error(`IMAGE COUNT MISMATCH: ${allImages.length}/19 images loaded`);
+function configToRooms(config: GalleryConfig): RoomData[] {
+  return config.rooms.map((room) => ({
+    key: room.id,
+    images: room.images
+      .filter((img) => img.visible)
+      .sort((a, b) => a.order - b.order)
+      .map((img) => img.src),
+  })).filter((room) => room.images.length > 0);
 }
 
 const slideVariants = {
@@ -96,6 +45,7 @@ const slideVariants = {
 
 export default function RoomTour() {
   const { t } = useTranslation();
+  const [rooms, setRooms] = useState<RoomData[]>(STATIC_ROOMS);
   const [currentRoom, setCurrentRoom] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIdx, setLightboxIdx] = useState(0);
@@ -103,7 +53,23 @@ export default function RoomTour() {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const room = rooms[currentRoom];
+  useEffect(() => {
+    fetch("/api/gallery")
+      .then((r) => r.json())
+      .then((data: GalleryConfig | null) => {
+        if (data && data.rooms && data.rooms.length > 0) {
+          const dynamic = configToRooms(data);
+          if (dynamic.length > 0) setRooms(dynamic);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const allImages = rooms.flatMap((room, ri) =>
+    room.images.map((src) => ({ src, roomKey: room.key, roomIndex: ri }))
+  );
+
+  const room = rooms[Math.min(currentRoom, rooms.length - 1)];
   const heroImage = room.images[0];
 
   // ─── Room navigation ───

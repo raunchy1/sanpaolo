@@ -13,6 +13,7 @@ import {
   Layers,
   LogOut,
   Home,
+  Images,
 } from "lucide-react";
 
 const navItems = [
@@ -21,6 +22,7 @@ const navItems = [
   { href: "/admin/calendario", label: "Calendario", icon: CalendarDays },
   { href: "/admin/contenuti", label: "Contenuti", icon: FileText },
   { href: "/admin/sezioni", label: "Sezioni", icon: Layers },
+  { href: "/admin/galleria", label: "Galleria foto", icon: Images },
   { href: "/admin/recensioni", label: "Recensioni", icon: Star },
   { href: "/admin/impostazioni", label: "Impostazioni", icon: Settings },
 ];

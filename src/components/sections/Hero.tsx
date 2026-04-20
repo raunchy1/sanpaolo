@@ -73,15 +73,39 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           variants={titleContainer}
-          className="font-display text-[3.2rem] sm:text-7xl md:text-8xl lg:text-[6.5rem] font-bold text-white mb-7 leading-[0.92] tracking-roman"
+          className="font-display font-bold text-white mb-7 leading-[0.92] tracking-roman"
         >
-          {t("hero.title").split(" ").map((word, i) => (
-            <span key={i} className="inline-block overflow-hidden mr-[0.25em]">
-              <motion.span className="inline-block" variants={titleWord}>
-                {word}
-              </motion.span>
-            </span>
-          ))}
+          {(() => {
+            const fullTitle = t("hero.title");
+            const pipeIdx = fullTitle.indexOf("|");
+            if (pipeIdx === -1) {
+              return fullTitle.split(" ").map((word, i) => (
+                <span key={i} className="inline-block overflow-hidden mr-[0.25em] text-[3.2rem] sm:text-7xl md:text-8xl lg:text-[6.5rem]">
+                  <motion.span className="inline-block" variants={titleWord}>{word}</motion.span>
+                </span>
+              ));
+            }
+            const primary = fullTitle.slice(0, pipeIdx).trim();
+            const secondary = fullTitle.slice(pipeIdx + 1).trim();
+            return (
+              <>
+                <span className="block">
+                  {primary.split(" ").map((word, i) => (
+                    <span key={i} className="inline-block overflow-hidden mr-[0.25em] text-[3.2rem] sm:text-7xl md:text-8xl lg:text-[6.5rem]">
+                      <motion.span className="inline-block" variants={titleWord}>{word}</motion.span>
+                    </span>
+                  ))}
+                </span>
+                <span className="block mt-1">
+                  {secondary.split(" ").map((word, i) => (
+                    <span key={i} className="inline-block overflow-hidden mr-[0.2em] text-[1.55rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.2rem] font-light opacity-75">
+                      <motion.span className="inline-block" variants={titleWord}>{word}</motion.span>
+                    </span>
+                  ))}
+                </span>
+              </>
+            );
+          })()}
         </motion.h1>
 
         {/* Subtitle — Manrope body, warm tone */}
