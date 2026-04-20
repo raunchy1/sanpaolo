@@ -21,6 +21,7 @@ const DEFAULT_SECTIONS: SectionConfig[] = [
   { id: "location",      label: "📍 Posizione",                        visible: true },
   { id: "reviews",       label: "⭐ Recensioni",                       visible: true },
   { id: "specialOffers", label: "🎁 Offerte speciali",                 visible: true },
+  { id: "bookingCalendar", label: "🗓️ Calendario prenotazioni",         visible: false },
   { id: "bookingCTA",    label: "📅 Prenota — CTA",                    visible: true },
   { id: "faq",           label: "❓ FAQ",                              visible: true },
 ];

@@ -14,6 +14,7 @@ import Location from "@/components/sections/Location";
 import Reviews from "@/components/sections/Reviews";
 import SpecialOffers from "@/components/sections/SpecialOffers";
 import BookingCTA from "@/components/sections/BookingCTA";
+import BookingCalendar from "@/components/sections/BookingCalendar";
 import FAQ from "@/components/sections/FAQ";
 import Footer from "@/components/sections/Footer";
 import MobileStickyCTA from "@/components/sections/MobileStickyCTA";
@@ -24,18 +25,19 @@ interface SectionConfig {
 }
 
 const SECTION_COMPONENTS: Record<string, React.ComponentType> = {
-  hero:          Hero,
-  checkin:       CheckIn,
+  hero:           Hero,
+  checkin:        CheckIn,
   guestFavorites: GuestFavorites,
-  laCasa:        LaCasa,
-  amenities:     Amenities,
-  roomTour:      RoomTour,
-  newBuild:      NewBuild,
-  location:      Location,
-  reviews:       Reviews,
-  specialOffers: SpecialOffers,
-  bookingCTA:    BookingCTA,
-  faq:           FAQ,
+  laCasa:         LaCasa,
+  amenities:      Amenities,
+  roomTour:       RoomTour,
+  newBuild:       NewBuild,
+  location:       Location,
+  reviews:        Reviews,
+  specialOffers:  SpecialOffers,
+  bookingCalendar: BookingCalendar,
+  bookingCTA:     BookingCTA,
+  faq:            FAQ,
 };
 
 const DEFAULT_ORDER = [
