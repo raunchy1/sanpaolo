@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
+import type { AmenitiesConfig } from "@/app/api/admin/amenities/route";
 import {
   Wifi,
   Tv,
@@ -335,11 +336,53 @@ function AccordionItem({
   );
 }
 
+const CATEGORY_ICONS: Record<string, React.ElementType> = {
+  comfort: AirVent,
+  kitchen: ChefHat,
+  bathroom: Waves,
+  family: Users,
+  extra: Luggage,
+};
+
+const ROMAN = ["I", "II", "III", "IV", "V"];
+
+const SECONDARY_STYLES: { radius: string; bg?: string }[] = [
+  { radius: "20px 20px 8px 20px" },
+  { radius: "20px 20px 20px 8px", bg: "#FDFCF8" },
+  { radius: "8px 20px 20px 20px", bg: "#F8FBF9" },
+  { radius: "20px 8px 20px 20px" },
+];
+
 /* ─────────────────────────────────────────────
    Main Section
 ───────────────────────────────────────────── */
 export default function Amenities() {
   const { t } = useTranslation();
+  const [cfg, setCfg] = useState<AmenitiesConfig | null>(null);
+
+  useEffect(() => {
+    fetch("/api/amenities")
+      .then((r) => r.json())
+      .then((data: AmenitiesConfig) => { if (data?.categories?.length) setCfg(data); })
+      .catch(() => {});
+  }, []);
+
+  const eyebrow  = cfg?.eyebrow  ?? t("amenities.eyebrow");
+  const title    = cfg?.title    ?? t("amenities.title");
+  const subtitle = cfg?.subtitle ?? t("amenities.subtitle");
+
+  const comfortCat  = cfg?.categories[0];
+  const secondaryCats = cfg?.categories.slice(1) ?? [];
+
+  // Build items for the comfort card
+  const comfortItemTexts: string[] = comfortCat
+    ? comfortCat.items
+    : comfortItems.map((k) => t(`amenities.comfort.${k}`));
+
+  const petLabel   = cfg?.pet?.label   ?? t("amenities.pet.label");
+  const petTagline = cfg?.pet?.tagline ?? t("amenities.pet.tagline");
+  const petDesc    = cfg?.pet?.desc    ?? t("amenities.pet.desc");
+  const petBadge   = cfg?.pet?.badge   ?? t("amenities.pet.badge");
 
   const trustItems = [
     { icon: Wifi,       labelKey: "amenities.trust.wifi" },
@@ -362,81 +405,102 @@ export default function Amenities() {
           className="mb-14 md:mb-18"
         >
           <span className="font-label text-[10px] tracking-[0.28em] text-stitch-olive uppercase block mb-5">
-            {t("amenities.eyebrow")}
+            {eyebrow}
           </span>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-stitch-green leading-[1.1] max-w-xl mb-4">
-            {t("amenities.title")}
+            {title}
           </h2>
           <p className="font-body text-stitch-on-surface/55 text-base italic max-w-md leading-relaxed">
-            {t("amenities.subtitle")}
+            {subtitle}
           </p>
         </motion.div>
 
         {/* ── DESKTOP LAYOUT (lg+) ── */}
         <div className="hidden lg:grid lg:grid-cols-3 lg:gap-5 mb-5">
-
           {/* Col 1: Featured COMFORT — spans 2 rows */}
           <div className="row-span-2">
-            <ComfortCard t={t} />
+            {cfg ? (
+              /* Dynamic comfort card */
+              <motion.div
+                custom={0} initial="hidden" whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }} variants={fadeUp}
+                className="relative overflow-hidden flex flex-col justify-between p-8 md:p-10 h-full"
+                style={{
+                  background: "linear-gradient(145deg, #1A3A28 0%, #2E6B4A 60%, #3A8A63 100%)",
+                  borderRadius: "28px 28px 28px 10px", minHeight: 420,
+                }}
+              >
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-stitch-gold/50 to-transparent" />
+                <RomanNumeral n="I" light />
+                <div>
+                  <span className="inline-block text-stitch-green/60 text-[10px] font-bold tracking-[0.22em] uppercase mb-5">{eyebrow}</span>
+                  <h3 className="font-display text-white font-bold leading-[0.9] mb-3" style={{ fontSize: "clamp(2.4rem, 4vw, 3.5rem)" }}>
+                    {comfortCat?.label ?? t("amenities.comfort.label")}
+                  </h3>
+                  <p className="text-white/50 text-sm italic mb-8">
+                    {comfortCat?.tagline ?? t("amenities.comfort.tagline")}
+                  </p>
+                </div>
+                <ul className="space-y-3 text-white/80">
+                  {comfortItemTexts.map((text, i) => <ItemRow key={i} text={text} />)}
+                </ul>
+                <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Wifi className="w-4 h-4 text-stitch-gold/70" /><Tv className="w-4 h-4 text-stitch-gold/70" />
+                    <AirVent className="w-4 h-4 text-stitch-gold/70" /><Sparkles className="w-4 h-4 text-stitch-gold/70" />
+                  </div>
+                  <span className="text-white/30 text-xs font-medium tracking-wide">{comfortItemTexts.length} servizi</span>
+                </div>
+                <div className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full border border-white/[0.07]"
+                  style={{ background: "radial-gradient(circle, rgba(255,255,255,0.04), transparent)" }} />
+              </motion.div>
+            ) : (
+              <ComfortCard t={t} />
+            )}
           </div>
 
-          {/* Col 2 top: CUCINA */}
-          <SecondaryCard
-            catKey="kitchen"
-            items={kitchenItems}
-            icon={ChefHat}
-            roman="II"
-            delay={0.1}
-            radius="20px 20px 8px 20px"
-            t={t}
-            expandable
-          />
-
-          {/* Col 3 top: BAGNO */}
-          <SecondaryCard
-            catKey="bathroom"
-            items={bathroomItems}
-            icon={Waves}
-            roman="III"
-            delay={0.15}
-            radius="20px 20px 20px 8px"
-            bg="#FDFCF8"
-            t={t}
-          />
-
-          {/* Col 2 bottom: FAMIGLIA */}
-          <SecondaryCard
-            catKey="family"
-            items={familyItems}
-            icon={Users}
-            roman="IV"
-            delay={0.2}
-            radius="8px 20px 20px 20px"
-            bg="#F8FBF9"
-            t={t}
-          />
-
-          {/* Col 3 bottom: EXTRA */}
-          <SecondaryCard
-            catKey="extra"
-            items={extraItems}
-            icon={Luggage}
-            roman="V"
-            delay={0.25}
-            radius="20px 8px 20px 20px"
-            t={t}
-          />
+          {/* Secondary cards */}
+          {cfg ? secondaryCats.map((cat, i) => {
+            const Icon = CATEGORY_ICONS[cat.id] ?? Car;
+            const style = SECONDARY_STYLES[i] ?? {};
+            return (
+              <motion.div key={cat.id}
+                custom={(i + 1) * 0.05} initial="hidden" whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }} variants={fadeUp}
+                whileHover={{ y: -3, boxShadow: "0 12px 32px rgba(46,107,74,0.10)" }}
+                transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                className="relative overflow-hidden p-6 md:p-7 group cursor-default"
+                style={{ borderRadius: style.radius, background: style.bg ?? "#fff" }}
+              >
+                <RomanNumeral n={ROMAN[i + 1]} />
+                <div className="flex items-center gap-2.5 mb-5">
+                  <div className="w-9 h-9 rounded-xl bg-stitch-olive-light/50 flex items-center justify-center group-hover:bg-stitch-green/15 transition-colors duration-300">
+                    <Icon className="w-4 h-4 text-stitch-green" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-stitch-on-surface/35 leading-none mb-0.5">{cat.label}</p>
+                    <p className="text-[11px] text-stitch-on-surface/45 italic leading-none">{cat.tagline}</p>
+                  </div>
+                </div>
+                <ul className="space-y-2.5 text-stitch-on-surface/70">
+                  {cat.items.map((item, j) => <ItemRow key={j} text={item} />)}
+                </ul>
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-stitch-green/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+              </motion.div>
+            );
+          }) : (
+            <>
+              <SecondaryCard catKey="kitchen" items={kitchenItems} icon={ChefHat} roman="II" delay={0.1} radius="20px 20px 8px 20px" t={t} expandable />
+              <SecondaryCard catKey="bathroom" items={bathroomItems} icon={Waves} roman="III" delay={0.15} radius="20px 20px 20px 8px" bg="#FDFCF8" t={t} />
+              <SecondaryCard catKey="family" items={familyItems} icon={Users} roman="IV" delay={0.2} radius="8px 20px 20px 20px" bg="#F8FBF9" t={t} />
+              <SecondaryCard catKey="extra" items={extraItems} icon={Luggage} roman="V" delay={0.25} radius="20px 8px 20px 20px" t={t} />
+            </>
+          )}
         </div>
 
         {/* ── MOBILE/TABLET LAYOUT (< lg) ── */}
         <div className="lg:hidden space-y-3 mb-5">
-          {/* Comfort featured — compact version */}
-          <motion.div
-            custom={0}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
+          <motion.div custom={0} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
             className="relative overflow-hidden rounded-2xl p-6"
             style={{ background: "linear-gradient(145deg, #1A3A28, #2E6B4A)" }}
           >
@@ -447,43 +511,69 @@ export default function Amenities() {
               </div>
               <div>
                 <p className="text-white font-display font-semibold text-base">
-                  {t("amenities.comfort.label")}
+                  {comfortCat?.label ?? t("amenities.comfort.label")}
                 </p>
                 <p className="text-white/45 text-xs italic">
-                  {t("amenities.comfort.tagline")}
+                  {comfortCat?.tagline ?? t("amenities.comfort.tagline")}
                 </p>
               </div>
             </div>
             <ul className="space-y-2.5 text-white/75">
-              {comfortItems.map((item) => (
-                <ItemRow key={item} text={t(`amenities.comfort.${item}`)} />
-              ))}
+              {comfortItemTexts.map((text, i) => <ItemRow key={i} text={text} />)}
             </ul>
           </motion.div>
 
-          {/* Other categories as accordion */}
-          {accordionCategories.slice(1).map((cat) => (
-            <AccordionItem
-              key={cat.key}
-              catKey={cat.key as AKey}
-              icon={cat.icon}
-              items={cat.items as unknown as AItems}
-              roman={cat.roman}
-              t={t}
-            />
-          ))}
+          {cfg ? secondaryCats.map((cat, i) => {
+            const Icon = CATEGORY_ICONS[cat.id] ?? Car;
+            return (
+              <div key={cat.id} className="rounded-2xl overflow-hidden" style={{ background: "#FAFAF8", boxShadow: "0 2px 12px -4px rgba(41,23,13,0.06)" }}>
+                <div className="flex items-center gap-3 px-5 py-4">
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-stitch-olive-light/50 text-stitch-green">
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="font-display text-stitch-on-surface font-semibold text-sm">{cat.label}</p>
+                    <p className="text-[11px] text-stitch-on-surface/40 italic">{cat.tagline}</p>
+                  </div>
+                  <span className="ml-auto text-xs text-stitch-on-surface/30 font-mono">{ROMAN[i + 1]}</span>
+                </div>
+                <ul className="px-5 pb-5 space-y-3 text-stitch-on-surface/70 pt-4" style={{ borderTop: "1px solid rgba(41,23,13,0.06)" }}>
+                  {cat.items.map((text, j) => <ItemRow key={j} text={text} />)}
+                </ul>
+              </div>
+            );
+          }) : (
+            accordionCategories.slice(1).map((cat) => (
+              <AccordionItem key={cat.key} catKey={cat.key as AKey} icon={cat.icon} items={cat.items as unknown as AItems} roman={cat.roman} t={t} />
+            ))
+          )}
         </div>
 
         {/* ── PET strip (all screen sizes) ── */}
-        <PetStrip t={t} />
+        {cfg ? (
+          <motion.div custom={0.4} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-5 px-7 py-6"
+            style={{ borderRadius: "16px", background: "linear-gradient(135deg, #FFF1EA 0%, #EEF3EF 100%)", boxShadow: "0 4px 24px -8px rgba(41,23,13,0.07)" }}
+          >
+            <div className="w-12 h-12 rounded-2xl bg-stitch-green/15 flex items-center justify-center shrink-0">
+              <PawPrint className="w-5 h-5 text-stitch-green" />
+            </div>
+            <div className="flex-1">
+              <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-stitch-on-surface/40 mb-0.5">{petLabel}</p>
+              <p className="font-display text-stitch-on-surface font-semibold text-base leading-snug mb-1">{petTagline}</p>
+              <p className="text-sm text-stitch-on-surface/55 leading-relaxed max-w-prose">{petDesc}</p>
+            </div>
+            <span className="shrink-0 inline-flex items-center gap-1.5 bg-stitch-green/10 text-stitch-green font-label text-[10px] tracking-wider uppercase px-4 py-2 rounded-lg">
+              <Check className="w-3 h-3" />{petBadge}
+            </span>
+          </motion.div>
+        ) : (
+          <PetStrip t={t} />
+        )}
 
         {/* ── Bottom trust line ── */}
         <motion.div
-          custom={0.5}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
+          custom={0.5} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
           className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
         >
           {trustItems.map(({ icon: Icon, labelKey }) => (

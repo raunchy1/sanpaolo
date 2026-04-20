@@ -22,6 +22,7 @@ const navItems = [
   { href: "/admin/prenotazioni", label: "Prenotazioni", icon: BookOpen },
   { href: "/admin/calendario", label: "Calendario", icon: CalendarDays },
   { href: "/admin/contenuti", label: "Contenuti", icon: FileText },
+  { href: "/admin/servizi", label: "Servizi inclusi", icon: Layers },
   { href: "/admin/sezioni", label: "Sezioni", icon: Layers },
   { href: "/admin/galleria", label: "Galleria foto", icon: Images },
   { href: "/admin/recensioni", label: "Recensioni", icon: Star },
