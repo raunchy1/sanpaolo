@@ -23,7 +23,9 @@ export async function GET() {
     const confirmedBookings = bookings
       .filter((b) => b.status === "CONFIRMED")
       .map((b) => ({ checkIn: b.checkIn, checkOut: b.checkOut }));
-    return NextResponse.json({ blocks, confirmedBookings });
+    return NextResponse.json({ blocks, confirmedBookings }, {
+      headers: { "Cache-Control": "no-store" },
+    });
   } catch {
     return NextResponse.json({ blocks: [], confirmedBookings: [] });
   }

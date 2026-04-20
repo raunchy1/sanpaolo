@@ -24,6 +24,10 @@ interface Settings {
   ogTitle: string;
   ogDescription: string;
   ogImage: string;
+  bookingReviewCount: string;
+  airbnbReviewCount: string;
+  googleReviewCount: string;
+  googleReviewsLink: string;
 }
 
 const EMPTY: Settings = {
@@ -46,9 +50,13 @@ const EMPTY: Settings = {
   ogTitle: "",
   ogDescription: "",
   ogImage: "",
+  bookingReviewCount: "",
+  airbnbReviewCount: "",
+  googleReviewCount: "",
+  googleReviewsLink: "",
 };
 
-type SectionId = "contatti" | "piattaforme" | "legale" | "seo";
+type SectionId = "contatti" | "piattaforme" | "legale" | "seo" | "recensioni";
 
 interface FieldDef {
   key: keyof Settings;
@@ -80,6 +88,7 @@ const SECTIONS: { id: SectionId; label: string; icon: React.ElementType; fields:
       { key: "bookingLink", label: "Link Booking.com (prenotazione)", placeholder: "https://booking.com/hotel/it/..." },
       { key: "airbnbReviewsLink", label: "Link Airbnb Recensioni", placeholder: "https://www.airbnb.com/rooms/..." },
       { key: "bookingReviewsLink", label: "Link Booking Recensioni", placeholder: "https://www.booking.com/hotel/..." },
+      { key: "googleReviewsLink", label: "Link Google Recensioni", placeholder: "https://g.page/r/..." },
       { key: "instagramLink", label: "Link Instagram", placeholder: "https://www.instagram.com/..." },
       { key: "mapsLink", label: "Link Google Maps", placeholder: "https://maps.google.com/?q=..." },
     ],
@@ -104,6 +113,16 @@ const SECTIONS: { id: SectionId; label: string; icon: React.ElementType; fields:
       { key: "ogTitle", label: "OG Title (condivisione social)", placeholder: "San Paolo Hideout — Roma | Casa Vacanze Boutique" },
       { key: "ogDescription", label: "OG Description (condivisione social)", placeholder: "Il tuo rifugio romano vicino alla Metro B...", type: "textarea" },
       { key: "ogImage", label: "OG Image URL (immagine di anteprima social)", placeholder: "https://sanpaolohideout.it/images/hero-trevi.jpg", hint: "URL completo dell'immagine. Dimensioni consigliate: 1200×630px." },
+    ],
+  },
+  {
+    id: "recensioni",
+    label: "Contatori Recensioni",
+    icon: CheckCircle,
+    fields: [
+      { key: "bookingReviewCount", label: "N° recensioni Booking.com", placeholder: "19", hint: "Numero mostrato nella barra reviews dell'hero" },
+      { key: "airbnbReviewCount", label: "N° recensioni Airbnb", placeholder: "6", hint: "Numero mostrato nella barra reviews dell'hero" },
+      { key: "googleReviewCount", label: "N° recensioni Google", placeholder: "19", hint: "Numero mostrato nella barra reviews dell'hero" },
     ],
   },
 ];

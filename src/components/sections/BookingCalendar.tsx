@@ -30,7 +30,7 @@ function expandBookingDates(bookings: ConfirmedBooking[]): Date[] {
 }
 
 export default function BookingCalendar() {
-  const { settings } = useSettings();
+  const settings = useSettings();
   const [range, setRange] = useState<DateRange | undefined>();
   const [guests, setGuests] = useState(2);
   const [blockedDates, setBlockedDates] = useState<Date[]>([]);

@@ -402,35 +402,6 @@ export default function Reviews() {
           </div>
         </div>
 
-        {/* ── Bottom CTA ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-12 text-center flex flex-wrap items-center justify-center gap-6"
-        >
-          <a
-            href={bookingReviewsLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 text-stitch-on-surface/50 hover:text-stitch-on-surface text-sm transition-colors duration-200"
-          >
-            <span className="w-4 h-4 rounded-sm bg-[#003580] text-white text-[8px] font-bold flex items-center justify-center">B</span>
-            {t("reviews.viewAllOnBooking")}
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
-          <a
-            href={airbnbReviewsLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 text-stitch-on-surface/50 hover:text-stitch-on-surface text-sm transition-colors duration-200"
-          >
-            <AirbnbMark className="w-4 h-4 text-[#FF5A5F]" />
-            {t("reviews.viewAllOnAirbnb")}
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
-        </motion.div>
       </div>
     </section>
   );

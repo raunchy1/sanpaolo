@@ -17,6 +17,10 @@ export interface SiteSettings {
   cin: string;
   cir: string;
   protocollo: string;
+  bookingReviewCount: string;
+  airbnbReviewCount: string;
+  googleReviewCount: string;
+  googleReviewsLink: string;
 }
 
 const DEFAULTS: SiteSettings = {
@@ -29,11 +33,15 @@ const DEFAULTS: SiteSettings = {
   bookingLink: "https://booking.com/hotel/it/san-paolo-hideout-roma.ro.html",
   airbnbReviewsLink: "https://www.airbnb.com/rooms/1517964247980793952",
   bookingReviewsLink: "https://www.booking.com/hotel/it/san-paolo-hideout-roma.ro.html#tab-reviews",
+  googleReviewsLink: "https://g.page/r/san-paolo-hideout/review",
   instagramLink: "https://www.instagram.com/casavacanze_sanpaolohideout/",
   mapsLink: "https://maps.google.com/?q=Via+Silvio+D%27Amico+96,+00145+Roma",
   cin: "IT058091C2OS2A4EP2",
   cir: "058091-CAV-15649",
   protocollo: "QA/2025/66178 del 11/07/2025",
+  bookingReviewCount: "19",
+  airbnbReviewCount: "6",
+  googleReviewCount: "19",
 };
 
 export function useSettings(): SiteSettings {
