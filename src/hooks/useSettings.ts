@@ -33,7 +33,7 @@ const DEFAULTS: SiteSettings = {
   bookingLink: "https://booking.com/hotel/it/san-paolo-hideout-roma.ro.html",
   airbnbReviewsLink: "https://www.airbnb.com/rooms/1517964247980793952",
   bookingReviewsLink: "https://www.booking.com/hotel/it/san-paolo-hideout-roma.ro.html#tab-reviews",
-  googleReviewsLink: "https://g.page/r/san-paolo-hideout/review",
+  googleReviewsLink: "https://share.google/fsOYRwJYMmQVPV3Ah",
   instagramLink: "https://www.instagram.com/casavacanze_sanpaolohideout/",
   mapsLink: "https://maps.google.com/?q=Via+Silvio+D%27Amico+96,+00145+Roma",
   cin: "IT058091C2OS2A4EP2",
