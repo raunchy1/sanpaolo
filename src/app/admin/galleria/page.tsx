@@ -64,7 +64,6 @@ export default function GalleriaPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [deleteConfirm, setDeleteConfirm] = useState<{ roomId: string; src: string } | null>(null);
   const [addModal, setAddModal] = useState<AddPhotoModal | null>(null);
   const [editingLabel, setEditingLabel] = useState<{ roomId: string; value: string } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -134,6 +133,7 @@ export default function GalleriaPage() {
   }
 
   function deleteImage(roomId: string, src: string) {
+    if (!window.confirm("Eliminare questa foto dalla galleria?")) return;
     updateRooms((rooms) =>
       rooms.map((room) =>
         room.id !== roomId ? room : {
@@ -142,8 +142,7 @@ export default function GalleriaPage() {
         }
       )
     );
-    setDeleteConfirm(null);
-    toast.success("Foto rimossa");
+    toast.success("Foto rimossa — clicca Salva per confermare");
   }
 
   function saveLabel() {
@@ -173,9 +172,10 @@ export default function GalleriaPage() {
       if (!res.ok) throw new Error(data.error || "Errore upload");
       setAddModal((prev) => prev ? { ...prev, url: data.url, uploading: false } : null);
       toast.success("Foto caricata — clicca Aggiungi per confermare");
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Errore upload");
-      setAddModal((prev) => prev ? { ...prev, uploading: false } : null);
+    } catch {
+      // Upload failed — switch to URL mode with a helpful message
+      setAddModal((prev) => prev ? { ...prev, uploading: false, mode: "url" } : null);
+      toast.error("Caricamento non disponibile. Inserisci l'URL diretto della foto.");
     }
   }
 
@@ -296,7 +296,6 @@ export default function GalleriaPage() {
               {/* Images grid */}
               <div className="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
                 {room.images.map((img, idx) => {
-                  const confirmDel = deleteConfirm?.roomId === room.id && deleteConfirm?.src === img.src;
                   return (
                     <div
                       key={img.src}
@@ -328,23 +327,13 @@ export default function GalleriaPage() {
                           {img.visible ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
                         </button>
                         {/* Delete */}
-                        {confirmDel ? (
-                          <button
-                            onClick={() => deleteImage(room.id, img.src)}
-                            className="p-1.5 rounded-lg bg-red-600 text-white shadow-sm transition-colors"
-                            title="Conferma eliminazione"
-                          >
-                            <Check className="w-3.5 h-3.5" />
-                          </button>
-                        ) : (
-                          <button
-                            onClick={() => setDeleteConfirm({ roomId: room.id, src: img.src })}
-                            title="Elimina foto"
-                            className="p-1.5 rounded-lg bg-white/95 text-gray-400 hover:text-red-600 shadow-sm transition-colors"
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
-                          </button>
-                        )}
+                        <button
+                          onClick={() => deleteImage(room.id, img.src)}
+                          title="Elimina foto"
+                          className="p-1.5 rounded-lg bg-white/95 text-gray-400 hover:text-red-600 shadow-sm transition-colors"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
                       </div>
 
                       {/* Order arrows (bottom) */}
@@ -370,13 +359,6 @@ export default function GalleriaPage() {
                         {idx + 1}
                       </div>
 
-                      {/* Cancel delete */}
-                      {confirmDel && (
-                        <div
-                          className="absolute inset-0 bg-red-600/20 flex items-center justify-center cursor-pointer"
-                          onClick={() => setDeleteConfirm(null)}
-                        />
-                      )}
                     </div>
                   );
                 })}

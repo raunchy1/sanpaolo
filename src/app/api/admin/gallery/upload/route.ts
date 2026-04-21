@@ -15,10 +15,14 @@ export async function POST(req: Request) {
     if (!file) throw new Error("Nessun file ricevuto");
 
     const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
-    const filename = `gallery/${randomUUID()}.${ext}`;
+    const filename = `${randomUUID()}.${ext}`;
     const buffer = Buffer.from(await file.arrayBuffer());
 
     const supabase = getSupabaseAdmin();
+
+    // Create bucket if it doesn't exist
+    await supabase.storage.createBucket("gallery", { public: true }).catch(() => {});
+
     const { error } = await supabase.storage
       .from("gallery")
       .upload(filename, buffer, {
