@@ -7,11 +7,14 @@ export default {
   },
   "nav": {
     "home": "Home",
+    "lacasa": "The House",
+    "galleria": "Gallery",
     "rooms": "Rooms",
     "amenities": "Amenities",
     "location": "Location",
     "reviews": "Reviews",
     "faq": "FAQ",
+    "offers": "Offers",
     "bookNow": "Book Now"
   },
   "hero": {

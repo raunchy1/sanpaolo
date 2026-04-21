@@ -7,11 +7,14 @@ export default {
   },
   "nav": {
     "home": "Home",
+    "lacasa": "La Casa",
+    "galleria": "Galleria",
     "rooms": "Camere",
     "amenities": "Servizi Inclusi",
     "location": "Posizione",
     "reviews": "Recensioni",
     "faq": "FAQ",
+    "offers": "Offerte",
     "bookNow": "Prenota Ora"
   },
   "hero": {
@@ -102,8 +105,8 @@ export default {
     "viewGallery": "Vedi Galleria",
     "closeGallery": "Chiudi",
     "salotto": {
-      "title": "Salotto",
-      "desc": "Luminoso soggiorno con Smart TV, comodo divano e mini libreria editoriale dedicata a Roma. La luce naturale e la vista sull'area esterna verde creano un'atmosfera accogliente e rilassante, perfetta per rigenerarsi dopo una giornata tra i monumenti."
+      "title": "Salotto / Zona Pranzo",
+      "desc": "Luminoso open space con salotto, Smart TV, comodo divano e zona pranzo. Cucina completamente attrezzata con fornelli a gas, forno, microonde, moka e macchina del caffè. La luce naturale e la vista sull'area esterna verde creano un'atmosfera accogliente e rilassante."
     },
     "cucina": {
       "title": "Cucina / Zona Pranzo",

@@ -13,10 +13,9 @@ interface RoomData {
 
 const STATIC_ROOMS: RoomData[] = [
   { key: "esterno",  images: ["/images/rooms/real/esterno-1.jpg"] },
-  { key: "salotto",  images: ["/images/rooms/real/salotto-3.jpg", "/images/rooms/real/salotto-1.jpg", "/images/rooms/real/salotto-2.jpg"] },
-  { key: "cucina",   images: ["/images/rooms/real/cucina-1.jpg", "/images/rooms/real/cucina-2.jpg", "/images/rooms/real/cucina-3.jpg"] },
+  { key: "salotto",  images: ["/images/rooms/real/salotto-3.jpg", "/images/rooms/real/salotto-1.jpg", "/images/rooms/real/salotto-2.jpg", "/images/rooms/real/cucina-1.jpg", "/images/rooms/real/cucina-2.jpg", "/images/rooms/real/cucina-3.jpg"] },
   { key: "camera1",  images: ["/images/rooms/real/camera1-1.jpg"] },
-  { key: "camera2",  images: ["/images/rooms/real/camera2-4.jpg", "/images/rooms/real/camera2-1.jpg", "/images/rooms/real/camera2-2.jpg", "/images/rooms/real/camera2-3.jpg", "/images/rooms/real/camera2-5.jpg", "/images/rooms/real/camera2-6.jpg"] },
+  { key: "camera2",  images: ["/images/rooms/real/camera2-1.jpg", "/images/rooms/real/camera2-2.jpg", "/images/rooms/real/camera2-3.jpg", "/images/rooms/real/camera2-4.jpg", "/images/rooms/real/camera2-5.jpg", "/images/rooms/real/camera2-6.jpg"] },
   { key: "bagno",    images: ["/images/rooms/real/bagno-1.jpg", "/images/rooms/real/bagno-2.jpg", "/images/rooms/real/bagno-3.jpg"] },
   { key: "dettagli", images: ["/images/rooms/real/dettagli-1.jpg", "/images/rooms/real/dettagli-2.jpg"] },
 ];

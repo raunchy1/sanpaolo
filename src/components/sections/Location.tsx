@@ -15,10 +15,6 @@ import {
   Hospital,
   Car,
 } from "lucide-react";
-import dynamic from "next/dynamic";
-
-const Map = dynamic(() => import("@/components/Map"), { ssr: false });
-
 const mainItems = [
   { key: "forteostiense", icon: Shield },
   { key: "bambinogesu", icon: Hospital },
@@ -204,19 +200,6 @@ export default function Location() {
           )}
         </AnimatePresence>
 
-        {/* Map */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
-          className="mt-14 overflow-hidden rounded-2xl"
-          style={{ boxShadow: "0 8px 40px -12px rgba(41,23,13,0.10)" }}
-        >
-          <div className="aspect-[16/7] min-h-[320px] bg-stitch-olive-light/20 relative w-full">
-            <Map />
-          </div>
-        </motion.div>
       </div>
     </section>
   );

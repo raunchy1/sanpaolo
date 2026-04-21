@@ -9,7 +9,8 @@ import { useSettings } from "@/hooks/useSettings";
 
 const navItems = [
   { key: "home", href: "#home" },
-  { key: "rooms", href: "#rooms" },
+  { key: "lacasa", href: "#lacasa" },
+  { key: "galleria", href: "#rooms" },
   { key: "amenities", href: "#amenities" },
   { key: "location", href: "#location" },
   { key: "reviews", href: "#reviews" },

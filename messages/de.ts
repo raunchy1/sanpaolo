@@ -7,11 +7,14 @@ export default {
   },
   "nav": {
     "home": "Startseite",
+    "lacasa": "Das Haus",
+    "galleria": "Galerie",
     "rooms": "Zimmer",
     "amenities": "Ausstattung",
     "location": "Lage",
     "reviews": "Bewertungen",
     "faq": "FAQ",
+    "offers": "Angebote",
     "bookNow": "Jetzt Buchen"
   },
   "hero": {

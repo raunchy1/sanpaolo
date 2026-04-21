@@ -56,7 +56,7 @@ export default function LaCasa() {
   return (
     <section
       className="py-20 md:py-32 bg-stitch-ivory overflow-hidden"
-      id="la-casa"
+      id="lacasa"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">

@@ -2,26 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
-import { Clock, UserCheck, Heart } from "lucide-react";
-
-const features = [
-  { key: "flexible", icon: Clock },
-  { key: "human", icon: UserCheck },
-  { key: "self", icon: Heart },
-] as const;
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1, y: 0,
-    transition: { duration: 0.55, ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number] },
-  },
-};
+import { Clock } from "lucide-react";
 
 export default function CheckIn() {
   const { t } = useTranslation();
@@ -66,39 +47,6 @@ export default function CheckIn() {
               </div>
             </div>
 
-            {/* Divider — ghost suggestion only */}
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-stitch-on-surface/8 to-transparent mb-10" />
-
-            {/* Feature cards */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5"
-            >
-              {features.map(({ key, icon: Icon }) => (
-                <motion.div
-                  key={key}
-                  variants={itemVariants}
-                  className="group relative bg-white/70 rounded-2xl p-6 hover:bg-white transition-all duration-300"
-                  style={{ boxShadow: "0 2px 20px -6px rgba(41,23,13,0.06)" }}
-                >
-                  {/* Subtle green top accent */}
-                  <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-stitch-green/30 to-transparent rounded-full" />
-
-                  <div className="w-11 h-11 rounded-xl bg-stitch-green/10 flex items-center justify-center mb-4 group-hover:bg-stitch-green/15 transition-colors duration-300">
-                    <Icon className="w-5 h-5 text-stitch-green" />
-                  </div>
-                  <h3 className="font-display text-base font-semibold text-stitch-on-surface mb-1.5">
-                    {t(`checkin.features.${key}.title`)}
-                  </h3>
-                  <p className="text-sm text-stitch-on-surface/55 leading-relaxed">
-                    {t(`checkin.features.${key}.desc`)}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
           </div>
         </motion.div>
       </div>

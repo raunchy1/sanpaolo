@@ -43,7 +43,8 @@ export default function Footer() {
   const { phone, whatsapp, mapsLink, instagramLink, cin, cir, protocollo } = useSettings();
 
   const serviceLinks = [
-    { labelKey: "rooms", href: "#rooms" },
+    { labelKey: "lacasa", href: "#lacasa" },
+    { labelKey: "galleria", href: "#rooms" },
     { labelKey: "amenities", href: "#amenities" },
     { labelKey: "offers", href: "#offers" },
     { labelKey: "faq", href: "#faq" },
