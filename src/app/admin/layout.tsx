@@ -16,6 +16,7 @@ import {
   Images,
   Palette,
   HelpCircle,
+  Shield,
 } from "lucide-react";
 
 const navItems = [
@@ -30,6 +31,7 @@ const navItems = [
   { href: "/admin/recensioni", label: "Recensioni", icon: Star },
   { href: "/admin/impostazioni", label: "Impostazioni", icon: Settings },
   { href: "/admin/design", label: "Design", icon: Palette },
+  { href: "/admin/legal", label: "Privacy & Cookie", icon: Shield },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
