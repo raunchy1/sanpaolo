@@ -82,6 +82,7 @@ export default function GalleriaPage() {
   const [saved, setSaved] = useState(false);
   const [addModal, setAddModal] = useState<AddPhotoModal | null>(null);
   const [editingLabel, setEditingLabel] = useState<{ roomId: string; value: string } | null>(null);
+  const [editingPhoto, setEditingPhoto] = useState<{ roomId: string; src: string; alt: string } | null>(null);
   const [descs, setDescs] = useState<Record<string, RoomDesc>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -207,6 +208,22 @@ export default function GalleriaPage() {
       )
     );
     setEditingLabel(null);
+  }
+
+  function savePhotoAlt() {
+    if (!editingPhoto) return;
+    updateRooms((rooms) =>
+      rooms.map((room) =>
+        room.id !== editingPhoto.roomId ? room : {
+          ...room,
+          images: room.images.map((img) =>
+            img.src === editingPhoto.src ? { ...img, alt: editingPhoto.alt } : img
+          ),
+        }
+      )
+    );
+    setEditingPhoto(null);
+    toast.success("Descrizione aggiornata — clicca Salva per confermare");
   }
 
   function openAddModal(roomId: string) {
@@ -357,18 +374,29 @@ export default function GalleriaPage() {
                         img.visible ? "border-transparent" : "border-dashed border-gray-200"
                       } ${!img.visible ? "opacity-50" : ""}`}
                     >
-                      {/* Thumbnail */}
-                      <div className="aspect-square bg-gray-100">
+                      {/* Thumbnail — click to edit alt text */}
+                      <button
+                        onClick={() => setEditingPhoto({ roomId: room.id, src: img.src, alt: img.alt })}
+                        className="aspect-square bg-gray-100 w-full relative group/thumb block"
+                        title="Clicca per modificare la descrizione"
+                      >
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={img.src} alt={img.alt} className="w-full h-full object-cover" loading="lazy" />
-                      </div>
-
-                      {/* Alt text */}
-                      {img.alt && img.alt !== room.label && (
-                        <div className="px-2 py-1 text-[10px] text-gray-500 truncate bg-white border-t border-gray-100">
-                          {img.alt}
+                        <div className="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/40 transition-all duration-200 flex items-center justify-center">
+                          <div className="opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-200 bg-white rounded-full p-2 shadow">
+                            <Pencil className="w-3.5 h-3.5 text-[#072316]" />
+                          </div>
                         </div>
-                      )}
+                      </button>
+
+                      {/* Alt text label */}
+                      <div
+                        className="px-2 py-1 text-[10px] text-gray-500 truncate bg-white border-t border-gray-100 cursor-pointer hover:text-[#072316] hover:bg-gray-50 transition-colors"
+                        onClick={() => setEditingPhoto({ roomId: room.id, src: img.src, alt: img.alt })}
+                        title="Clicca per modificare la descrizione"
+                      >
+                        {img.alt || <span className="text-gray-300 italic">Aggiungi descrizione…</span>}
+                      </div>
 
                       {/* Controls bar */}
                       <div className="absolute top-1.5 right-1.5 flex flex-col gap-1">
@@ -459,6 +487,55 @@ export default function GalleriaPage() {
           );
         })}
       </div>
+
+      {/* ─── Edit Photo Alt Modal ─── */}
+      {editingPhoto && (
+        <>
+          <div className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm" onClick={() => setEditingPhoto(null)} />
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+                <h3 className="font-bold text-gray-900 text-sm">Modifica descrizione foto</h3>
+                <button onClick={() => setEditingPhoto(null)} className="p-2 rounded-xl text-gray-400 hover:bg-gray-100">
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="px-6 py-4 space-y-4">
+                {/* Preview */}
+                <div className="rounded-xl overflow-hidden border border-gray-100">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={editingPhoto.src} alt="" className="w-full h-40 object-cover" />
+                </div>
+                {/* Alt input */}
+                <div>
+                  <label className="block text-xs font-medium text-gray-600 mb-1.5">Descrizione (testo alternativo)</label>
+                  <input
+                    autoFocus
+                    type="text"
+                    value={editingPhoto.alt}
+                    onChange={(e) => setEditingPhoto((p) => p ? { ...p, alt: e.target.value } : null)}
+                    onKeyDown={(e) => { if (e.key === "Enter") savePhotoAlt(); if (e.key === "Escape") setEditingPhoto(null); }}
+                    placeholder="es. Vista del salotto con divano"
+                    className="w-full px-3.5 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316]"
+                  />
+                </div>
+              </div>
+              <div className="px-6 py-4 border-t border-gray-100 flex gap-3">
+                <button onClick={() => setEditingPhoto(null)} className="flex-1 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50">
+                  Annulla
+                </button>
+                <button
+                  onClick={savePhotoAlt}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-[#072316] text-white rounded-xl text-sm font-medium hover:bg-[#0F3D28] transition-colors"
+                >
+                  <Check className="w-4 h-4" />
+                  Salva descrizione
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Save bottom */}
       <div className="mt-6 flex justify-end">
