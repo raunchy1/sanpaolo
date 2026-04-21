@@ -137,6 +137,27 @@ export default function Location() {
           ))}
         </motion.div>
 
+        {/* Google Maps embed */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+          className="mt-10 rounded-2xl overflow-hidden"
+          style={{ boxShadow: "0 4px 24px -6px rgba(41,23,13,0.12)" }}
+        >
+          <iframe
+            title="San Paolo Hideout — Via Silvio d'Amico 96, Roma"
+            src="https://maps.google.com/maps?q=Via+Silvio+d%27Amico+96%2C+00145+Roma+RM&t=&z=17&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="380"
+            style={{ border: 0, display: "block" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </motion.div>
+
         {/* Expand Button */}
         <div className="flex justify-center mt-8">
           <button
