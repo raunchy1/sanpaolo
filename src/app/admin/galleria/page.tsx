@@ -59,6 +59,22 @@ interface AddPhotoModal {
   uploading: boolean;
 }
 
+interface RoomDesc {
+  title: string;
+  desc: string;
+  titlePlaceholder: string;
+  descPlaceholder: string;
+}
+
+function getNestedStr(obj: Record<string, unknown>, path: string[]): string {
+  let cur: unknown = obj;
+  for (const k of path) {
+    if (cur && typeof cur === "object") cur = (cur as Record<string, unknown>)[k];
+    else return "";
+  }
+  return typeof cur === "string" ? cur : "";
+}
+
 export default function GalleriaPage() {
   const [config, setConfig] = useState<GalleryConfig>(DEFAULT_CONFIG);
   const [loading, setLoading] = useState(true);
@@ -66,16 +82,36 @@ export default function GalleriaPage() {
   const [saved, setSaved] = useState(false);
   const [addModal, setAddModal] = useState<AddPhotoModal | null>(null);
   const [editingLabel, setEditingLabel] = useState<{ roomId: string; value: string } | null>(null);
+  const [descs, setDescs] = useState<Record<string, RoomDesc>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   async function load() {
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/gallery");
-      if (res.ok) {
-        const data = await res.json();
-        setConfig(mergeWithDefaults(data));
-      }
+      const [galleryRes, baseRes, overridesRes] = await Promise.all([
+        fetch("/api/admin/gallery"),
+        fetch("/api/content"),
+        fetch("/api/admin/content"),
+      ]);
+      if (galleryRes.ok) setConfig(mergeWithDefaults(await galleryRes.json()));
+
+      const base = baseRes.ok ? ((await baseRes.json()).it || {}) as Record<string, unknown> : {};
+      const overrides = overridesRes.ok ? ((await overridesRes.json()).it || {}) as Record<string, unknown> : {};
+      const baseRooms = (base.rooms || {}) as Record<string, unknown>;
+      const ovRooms = (overrides.rooms || {}) as Record<string, unknown>;
+
+      const initial: Record<string, RoomDesc> = {};
+      DEFAULT_CONFIG.rooms.forEach((room) => {
+        const bRoom = (baseRooms[room.id] || {}) as Record<string, unknown>;
+        const oRoom = (ovRooms[room.id] || {}) as Record<string, unknown>;
+        initial[room.id] = {
+          title: getNestedStr(oRoom, ["title"]),
+          desc: getNestedStr(oRoom, ["desc"]),
+          titlePlaceholder: getNestedStr(bRoom, ["title"]) || room.label,
+          descPlaceholder: getNestedStr(bRoom, ["desc"]) || "",
+        };
+      });
+      setDescs(initial);
     } catch {
       toast.error("Errore nel caricamento");
     } finally {
@@ -88,13 +124,31 @@ export default function GalleriaPage() {
   async function save(cfg = config) {
     setSaving(true);
     try {
-      const res = await fetch("/api/admin/gallery", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(cfg),
+      // Build content overrides for room descriptions
+      const roomsOverride: Record<string, unknown> = {};
+      Object.entries(descs).forEach(([roomId, d]) => {
+        const entry: Record<string, string> = {};
+        if (d.title.trim()) entry.title = d.title.trim();
+        if (d.desc.trim()) entry.desc = d.desc.trim();
+        if (Object.keys(entry).length) roomsOverride[roomId] = entry;
       });
-      if (!res.ok) throw new Error((await res.json()).error);
-      toast.success("Galleria salvata");
+
+      await Promise.all([
+        fetch("/api/admin/gallery", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(cfg),
+        }),
+        Object.keys(roomsOverride).length
+          ? fetch("/api/admin/content", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ it: { rooms: roomsOverride } }),
+            })
+          : Promise.resolve(),
+      ]);
+
+      toast.success("Galleria e descrizioni salvate");
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
     } catch (err) {
@@ -372,6 +426,35 @@ export default function GalleriaPage() {
                   <span className="text-xs font-medium">Aggiungi</span>
                 </button>
               </div>
+
+              {/* Room text descriptions */}
+              {descs[room.id] !== undefined && (
+                <div className="px-5 pb-5 border-t border-gray-50 pt-4 space-y-3">
+                  <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Testi visibili sul sito</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-medium text-gray-600 mb-1.5">Titolo scheda</label>
+                      <input
+                        type="text"
+                        value={descs[room.id].title}
+                        onChange={(e) => setDescs((prev) => ({ ...prev, [room.id]: { ...prev[room.id], title: e.target.value } }))}
+                        placeholder={descs[room.id].titlePlaceholder || room.label}
+                        className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all"
+                      />
+                    </div>
+                    <div className="sm:col-span-1">
+                      <label className="block text-xs font-medium text-gray-600 mb-1.5">Descrizione</label>
+                      <textarea
+                        value={descs[room.id].desc}
+                        onChange={(e) => setDescs((prev) => ({ ...prev, [room.id]: { ...prev[room.id], desc: e.target.value } }))}
+                        placeholder={descs[room.id].descPlaceholder || "Descrizione della stanza…"}
+                        rows={3}
+                        className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all resize-none"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}
