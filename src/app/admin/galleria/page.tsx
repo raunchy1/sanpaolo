@@ -10,13 +10,26 @@ import type { GalleryConfig, GalleryRoom, GalleryImage } from "@/app/api/admin/g
 
 const DEFAULT_CONFIG: GalleryConfig = {
   rooms: [
-    { id: "esterno",  label: "Esterno",  images: [{ src: "/images/rooms/real/esterno-1.jpg",  alt: "Esterno",  visible: true, order: 0 }] },
-    { id: "salotto",  label: "Salotto",  images: [{ src: "/images/rooms/real/salotto-3.jpg",  alt: "Salotto",  visible: true, order: 0 }, { src: "/images/rooms/real/salotto-1.jpg", alt: "Salotto", visible: true, order: 1 }, { src: "/images/rooms/real/salotto-2.jpg", alt: "Salotto", visible: true, order: 2 }] },
-    { id: "cucina",   label: "Cucina",   images: [{ src: "/images/rooms/real/cucina-1.jpg",   alt: "Cucina",   visible: true, order: 0 }, { src: "/images/rooms/real/cucina-2.jpg",  alt: "Cucina",  visible: true, order: 1 }, { src: "/images/rooms/real/cucina-3.jpg", alt: "Cucina", visible: true, order: 2 }] },
-    { id: "camera1",  label: "Camera 1", images: [{ src: "/images/rooms/real/camera1-1.jpg",  alt: "Camera 1", visible: true, order: 0 }] },
-    { id: "camera2",  label: "Camera 2", images: [{ src: "/images/rooms/real/camera2-4.jpg",  alt: "Camera 2", visible: true, order: 0 }, { src: "/images/rooms/real/camera2-1.jpg", alt: "Camera 2", visible: true, order: 1 }, { src: "/images/rooms/real/camera2-2.jpg", alt: "Camera 2", visible: true, order: 2 }, { src: "/images/rooms/real/camera2-3.jpg", alt: "Camera 2", visible: true, order: 3 }, { src: "/images/rooms/real/camera2-5.jpg", alt: "Camera 2", visible: true, order: 4 }, { src: "/images/rooms/real/camera2-6.jpg", alt: "Camera 2", visible: true, order: 5 }] },
-    { id: "bagno",    label: "Bagno",    images: [{ src: "/images/rooms/real/bagno-1.jpg",    alt: "Bagno",    visible: true, order: 0 }, { src: "/images/rooms/real/bagno-2.jpg", alt: "Bagno", visible: true, order: 1 }, { src: "/images/rooms/real/bagno-3.jpg", alt: "Bagno", visible: true, order: 2 }] },
-    { id: "dettagli", label: "Dettagli", images: [{ src: "/images/rooms/real/dettagli-1.jpg", alt: "Dettagli", visible: true, order: 0 }, { src: "/images/rooms/real/dettagli-2.jpg", alt: "Dettagli", visible: true, order: 1 }] },
+    { id: "esterno",  label: "Esterno",           images: [{ src: "/images/rooms/real/esterno-1.jpg",  alt: "Esterno",  visible: true, order: 0 }] },
+    { id: "salotto",  label: "Salotto / Zona Pranzo", images: [
+      { src: "/images/rooms/real/salotto-3.jpg", alt: "Salotto", visible: true, order: 0 },
+      { src: "/images/rooms/real/salotto-1.jpg", alt: "Salotto", visible: true, order: 1 },
+      { src: "/images/rooms/real/salotto-2.jpg", alt: "Salotto", visible: true, order: 2 },
+      { src: "/images/rooms/real/cucina-1.jpg",  alt: "Cucina",  visible: true, order: 3 },
+      { src: "/images/rooms/real/cucina-2.jpg",  alt: "Cucina",  visible: true, order: 4 },
+      { src: "/images/rooms/real/cucina-3.jpg",  alt: "Cucina",  visible: true, order: 5 },
+    ] },
+    { id: "camera1",  label: "Camera Matrimoniale", images: [{ src: "/images/rooms/real/camera1-1.jpg",  alt: "Camera 1", visible: true, order: 0 }] },
+    { id: "camera2",  label: "Seconda Camera",      images: [
+      { src: "/images/rooms/real/camera2-1.jpg", alt: "Camera 2", visible: true, order: 0 },
+      { src: "/images/rooms/real/camera2-2.jpg", alt: "Camera 2", visible: true, order: 1 },
+      { src: "/images/rooms/real/camera2-3.jpg", alt: "Camera 2", visible: true, order: 2 },
+      { src: "/images/rooms/real/camera2-4.jpg", alt: "Camera 2", visible: true, order: 3 },
+      { src: "/images/rooms/real/camera2-5.jpg", alt: "Camera 2", visible: true, order: 4 },
+      { src: "/images/rooms/real/camera2-6.jpg", alt: "Camera 2", visible: true, order: 5 },
+    ] },
+    { id: "bagno",    label: "Bagno",              images: [{ src: "/images/rooms/real/bagno-1.jpg",    alt: "Bagno",    visible: true, order: 0 }, { src: "/images/rooms/real/bagno-2.jpg", alt: "Bagno", visible: true, order: 1 }, { src: "/images/rooms/real/bagno-3.jpg", alt: "Bagno", visible: true, order: 2 }] },
+    { id: "dettagli", label: "Dettagli",            images: [{ src: "/images/rooms/real/dettagli-1.jpg", alt: "Dettagli", visible: true, order: 0 }, { src: "/images/rooms/real/dettagli-2.jpg", alt: "Dettagli", visible: true, order: 1 }] },
   ],
 };
 

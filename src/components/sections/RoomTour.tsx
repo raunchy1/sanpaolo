@@ -21,13 +21,26 @@ const STATIC_ROOMS: RoomData[] = [
 ];
 
 function configToRooms(config: GalleryConfig): RoomData[] {
-  return config.rooms.map((room) => ({
-    key: room.id,
-    images: room.images
-      .filter((img) => img.visible)
-      .sort((a, b) => a.order - b.order)
-      .map((img) => img.src),
-  })).filter((room) => room.images.length > 0);
+  // If old config still has separate "cucina" room, merge its images into "salotto"
+  const cucinaRoom = config.rooms.find((r) => r.id === "cucina");
+  const rooms = config.rooms
+    .filter((r) => r.id !== "cucina")
+    .map((room) => {
+      let images = room.images
+        .filter((img) => img.visible)
+        .sort((a, b) => a.order - b.order)
+        .map((img) => img.src);
+      if (room.id === "salotto" && cucinaRoom) {
+        const cucinaImages = cucinaRoom.images
+          .filter((img) => img.visible)
+          .sort((a, b) => a.order - b.order)
+          .map((img) => img.src);
+        images = [...images, ...cucinaImages];
+      }
+      return { key: room.id, images };
+    })
+    .filter((room) => room.images.length > 0);
+  return rooms;
 }
 
 const slideVariants = {
