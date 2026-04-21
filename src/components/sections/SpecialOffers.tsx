@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
-import { Calendar, Sun, Gift, Clock } from "lucide-react";
+import { Calendar, Sun, Clock } from "lucide-react";
 import { useSettings } from "@/hooks/useSettings";
 
 const offers = [
@@ -15,11 +15,6 @@ const offers = [
     key: "weekend",
     icon: Sun,
     gradient: "from-[#1D4D35] to-[#2E6B4A]",
-  },
-  {
-    key: "direct",
-    icon: Gift,
-    gradient: "from-[#234d38] to-[#2E6B4A]",
   },
   {
     key: "early",
