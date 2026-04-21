@@ -15,6 +15,7 @@ import {
   Home,
   Images,
   Palette,
+  HelpCircle,
 } from "lucide-react";
 
 const navItems = [
@@ -25,6 +26,7 @@ const navItems = [
   { href: "/admin/servizi", label: "Servizi inclusi", icon: Layers },
   { href: "/admin/sezioni", label: "Sezioni", icon: Layers },
   { href: "/admin/galleria", label: "Galleria foto", icon: Images },
+  { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
   { href: "/admin/recensioni", label: "Recensioni", icon: Star },
   { href: "/admin/impostazioni", label: "Impostazioni", icon: Settings },
   { href: "/admin/design", label: "Design", icon: Palette },

@@ -1,21 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
 import { ChevronDown } from "lucide-react";
 
+interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
 const faqKeys = ["q1", "q2", "q3", "q4", "q5", "q6", "q7"] as const;
 
 function FAQItem({
-  questionKey,
   question,
   answer,
   isOpen,
   onToggle,
   index,
 }: {
-  questionKey: string;
   question: string;
   answer: string;
   isOpen: boolean;
@@ -28,9 +32,7 @@ function FAQItem({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`transition-colors duration-300 rounded-xl px-2 ${
-        isOpen ? "bg-[#FFF1EA]" : ""
-      }`}
+      className={`transition-colors duration-300 rounded-xl px-2 ${isOpen ? "bg-[#FFF1EA]" : ""}`}
     >
       <button
         onClick={onToggle}
@@ -69,6 +71,25 @@ function FAQItem({
 export default function FAQ() {
   const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<string | null>(null);
+  const [items, setItems] = useState<FaqItem[]>([]);
+
+  useEffect(() => {
+    fetch("/api/faq")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) setItems(data);
+      })
+      .catch(() => {});
+  }, []);
+
+  // Fall back to i18n if no dynamic items loaded
+  const faqItems: FaqItem[] = items.length > 0
+    ? items
+    : faqKeys.map((key) => ({
+        id: key,
+        question: t(`faq.${key}.question`),
+        answer: t(`faq.${key}.answer`),
+      }));
 
   return (
     <section className="py-20 md:py-32 bg-stitch-ivory-warm" id="faq">
@@ -101,16 +122,13 @@ export default function FAQ() {
           className="bg-white rounded-3xl p-6 md:p-8"
           style={{ boxShadow: "0 4px 32px -8px rgba(41,23,13,0.06)" }}
         >
-          {faqKeys.map((key, index) => (
+          {faqItems.map((item, index) => (
             <FAQItem
-              key={key}
-              questionKey={key}
-              question={t(`faq.${key}.question`)}
-              answer={t(`faq.${key}.answer`)}
-              isOpen={openIndex === key}
-              onToggle={() =>
-                setOpenIndex(openIndex === key ? null : key)
-              }
+              key={item.id}
+              question={item.question}
+              answer={item.answer}
+              isOpen={openIndex === item.id}
+              onToggle={() => setOpenIndex(openIndex === item.id ? null : item.id)}
               index={index}
             />
           ))}
