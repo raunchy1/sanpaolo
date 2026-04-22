@@ -17,6 +17,7 @@ import {
   Palette,
   HelpCircle,
   Shield,
+  House,
 } from "lucide-react";
 
 const navItems = [
@@ -24,6 +25,7 @@ const navItems = [
   { href: "/admin/prenotazioni", label: "Prenotazioni", icon: BookOpen },
   { href: "/admin/calendario", label: "Calendario", icon: CalendarDays },
   { href: "/admin/contenuti", label: "Contenuti", icon: FileText },
+  { href: "/admin/lacasa", label: "Testi La Casa", icon: House },
   { href: "/admin/servizi", label: "Servizi inclusi", icon: Layers },
   { href: "/admin/sezioni", label: "Sezioni", icon: Layers },
   { href: "/admin/galleria", label: "Galleria foto", icon: Images },
