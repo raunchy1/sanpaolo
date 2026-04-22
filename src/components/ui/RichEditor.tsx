@@ -3,7 +3,7 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
-import { TextStyle } from "@tiptap/extension-text-style";
+import { TextStyle, FontSize } from "@tiptap/extension-text-style";
 import { Color } from "@tiptap/extension-color";
 import { FontFamily } from "@tiptap/extension-font-family";
 import { TextAlign } from "@tiptap/extension-text-align";
@@ -80,6 +80,7 @@ export default function RichEditor({ value, onChange, placeholder = "Scrivi quiâ
       StarterKit.configure({ heading: false }),
       Underline,
       TextStyle,
+      FontSize,
       Color,
       FontFamily,
       TextAlign.configure({ types: ["paragraph"] }),
@@ -159,6 +160,38 @@ export default function RichEditor({ value, onChange, placeholder = "Scrivi quiâ
           {FONTS.map((f) => (
             <option key={f.value} value={f.value}>{f.label}</option>
           ))}
+        </select>
+
+        {/* Font size */}
+        <select
+          title="Dimensione testo"
+          className="text-xs border border-gray-200 rounded px-1.5 py-1 bg-white text-gray-600 focus:outline-none"
+          onChange={(e) => {
+            if (e.target.value === "") {
+              editor.chain().focus().unsetFontSize().run();
+            } else {
+              editor.chain().focus().setFontSize(e.target.value).run();
+            }
+          }}
+          defaultValue=""
+        >
+          <option value="">Dim.</option>
+          <option value="11px">11</option>
+          <option value="12px">12</option>
+          <option value="13px">13</option>
+          <option value="14px">14</option>
+          <option value="15px">15</option>
+          <option value="16px">16</option>
+          <option value="17px">17</option>
+          <option value="18px">18</option>
+          <option value="20px">20</option>
+          <option value="22px">22</option>
+          <option value="24px">24</option>
+          <option value="28px">28</option>
+          <option value="32px">32</option>
+          <option value="36px">36</option>
+          <option value="42px">42</option>
+          <option value="48px">48</option>
         </select>
 
         <div className="w-px h-5 bg-gray-200 mx-1" />
