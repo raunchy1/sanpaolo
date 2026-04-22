@@ -28,6 +28,10 @@ interface Settings {
   airbnbReviewCount: string;
   googleReviewCount: string;
   googleReviewsLink: string;
+  bookingScore: string;
+  airbnbScore: string;
+  googleScore: string;
+  overallScore: string;
 }
 
 const EMPTY: Settings = {
@@ -54,6 +58,10 @@ const EMPTY: Settings = {
   airbnbReviewCount: "",
   googleReviewCount: "",
   googleReviewsLink: "",
+  bookingScore: "",
+  airbnbScore: "",
+  googleScore: "",
+  overallScore: "",
 };
 
 type SectionId = "contatti" | "piattaforme" | "legale" | "seo" | "recensioni";
@@ -120,6 +128,10 @@ const SECTIONS: { id: SectionId; label: string; icon: React.ElementType; fields:
     label: "Contatori Recensioni",
     icon: CheckCircle,
     fields: [
+      { key: "bookingScore", label: "Punteggio Booking.com", placeholder: "9.9/10", hint: "Es. 9.9/10 — mostrato nella barra hero" },
+      { key: "airbnbScore", label: "Punteggio Airbnb", placeholder: "5/5", hint: "Es. 5/5 — mostrato nella barra hero" },
+      { key: "googleScore", label: "Punteggio Google", placeholder: "5/5", hint: "Es. 5/5 — mostrato nella barra hero" },
+      { key: "overallScore", label: "Punteggio generale (sezione recensioni)", placeholder: "9.9", hint: "Es. 9.9 — il numero grande nella sezione Cosa Dicono i Nostri Ospiti" },
       { key: "bookingReviewCount", label: "N° recensioni Booking.com", placeholder: "19", hint: "Numero mostrato nella barra reviews dell'hero" },
       { key: "airbnbReviewCount", label: "N° recensioni Airbnb", placeholder: "6", hint: "Numero mostrato nella barra reviews dell'hero" },
       { key: "googleReviewCount", label: "N° recensioni Google", placeholder: "19", hint: "Numero mostrato nella barra reviews dell'hero" },

@@ -21,6 +21,10 @@ export interface SiteSettings {
   airbnbReviewCount: string;
   googleReviewCount: string;
   googleReviewsLink: string;
+  bookingScore: string;
+  airbnbScore: string;
+  googleScore: string;
+  overallScore: string;
 }
 
 const DEFAULTS: SiteSettings = {
@@ -42,6 +46,10 @@ const DEFAULTS: SiteSettings = {
   bookingReviewCount: "19",
   airbnbReviewCount: "6",
   googleReviewCount: "19",
+  bookingScore: "9.9/10",
+  airbnbScore: "5/5",
+  googleScore: "5/5",
+  overallScore: "9.9",
 };
 
 export function useSettings(): SiteSettings {

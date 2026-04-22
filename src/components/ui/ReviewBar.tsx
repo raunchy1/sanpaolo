@@ -22,7 +22,7 @@ export default function ReviewBar() {
   const items = [
     {
       platform: "BOOKING.COM",
-      score: "9/10",
+      score: settings.bookingScore,
       count: settings.bookingReviewCount,
       stars: 5,
       accent: "#1a6fbb",
@@ -36,7 +36,7 @@ export default function ReviewBar() {
     },
     {
       platform: "AIRBNB",
-      score: "5/5",
+      score: settings.airbnbScore,
       count: settings.airbnbReviewCount,
       stars: 5,
       accent: "#ff5a5f",
@@ -50,7 +50,7 @@ export default function ReviewBar() {
     },
     {
       platform: "GOOGLE",
-      score: "5/5",
+      score: settings.googleScore,
       count: settings.googleReviewCount,
       stars: 5,
       accent: "#f5a623",

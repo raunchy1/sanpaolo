@@ -27,11 +27,6 @@ const FALLBACK_KEYS = [
   "review4", "review5", "review6", "review7",
 ] as const;
 
-const categoryKeys = [
-  "location", "cleanliness", "comfort",
-  "communication", "value", "family",
-] as const;
-
 /* ─────────────────────────────────────────────
    Airbnb mark icon
 ───────────────────────────────────────────── */
@@ -40,24 +35,6 @@ function AirbnbMark({ className }: { className?: string }) {
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 2C9.243 2 7 4.243 7 7c0 1.107.34 2.136.92 2.985-.58.85-.92 1.878-.92 2.985 0 1.38.47 2.65 1.257 3.665-.787 1.015-1.257 2.285-1.257 3.665C6.5 21.38 8.99 23 12 23s5.5-1.62 5.5-5.36c0-1.38-.47-2.65-1.257-3.665.787-1.015 1.257-2.285 1.257-3.665 0-1.107-.34-2.136-.92-2.985.58-.85.92-1.878.92-2.985 0-2.757-2.243-5-5-5zm0 14.27c-1.21 0-2.27-.63-2.89-1.58.62-.95 1.68-1.58 2.89-1.58s2.27.63 2.89 1.58c-.62.95-1.68 1.58-2.89 1.58zm0-5.27c-1.21 0-2.27-.63-2.89-1.58.62-.95 1.68-1.58 2.89-1.58s2.27.63 2.89 1.58c-.62.95-1.68 1.58-2.89 1.58zm0-5.27c-1.21 0-2.27-.63-2.89-1.58.62-.95 1.68-1.58 2.89-1.58s2.27.63 2.89 1.58c-.62.95-1.68 1.58-2.89 1.58z"/>
     </svg>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   Score animated bar
-───────────────────────────────────────────── */
-function ScoreBar({ score }: { score: string }) {
-  const pct = (parseFloat(score) / 10) * 100;
-  return (
-    <div className="w-full h-1 bg-stitch-olive-light/40 rounded-full overflow-hidden mt-1.5">
-      <motion.div
-        initial={{ width: 0 }}
-        whileInView={{ width: `${pct}%` }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.9, ease: "easeOut", delay: 0.25 }}
-        className="h-full rounded-full bg-stitch-green"
-      />
-    </div>
   );
 }
 
@@ -172,7 +149,7 @@ function FallbackCard({ reviewKey, idx, t }: { reviewKey: string; idx: number; t
 ───────────────────────────────────────────── */
 export default function Reviews() {
   const { t } = useTranslation();
-  const { airbnbReviewsLink, bookingReviewsLink } = useSettings();
+  const { airbnbReviewsLink, bookingReviewsLink, overallScore } = useSettings();
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -236,7 +213,7 @@ export default function Reviews() {
                 <div className="flex items-center gap-6 md:gap-10">
                   <div className="text-center sm:text-left">
                     <div className="font-display text-5xl md:text-6xl font-bold text-stitch-green leading-none">
-                      {t("reviews.overallScore")}
+                      {overallScore}
                     </div>
                     <div className="text-stitch-on-surface/35 text-xs font-medium mt-1">
                       / {t("reviews.overallMax")}
@@ -284,28 +261,6 @@ export default function Reviews() {
                 </div>
               </div>
 
-              {/* Category breakdown */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
-                {categoryKeys.map((key, i) => (
-                  <motion.div
-                    key={key}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.06 }}
-                    className="bg-white rounded-xl p-3.5 hover:bg-[#FFF1EA] transition-all duration-300 text-center"
-                    style={{ boxShadow: "0 1px 8px -2px rgba(41,23,13,0.05)" }}
-                  >
-                    <p className="text-[10px] text-stitch-on-surface/40 uppercase tracking-wider font-semibold mb-1">
-                      {t(`reviews.categories.${key}.name`)}
-                    </p>
-                    <p className="font-display text-lg font-bold text-stitch-green leading-none">
-                      {t(`reviews.categories.${key}.score`)}
-                    </p>
-                    <ScoreBar score={t(`reviews.categories.${key}.score`)} />
-                  </motion.div>
-                ))}
-              </div>
             </div>
           </div>
         </motion.div>
