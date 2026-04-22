@@ -66,15 +66,9 @@ export default function GuestFavorites() {
               <div className="w-11 h-11 rounded-xl bg-stitch-green/8 flex items-center justify-center">
                 <Icon className="w-5 h-5 text-stitch-green/70" />
               </div>
-              <div>
-                <p className="font-label text-[9px] tracking-[0.18em] uppercase text-stitch-on-surface/50 mb-1 leading-tight">
-                  {t(`guestFavorites.${key}`)}
-                </p>
-                <p className="font-display text-lg font-semibold text-stitch-on-surface flex items-center justify-center gap-1">
-                  <span className="text-stitch-gold text-sm">★</span>
-                  5.0
-                </p>
-              </div>
+              <p className="font-label text-[9px] tracking-[0.18em] uppercase text-stitch-on-surface/50 leading-tight">
+                {t(`guestFavorites.${key}`)}
+              </p>
             </motion.div>
           ))}
         </motion.div>

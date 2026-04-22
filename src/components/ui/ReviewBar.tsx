@@ -97,7 +97,7 @@ export default function ReviewBar() {
               <div className="text-[10px] font-semibold tracking-[0.15em] uppercase text-white/50 leading-none mb-1">
                 {item.platform}
               </div>
-              <div className="flex items-baseline gap-2">
+              <div className="flex flex-col gap-1">
                 <span className="text-2xl font-extrabold leading-none" style={{ color: item.accent }}>
                   {item.score}
                 </span>

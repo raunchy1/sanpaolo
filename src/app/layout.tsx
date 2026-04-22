@@ -20,9 +20,9 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const STATIC_TITLE = "San Paolo Hideout | Boutique Vacation Rental Rome San Paolo";
-const STATIC_DESC = "San Paolo Hideout: boutique detached house in Rome near Basilica San Paolo and Metro B. Newly built 2025, shared green outdoor area, 2 bedrooms, 3 guests. Book directly for the best price.";
-const STATIC_OG_TITLE = "San Paolo Hideout — Rome | Boutique Vacation Rental with Green Outdoor Area";
+const STATIC_TITLE = "San Paolo Hideout | Casa Vacanze Roma";
+const STATIC_DESC = "San Paolo Hideout: casa vacanze indipendente a Roma vicino alla Basilica San Paolo e alla Metro B. Nuova costruzione 2025, area esterna verde, 2 camere, 3 ospiti. Prenota direttamente al miglior prezzo.";
+const STATIC_OG_TITLE = "San Paolo Hideout — Roma | Casa Vacanze con Area Verde";
 const STATIC_OG_DESC = "Your private Roman sanctuary near Metro B. Newly built detached house 2025, 2 bedrooms, shared green outdoor area. Book directly on WhatsApp.";
 const STATIC_OG_IMAGE = "/images/hero-trevi.jpg";
 

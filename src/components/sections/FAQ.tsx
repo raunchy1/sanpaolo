@@ -58,9 +58,11 @@ function FAQItem({
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="pb-5 md:pb-6 text-muted-foreground leading-relaxed pr-12 px-1">
-              {answer}
-            </p>
+            <div className="pb-5 md:pb-6 text-muted-foreground leading-relaxed pr-12 px-1 space-y-3">
+              {answer.split("\n").map((line, i) =>
+                line.trim() === "" ? null : <p key={i}>{line}</p>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
