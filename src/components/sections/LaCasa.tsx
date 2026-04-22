@@ -43,6 +43,14 @@ const pClass =
 const pIntroClass =
   "font-body text-stitch-on-surface/78 text-[16px] md:text-[17px] leading-[1.85] mb-5";
 
+// Renders either HTML (from rich editor) or legacy bold/strikethrough format
+function Para({ text, className, style }: { text: string; className: string; style?: React.CSSProperties }) {
+  if (text.startsWith("<")) {
+    return <div className={className} style={style} dangerouslySetInnerHTML={{ __html: text }} />;
+  }
+  return <p className={className} style={style}><B text={text} /></p>;
+}
+
 export default function LaCasa() {
   const { t } = useTranslation();
 
@@ -75,36 +83,15 @@ export default function LaCasa() {
 
             <div className="w-12 h-px bg-stitch-green/25 mb-8" />
 
-            {/* P1 — Identity (intro weight) */}
-            <p className={pIntroClass}>
-              <B text={t("laCasa.p1")} />
-            </p>
-
-            {/* P2 — Location & nature feeling */}
-            <p className={pClass}>
-              <B text={t("laCasa.p2")} />
-            </p>
-
-            {/* P3 — Rooms */}
-            <p className={pClass}>
-              <B text={t("laCasa.p3")} />
-            </p>
-
-            {/* P4 — Kitchen */}
-            <p className={pClass}>
-              <B text={t("laCasa.p4")} />
-            </p>
-
-            {/* P5 — Bathroom */}
-            <p className={pClass}>
-              <B text={t("laCasa.p5")} />
-            </p>
+            <Para text={t("laCasa.p1")} className={pIntroClass} />
+            <Para text={t("laCasa.p2")} className={pClass} />
+            <Para text={t("laCasa.p3")} className={pClass} />
+            <Para text={t("laCasa.p4")} className={pClass} />
+            <Para text={t("laCasa.p5")} className={pClass} />
 
             {/* P6 — Privacy & features */}
             <div className="mb-5">
-              <p className={pClass + " mb-3"}>
-                <B text={t("laCasa.p6intro")} />
-              </p>
+              <Para text={t("laCasa.p6intro")} className={pClass + " mb-3"} />
               <ul className="space-y-2 pl-1">
                 {featureItems.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
@@ -120,13 +107,11 @@ export default function LaCasa() {
               </ul>
             </div>
 
-            {/* P7 — Closing editorial statement with left accent line */}
-            <p
+            <Para
+              text={t("laCasa.p7")}
               className="font-body text-stitch-on-surface/65 text-[15px] md:text-[15.5px] leading-[1.85] mb-10 pl-5"
               style={{ borderLeft: "2px solid rgba(7,35,22,0.18)" }}
-            >
-              <B text={t("laCasa.p7")} />
-            </p>
+            />
 
             <a
               href={WHATSAPP_LINK}

@@ -3,21 +3,21 @@
 import { useState, useEffect } from "react";
 import { Save, RefreshCw, CheckCircle, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
+import dynamic from "next/dynamic";
 
-const DEFAULTS = {
-  p1: "San Paolo Hideout è una **casa vacanza indipendente ed esclusiva**, di **nuovissima costruzione (2025)**, pensata per offrire un autentico ~~rifugio di pace e tranquillità nel cuore di Roma~~.",
-  p2: "Situata a pochi passi dalla **Metro San Paolo**, la struttura gode di una **posizione privilegiata**, ~~immersa nel verde~~, una vera **rarità nella capitale**, regalando agli ospiti una sensazione di ~~oasi fuori dal tempo~~, pur restando perfettamente collegata alle principali attrazioni della città eterna.",
-  p3: "L'abitazione, progettata per ospitare **fino a tre persone in totale comfort**, dispone di una **ampia camera matrimoniale**, una **camera singola da una piazza e mezzo** e un **salone accogliente**, arricchito da **Smart TV** e da una curata **selezione di libri dedicati a Roma**.",
-  p4: "La **cucina completamente attrezzata**, dotata di **elettrodomestici di ultima generazione**, include **lavastoviglie**, **macchina per il caffè** e un **omaggio di benvenuto con caffè, tè e condimenti essenziali**.",
-  p5: "Il **bagno moderno** offre un comodo **box doccia** e una **lavatrice**, garantendo massima autonomia anche per soggiorni più lunghi.",
-  p6intro: "Ogni dettaglio del San Paolo Hideout è pensato per il **benessere e la privacy degli ospiti**:",
-  p6items: "**climatizzazione in tutti gli ambienti**|**Wi-Fi ad alta velocità**|**ingresso indipendente**|**parcheggio gratuito riservato**|**biancheria completa**|su richiesta, **culla per bambini**, rendendola perfetta anche per famiglie",
-  p7: "Sintesi perfetta tra **design moderno**, **calore domestico** e **posizione strategica**, il San Paolo Hideout è la scelta ideale per chi desidera ~~scoprire la Roma storica senza rinunciare alla quietezza di un esclusivo angolo verde~~.",
+const RichEditor = dynamic(() => import("@/components/ui/RichEditor"), { ssr: false });
+
+const DEFAULTS: Record<string, string> = {
+  p1: "San Paolo Hideout è una <strong>casa vacanza indipendente ed esclusiva</strong>, di <strong>nuovissima costruzione (2025)</strong>, pensata per offrire un autentico rifugio di pace e tranquillità nel cuore di Roma.",
+  p2: "Situata a pochi passi dalla <strong>Metro San Paolo</strong>, la struttura gode di una <strong>posizione privilegiata</strong>, immersa nel verde, una vera <strong>rarità nella capitale</strong>, regalando agli ospiti una sensazione di oasi fuori dal tempo.",
+  p3: "L'abitazione, progettata per ospitare <strong>fino a tre persone in totale comfort</strong>, dispone di una <strong>ampia camera matrimoniale</strong>, una <strong>camera singola da una piazza e mezza</strong> e un <strong>salone accogliente</strong>, arricchito da <strong>Smart TV</strong> e da una curata <strong>selezione di libri dedicati a Roma</strong>.",
+  p4: "La <strong>cucina completamente attrezzata</strong>, dotata di <strong>elettrodomestici di ultima generazione</strong>, include <strong>lavastoviglie</strong>, <strong>macchina per il caffè</strong> e un <strong>omaggio di benvenuto con caffè, tè e condimenti essenziali</strong>.",
+  p5: "Il <strong>bagno moderno</strong> offre un comodo <strong>box doccia</strong> e una <strong>lavatrice</strong>, garantendo massima autonomia anche per soggiorni più lunghi.",
+  p6intro: "Ogni dettaglio del San Paolo Hideout è pensato per il <strong>benessere e la privacy degli ospiti</strong>:",
+  p7: "Sintesi perfetta tra <strong>design moderno</strong>, <strong>calore domestico</strong> e <strong>posizione strategica</strong>, il San Paolo Hideout è la scelta ideale per chi desidera scoprire la Roma storica senza rinunciare alla quietezza di un esclusivo angolo verde.",
 };
 
-type Key = keyof typeof DEFAULTS;
-
-const FIELDS: { key: Key; label: string; hint?: string }[] = [
+const FIELDS: { key: string; label: string; hint?: string; simpleText?: boolean }[] = [
   { key: "p1", label: "Paragrafo 1 — Introduzione" },
   { key: "p2", label: "Paragrafo 2 — Posizione" },
   { key: "p3", label: "Paragrafo 3 — Camere e spazi" },
@@ -27,7 +27,8 @@ const FIELDS: { key: Key; label: string; hint?: string }[] = [
   {
     key: "p6items",
     label: "Paragrafo 6 — Lista servizi (separare con |)",
-    hint: "Ogni voce separata da |  es.  Wi-Fi veloce|Parcheggio gratuito|Climatizzazione",
+    hint: "Ogni voce separata da |   es.  Wi-Fi veloce|Parcheggio gratuito|Climatizzazione",
+    simpleText: true,
   },
   { key: "p7", label: "Paragrafo 7 — Conclusione" },
 ];
@@ -41,11 +42,7 @@ function getNestedValue(obj: Record<string, unknown>, path: string[]): string {
   return typeof cur === "string" ? cur : "";
 }
 
-function setNested(
-  obj: Record<string, unknown>,
-  path: string[],
-  val: string
-): Record<string, unknown> {
+function setNested(obj: Record<string, unknown>, path: string[], val: string): Record<string, unknown> {
   if (path.length === 0) return obj;
   const [h, ...rest] = path;
   if (rest.length === 0) return { ...obj, [h]: val };
@@ -53,7 +50,7 @@ function setNested(
 }
 
 export default function LaCasaAdminPage() {
-  const [values, setValues] = useState<Record<Key, string>>({
+  const [values, setValues] = useState<Record<string, string>>({
     p1: "", p2: "", p3: "", p4: "", p5: "", p6intro: "", p6items: "", p7: "",
   });
   const [loading, setLoading] = useState(true);
@@ -66,7 +63,7 @@ export default function LaCasaAdminPage() {
       const res = await fetch("/api/admin/content");
       const data = await res.json();
       const it = data.it || {};
-      const loaded: Record<Key, string> = {} as Record<Key, string>;
+      const loaded: Record<string, string> = {};
       for (const f of FIELDS) {
         loaded[f.key] = getNestedValue(it, ["laCasa", f.key]);
       }
@@ -86,7 +83,7 @@ export default function LaCasaAdminPage() {
       let itOverrides: Record<string, unknown> = {};
       for (const f of FIELDS) {
         const val = values[f.key];
-        if (val.trim() !== "") {
+        if (val && val.trim() !== "" && val !== "<p></p>") {
           itOverrides = setNested(itOverrides, ["laCasa", f.key], val);
         }
       }
@@ -121,64 +118,60 @@ export default function LaCasaAdminPage() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Testi — La Casa</h1>
           <p className="text-gray-500 text-sm mt-1">
-            Modifica i paragrafi della sezione descrittiva della casa. Attivi subito.
+            Editor ricco: colori, grassetto, corsivo, font, elenchi e molto altro. Attivo subito sul sito.
           </p>
         </div>
         <div className="flex gap-2">
-          <button
-            onClick={load}
-            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition-colors"
-          >
+          <button onClick={load} className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition-colors">
             <RefreshCw className="w-4 h-4" />
           </button>
-          <a
-            href="/#lacasa"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition-colors"
-          >
+          <a href="/#lacasa" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50 transition-colors">
             <ExternalLink className="w-4 h-4" />
             Vedi sul sito
           </a>
         </div>
       </div>
 
-      {/* Hint */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 text-sm text-blue-800 mb-6">
-        <strong>Formattazione:</strong> usa <code className="bg-blue-100 px-1 rounded">**testo**</code> per il{" "}
-        <strong>grassetto</strong> e <code className="bg-blue-100 px-1 rounded">~~testo~~</code> per lo{" "}
-        <s>strikethrough</s>. Lascia vuoto per usare il testo originale.
-      </div>
-
       {/* Fields */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm divide-y divide-gray-50">
+      <div className="space-y-6">
         {FIELDS.map((f) => {
-          const isModified = values[f.key].trim() !== "";
+          const isModified = values[f.key] && values[f.key].trim() !== "" && values[f.key] !== "<p></p>";
           return (
-            <div key={f.key} className="px-6 py-5">
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                {f.label}
+            <div key={f.key} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+              <div className="px-5 py-3.5 border-b border-gray-50 flex items-center justify-between">
+                <label className="text-sm font-semibold text-gray-800">
+                  {f.label}
+                </label>
                 {isModified && (
-                  <span className="ml-2 text-xs font-normal text-[#072316]">• modificato</span>
+                  <span className="text-xs text-[#072316] font-medium">• modificato</span>
                 )}
-              </label>
-              {f.hint && (
-                <p className="text-xs text-gray-400 mb-2">{f.hint}</p>
-              )}
-              <textarea
-                value={values[f.key]}
-                onChange={(e) => setValues((prev) => ({ ...prev, [f.key]: e.target.value }))}
-                placeholder={DEFAULTS[f.key]}
-                rows={f.key === "p6items" ? 4 : 3}
-                className="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] resize-y transition-all"
-              />
+              </div>
+              <div className="p-4">
+                {f.hint && <p className="text-xs text-gray-400 mb-2">{f.hint}</p>}
+                {f.simpleText ? (
+                  <textarea
+                    value={values[f.key]}
+                    onChange={(e) => setValues((prev) => ({ ...prev, [f.key]: e.target.value }))}
+                    placeholder={DEFAULTS[f.key] || ""}
+                    rows={3}
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] resize-y transition-all"
+                  />
+                ) : (
+                  <RichEditor
+                    value={values[f.key] || DEFAULTS[f.key] || ""}
+                    onChange={(html) => setValues((prev) => ({ ...prev, [f.key]: html }))}
+                    placeholder={`Scrivi il contenuto del ${f.label}…`}
+                    minHeight={100}
+                  />
+                )}
+              </div>
             </div>
           );
         })}
       </div>
 
       {/* Save */}
-      <div className="mt-5 flex items-center justify-end gap-3">
+      <div className="mt-6 flex items-center justify-end gap-3">
         {justSaved && (
           <span className="flex items-center gap-1.5 text-green-600 text-sm font-medium">
             <CheckCircle className="w-4 h-4" /> Salvato
