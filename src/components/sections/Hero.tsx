@@ -5,6 +5,7 @@ import { useTranslation } from "@/lib/i18n";
 import { MapPin, Calendar } from "lucide-react";
 import DualContactCTA from "@/components/ui/DualContactCTA";
 import ReviewBar from "@/components/ui/ReviewBar";
+import { useSettings } from "@/hooks/useSettings";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -34,13 +35,14 @@ const titleWord = {
 
 export default function Hero() {
   const { t } = useTranslation();
+  const { heroImage } = useSettings();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" id="home">
       {/* Background Image — Stitch editorial photography-first */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero-sanpaolo.png"
+          src={heroImage}
           alt="Basilica di San Paolo fuori le Mura, Roma - San Paolo Hideout"
           className="w-full h-full object-cover scale-105"
           fetchPriority="high"

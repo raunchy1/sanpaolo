@@ -25,6 +25,7 @@ export interface SiteSettings {
   airbnbScore: string;
   googleScore: string;
   overallScore: string;
+  heroImage: string;
 }
 
 const DEFAULTS: SiteSettings = {
@@ -50,6 +51,7 @@ const DEFAULTS: SiteSettings = {
   airbnbScore: "5/5",
   googleScore: "5/5",
   overallScore: "9.9",
+  heroImage: "/images/hero-sanpaolo.png",
 };
 
 export function useSettings(): SiteSettings {

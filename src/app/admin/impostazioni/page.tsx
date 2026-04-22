@@ -28,6 +28,7 @@ interface Settings {
   airbnbReviewCount: string;
   googleReviewCount: string;
   googleReviewsLink: string;
+  heroImage: string;
   bookingScore: string;
   airbnbScore: string;
   googleScore: string;
@@ -58,6 +59,7 @@ const EMPTY: Settings = {
   airbnbReviewCount: "",
   googleReviewCount: "",
   googleReviewsLink: "",
+  heroImage: "",
   bookingScore: "",
   airbnbScore: "",
   googleScore: "",
@@ -99,6 +101,7 @@ const SECTIONS: { id: SectionId; label: string; icon: React.ElementType; fields:
       { key: "googleReviewsLink", label: "Link Google Recensioni", placeholder: "https://g.page/r/..." },
       { key: "instagramLink", label: "Link Instagram", placeholder: "https://www.instagram.com/..." },
       { key: "mapsLink", label: "Link Google Maps", placeholder: "https://maps.google.com/?q=..." },
+      { key: "heroImage", label: "Immagine di sfondo Hero (URL)", placeholder: "/images/hero-sanpaolo.png", hint: "URL completo o percorso relativo dell'immagine di sfondo della prima schermata" },
     ],
   },
   {
