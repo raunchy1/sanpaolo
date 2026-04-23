@@ -91,7 +91,7 @@ export default function ReviewBar() {
           }}
         >
           {/* Logo + score row */}
-          <div className="flex items-start gap-1.5 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3">
             <div className="shrink-0 w-6 h-6 sm:w-8 sm:h-8">{item.logo}</div>
             <div className="min-w-0">
               <div className="text-[7px] sm:text-[10px] font-semibold tracking-[0.12em] uppercase text-white/50 leading-none mb-0.5 truncate">
@@ -100,14 +100,18 @@ export default function ReviewBar() {
               <span className="text-sm sm:text-2xl font-extrabold leading-none" style={{ color: item.accent }}>
                 {item.score}
               </span>
-              <div className="mt-0.5">
-                <Stars count={item.stars} accent={item.accent} />
-              </div>
-              <div className="text-[7px] sm:text-[10px] text-white/40 mt-0.5 leading-tight">
-                {item.count && <span className="text-white/60 font-medium">{item.count} </span>}
-                Recensioni verificate
-              </div>
             </div>
+          </div>
+
+          {/* Stars centrate */}
+          <div className="flex justify-center">
+            <Stars count={item.stars} accent={item.accent} />
+          </div>
+
+          {/* Review count */}
+          <div className="text-center text-[7px] sm:text-[10px] text-white/40 leading-tight -mt-0.5">
+            {item.count && <span className="text-white/60 font-medium">{item.count} </span>}
+            Recensioni verificate
           </div>
 
           {/* CTA bar */}
