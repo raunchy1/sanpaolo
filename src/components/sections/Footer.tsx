@@ -10,6 +10,7 @@ import {
   MessageCircle,
   ExternalLink,
   Train,
+  Cookie,
 } from "lucide-react";
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -327,6 +328,14 @@ export default function Footer() {
                 <span className="w-1 h-1 rounded-full bg-stitch-green/50" />
                 {t("footer.cookies")}
               </a>
+              {/* Garante: segno grafico per modificare le scelte sui cookie */}
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent("openCookiePreferences"))}
+                className="text-white/35 hover:text-white/70 text-xs transition-colors duration-200 inline-flex items-center gap-1.5 text-left"
+              >
+                <Cookie className="w-3 h-3 text-[#C8A96B]/60 shrink-0" />
+                Rivedi le tue scelte sui cookie
+              </button>
             </div>
           </motion.div>
         </motion.div>
