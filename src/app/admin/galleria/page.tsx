@@ -1,10 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import {
   Eye, EyeOff, ChevronUp, ChevronDown, RefreshCw, Save,
   Images, Trash2, Plus, X, Upload, Link, Pencil, Check, Video,
 } from "lucide-react";
+
+const RichEditor = dynamic(() => import("@/components/ui/RichEditor"), { ssr: false });
 import { toast } from "sonner";
 import type { GalleryConfig, GalleryRoom, GalleryImage, GalleryVideo } from "@/app/api/admin/gallery/route";
 
@@ -479,12 +482,11 @@ export default function GalleriaPage() {
                     </div>
                     <div className="sm:col-span-1">
                       <label className="block text-xs font-medium text-gray-600 mb-1.5">Descrizione</label>
-                      <textarea
+                      <RichEditor
                         value={descs[room.id].desc}
-                        onChange={(e) => setDescs((prev) => ({ ...prev, [room.id]: { ...prev[room.id], desc: e.target.value } }))}
+                        onChange={(html) => setDescs((prev) => ({ ...prev, [room.id]: { ...prev[room.id], desc: html } }))}
                         placeholder={descs[room.id].descPlaceholder || "Descrizione della stanza…"}
-                        rows={3}
-                        className="w-full px-3 py-2 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all resize-none"
+                        minHeight={80}
                       />
                     </div>
                   </div>

@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { Save, RefreshCw, ChevronDown, ChevronUp, CheckCircle } from "lucide-react";
+
+const RichEditor = dynamic(() => import("@/components/ui/RichEditor"), { ssr: false });
 import { toast } from "sonner";
 
 interface Section {
@@ -482,12 +485,11 @@ export default function ContenutiPage() {
                             )}
                           </label>
                           {field.multiline ? (
-                            <textarea
+                            <RichEditor
                               value={currentVal}
-                              onChange={(e) => setValues((prev) => ({ ...prev, [field.key]: e.target.value }))}
+                              onChange={(html) => setValues((prev) => ({ ...prev, [field.key]: html }))}
                               placeholder={field.placeholder || defaultVal || ""}
-                              rows={3}
-                              className="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] resize-y transition-all"
+                              minHeight={80}
                             />
                           ) : (
                             <input

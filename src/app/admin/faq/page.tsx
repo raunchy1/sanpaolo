@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { Save, RefreshCw, Plus, Trash2, ChevronUp, ChevronDown } from "lucide-react";
 import { toast } from "sonner";
+
+const RichEditor = dynamic(() => import("@/components/ui/RichEditor"), { ssr: false });
 
 interface FaqItem {
   id: string;
@@ -162,12 +165,11 @@ export default function FaqAdminPage() {
                 </div>
                 <div>
                   <label className="block text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Risposta</label>
-                  <textarea
+                  <RichEditor
                     value={item.answer}
-                    onChange={(e) => updateItem(item.id, "answer", e.target.value)}
+                    onChange={(html) => updateItem(item.id, "answer", html)}
                     placeholder="Scrivi qui la risposta…"
-                    rows={3}
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all resize-y"
+                    minHeight={80}
                   />
                 </div>
               </div>

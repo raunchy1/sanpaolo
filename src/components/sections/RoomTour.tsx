@@ -461,9 +461,14 @@ export default function RoomTour() {
                 <h4 className="font-display text-xl md:text-2xl text-white font-bold mb-1">
                   {t(`rooms.${currentLb.roomKey}.title`)}
                 </h4>
-                <p className="text-white/70 text-sm leading-relaxed line-clamp-2">
-                  {t(`rooms.${currentLb.roomKey}.desc`)}
-                </p>
+                {(() => {
+                  const desc = t(`rooms.${currentLb.roomKey}.desc`);
+                  return desc.trim().startsWith("<") ? (
+                    <div className="text-white/70 text-sm leading-relaxed line-clamp-2" dangerouslySetInnerHTML={{ __html: desc }} />
+                  ) : (
+                    <p className="text-white/70 text-sm leading-relaxed line-clamp-2">{desc}</p>
+                  );
+                })()}
               </div>
             </motion.div>
 
