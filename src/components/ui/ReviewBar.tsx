@@ -21,42 +21,42 @@ export default function ReviewBar() {
 
   const items = [
     {
-      platform: "BOOKING.COM",
+      platform: "Booking",
       score: settings.bookingScore,
       count: settings.bookingReviewCount,
       stars: 5,
       accent: "#1a6fbb",
       href: settings.bookingReviewsLink,
       logo: (
-        <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8" aria-hidden>
+        <svg viewBox="0 0 40 40" fill="none" className="w-full h-full" aria-hidden>
           <rect width="40" height="40" rx="8" fill="#1a6fbb" />
           <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="18" fontWeight="800" fontFamily="sans-serif">B</text>
         </svg>
       ),
     },
     {
-      platform: "AIRBNB",
+      platform: "Airbnb",
       score: settings.airbnbScore,
       count: settings.airbnbReviewCount,
       stars: 5,
       accent: "#ff5a5f",
       href: settings.airbnbReviewsLink,
       logo: (
-        <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8" aria-hidden>
+        <svg viewBox="0 0 40 40" fill="none" className="w-full h-full" aria-hidden>
           <rect width="40" height="40" rx="8" fill="#ff5a5f" />
           <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="14" fontWeight="800" fontFamily="sans-serif">Air</text>
         </svg>
       ),
     },
     {
-      platform: "GOOGLE",
+      platform: "Google",
       score: settings.googleScore,
       count: settings.googleReviewCount,
       stars: 5,
       accent: "#f5a623",
       href: settings.googleReviewsLink,
       logo: (
-        <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8" aria-hidden>
+        <svg viewBox="0 0 40 40" fill="none" className="w-full h-full" aria-hidden>
           <rect width="40" height="40" rx="8" fill="white" />
           <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" fontSize="22" fontWeight="700" fontFamily="sans-serif">
             <tspan fill="#4285F4">G</tspan>
@@ -71,7 +71,7 @@ export default function ReviewBar() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 1.6, ease: [0.25, 0.4, 0.25, 1] }}
-      className="mt-8 grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-2xl mx-auto"
+      className="mt-8 grid grid-cols-3 gap-2.5 sm:gap-4 w-full max-w-2xl mx-auto"
     >
       {items.map((item) => (
         <motion.a
@@ -81,7 +81,7 @@ export default function ReviewBar() {
           rel="noopener noreferrer"
           whileHover={{ scale: 1.03, borderColor: "rgba(255,255,255,0.22)" }}
           transition={{ duration: 0.2 }}
-          className="group flex flex-col gap-1.5 sm:gap-2.5 px-2 sm:px-5 pt-2.5 sm:pt-3.5 pb-2 sm:pb-3 rounded-2xl cursor-pointer"
+          className="group flex flex-col gap-1.5 sm:gap-2.5 px-2.5 sm:px-5 pt-3 sm:pt-3.5 pb-2.5 sm:pb-3 rounded-2xl cursor-pointer"
           style={{
             background: "rgba(0,0,0,0.45)",
             backdropFilter: "blur(16px)",
@@ -93,7 +93,7 @@ export default function ReviewBar() {
           {/* Logo + platform name */}
           <div className="flex items-center gap-1.5 sm:gap-3">
             <div className="shrink-0 w-6 h-6 sm:w-8 sm:h-8">{item.logo}</div>
-            <div className="text-[7px] sm:text-[10px] font-semibold tracking-[0.12em] uppercase text-white/50 leading-none truncate">
+            <div className="text-[7px] sm:text-[10px] font-semibold tracking-[0.08em] sm:tracking-[0.12em] uppercase text-white/50 leading-tight">
               {item.platform}
             </div>
           </div>
@@ -118,13 +118,13 @@ export default function ReviewBar() {
 
           {/* CTA bar — sempre in fondo */}
           <div
-            className="mt-auto flex items-center justify-between gap-1 px-1.5 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all duration-200"
+            className="mt-auto flex items-center justify-center gap-1 px-1.5 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all duration-200"
             style={{ background: "rgba(255,255,255,0.07)" }}
           >
-            <span className="text-[7px] sm:text-[10px] font-semibold tracking-wide uppercase text-white/50 group-hover:text-white/80 transition-colors duration-200 truncate">
-              Leggi le recensioni
+            <span className="hidden sm:inline text-[10px] font-semibold tracking-wide uppercase text-white/50 group-hover:text-white/80 transition-colors duration-200">
+              Leggi
             </span>
-            <ExternalLink className="w-2.5 h-2.5 text-white/35 group-hover:text-white/70 transition-colors duration-200 shrink-0" />
+            <ExternalLink className="w-2.5 h-2.5 text-white/50 group-hover:text-white/80 transition-colors duration-200 shrink-0" />
           </div>
         </motion.a>
       ))}
