@@ -90,17 +90,19 @@ export default function ReviewBar() {
             boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
           }}
         >
-          {/* Logo + score row */}
+          {/* Logo + platform name */}
           <div className="flex items-center gap-1.5 sm:gap-3">
             <div className="shrink-0 w-6 h-6 sm:w-8 sm:h-8">{item.logo}</div>
-            <div className="min-w-0">
-              <div className="text-[7px] sm:text-[10px] font-semibold tracking-[0.12em] uppercase text-white/50 leading-none mb-0.5 truncate">
-                {item.platform}
-              </div>
-              <span className="text-sm sm:text-2xl font-extrabold leading-none" style={{ color: item.accent }}>
-                {item.score}
-              </span>
+            <div className="text-[7px] sm:text-[10px] font-semibold tracking-[0.12em] uppercase text-white/50 leading-none truncate">
+              {item.platform}
             </div>
+          </div>
+
+          {/* Score — altezza fissa così tutte le card si allineano */}
+          <div className="flex items-center justify-center h-7 sm:h-9">
+            <span className="text-base sm:text-2xl font-extrabold leading-none" style={{ color: item.accent }}>
+              {item.score}
+            </span>
           </div>
 
           {/* Stars centrate */}
@@ -109,14 +111,14 @@ export default function ReviewBar() {
           </div>
 
           {/* Review count */}
-          <div className="text-center text-[7px] sm:text-[10px] text-white/40 leading-tight -mt-0.5">
+          <div className="text-center text-[7px] sm:text-[10px] text-white/40 leading-tight mt-0.5">
             {item.count && <span className="text-white/60 font-medium">{item.count} </span>}
             Recensioni verificate
           </div>
 
-          {/* CTA bar */}
+          {/* CTA bar — sempre in fondo */}
           <div
-            className="flex items-center justify-between gap-1 px-1.5 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all duration-200"
+            className="mt-auto flex items-center justify-between gap-1 px-1.5 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all duration-200"
             style={{ background: "rgba(255,255,255,0.07)" }}
           >
             <span className="text-[7px] sm:text-[10px] font-semibold tracking-wide uppercase text-white/50 group-hover:text-white/80 transition-colors duration-200 truncate">
