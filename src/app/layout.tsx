@@ -4,6 +4,7 @@ import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
 import { readContent } from "@/lib/supabase";
 import type { SiteSettings } from "@/app/api/settings/route";
+import CookieBanner from "@/components/ui/CookieBanner";
 
 const newsreader = Newsreader({
   variable: "--font-newsreader",
@@ -162,6 +163,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       </head>
       <body className={`${newsreader.variable} ${manrope.variable} antialiased bg-stitch-ivory text-stitch-on-surface font-body`}>
         <I18nProvider>{children}</I18nProvider>
+        <CookieBanner />
       </body>
     </html>
   );
