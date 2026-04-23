@@ -71,7 +71,7 @@ export default function ReviewBar() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 1.6, ease: [0.25, 0.4, 0.25, 1] }}
-      className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-2xl mx-auto"
+      className="mt-8 grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-2xl mx-auto"
     >
       {items.map((item) => (
         <motion.a
@@ -81,7 +81,7 @@ export default function ReviewBar() {
           rel="noopener noreferrer"
           whileHover={{ scale: 1.03, borderColor: "rgba(255,255,255,0.22)" }}
           transition={{ duration: 0.2 }}
-          className="group flex flex-col gap-2.5 px-5 pt-3.5 pb-3 rounded-2xl flex-1 min-w-0 w-full sm:w-auto cursor-pointer"
+          className="group flex flex-col gap-1.5 sm:gap-2.5 px-2 sm:px-5 pt-2.5 sm:pt-3.5 pb-2 sm:pb-3 rounded-2xl min-w-0 cursor-pointer"
           style={{
             background: "rgba(0,0,0,0.45)",
             backdropFilter: "blur(16px)",
@@ -91,34 +91,38 @@ export default function ReviewBar() {
           }}
         >
           {/* Top row: logo + score */}
-          <div className="flex items-center gap-3">
-            <div className="shrink-0">{item.logo}</div>
+          <div className="flex items-center gap-1.5 sm:gap-3">
+            <div className="shrink-0 scale-75 sm:scale-100 origin-left">{item.logo}</div>
             <div className="min-w-0">
-              <div className="text-[10px] font-semibold tracking-[0.15em] uppercase text-white/50 leading-none mb-1">
+              <div className="text-[8px] sm:text-[10px] font-semibold tracking-[0.15em] uppercase text-white/50 leading-none mb-0.5 sm:mb-1">
                 {item.platform}
               </div>
-              <div className="flex flex-col gap-1 items-center">
-                <span className="text-2xl font-extrabold leading-none" style={{ color: item.accent }}>
+              <div className="flex flex-col gap-0.5 sm:gap-1 items-center">
+                <span className="text-base sm:text-2xl font-extrabold leading-none" style={{ color: item.accent }}>
                   {item.score}
                 </span>
                 <Stars count={item.stars} accent={item.accent} />
               </div>
-              <div className="text-[10px] text-white/40 mt-1 leading-none">
+              <div className="text-[8px] sm:text-[10px] text-white/40 mt-0.5 sm:mt-1 leading-none">
                 {item.count && <span className="text-white/60 font-medium mr-1">{item.count}</span>}
-                Recensioni verificate
+                <span className="hidden sm:inline">Recensioni verificate</span>
+                <span className="sm:hidden">rec.</span>
               </div>
             </div>
           </div>
 
           {/* CTA bar */}
           <div
-            className="flex items-center justify-between gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200"
+            className="flex items-center justify-between gap-1 px-1.5 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all duration-200"
             style={{ background: "rgba(255,255,255,0.07)" }}
           >
-            <span className="text-[10px] font-semibold tracking-[0.12em] uppercase text-white/50 group-hover:text-white/80 transition-colors duration-200">
+            <span className="text-[8px] sm:text-[10px] font-semibold tracking-[0.1em] sm:tracking-[0.12em] uppercase text-white/50 group-hover:text-white/80 transition-colors duration-200 hidden sm:block">
               Leggi le recensioni
             </span>
-            <ExternalLink className="w-3 h-3 text-white/35 group-hover:text-white/70 transition-colors duration-200 shrink-0" />
+            <span className="text-[8px] font-semibold uppercase text-white/50 group-hover:text-white/80 transition-colors duration-200 sm:hidden">
+              Leggi
+            </span>
+            <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white/35 group-hover:text-white/70 transition-colors duration-200 shrink-0" />
           </div>
         </motion.a>
       ))}

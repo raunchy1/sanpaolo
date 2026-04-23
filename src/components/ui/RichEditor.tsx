@@ -8,6 +8,7 @@ import { Color } from "@tiptap/extension-color";
 import { FontFamily } from "@tiptap/extension-font-family";
 import { TextAlign } from "@tiptap/extension-text-align";
 import { Highlight } from "@tiptap/extension-highlight";
+import { Link } from "@tiptap/extension-link";
 import { useEffect } from "react";
 
 /* ── Colour palette ── */
@@ -85,6 +86,7 @@ export default function RichEditor({ value, onChange, placeholder = "Scrivi qui�
       FontFamily,
       TextAlign.configure({ types: ["paragraph"] }),
       Highlight.configure({ multicolor: true }),
+      Link.configure({ openOnClick: false, HTMLAttributes: { class: "text-blue-600 underline cursor-pointer" } }),
     ],
     content: value,
     onUpdate({ editor }) {
@@ -277,6 +279,24 @@ export default function RichEditor({ value, onChange, placeholder = "Scrivi qui�
         {/* Undo/Redo */}
         <Btn onClick={() => editor.chain().focus().undo().run()} title="Annulla">↩</Btn>
         <Btn onClick={() => editor.chain().focus().redo().run()} title="Ripeti">↪</Btn>
+
+        <div className="w-px h-5 bg-gray-200 mx-1" />
+
+        {/* Link */}
+        <Btn
+          active={editor.isActive("link")}
+          title="Inserisci link"
+          onClick={() => {
+            if (editor.isActive("link")) {
+              editor.chain().focus().unsetLink().run();
+            } else {
+              const url = window.prompt("URL del link:");
+              if (url) editor.chain().focus().setLink({ href: url }).run();
+            }
+          }}
+        >
+          🔗
+        </Btn>
       </div>
 
       {/* ── Editor area ── */}

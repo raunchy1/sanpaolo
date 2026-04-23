@@ -1,41 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { Save, RefreshCw, ExternalLink, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
+
+const RichEditor = dynamic(() => import("@/components/ui/RichEditor"), { ssr: false });
 
 interface LegalContent {
   privacy: string;
   cookie: string;
 }
-
-const PRIVACY_DEFAULT = `Ai sensi dell'art. 13 del Regolamento UE 2016/679 (GDPR), San Paolo Hideout informa che i dati personali forniti tramite il sito web saranno trattati esclusivamente per rispondere alle richieste di informazioni e per gestire le prenotazioni.
-
-## Titolare del trattamento
-
-Titolare del trattamento è il gestore di San Paolo Hideout, con sede in Via Silvio d'Amico 96, 00145 Roma. Per qualsiasi richiesta è possibile contattarci all'indirizzo email sanpaolohideout@gmail.com.
-
-## Dati raccolti
-
-Raccogliamo esclusivamente i dati necessari alla prenotazione e alla comunicazione (nome, cognome, indirizzo email, numero di telefono). Non utilizziamo cookie di profilazione di terze parti.
-
-## Diritti dell'interessato
-
-L'interessato ha diritto di accesso, retifica, cancellazione, limitazione del trattamento, opposizione e portabilità dei dati. Per esercitare tali diritti è sufficiente inviare una richiesta all'indirizzo email indicato.`;
-
-const COOKIE_DEFAULT = `Il sito sanpaolohideout.it utilizza cookie tecnici necessari al corretto funzionamento della piattaforma e per garantire una migliore esperienza di navigazione.
-
-## Cookie tecnici
-
-I cookie tecnici sono indispensabili per il funzionamento del sito e non richiedono il consenso dell'utente. Essi consentono, ad esempio, di mantenere la preferenza della lingua selezionata.
-
-## Cookie di terze parti
-
-Non utilizziamo cookie di profilazione né strumenti di tracciamento comportamentale. Eventuali collegamenti a piattaforme esterne (Booking.com, Airbnb, Google Maps) sono regolati dalle rispettive privacy policy.
-
-## Come disabilitare i cookie
-
-È possibile disabilitare i cookie direttamente dalle impostazioni del browser. Si segnala che la disattivazione dei cookie tecnici potrebbe compromettere alcune funzionalità del sito.`;
 
 type Tab = "privacy" | "cookie";
 
@@ -98,9 +73,6 @@ export default function LegalAdminPage() {
     );
   }
 
-  const placeholder = activeTab === "privacy" ? PRIVACY_DEFAULT : COOKIE_DEFAULT;
-  const charCount = values[activeTab].length;
-
   return (
     <div className="p-8">
       {/* Header */}
@@ -114,11 +86,6 @@ export default function LegalAdminPage() {
             <RefreshCw className="w-4 h-4" />
           </button>
         </div>
-      </div>
-
-      {/* Info */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 text-sm text-blue-800 mb-6">
-        <strong>Formattazione:</strong> usa <code className="bg-blue-100 px-1 rounded">## Titolo paragrafo</code> per creare un titolo e una riga vuota per separare i paragrafi.
       </div>
 
       {/* Tabs */}
@@ -174,17 +141,14 @@ export default function LegalAdminPage() {
         </div>
 
         <div className="p-5">
-          <textarea
+          <RichEditor
+            key={activeTab}
             value={values[activeTab]}
-            onChange={(e) => setValues((prev) => ({ ...prev, [activeTab]: e.target.value }))}
-            placeholder={placeholder}
-            rows={24}
-            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all resize-y font-mono leading-relaxed"
+            onChange={(html) => setValues((prev) => ({ ...prev, [activeTab]: html }))}
+            placeholder={activeTab === "privacy" ? "Scrivi la Privacy Policy…" : "Scrivi la Cookie Policy…"}
+            minHeight={500}
           />
-          <div className="mt-2 flex items-center justify-between text-xs text-gray-400">
-            <span>Lascia vuoto per usare il testo predefinito del sito</span>
-            {charCount > 0 && <span>{charCount} caratteri</span>}
-          </div>
+          <p className="mt-2 text-xs text-gray-400">Lascia vuoto per usare il testo predefinito del sito</p>
         </div>
       </div>
 
