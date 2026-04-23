@@ -15,6 +15,7 @@ const navItems = [
   { key: "location", href: "#location" },
   { key: "reviews", href: "#reviews" },
   { key: "faq", href: "#faq" },
+  { key: "booking", href: "#booking" },
 ] as const;
 
 const languages: { code: Locale; flag: string }[] = [

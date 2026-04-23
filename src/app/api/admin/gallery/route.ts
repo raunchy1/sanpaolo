@@ -16,8 +16,15 @@ export interface GalleryRoom {
   images: GalleryImage[];
 }
 
+export interface GalleryVideo {
+  enabled: boolean;
+  url: string;
+  title?: string;
+}
+
 export interface GalleryConfig {
   rooms: GalleryRoom[];
+  video?: GalleryVideo;
 }
 
 export async function GET() {

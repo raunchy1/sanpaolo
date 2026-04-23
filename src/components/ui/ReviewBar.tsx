@@ -8,7 +8,7 @@ function Stars({ count, accent }: { count: number; accent: string }) {
   return (
     <div className="flex items-center gap-0.5">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} viewBox="0 0 12 12" className="w-3 h-3" fill={i < count ? accent : "rgba(255,255,255,0.2)"}>
+        <svg key={i} viewBox="0 0 12 12" className="w-2 h-2 sm:w-3 sm:h-3" fill={i < count ? accent : "rgba(255,255,255,0.2)"}>
           <path d="M6 0.5l1.39 2.82 3.11.45-2.25 2.19.53 3.09L6 7.5l-2.78 1.55.53-3.09L1.5 3.77l3.11-.45L6 0.5z" />
         </svg>
       ))}
@@ -81,7 +81,7 @@ export default function ReviewBar() {
           rel="noopener noreferrer"
           whileHover={{ scale: 1.03, borderColor: "rgba(255,255,255,0.22)" }}
           transition={{ duration: 0.2 }}
-          className="group flex flex-col gap-1.5 sm:gap-2.5 px-2 sm:px-4 pt-3 pb-2.5 rounded-2xl cursor-pointer"
+          className="group flex flex-col gap-1.5 sm:gap-2.5 px-2 sm:px-5 pt-2.5 sm:pt-3.5 pb-2 sm:pb-3 rounded-2xl cursor-pointer"
           style={{
             background: "rgba(0,0,0,0.45)",
             backdropFilter: "blur(16px)",
@@ -90,32 +90,33 @@ export default function ReviewBar() {
             boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
           }}
         >
-          {/* Logo centrato */}
-          <div className="flex justify-center">
-            <div className="w-7 h-7 sm:w-8 sm:h-8">{item.logo}</div>
-          </div>
-
-          {/* Score + stars centrati */}
-          <div className="flex flex-col items-center gap-0.5">
-            <span className="text-sm sm:text-2xl font-extrabold leading-none" style={{ color: item.accent }}>
-              {item.score}
-            </span>
-            <Stars count={item.stars} accent={item.accent} />
-          </div>
-
-          {/* Review count */}
-          <div className="text-center text-[9px] sm:text-[10px] text-white/40 leading-none">
-            {item.count && <span className="text-white/60 font-medium">{item.count} </span>}
-            rec.
+          {/* Logo + score row */}
+          <div className="flex items-start gap-1.5 sm:gap-3">
+            <div className="shrink-0 w-6 h-6 sm:w-8 sm:h-8">{item.logo}</div>
+            <div className="min-w-0">
+              <div className="text-[7px] sm:text-[10px] font-semibold tracking-[0.12em] uppercase text-white/50 leading-none mb-0.5 truncate">
+                {item.platform}
+              </div>
+              <span className="text-sm sm:text-2xl font-extrabold leading-none" style={{ color: item.accent }}>
+                {item.score}
+              </span>
+              <div className="mt-0.5">
+                <Stars count={item.stars} accent={item.accent} />
+              </div>
+              <div className="text-[7px] sm:text-[10px] text-white/40 mt-0.5 leading-tight">
+                {item.count && <span className="text-white/60 font-medium">{item.count} </span>}
+                Recensioni verificate
+              </div>
+            </div>
           </div>
 
           {/* CTA bar */}
           <div
-            className="flex items-center justify-center gap-1 px-1.5 py-1 rounded-lg transition-all duration-200"
+            className="flex items-center justify-between gap-1 px-1.5 sm:px-3 py-1 sm:py-1.5 rounded-lg transition-all duration-200"
             style={{ background: "rgba(255,255,255,0.07)" }}
           >
-            <span className="text-[8px] sm:text-[10px] font-semibold uppercase text-white/50 group-hover:text-white/80 transition-colors duration-200">
-              Leggi
+            <span className="text-[7px] sm:text-[10px] font-semibold tracking-wide uppercase text-white/50 group-hover:text-white/80 transition-colors duration-200 truncate">
+              Leggi le recensioni
             </span>
             <ExternalLink className="w-2.5 h-2.5 text-white/35 group-hover:text-white/70 transition-colors duration-200 shrink-0" />
           </div>

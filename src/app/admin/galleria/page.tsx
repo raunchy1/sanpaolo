@@ -3,10 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import {
   Eye, EyeOff, ChevronUp, ChevronDown, RefreshCw, Save,
-  Images, Trash2, Plus, X, Upload, Link, Pencil, Check,
+  Images, Trash2, Plus, X, Upload, Link, Pencil, Check, Video,
 } from "lucide-react";
 import { toast } from "sonner";
-import type { GalleryConfig, GalleryRoom, GalleryImage } from "@/app/api/admin/gallery/route";
+import type { GalleryConfig, GalleryRoom, GalleryImage, GalleryVideo } from "@/app/api/admin/gallery/route";
+
+const DEFAULT_VIDEO: GalleryVideo = { enabled: false, url: "", title: "" };
 
 const DEFAULT_CONFIG: GalleryConfig = {
   rooms: [
@@ -77,6 +79,7 @@ function getNestedStr(obj: Record<string, unknown>, path: string[]): string {
 
 export default function GalleriaPage() {
   const [config, setConfig] = useState<GalleryConfig>(DEFAULT_CONFIG);
+  const [video, setVideo] = useState<GalleryVideo>(DEFAULT_VIDEO);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -94,7 +97,11 @@ export default function GalleriaPage() {
         fetch("/api/content"),
         fetch("/api/admin/content"),
       ]);
-      if (galleryRes.ok) setConfig(mergeWithDefaults(await galleryRes.json()));
+      if (galleryRes.ok) {
+        const galData = await galleryRes.json();
+        setConfig(mergeWithDefaults(galData));
+        if (galData?.video) setVideo({ ...DEFAULT_VIDEO, ...galData.video });
+      }
 
       const base = baseRes.ok ? ((await baseRes.json()).it || {}) as Record<string, unknown> : {};
       const overrides = overridesRes.ok ? ((await overridesRes.json()).it || {}) as Record<string, unknown> : {};
@@ -122,7 +129,7 @@ export default function GalleriaPage() {
 
   useEffect(() => { load(); }, []);
 
-  async function save(cfg = config) {
+  async function save(cfg = config, vid = video) {
     setSaving(true);
     try {
       // Build content overrides for room descriptions
@@ -138,7 +145,7 @@ export default function GalleriaPage() {
         fetch("/api/admin/gallery", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(cfg),
+          body: JSON.stringify({ ...cfg, video: vid }),
         }),
         Object.keys(roomsOverride).length
           ? fetch("/api/admin/content", {
@@ -536,6 +543,50 @@ export default function GalleriaPage() {
           </div>
         </>
       )}
+
+      {/* ─── Video Card ─── */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mt-6">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <Video className="w-4 h-4 text-[#072316] shrink-0" />
+            <span className="font-semibold text-gray-900">Video presentazione</span>
+            <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
+              {video.enabled ? "Visibile sul sito" : "Nascosto"}
+            </span>
+          </div>
+          <button
+            onClick={() => setVideo((v) => ({ ...v, enabled: !v.enabled }))}
+            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${video.enabled ? "bg-[#072316]" : "bg-gray-200"}`}
+          >
+            <span className={`inline-block h-4 w-4 rounded-full bg-white shadow transition-transform ${video.enabled ? "translate-x-6" : "translate-x-1"}`} />
+          </button>
+        </div>
+        <div className="px-5 py-4 space-y-4">
+          {!video.enabled && (
+            <p className="text-sm text-gray-400">Abilita il toggle per mostrare il video nella galleria del sito.</p>
+          )}
+          <div>
+            <label className="block text-xs font-medium text-gray-600 mb-1.5">URL YouTube (o link diretto video)</label>
+            <input
+              type="url"
+              value={video.url}
+              onChange={(e) => setVideo((v) => ({ ...v, url: e.target.value }))}
+              placeholder="https://www.youtube.com/watch?v=..."
+              className="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-600 mb-1.5">Titolo video <span className="text-gray-400 font-normal">(opzionale)</span></label>
+            <input
+              type="text"
+              value={video.title || ""}
+              onChange={(e) => setVideo((v) => ({ ...v, title: e.target.value }))}
+              placeholder="es. Tour virtuale San Paolo Hideout"
+              className="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all"
+            />
+          </div>
+        </div>
+      </div>
 
       {/* Save bottom */}
       <div className="mt-6 flex justify-end">

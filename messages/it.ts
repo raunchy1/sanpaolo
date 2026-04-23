@@ -14,6 +14,7 @@ export default {
     "location": "Posizione",
     "reviews": "Recensioni",
     "faq": "FAQ",
+    "booking": "Controlla Disponibilità",
     "offers": "Offerte",
     "bookNow": "Prenota Ora"
   },

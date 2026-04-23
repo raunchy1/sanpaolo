@@ -4,7 +4,13 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
-import type { GalleryConfig } from "@/app/api/admin/gallery/route";
+import type { GalleryConfig, GalleryVideo } from "@/app/api/admin/gallery/route";
+
+function getYouTubeEmbedUrl(url: string): string {
+  const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/]+)/);
+  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}`;
+  return url;
+}
 
 interface RoomData {
   key: string;
@@ -58,6 +64,7 @@ const slideVariants = {
 export default function RoomTour() {
   const { t } = useTranslation();
   const [rooms, setRooms] = useState<RoomData[]>(STATIC_ROOMS);
+  const [videoConfig, setVideoConfig] = useState<GalleryVideo | null>(null);
   const [currentRoom, setCurrentRoom] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIdx, setLightboxIdx] = useState(0);
@@ -73,6 +80,7 @@ export default function RoomTour() {
           const dynamic = configToRooms(data);
           if (dynamic.length > 0) setRooms(dynamic);
         }
+        if (data?.video) setVideoConfig(data.video);
       })
       .catch(() => {});
   }, []);
@@ -382,6 +390,26 @@ export default function RoomTour() {
           })}
         </div>
       </div>
+
+      {/* ─── Video embed (shown only when enabled from admin) ─── */}
+      {videoConfig?.enabled && videoConfig.url && (
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+          {videoConfig.title && (
+            <h3 className="font-display text-xl font-semibold text-stitch-green text-center mb-4">
+              {videoConfig.title}
+            </h3>
+          )}
+          <div className="aspect-video rounded-2xl overflow-hidden shadow-ambient-lg">
+            <iframe
+              src={getYouTubeEmbedUrl(videoConfig.url)}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title={videoConfig.title || "Video presentazione"}
+            />
+          </div>
+        </div>
+      )}
 
       {/* ─── Fullscreen Lightbox — ALL 19 IMAGES ─── */}
       <AnimatePresence>

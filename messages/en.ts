@@ -14,6 +14,7 @@ export default {
     "location": "Location",
     "reviews": "Reviews",
     "faq": "FAQ",
+    "booking": "Check Availability",
     "offers": "Offers",
     "bookNow": "Book Now"
   },
