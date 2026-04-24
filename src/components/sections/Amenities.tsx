@@ -136,17 +136,14 @@ function ComfortCard({ t }: { t: (k: string) => string }) {
         ))}
       </ul>
 
-      {/* Bottom count */}
-      <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+      {/* Bottom icon strip */}
+      <div className="mt-8 pt-6 border-t border-white/10">
         <div className="flex items-center gap-2">
           <Wifi className="w-4 h-4 text-stitch-gold/70" />
           <Tv className="w-4 h-4 text-stitch-gold/70" />
           <AirVent className="w-4 h-4 text-stitch-gold/70" />
-          <Sparkles className="w-4 h-4 text-stitch-gold/70" />
+          <Car className="w-4 h-4 text-stitch-gold/70" />
         </div>
-        <span className="text-white/30 text-xs font-medium tracking-wide">
-          {t("amenities.comfort.count")}
-        </span>
       </div>
 
       {/* Decorative circle */}
@@ -444,12 +441,11 @@ export default function Amenities() {
                 <ul className="space-y-3 text-white/80">
                   {comfortItemTexts.map((text, i) => <ItemRow key={i} text={text} />)}
                 </ul>
-                <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                <div className="mt-8 pt-6 border-t border-white/10">
                   <div className="flex items-center gap-2">
                     <Wifi className="w-4 h-4 text-stitch-gold/70" /><Tv className="w-4 h-4 text-stitch-gold/70" />
-                    <AirVent className="w-4 h-4 text-stitch-gold/70" /><Sparkles className="w-4 h-4 text-stitch-gold/70" />
+                    <AirVent className="w-4 h-4 text-stitch-gold/70" /><Car className="w-4 h-4 text-stitch-gold/70" />
                   </div>
-                  <span className="text-white/30 text-xs font-medium tracking-wide">{comfortItemTexts.length} servizi</span>
                 </div>
                 <div className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full border border-white/[0.07]"
                   style={{ background: "radial-gradient(circle, rgba(255,255,255,0.04), transparent)" }} />

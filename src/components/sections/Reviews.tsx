@@ -212,11 +212,13 @@ export default function Reviews() {
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8">
                 <div className="flex items-center gap-6 md:gap-10">
                   <div className="text-center sm:text-left">
-                    <div className="font-display text-5xl md:text-6xl font-bold text-stitch-green leading-none">
-                      {overallScore}
-                    </div>
-                    <div className="text-stitch-on-surface/35 text-xs font-medium mt-1">
-                      / {t("reviews.overallMax")}
+                    <div className="flex items-end gap-0.5">
+                      <span className="font-display text-5xl md:text-6xl font-bold text-stitch-green leading-none">
+                        {overallScore}
+                      </span>
+                      <span className="text-stitch-on-surface/35 text-sm font-medium mb-1.5">
+                        /{t("reviews.overallMax")}
+                      </span>
                     </div>
                   </div>
 

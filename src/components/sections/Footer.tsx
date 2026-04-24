@@ -51,6 +51,7 @@ export default function Footer() {
     { labelKey: "faq", href: "#faq" },
     { labelKey: "location", href: "#location" },
     { labelKey: "bookNow", href: "#booking" },
+    { labelKey: "booking", href: "#prenota" },
   ] as const;
 
   const WHATSAPP_LINK = `https://wa.me/${whatsapp}?text=${encodeURIComponent(t("common.whatsapp.inquiry"))}`;
