@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { Save, RefreshCw, ChevronDown, ChevronUp, CheckCircle } from "lucide-react";
+import { Save, RefreshCw, ChevronDown, ChevronUp, CheckCircle, Plus, Trash2 } from "lucide-react";
 
 const RichEditor = dynamic(() => import("@/components/ui/RichEditor"), { ssr: false });
 import { toast } from "sonner";
@@ -18,6 +18,7 @@ interface Field {
   label: string;
   path: string[];
   multiline?: boolean;
+  bullets?: boolean;
   placeholder?: string;
 }
 
@@ -38,7 +39,7 @@ const SECTIONS: Section[] = [
     fields: [
       { key: "hero.title", label: "Titolo principale", path: ["hero", "title"], placeholder: "San Paolo Hideout" },
       { key: "hero.subtitle", label: "Sottotitolo", path: ["hero", "subtitle"], multiline: true },
-      { key: "hero.facts", label: "Dettagli struttura (icone sotto il titolo)", path: ["hero", "facts"], placeholder: "2 camere • 3 ospiti • …" },
+      { key: "hero.facts", label: "Dettagli struttura (pallini sotto il titolo)", path: ["hero", "facts"], bullets: true },
       { key: "hero.rating", label: "Badge valutazione", path: ["hero", "rating"], placeholder: "9.9 Eccellente • Booking Award 2026" },
       { key: "hero.location", label: "Indirizzo (hero)", path: ["hero", "location"], placeholder: "Via Silvio D'Amico 96, 00145 Roma" },
       { key: "hero.ctaCall", label: "Bottone Chiama — testo", path: ["hero", "ctaCall"], placeholder: "Chiama ora" },
@@ -310,6 +311,44 @@ function setNestedValue(
   };
 }
 
+/* ─── Bullets editor ─── */
+function BulletsEditor({ value, onChange, defaultVal }: { value: string; onChange: (v: string) => void; defaultVal: string }) {
+  const toLines = (v: string) => {
+    if (!v) {
+      // parse default value which uses " • " separator
+      return defaultVal ? defaultVal.split(" • ").filter(Boolean) : [""];
+    }
+    return v.includes("\n") ? v.split("\n").filter(Boolean) : v.split(" • ").filter(Boolean);
+  };
+  const lines = toLines(value);
+  const save = (next: string[]) => onChange(next.join("\n"));
+
+  return (
+    <div className="space-y-1.5">
+      {lines.map((line, i) => (
+        <div key={i} className="flex items-center gap-2">
+          <span className="w-3 h-3 rounded-full bg-stitch-gold shrink-0" style={{ background: "#C8A96B" }} />
+          <input
+            type="text"
+            value={line}
+            onChange={(e) => { const n = [...lines]; n[i] = e.target.value; save(n); }}
+            className="flex-1 px-3 py-2 border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all"
+          />
+          <button onClick={() => save(lines.filter((_, j) => j !== i))} className="p-1.5 text-gray-300 hover:text-red-500 transition-colors">
+            <Trash2 className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      ))}
+      <button
+        onClick={() => save([...lines, ""])}
+        className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-[#072316] transition-colors mt-1"
+      >
+        <Plus className="w-3.5 h-3.5" /> Aggiungi pallino
+      </button>
+    </div>
+  );
+}
+
 /* ─── Page ─── */
 export default function ContenutiPage() {
   const [currentContent, setCurrentContent] = useState<Record<string, unknown>>({});
@@ -484,7 +523,13 @@ export default function ContenutiPage() {
                               <span className="ml-2 text-xs font-normal text-[#072316]">• modificato</span>
                             )}
                           </label>
-                          {field.multiline ? (
+                          {field.bullets ? (
+                            <BulletsEditor
+                              value={currentVal}
+                              onChange={(v) => setValues((prev) => ({ ...prev, [field.key]: v }))}
+                              defaultVal={defaultVal}
+                            />
+                          ) : field.multiline ? (
                             <RichEditor
                               value={currentVal}
                               onChange={(html) => setValues((prev) => ({ ...prev, [field.key]: html }))}

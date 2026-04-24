@@ -165,7 +165,10 @@ export default function Hero() {
           className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-white/80 text-sm tracking-wider font-body"
           style={{ textShadow: "0 1px 8px rgba(0,0,0,0.35)" }}
         >
-          {t("hero.facts").split(" • ").map((fact, i) => (
+          {(() => {
+            const raw = t("hero.facts");
+            return raw.includes("\n") ? raw.split("\n").filter(Boolean) : raw.split(" • ");
+          })().map((fact, i) => (
             <span key={i} className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-stitch-gold rounded-full" />
               {fact}

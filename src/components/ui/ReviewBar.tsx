@@ -91,9 +91,9 @@ export default function ReviewBar() {
           }}
         >
           {/* Logo + platform name */}
-          <div className="flex items-center gap-1.5 sm:gap-3">
+          <div className="flex items-center justify-center gap-1.5 sm:gap-2.5">
             <div className="shrink-0 w-6 h-6 sm:w-8 sm:h-8">{item.logo}</div>
-            <div className="text-[7px] sm:text-[10px] font-semibold tracking-[0.08em] sm:tracking-[0.12em] uppercase text-white/50 leading-tight">
+            <div className="text-[8px] sm:text-[11px] font-semibold tracking-[0.06em] uppercase text-white/60 leading-tight">
               {item.platform}
             </div>
           </div>
