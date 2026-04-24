@@ -61,7 +61,11 @@ export function useSettings(): SiteSettings {
     fetch("/api/settings")
       .then((r) => r.json())
       .then((data: SiteSettings) => {
-        setSettings({ ...DEFAULTS, ...data });
+        // Only override defaults with non-empty values from DB
+        const filtered = Object.fromEntries(
+          Object.entries(data).filter(([, v]) => v !== "" && v !== null && v !== undefined)
+        ) as Partial<SiteSettings>;
+        setSettings({ ...DEFAULTS, ...filtered });
       })
       .catch(() => {});
   }, []);

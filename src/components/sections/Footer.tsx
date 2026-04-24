@@ -43,14 +43,14 @@ export default function Footer() {
   const { t, locale, setLocale } = useTranslation();
   const { phone, whatsapp, mapsLink, instagramLink, cin, cir, protocollo } = useSettings();
 
+  // Same order as top navbar (minus "home")
   const serviceLinks = [
     { labelKey: "lacasa", href: "#lacasa" },
     { labelKey: "galleria", href: "#rooms" },
     { labelKey: "amenities", href: "#amenities" },
-    { labelKey: "offers", href: "#offers" },
-    { labelKey: "faq", href: "#faq" },
     { labelKey: "location", href: "#location" },
-    { labelKey: "bookNow", href: "#booking" },
+    { labelKey: "reviews", href: "#reviews" },
+    { labelKey: "faq", href: "#faq" },
     { labelKey: "booking", href: "#prenota" },
   ] as const;
 
