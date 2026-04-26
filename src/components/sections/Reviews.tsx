@@ -79,7 +79,7 @@ function ReviewCard({ review, idx }: { review: Review; idx: number }) {
       className="break-inside-avoid mb-5 bg-white rounded-[20px] p-6 md:p-7 group cursor-default flex flex-col gap-5 transition-all duration-300"
       style={{ boxShadow: "0 4px 24px -8px rgba(41,23,13,0.07)" }}
     >
-      {/* Stars + badge */}
+      {/* Stars + platform badge */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-0.5">
           {[...Array(5)].map((_, i) => (
@@ -89,10 +89,22 @@ function ReviewCard({ review, idx }: { review: Review; idx: number }) {
             />
           ))}
         </div>
-        <span className="inline-flex items-center gap-1.5 text-[#FF5A5F] text-[10px] font-semibold tracking-wide">
-          <AirbnbMark className="w-3 h-3" />
-          Verificata
-        </span>
+        {review.platform === "booking" ? (
+          <span className="inline-flex items-center gap-1.5 text-[#1a6fbb] text-[10px] font-semibold tracking-wide">
+            <span className="w-3.5 h-3.5 rounded-sm bg-[#003580] text-white text-[8px] font-bold flex items-center justify-center">B</span>
+            Booking
+          </span>
+        ) : review.platform === "google" ? (
+          <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-wide text-stitch-on-surface/50">
+            <span className="w-3.5 h-3.5 rounded-sm bg-white border border-gray-200 text-[8px] font-bold flex items-center justify-center" style={{ color: "#4285F4" }}>G</span>
+            Google
+          </span>
+        ) : (
+          <span className="inline-flex items-center gap-1.5 text-[#FF5A5F] text-[10px] font-semibold tracking-wide">
+            <AirbnbMark className="w-3 h-3" />
+            Airbnb
+          </span>
+        )}
       </div>
 
       {/* Opening quote */}
@@ -317,10 +329,22 @@ export default function Reviews() {
                         <Star key={i} className="w-3 h-3 text-stitch-gold fill-stitch-gold" />
                       ))}
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[#FF5A5F] text-[9px] font-semibold">
-                      <AirbnbMark className="w-2.5 h-2.5" />
-                      {t("reviews.verified")}
-                    </span>
+                    {review.platform === "booking" ? (
+                      <span className="inline-flex items-center gap-1 text-[#1a6fbb] text-[9px] font-semibold">
+                        <span className="w-3 h-3 rounded-sm bg-[#003580] text-white text-[7px] font-bold flex items-center justify-center">B</span>
+                        Booking
+                      </span>
+                    ) : review.platform === "google" ? (
+                      <span className="inline-flex items-center gap-1 text-[9px] font-semibold text-stitch-on-surface/50">
+                        <span className="w-3 h-3 rounded-sm bg-white border border-gray-200 text-[7px] font-bold flex items-center justify-center" style={{ color: "#4285F4" }}>G</span>
+                        Google
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-[#FF5A5F] text-[9px] font-semibold">
+                        <AirbnbMark className="w-2.5 h-2.5" />
+                        Airbnb
+                      </span>
+                    )}
                   </div>
 
                   <div
