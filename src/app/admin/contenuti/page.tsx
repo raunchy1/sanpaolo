@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Save, RefreshCw, ChevronDown, ChevronUp, CheckCircle, Plus, Trash2 } from "lucide-react";
 
@@ -312,35 +312,66 @@ function setNestedValue(
 }
 
 /* ─── Bullets editor ─── */
+function parseBullets(v: string, defaultVal: string): string[] {
+  const src = v || defaultVal || "";
+  if (!src) return [""];
+  if (src.includes("\n")) return src.split("\n");
+  if (src.includes(" • ")) return src.split(" • ").filter(Boolean);
+  // handle "|" separator saved by old admin
+  if (src.includes("|")) return src.split("|").map((s) => s.trim()).filter(Boolean);
+  return [src];
+}
+
 function BulletsEditor({ value, onChange, defaultVal }: { value: string; onChange: (v: string) => void; defaultVal: string }) {
-  const toLines = (v: string) => {
-    if (!v) {
-      // parse default value which uses " • " separator
-      return defaultVal ? defaultVal.split(" • ").filter(Boolean) : [""];
-    }
-    return v.includes("\n") ? v.split("\n").filter(Boolean) : v.split(" • ").filter(Boolean);
+  const [lines, setLines] = useState<string[]>(() => parseBullets(value, defaultVal));
+  const lastExternalRef = useRef(value);
+
+  // Re-parse when value changes from outside (e.g. async data load), but NOT from our own onChange
+  useEffect(() => {
+    if (value === lastExternalRef.current) return;
+    lastExternalRef.current = value;
+    setLines(parseBullets(value, defaultVal));
+  }, [value, defaultVal]);
+
+  const commit = (next: string[]) => {
+    setLines(next);
+    const saved = next.filter(Boolean).join("\n");
+    lastExternalRef.current = saved;
+    onChange(saved);
   };
-  const lines = toLines(value);
-  const save = (next: string[]) => onChange(next.join("\n"));
+
+  const updateLine = (i: number, v: string) => {
+    const next = [...lines];
+    next[i] = v;
+    commit(next);
+  };
+
+  const removeLine = (i: number) => commit(lines.filter((_, j) => j !== i));
+
+  const addLine = () => {
+    // Only update internal state — don't propagate empty line to parent yet
+    setLines((prev) => [...prev, ""]);
+  };
 
   return (
     <div className="space-y-1.5">
       {lines.map((line, i) => (
         <div key={i} className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-stitch-gold shrink-0" style={{ background: "#C8A96B" }} />
+          <span className="w-3 h-3 rounded-full shrink-0" style={{ background: "#C8A96B" }} />
           <input
             type="text"
             value={line}
-            onChange={(e) => { const n = [...lines]; n[i] = e.target.value; save(n); }}
+            onChange={(e) => updateLine(i, e.target.value)}
+            placeholder="es. 2 camere da letto"
             className="flex-1 px-3 py-2 border border-gray-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all"
           />
-          <button onClick={() => save(lines.filter((_, j) => j !== i))} className="p-1.5 text-gray-300 hover:text-red-500 transition-colors">
+          <button onClick={() => removeLine(i)} className="p-1.5 text-gray-300 hover:text-red-500 transition-colors">
             <Trash2 className="w-3.5 h-3.5" />
           </button>
         </div>
       ))}
       <button
-        onClick={() => save([...lines, ""])}
+        onClick={addLine}
         className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-[#072316] transition-colors mt-1"
       >
         <Plus className="w-3.5 h-3.5" /> Aggiungi pallino
