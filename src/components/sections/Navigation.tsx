@@ -7,16 +7,18 @@ import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useSettings } from "@/hooks/useSettings";
 
-const navItems = [
-  { key: "home", href: "#home" },
-  { key: "lacasa", href: "#lacasa" },
-  { key: "galleria", href: "#rooms" },
+interface NavItem { key: string; href: string; visible?: boolean; }
+
+const DEFAULT_NAV: NavItem[] = [
+  { key: "home",      href: "#home" },
+  { key: "lacasa",    href: "#lacasa" },
+  { key: "galleria",  href: "#rooms" },
   { key: "amenities", href: "#amenities" },
-  { key: "location", href: "#location" },
-  { key: "reviews", href: "#reviews" },
-  { key: "faq", href: "#faq" },
-  { key: "booking", href: "#prenota" },
-] as const;
+  { key: "location",  href: "#location" },
+  { key: "reviews",   href: "#reviews" },
+  { key: "faq",       href: "#faq" },
+  { key: "booking",   href: "#prenota" },
+];
 
 const languages: { code: Locale; flag: string }[] = [
   { code: "it", flag: "🇮🇹" },
@@ -30,6 +32,24 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [navItems, setNavItems] = useState<NavItem[]>(DEFAULT_NAV);
+
+  useEffect(() => {
+    fetch("/api/navbar")
+      .then((r) => r.json())
+      .then((data: NavItem[]) => {
+        if (Array.isArray(data) && data.length > 0) {
+          // Merge with defaults to ensure new items are included
+          const savedKeys = new Set(data.map((i) => i.key));
+          const merged = [
+            ...data,
+            ...DEFAULT_NAV.filter((i) => !savedKeys.has(i.key)),
+          ];
+          setNavItems(merged.filter((i) => i.visible !== false));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const WHATSAPP_LINK = `https://wa.me/${whatsapp}?text=${encodeURIComponent(t("common.whatsapp.inquiry"))}`;
 
@@ -85,6 +105,7 @@ export default function Navigation() {
                   className={`font-display italic text-lg transition-colors duration-300 hover:text-stitch-bronze ${
                     scrolled ? "text-stitch-on-surface/70" : "text-white/75"
                   }`}
+                  onClick={() => setLangOpen(false)}
                 >
                   {t(`nav.${key}`)}
                 </a>
@@ -247,6 +268,7 @@ export default function Navigation() {
                       <span className="text-stitch-on-surface-muted group-hover:text-stitch-green transition-colors text-sm">→</span>
                     </motion.a>
                   ))}
+
                 </nav>
 
                 <div className="flex gap-2 mb-6">
