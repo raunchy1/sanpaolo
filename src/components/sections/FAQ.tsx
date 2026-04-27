@@ -60,7 +60,7 @@ function FAQItem({
           >
             <div className="pb-5 md:pb-6 text-muted-foreground leading-relaxed pr-12 px-1 space-y-3">
               {answer.trim().startsWith("<") ? (
-                <div dangerouslySetInnerHTML={{ __html: answer }} />
+                <div className="html-content" dangerouslySetInnerHTML={{ __html: answer }} />
               ) : (
                 answer.split("\n").map((line, i) =>
                   line.trim() === "" ? null : <p key={i}>{line}</p>

@@ -46,7 +46,7 @@ const pIntroClass =
 // Renders either HTML (from rich editor) or legacy bold/strikethrough format
 function Para({ text, className, style }: { text: string; className: string; style?: React.CSSProperties }) {
   if (text.startsWith("<")) {
-    return <div className={className} style={style} dangerouslySetInnerHTML={{ __html: text }} />;
+    return <div className={`html-content ${className}`} style={style} dangerouslySetInnerHTML={{ __html: text }} />;
   }
   return <p className={className} style={style}><B text={text} /></p>;
 }

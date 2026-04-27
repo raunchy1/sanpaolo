@@ -94,7 +94,7 @@ export default function RichEditor({ value, onChange, placeholder = "Scrivi quiâ
     },
     editorProps: {
       attributes: {
-        class: "outline-none rich-editor-content",
+        class: "outline-none html-content",
         style: `min-height:${minHeight}px; padding: 12px 14px; font-size: 14px; line-height: 1.75; color: #2d3436;`,
       },
     },

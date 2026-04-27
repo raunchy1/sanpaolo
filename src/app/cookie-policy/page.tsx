@@ -20,7 +20,7 @@ export default async function CookiePolicyPage() {
           Cookie Policy
         </h1>
         <div
-          className="prose prose-lg max-w-none text-stitch-on-surface/70 leading-relaxed [&_h2]:font-display [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-stitch-green [&_h2]:mt-8 [&_h2]:mb-3 [&_a]:text-blue-600 [&_a]:underline"
+          className="html-content prose prose-lg max-w-none text-stitch-on-surface/70 leading-relaxed [&_h2]:font-display [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-stitch-green [&_h2]:mt-8 [&_h2]:mb-3 [&_a]:text-blue-600 [&_a]:underline"
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
