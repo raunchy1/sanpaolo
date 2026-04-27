@@ -38,11 +38,15 @@ export default function CheckIn() {
                   {t("checkin.title")}
                 </h2>
                 <div className="space-y-1.5">
-                  {t("checkin.description").split("\n").map((line: string, i: number) => (
-                    <p key={i} className="text-stitch-on-surface/70 text-base leading-relaxed">
-                      {line}
-                    </p>
-                  ))}
+                  {(() => {
+                    const desc = t("checkin.description");
+                    if (desc.trim().startsWith("<")) {
+                      return <div className="html-content text-stitch-on-surface/70 text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />;
+                    }
+                    return desc.split("\n").map((line: string, i: number) => (
+                      <p key={i} className="text-stitch-on-surface/70 text-base leading-relaxed">{line}</p>
+                    ));
+                  })()}
                 </div>
               </div>
             </div>

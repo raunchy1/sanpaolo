@@ -87,9 +87,13 @@ export default function BookingCTA() {
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-light italic text-white mb-6 leading-[1.1]">
             {t("booking.newTitle")}
           </h2>
-          <p className="font-body text-white/60 text-base max-w-xl mx-auto leading-relaxed">
-            {t("booking.newSubtitle")}
-          </p>
+          {(() => {
+            const sub = t("booking.newSubtitle");
+            const cls = "font-body text-white/60 text-base max-w-xl mx-auto leading-relaxed";
+            return sub.trim().startsWith("<")
+              ? <div className={`html-content ${cls}`} dangerouslySetInnerHTML={{ __html: sub }} />
+              : <p className={cls}>{sub}</p>;
+          })()}
         </motion.div>
 
         {/* Reservation Hub -- simplified, no feature grid */}

@@ -318,10 +318,7 @@ export default function ImpostazioniPage() {
                               {(field.key === "ogImage" ? uploadingOg : uploading) ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
                               {(field.key === "ogImage" ? uploadingOg : uploading) ? "Caricamento…" : "Carica"}
                             </button>
-                            <input ref={heroFileRef} type="file" accept="image/*" className="hidden"
-                              onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadHeroImage(f); e.target.value = ""; }} />
-                            <input ref={ogFileRef} type="file" accept="image/*" className="hidden"
-                              onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadOgImage(f); e.target.value = ""; }} />
+                            {/* File inputs rendered once via refs outside the loop */}
                           </div>
                           {val && (val.startsWith("http") || val.startsWith("/")) && (
                             <img src={val} alt="Preview" className="h-24 w-full object-cover rounded-xl border border-gray-200" />
@@ -356,6 +353,12 @@ export default function ImpostazioniPage() {
           );
         })}
       </div>
+
+      {/* Hidden file inputs — rendered once, outside loop */}
+      <input ref={heroFileRef} type="file" accept="image/*" className="hidden"
+        onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadHeroImage(f); e.target.value = ""; }} />
+      <input ref={ogFileRef} type="file" accept="image/*" className="hidden"
+        onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadOgImage(f); e.target.value = ""; }} />
     </div>
   );
 }

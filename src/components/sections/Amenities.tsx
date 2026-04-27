@@ -256,9 +256,13 @@ function PetStrip({ t }: { t: (k: string) => string }) {
         <p className="font-display text-stitch-on-surface font-semibold text-base leading-snug mb-1">
           {t("amenities.pet.tagline")}
         </p>
-        <p className="text-sm text-stitch-on-surface/55 leading-relaxed max-w-prose">
-          {t("amenities.pet.desc")}
-        </p>
+        {(() => {
+          const desc = t("amenities.pet.desc");
+          const cls = "text-sm text-stitch-on-surface/55 leading-relaxed max-w-prose";
+          return desc.trim().startsWith("<")
+            ? <div className={`html-content ${cls}`} dangerouslySetInnerHTML={{ __html: desc }} />
+            : <p className={cls}>{desc}</p>;
+        })()}
       </div>
       <span className="shrink-0 inline-flex items-center gap-1.5 bg-stitch-green/10 text-stitch-green font-label text-[10px] tracking-wider uppercase px-4 py-2 rounded-lg">
         <Check className="w-3 h-3" />
@@ -557,7 +561,9 @@ export default function Amenities() {
             <div className="flex-1">
               <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-stitch-on-surface/40 mb-0.5">{petLabel}</p>
               <p className="font-display text-stitch-on-surface font-semibold text-base leading-snug mb-1">{petTagline}</p>
-              <p className="text-sm text-stitch-on-surface/55 leading-relaxed max-w-prose">{petDesc}</p>
+              {petDesc.trim().startsWith("<")
+                ? <div className="html-content text-sm text-stitch-on-surface/55 leading-relaxed max-w-prose" dangerouslySetInnerHTML={{ __html: petDesc }} />
+                : <p className="text-sm text-stitch-on-surface/55 leading-relaxed max-w-prose">{petDesc}</p>}
             </div>
             <span className="shrink-0 inline-flex items-center gap-1.5 bg-stitch-green/10 text-stitch-green font-label text-[10px] tracking-wider uppercase px-4 py-2 rounded-lg">
               <Check className="w-3 h-3" />{petBadge}

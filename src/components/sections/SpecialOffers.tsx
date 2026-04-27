@@ -79,9 +79,13 @@ export default function SpecialOffers() {
                 <h3 className="font-display italic text-2xl md:text-3xl font-light mb-2 leading-snug">
                   {t(`offers.${offer.key}.title`)}
                 </h3>
-                <p className="font-body text-white/65 text-sm leading-relaxed mb-6 max-w-[38ch]">
-                  {t(`offers.${offer.key}.description`)}
-                </p>
+                {(() => {
+                  const desc = t(`offers.${offer.key}.description`);
+                  const cls = "font-body text-white/65 text-sm leading-relaxed mb-6 max-w-[38ch]";
+                  return desc.trim().startsWith("<")
+                    ? <div className={`html-content ${cls}`} dangerouslySetInnerHTML={{ __html: desc }} />
+                    : <p className={cls}>{desc}</p>;
+                })()}
 
                 <a
                   href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(t(`offers.${offer.key}.waText`))}`}
