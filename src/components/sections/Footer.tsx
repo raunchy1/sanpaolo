@@ -133,9 +133,13 @@ export default function Footer() {
               </div>
             </div>
 
-            <p className="text-white/45 text-sm leading-relaxed mb-7 max-w-[26ch]">
-              {t("footer.description")}
-            </p>
+            {(() => {
+              const desc = t("footer.description");
+              const cls = "text-white/45 text-sm leading-relaxed mb-7 max-w-[26ch]";
+              return desc.trim().startsWith("<")
+                ? <div className={`html-content ${cls}`} dangerouslySetInnerHTML={{ __html: desc }} />
+                : <p className={cls}>{desc}</p>;
+            })()}
 
             {/* Social icons */}
             <div className="flex items-center gap-3">

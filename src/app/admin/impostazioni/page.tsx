@@ -149,25 +149,30 @@ export default function ImpostazioniPage() {
   const [saving, setSaving] = useState<SectionId | null>(null);
   const [justSaved, setJustSaved] = useState<SectionId | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [uploadingOg, setUploadingOg] = useState(false);
   const heroFileRef = useRef<HTMLInputElement>(null);
+  const ogFileRef = useRef<HTMLInputElement>(null);
 
-  async function uploadHeroImage(file: File) {
-    setUploading(true);
+  async function uploadImage(file: File, folder: string, field: "heroImage" | "ogImage", setLoad: (v: boolean) => void) {
+    setLoad(true);
     try {
       const fd = new FormData();
       fd.append("file", file);
-      fd.append("folder", "hero");
+      fd.append("folder", folder);
       const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
-      setValues((prev) => ({ ...prev, heroImage: data.url }));
+      setValues((prev) => ({ ...prev, [field]: data.url }));
       toast.success("Immagine caricata — clicca Salva per applicare");
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Errore upload");
     } finally {
-      setUploading(false);
+      setLoad(false);
     }
   }
+
+  const uploadHeroImage = (file: File) => uploadImage(file, "hero", "heroImage", setUploading);
+  const uploadOgImage   = (file: File) => uploadImage(file, "og", "ogImage", setUploadingOg);
 
   async function load() {
     setLoading(true);
@@ -294,39 +299,35 @@ export default function ImpostazioniPage() {
                           </span>
                         )}
                       </div>
-                      {field.key === "heroImage" ? (
+                      {(field.key === "heroImage" || field.key === "ogImage") ? (
                         <div className="space-y-2">
                           <div className="flex gap-2">
                             <input
                               type="text"
                               value={val}
-                              onChange={(e) => setValues((prev) => ({ ...prev, heroImage: e.target.value }))}
+                              onChange={(e) => setValues((prev) => ({ ...prev, [field.key]: e.target.value }))}
                               placeholder={field.placeholder}
                               className="flex-1 px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#072316]/20 focus:border-[#072316] transition-all"
                             />
                             <button
                               type="button"
-                              onClick={() => heroFileRef.current?.click()}
-                              disabled={uploading}
+                              onClick={() => field.key === "ogImage" ? ogFileRef.current?.click() : heroFileRef.current?.click()}
+                              disabled={field.key === "ogImage" ? uploadingOg : uploading}
                               className="flex items-center gap-2 px-4 py-2.5 bg-[#072316] hover:bg-[#0F3D28] disabled:opacity-50 text-white text-sm font-medium rounded-xl transition-colors shrink-0"
                             >
-                              {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                              {uploading ? "Caricamento…" : "Carica"}
+                              {(field.key === "ogImage" ? uploadingOg : uploading) ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+                              {(field.key === "ogImage" ? uploadingOg : uploading) ? "Caricamento…" : "Carica"}
                             </button>
-                            <input
-                              ref={heroFileRef}
-                              type="file"
-                              accept="image/*"
-                              className="hidden"
-                              onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                if (file) uploadHeroImage(file);
-                                e.target.value = "";
-                              }}
-                            />
+                            <input ref={heroFileRef} type="file" accept="image/*" className="hidden"
+                              onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadHeroImage(f); e.target.value = ""; }} />
+                            <input ref={ogFileRef} type="file" accept="image/*" className="hidden"
+                              onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadOgImage(f); e.target.value = ""; }} />
                           </div>
-                          {val && val.startsWith("http") && (
-                            <img src={val} alt="Hero preview" className="h-24 w-full object-cover rounded-xl border border-gray-200" />
+                          {val && (val.startsWith("http") || val.startsWith("/")) && (
+                            <img src={val} alt="Preview" className="h-24 w-full object-cover rounded-xl border border-gray-200" />
+                          )}
+                          {field.key === "ogImage" && (
+                            <p className="text-xs text-gray-400">Dimensioni consigliate: 1200×630px — questa foto appare quando condividi il link su WhatsApp/social.</p>
                           )}
                         </div>
                       ) : isTextarea ? (

@@ -112,16 +112,23 @@ export default function Hero() {
         </motion.h1>
 
         {/* Subtitle — Manrope body, warm tone */}
-        <motion.p
-          custom={0.9}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-12 leading-relaxed font-body font-light"
-          style={{ textShadow: "0 2px 12px rgba(0,0,0,0.35)" }}
-        >
-          {t("hero.subtitle")}
-        </motion.p>
+        {(() => {
+          const sub = t("hero.subtitle");
+          const cls = "text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-12 leading-relaxed font-body font-light";
+          const style = { textShadow: "0 2px 12px rgba(0,0,0,0.35)" };
+          if (sub.trim().startsWith("<")) {
+            return (
+              <motion.div custom={0.9} initial="hidden" animate="visible" variants={fadeUp}
+                className={`html-content ${cls}`} style={style} dangerouslySetInnerHTML={{ __html: sub }} />
+            );
+          }
+          return (
+            <motion.p custom={0.9} initial="hidden" animate="visible" variants={fadeUp}
+              className={cls} style={style}>
+              {sub}
+            </motion.p>
+          );
+        })()}
 
         {/* Dual CTA */}
         <motion.div
