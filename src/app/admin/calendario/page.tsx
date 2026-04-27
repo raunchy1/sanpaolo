@@ -305,6 +305,18 @@ export default function CalendarioPage() {
             <p className="text-sm text-gray-500 mt-0.5">
               Importa automaticamente le prenotazioni da Airbnb e Booking.com
             </p>
+            {/* Auto-sync badge */}
+            <div className="flex items-center gap-2 mt-2">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-50 border border-green-200 text-green-700 text-xs font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                Auto-sync ogni 2 ore
+              </span>
+              {icalSources.length > 0 && icalSources[0].lastSync && (
+                <span className="text-xs text-gray-400">
+                  Ultima: {new Date(icalSources[0].lastSync).toLocaleString("it-IT", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}
+                </span>
+              )}
+            </div>
           </div>
           <div className="flex gap-2">
             <button
