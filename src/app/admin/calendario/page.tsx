@@ -153,7 +153,16 @@ export default function CalendarioPage() {
     try {
       const res = await fetch("/api/admin/ical/sync", { method: "POST" });
       const data = await res.json();
-      toast.success(`Sincronizzati ${data.synced} calendari · ${data.added} date importate`);
+      if (data.errors && data.errors.length > 0) {
+        data.errors.forEach((e: { label: string; error: string }) =>
+          toast.error(`${e.label}: ${e.error}`)
+        );
+      }
+      if (data.synced > 0 || data.added > 0) {
+        toast.success(`Sincronizzati ${data.synced} calendari · ${data.added} date importate`);
+      } else if (!data.errors || data.errors.length === 0) {
+        toast.success("Nessuna nuova data da importare");
+      }
       fetchData();
       fetchIcal();
     } catch {

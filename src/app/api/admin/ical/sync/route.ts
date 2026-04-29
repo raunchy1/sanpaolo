@@ -89,12 +89,20 @@ export async function POST() {
 
   const newBlocks: AvailabilityBlock[] = [];
   let synced = 0;
+  const errors: { label: string; error: string }[] = [];
 
   for (const source of config.sources) {
     try {
       const res = await fetch(source.url, { signal: AbortSignal.timeout(10000) });
-      if (!res.ok) continue;
+      if (!res.ok) {
+        errors.push({ label: source.label, error: `HTTP ${res.status}` });
+        continue;
+      }
       const icsText = await res.text();
+      if (!icsText.includes("BEGIN:VCALENDAR")) {
+        errors.push({ label: source.label, error: "Risposta non valida (non è un file iCal)" });
+        continue;
+      }
       const dates = parseICal(icsText, source.platform);
 
       for (const dateStr of dates) {
@@ -112,17 +120,22 @@ export async function POST() {
         }
       }
       synced++;
-    } catch {
-      // Skip failed sources
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Errore sconosciuto";
+      errors.push({ label: source.label, error: msg });
     }
   }
 
-  // Update lastSync on all sources
-  config.sources = config.sources.map((s) => ({ ...s, lastSync: new Date().toISOString() }));
+  // Update lastSync on successfully synced sources
+  const now = new Date().toISOString();
+  config.sources = config.sources.map((s) => {
+    const failed = errors.some((e) => e.label === s.label);
+    return failed ? s : { ...s, lastSync: now };
+  });
   await writeContent("ical_config", config);
 
   const combined = [...manualBlocks, ...newBlocks];
   await writeContent("availability", combined);
 
-  return NextResponse.json({ synced, added: newBlocks.length });
+  return NextResponse.json({ synced, added: newBlocks.length, errors });
 }

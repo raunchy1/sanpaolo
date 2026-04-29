@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { readContent, writeContent } from "@/lib/supabase";
@@ -21,6 +22,8 @@ export async function POST(req: Request) {
     const current = await readContent<SiteSettings>("settings", DEFAULT_SETTINGS);
     const updated = { ...current, ...body };
     await writeContent("settings", updated);
+    // Bust Next.js cache so OG image/SEO metadata updates immediately
+    revalidatePath("/", "layout");
     return NextResponse.json({ success: true });
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Unknown error";

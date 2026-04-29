@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { unstable_noStore as noStore } from "next/cache";
 import { Newsreader, Manrope } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
@@ -28,6 +29,7 @@ const STATIC_OG_DESC = "Your private Roman sanctuary near Metro B. Newly built d
 const STATIC_OG_IMAGE = "/images/hero-trevi.jpg";
 
 export async function generateMetadata(): Promise<Metadata> {
+  noStore(); // always read fresh settings — no CDN/ISR cache
   let settings: Partial<SiteSettings> = {};
   try {
     settings = await readContent<SiteSettings>("settings", {} as SiteSettings);
