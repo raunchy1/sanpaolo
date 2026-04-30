@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
 import { Newsreader, Manrope } from "next/font/google";
+
+// Force every page to be server-rendered on each request — no edge/ISR cache
+export const dynamic = "force-dynamic";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
 import { readContent } from "@/lib/supabase";
@@ -26,8 +29,8 @@ const STATIC_TITLE = "San Paolo Hideout | Casa Vacanze Roma";
 const STATIC_DESC = "San Paolo Hideout: casa vacanze indipendente a Roma vicino alla Basilica San Paolo e alla Metro B. Nuova costruzione 2025, area esterna verde, 2 camere, 3 ospiti. Prenota direttamente al miglior prezzo.";
 const STATIC_OG_TITLE = "San Paolo Hideout — Roma | Casa Vacanze con Area Verde";
 const STATIC_OG_DESC = "Your private Roman sanctuary near Metro B. Newly built detached house 2025, 2 bedrooms, shared green outdoor area. Book directly on WhatsApp.";
-// /api/og-image always reads latest from Supabase — never cached
-const OG_IMAGE_ENDPOINT = "https://sanpaolohideout.it/api/og-image";
+// Fallback = property photo (never Trevi). Overridden by admin settings.
+const FALLBACK_OG_IMAGE = "https://sanpaolohideout.it/images/hero-sanpaolo.png";
 
 export async function generateMetadata(): Promise<Metadata> {
   noStore(); // always read fresh settings — no CDN/ISR cache
@@ -40,8 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = settings.seoDescription || STATIC_DESC;
   const ogTitle = settings.ogTitle || STATIC_OG_TITLE;
   const ogDesc = settings.ogDescription || STATIC_OG_DESC;
-  // Always use the dynamic endpoint so the image updates without re-scraping
-  const ogImage = OG_IMAGE_ENDPOINT;
+  const ogImage = settings.ogImage?.trim() || FALLBACK_OG_IMAGE;
 
   return {
     metadataBase: new URL("https://sanpaolohideout.it"),
