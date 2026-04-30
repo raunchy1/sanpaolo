@@ -162,8 +162,16 @@ export default function ImpostazioniPage() {
       const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
-      setValues((prev) => ({ ...prev, [field]: data.url }));
-      toast.success("Immagine caricata — clicca Salva per applicare");
+      const url: string = data.url;
+      setValues((prev) => ({ ...prev, [field]: url }));
+      setSaved((prev) => ({ ...prev, [field]: url }));
+      // Save immediately so the URL persists even without clicking "Salva"
+      await fetch("/api/admin/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ [field]: url }),
+      });
+      toast.success("Immagine salvata ✓");
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Errore upload");
     } finally {
