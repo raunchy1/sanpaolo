@@ -18,6 +18,8 @@ import {
   HelpCircle,
   Shield,
   House,
+  Tag,
+  Share2,
 } from "lucide-react";
 
 const navItems = [
@@ -28,6 +30,8 @@ const navItems = [
   { href: "/admin/lacasa", label: "Testi La Casa", icon: House },
   { href: "/admin/servizi", label: "Servizi inclusi", icon: Layers },
   { href: "/admin/sezioni", label: "Sezioni", icon: Layers },
+  { href: "/admin/social", label: "Foto anteprima social", icon: Share2 },
+  { href: "/admin/offerte", label: "Offerte speciali", icon: Tag },
   { href: "/admin/galleria", label: "Galleria foto", icon: Images },
   { href: "/admin/faq", label: "FAQ", icon: HelpCircle },
   { href: "/admin/recensioni", label: "Recensioni", icon: Star },
