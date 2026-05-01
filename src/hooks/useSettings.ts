@@ -34,7 +34,7 @@ const DEFAULTS: SiteSettings = {
   email: "sanpaolohideout@gmail.com",
   checkinFrom: "15:00",
   checkinTo: "20:00",
-  airbnbLink: "https://www.airbnb.com.ro/rooms/1517964247980793952?unique_share_id=d7fecbe5-b751-40f5-a115-83c02ad481fa&viralityEntryPoint=1&s=76&source_impression_id=p3_1776174940_P3vjFjX5W4f5k4KO",
+  airbnbLink: "https://www.airbnb.it/rooms/1517964247980793952",
   bookingLink: "https://booking.com/hotel/it/san-paolo-hideout-roma.ro.html",
   airbnbReviewsLink: "https://www.airbnb.com/rooms/1517964247980793952",
   bookingReviewsLink: "https://www.booking.com/hotel/it/san-paolo-hideout-roma.ro.html#tab-reviews",
@@ -54,6 +54,24 @@ const DEFAULTS: SiteSettings = {
   heroImage: "/images/hero-sanpaolo.png",
 };
 
+// Normalize any Airbnb URL to Italian domain, strip tracking params
+function normalizeAirbnbUrl(url: string): string {
+  if (!url || !url.includes("airbnb.")) return url;
+  try {
+    const parsed = new URL(url);
+    parsed.hostname = "www.airbnb.it";
+    // Keep only the /rooms/ID path, strip tracking query params
+    const roomMatch = parsed.pathname.match(/\/rooms\/\d+/);
+    if (roomMatch) {
+      return `https://www.airbnb.it${roomMatch[0]}`;
+    }
+    parsed.search = "";
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
+
 export function useSettings(): SiteSettings {
   const [settings, setSettings] = useState<SiteSettings>(DEFAULTS);
 
@@ -65,7 +83,10 @@ export function useSettings(): SiteSettings {
         const filtered = Object.fromEntries(
           Object.entries(data).filter(([, v]) => v !== "" && v !== null && v !== undefined)
         ) as Partial<SiteSettings>;
-        setSettings({ ...DEFAULTS, ...filtered });
+        const merged = { ...DEFAULTS, ...filtered };
+        // Always serve Italian Airbnb regardless of what's saved
+        merged.airbnbLink = normalizeAirbnbUrl(merged.airbnbLink);
+        setSettings(merged);
       })
       .catch(() => {});
   }, []);
