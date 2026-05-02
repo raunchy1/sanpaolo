@@ -30,7 +30,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   email: "sanpaolohideout@gmail.com",
   checkinFrom: "15:00",
   checkinTo: "20:00",
-  airbnbLink: "https://www.airbnb.it/rooms/1517964247980793952",
+  airbnbLink: "https://www.airbnb.it/rooms/1517964247980793952?locale=it",
   bookingLink: "https://booking.com/hotel/it/san-paolo-hideout-roma.ro.html",
   airbnbReviewsLink: "https://www.airbnb.com/rooms/1517964247980793952",
   bookingReviewsLink: "https://www.booking.com/hotel/it/san-paolo-hideout-roma.ro.html#tab-reviews",

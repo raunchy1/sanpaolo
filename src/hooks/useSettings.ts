@@ -54,18 +54,18 @@ const DEFAULTS: SiteSettings = {
   heroImage: "/images/hero-sanpaolo.png",
 };
 
-// Normalize any Airbnb URL to Italian domain, strip tracking params
+// Normalize any Airbnb URL to Italian domain + force Italian locale
 function normalizeAirbnbUrl(url: string): string {
   if (!url || !url.includes("airbnb.")) return url;
   try {
+    const roomMatch = url.match(/\/rooms\/(\d+)/);
+    if (roomMatch) {
+      // Force Italian domain + locale param — overrides device/browser language
+      return `https://www.airbnb.it/rooms/${roomMatch[1]}?locale=it`;
+    }
     const parsed = new URL(url);
     parsed.hostname = "www.airbnb.it";
-    // Keep only the /rooms/ID path, strip tracking query params
-    const roomMatch = parsed.pathname.match(/\/rooms\/\d+/);
-    if (roomMatch) {
-      return `https://www.airbnb.it${roomMatch[0]}`;
-    }
-    parsed.search = "";
+    parsed.searchParams.set("locale", "it");
     return parsed.toString();
   } catch {
     return url;
